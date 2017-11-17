@@ -1,0 +1,43 @@
+.fundointeiro
+{
+    background: url("../img/fundo.png");
+}
+
+.fundo
+{
+    background: #005a9f; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #005a9f, #000000); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #005a9f, #000000); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #005a9f, #000000); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #005a9f, #000000); /* Standard syntax */
+}
+
+label.lblinicial, .lnkinicial
+{
+    font-weight: bold;
+    color: #cddc29;
+}
+
+.lnkinicial
+{
+    text-decoration: none;
+}
+
+.lnkinicial:hover
+{
+    color: #a4b020;
+    text-decoration: underline;
+}
+
+.btninicial
+{
+    background-color: #cddc29;
+    color: #335aa9;
+}
+
+.conteudo
+{
+    padding-top: 20px;
+    padding-left: 30px;
+    padding-right: 30px;
+}

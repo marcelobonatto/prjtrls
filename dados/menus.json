@@ -1,0 +1,94 @@
+[
+    {
+        "nome": "Administrativo",
+        "menus": [
+            {
+                "nome": "Usuários",
+                "url": "usuarios"
+            },
+            {
+                "nome": "Grupos de Usuários",
+                "url": "#"
+            },
+            {
+                "nome": "Permissões",
+                "url": "#"
+            }
+        ]
+    },
+    {
+        "nome": "Alunos",
+        "menus": [
+            {
+                "nome": "Cadastro",
+                "url": "#"
+            },
+            {
+                "nome": "---",
+                "url": ""
+            },
+            {
+                "nome": "Unidades de Ensino",
+                "url": "#"
+            }
+        ]
+    },
+    {
+        "nome": "Jogo",
+        "menus": [
+            {
+                "nome": "Eixos",
+                "url": "eixos"
+            },
+            {
+                "nome": "Missões",
+                "url": "missoes"
+            },
+            {
+                "nome": "Personagens",
+                "url": "npcs"
+            },
+            {
+                "nome": "---",
+                "url": ""
+            },
+            {
+                "nome": "Quiz",
+                "url": "quizes"
+            },
+            {
+                "nome": "Desafios Finais",
+                "url": "dfinal"
+            },
+            {
+                "nome": "---",
+                "url": ""
+            },
+            {
+                "nome": "Roupas",
+                "url": "roupas"
+            },
+            {
+                "nome": "Carteiras",
+                "url": "#"
+            },
+            {
+                "nome": "Itens",
+                "url": "itens"
+            }
+        ]
+    },
+    {
+        "nome": "Tabelas",
+        "menus": [
+            {
+                "nome": "Unidades da Federação",
+                "url": "#"
+            },
+            {
+                "nome": "Cidades",
+                "url": "#"
+            }
+        ]
+    }
+]
