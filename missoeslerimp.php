@@ -18,7 +18,8 @@ $tabelaresult   = '{ "temsub": true, ' .
                   '{ "propsup": "", "campo" : "semestre", "titulo": "Semestre", "subtitulo": "", "colunas": 1, "tipo": "texto", "controle": "impSemestre" }, ' .
                   '{ "propsup": "", "campo" : "sequencia", "titulo": "Sequência", "subtitulo": "", "colunas": 1, "tipo": "texto", "controle": "impSequencia" }, ' .
                   '{ "propsup": "", "campo" : "obrigatoria", "titulo": "Obrigatória", "subtitulo": "", "colunas": 1, "tipo": "check", "controle": "impObrigatoria" }, ' .
-                  '{ "propsup": "", "campo" : "idmoodle", "titulo": "Pai", "subtitulo": "", "colunas": 1, "tipo": "texto", "controle": "impPai" }, ' .
+                  '{ "propsup": "", "campo" : "pai", "titulo": "Pai", "subtitulo": "", "colunas": 1, "tipo": "texto", "controle": "impPai" }, ' .
+                  '{ "propsup": "", "campo" : "nomepai", "titulo": "Nome Pai", "subtitulo": "", "colunas": 1, "tipo": "texto", "controle": "impNomePai" }, ' .
                   '{ "propsup": "eixo", "campo" : "sigla", "titulo": "Eixo", "subtitulo": "Sigla", "colunas": 2, "tipo": "texto", "controle": "impEixo" }, ' .
                   '{ "propsup": "eixo", "campo" : "pontos", "titulo": "Eixo", "subtitulo": "Pontos", "colunas": 1, "tipo": "texto", "controle": "impEixoPontos" } ]' .
                   ' }';

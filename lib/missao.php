@@ -24,6 +24,7 @@ class missao
     public $sequencia;
     public $obrigatoria;
     public $pai;
+    public $painome;
     public $eixos = array();
     public $falasnpc = array();
 
@@ -102,6 +103,116 @@ class missao
         }
 
         return $matriz;
+    }
+
+    public function Salvar()
+    {
+        if ($this->id == null)
+        {
+            $id = '{ID}';
+        }
+        else
+        {
+            $id = $this->id;
+        }
+
+        if ($this->idMoodle == null)
+        {
+            $idmoodle   = 'NULL';
+        }
+        else
+        {
+            $idmoodle   = "'$this->idMoodle'";
+        }
+
+        if ($this->pai == null)
+        {
+            $pai        = 'NULL';
+        }
+        else
+        {
+            $pai        = "'$this->pai'";
+        }
+
+        if ($id == '{ID}')
+        {
+            return $this->Incluir($id, $idmoodle, $pai);
+        }
+        else
+        {
+            return $this->Atualizar($id, $idmoodle, $pai);
+        }
+    }
+
+    public function Incluir($id, $idmoodle, $pai)
+    {
+        $erro   = -1;
+
+        $sql    = 'INSERT INTO missoes ' .
+                  '(missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, missaoSequencia, ' .
+                  'missaoObrigatoria, missaoPai) ' .
+                  "VALUES ('$id', '$this->nome', '$this->titulo', '$this->descricao', $this->ativo, $idmoodle, $this->ano, $this->semestre, $this->sequencia, " .
+                  "$this->obrigatoria, $pai)";
+
+        $db         = new bancodados();
+        $this->id   = $db->ExecutarRetornaId($sql);
+
+        if ($this->id != null)
+        {
+            if ($this->eixos != null)
+            {
+                foreach ($this->eixos as $eixo)
+                {
+                    $eixoobj            = new missaoeixo();
+                    $eixoobj->missao    = $this->id;
+                    $eixoobj->eixo      = $eixo;
+
+                    $reseixos   = $eixo->Salvar();
+
+                    if (!$reseixos)
+                    {
+                        $erro   = 2;
+                    }
+                }
+            }
+        }
+        else
+        {
+            $erro   = 1;
+        }
+
+        return $erro;
+    }
+
+    public function Atualizar($id, $idmoodle, $pai)
+    {
+        $sql    = 'UPDATE itens ' .
+                  "SET itemNome = '$this->nome', " .
+                  "itemNivel = $this->nivel, " .
+                  "itemCor = NULL, " .
+                  "eixoId = $eixo, " .
+                  "itemLimite = $limite, " .
+                  "itemBonus = $this->bonus, " .
+                  "itemPrecoNormal = $this->preconormal, " .
+                  "itemAtivo = $this->ativo " .
+                  "WHERE itemId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public function Excluir()
+    {
+        $sql    = 'UPDATE itens ' .
+                  "SET itemAtivo = 0 " .
+                  "WHERE itemId = '$this->id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
     }
 }
 ?>

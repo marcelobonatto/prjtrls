@@ -42,4 +42,13 @@ if (count($mensagem) == 0)
         echo('Ocorreu um erro na hora de gravar');
     }
 }
+else
+{
+    foreach ($mensagem as $linha)
+    {
+        $html   .= "- $linha<br />"; 
+    }
+
+    echo($html);
+}
 ?>

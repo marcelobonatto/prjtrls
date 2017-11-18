@@ -1,5 +1,5 @@
 "Missão",,,,,,,,,,"Eixo",,,,,,,
 "Nome","Título","Descrição","Ativo","Id Moodle","Ano","Semestre","Sequência","Obrigatória","Pai","Código 1","Pontos 1","Código 2","Pontos 2","Código 3","Pontos 3","Código 4","Pontos 4"
-"Missão E111 ","Missão Teste 1 (Engenharia) ","Esta é a descrição completa da missão teste 1 do eixo de engenharia. Esse texto pode ser bem grande.",1,"cfe68a40-31b6-4962-b072-cbe4bd0932a0",1,1,1,1,,"E",100,,,,,,
+"Missão E111","Missão Teste 1 (Engenharia) ","Esta é a descrição completa da missão teste 1 do eixo de engenharia. Esse texto pode ser bem grande.",1,"cfe68a40-31b6-4962-b072-cbe4bd0932a0",1,1,1,1,,"E",100,,,,,,
 "Missão N111","Missão Teste 1 (Negócios)","Nesta missão você terá que ler o que está no Moodle e fazer.",1,"6cac44e4-5269-42ef-b169-13042e4b5869",1,1,1,1,,"N",100,,,,,,
 "Missão SE1","Side-quest Teste 1","Essa missão não é obrigatória, mas seria legal você fazer.",1,"3e198323-6bb3-4f56-bed6-55dceb987a1f",1,1,1,0,"Missão E111","E",100,,,,,,

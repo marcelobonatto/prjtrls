@@ -7,7 +7,8 @@ include_once('importacaomostrar.php');
         <h1><?php echo($titulo); ?></h1>
         <br />
         <?php
-        $botaoerro = "<a href=\"$paginaretorno.php\" class=\"btn btn-danger\"><i class=\"material-icons\">&#xE5C4;</i> Voltar</a>";
+        $botaoerro  = "<a href=\"$paginaretorno.php\" class=\"btn btn-danger\"><i class=\"material-icons\">&#xE5C4;</i> Voltar</a>";
+        $html       = '';
 
         switch ($erro)
         {
@@ -42,7 +43,12 @@ include_once('importacaomostrar.php');
                 }
 
                 break;
-        }        
+        }
+
+        if ($html != '')
+        {
+            echo($html);
+        }
         ?>
     </div>
 <?php

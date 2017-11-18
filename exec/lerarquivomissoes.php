@@ -44,24 +44,30 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                         break;
                     case 9:
                         //buscar pai
-                        $posbusca   = array_search($linha[$coluna], array_column($missoes, 'nome'));
-
-                        if ($pos !== FALSE)
+                        if ($linha[$coluna] != '')
                         {
-                            $missoes[$pos]->pai         = "¬missoes@$posbusca";
-                        }
-                        else
-                        {
-                            $missaobusca                = new missao();
-                            $missaobusca->SelecionarPorNome($linha[$coluna]);
+                            $posbusca   = array_search($linha[$coluna], array_column($missoes, 'nome'));
 
-                            if ($missaobusca->id != null)
+                            if ($posbusca !== FALSE)
                             {
-                                $missoes[$pos]->pai     = $missaobusca->id;
+                                $missoes[$pos]->pai         = null;
+                                $missoes[$pos]->nomepai     = "{aincluir}$posbusca";
                             }
                             else
                             {
-                                $missoes[$pos]->pai     = '¬X';
+                                $missaobusca                = new missao();
+                                $missaobusca->SelecionarPorNome($linha[$coluna]);
+
+                                if ($missaobusca->id != null)
+                                {
+                                    $missoes[$pos]->pai     = $missaobusca->id;
+                                    $missoes[$pos]->nomepai = $missaobusca->nome;
+                                }
+                                else
+                                {
+                                    $missoes[$pos]->pai     = null;
+                                    $missoes[$pos]->nomepai = '{nãoexiste}';
+                                }
                             }
                         }
 
@@ -70,17 +76,32 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                     case 12:
                     case 14:
                     case 16:
-                        $missoes[$pos]->eixos[]                 = new eixo();
-                        $poseixo                                = count($missoes[$pos]->eixos);
-                        $missoes[$pos]->eixos[$poseixo]->sigla  = $linha[coluna];
+                        if (strlen($linha[$coluna]) > 0)
+                        {
+                            $missoes[$pos]->eixos[]                 = new eixo();
+                            $poseixo                                = count($missoes[$pos]->eixos) - 1;
+                            $missoes[$pos]->eixos[$poseixo]->sigla  = $linha[$coluna];
+                        }
+                        else
+                        {
+                            $poseixo                                = -1;
+                        }
+
                         break;
                     case 11:
                     case 13:
                     case 15:
                     case 17:
-                        $missoes[$pos]->eixos[$poseixo]->pontos = $linha[$coluna];
-                        break;
+                        if ($poseixo    > -1)
+                        {
+                            $missoes[$pos]->eixos[$poseixo]->pontos = $linha[$coluna];
+                            break;
+                        }
                 }
+            }
+            else
+            {
+                break;
             }
         }
     }

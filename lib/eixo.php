@@ -44,5 +44,29 @@ class eixo
 
         return $matriz;
     }
+
+    public function SelecionarPorSigla($sigla)
+    {
+        $sql    = 'SELECT eixoId, eixoNome, eixoSequencia, eixoSigla, eixoAtivo ' .
+                  'FROM eixos ' .
+                  "WHERE eixoSigla = '$sigla'";
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== false)
+        {
+            if (count($res) > 0)
+            {
+                $eixo               = $res[0];
+                
+                $this->id           = $eixo[self::EIXO_ID];
+                $this->nome         = $eixo[self::EIXO_NOME];
+                $this->sequencia    = $eixo[self::EIXO_SEQUENCIA];
+                $this->sigla        = $eixo[self::EIXO_SIGLA];
+                $this->ativo        = $eixo[self::EIXO_ATIVO];
+            }
+        }
+    }
 }
 ?>

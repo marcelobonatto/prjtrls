@@ -3,7 +3,16 @@ include_once('autoload.php');
 
 if (!isset($_GET['id']))
 {
-    $id = 'novo';
+    $getid      = 'novo';
+}
+else
+{
+    $getid      = $_GET['id'];
+}
+
+if ($getid == 'novo')
+{
+    $id         = 'novo';
 
     $txtid      = '';
     $nome       = '';
