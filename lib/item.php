@@ -64,5 +64,103 @@ class item
 
         return $matriz;
     }
+
+    public function Salvar()
+    {
+        if ($this->id == null)
+        {
+            $id = '{ID}';
+        }
+        else
+        {
+            $id = $this->id;
+        }
+
+        if ($this->eixo == null)
+        {
+            $eixo   = 'NULL';
+        }
+        else
+        {
+            $eixo   = "'$this->eixo'";
+        }
+
+        if ($this->limite == null)
+        {
+            $limite = -1;
+        }
+        else
+        {
+            $limite = $this->limite;
+        }
+
+        if ($this->bonus == null)
+        {
+            $bonus  = 0;
+        }
+        else
+        {
+            $bonus  = $this->bonus;
+        }
+
+        if ($id == '{ID}')
+        {
+            return $this->Incluir($id, $eixo, $limite, $bonus);
+        }
+        else
+        {
+            return $this->Atualizar($id, $eixo, $limite, $bonus);
+        }
+    }
+
+    public function Incluir($id, $eixo, $limite, $bonus)
+    {
+        $erro   = -1;
+
+        $sql    = 'INSERT INTO itens ' .
+                  '(itemId, itemNome, itemNivel, itemTipo, itemCor, eixoId, itemLimite, itemBonus, itemPrecoNormal, itemAtivo) ' .
+                  "VALUES ('$id', '$this->nome', $this->nivel, '$this->tipo', NULL, $eixo, $limite, $bonus, $this->preconormal, $this->ativo)";
+
+        $db         = new bancodados();
+        $this->id   = $db->ExecutarRetornaId($sql);
+
+        if ($this->id == null)
+        {
+            $erro   = 1;
+        }
+
+        return $erro;
+    }
+
+    public function Atualizar($id, $eixo, $limite, $bonus)
+    {
+        $sql    = 'UPDATE itens ' .
+                  "SET itemNome = '$this->nome', " .
+                  "itemNivel = $this->nivel, " .
+                  "itemCor = NULL, " .
+                  "eixoId = $eixo, " .
+                  "itemLimite = $limite, " .
+                  "itemBonus = $bonus, " .
+                  "itemPrecoNormal = $this->preconormal, " .
+                  "itemAtivo = $this->ativo " .
+                  "WHERE itemId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public function Excluir()
+    {
+        $sql    = 'UPDATE itens ' .
+                  "SET itemAtivo = 0 " .
+                  "WHERE itemId = '$this->id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
 }
 ?>

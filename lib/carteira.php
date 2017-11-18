@@ -21,7 +21,7 @@ class carteira
     {
         $matriz = array();
 
-        $sql    = 'SELECT itemId, itemNome, itemNivel, itemTipo, itemLimite, itemBonus, itemPrecoNormal, itemAtivo ' .
+        $sql    = 'SELECT itemId, itemNome, itemNivel, itemTipo, itemLimite, itemPrecoNormal, itemAtivo ' .
                   'FROM itens i ' .
                   "WHERE itemTipo = 'C' " .
                   'ORDER BY itemNome';
