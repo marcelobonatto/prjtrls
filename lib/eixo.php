@@ -68,5 +68,97 @@ class eixo
             }
         }
     }
+
+    public function Selecionar($id)
+    {
+        $sql    = "SELECT eixoId, eixoNome, eixoSequencia, eixoSigla, eixoAtivo " .
+                  'FROM eixos ' .
+                  "WHERE eixoId = '$id' " .
+                  'ORDER BY eixoNome';
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== false)
+        {
+            if (count($res) > 0)
+            {
+                $eixo   = $res[0];
+
+                $this->id                    = $item[self::EIXO_ID];
+                $this->nome                  = $item[self::EIXO_NOME];
+                $this->sequencia             = $item[self::EIXO_SEQUENCIA];
+                $this->sigla                  = $item[self::EIXO_SIGLA];
+                $this->ativo                 = $item[self::EIXO_ATIVO];
+            }
+        }
+    }
+
+    public function Salvar()
+    {
+        if ($this->id == null)
+        {
+            $id     = '{ID}';
+        }
+        else
+        {
+            $id     = $this->id;
+        }
+
+        if ($id == '{ID}')
+        {
+            return $this->Incluir($id);
+        }
+        else
+        {
+            return $this->Atualizar($id);
+        }
+    }
+
+    public function Incluir($id)
+    {
+        $sql    = 'INSERT INTO eixos ' .
+                  '(eixoId, eixoNome, eixoSequencia, eixoSigla, eixoAtivo) ' . 
+                  "VALUES ('$id', '$this->nome', $this->sequencia, '$this->sigla', $this->ativo)";
+
+        $db         = new bancodados();
+        $this->id   = $db->ExecutarRetornaId($sql);
+
+        if ($this->id != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function Atualizar($id)
+    {
+        $sql    = 'UPDATE eixos ' .
+                  "SET eixoNome = '$this->nome', " .
+                  "eixoSequencia = $this->sequencia, " .
+                  "eixoSigla = '$this->sigla', " .
+                  "eixoAtivo = $this->ativo " .
+                  "WHERE itemId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public function Excluir()
+    {
+        $sql    = 'UPDATE eixos ' .
+                  "SET eixoAtivo = 0 " .
+                  "WHERE eixoId = '$this->id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }    
 }
 ?>
