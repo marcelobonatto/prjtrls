@@ -1,60 +1,127 @@
 <?php
+include_once('autoload.php');
+
 if (!isset($_GET['id']))
 {
-    header('Location: roupas.php');
+    $id = 'novo';
+
+    $txtid      = '';
+    $nome       = '';
+    $nivel      = 1;
+    $eixo       = '*';
+    $bonus      = 0;
+    $preco      = 0;
+    $ativo      = 1;
 }
 else
 {
     $id = $_GET['id'];
+
+    $roupa  = new roupa();
+    $roupa->Selecionar($id);
+    
+    $txtid      = $id;
+    $nome       = $roupa->nome;
+    $nivel      = $roupa->nivel;
+    $eixo       = $roupa->eixo;
+    $bonus      = $roupa->bonus;
+    $preco      = $roupa->preconormal;
+    $ativo      = $roupa->ativo;
 }
 
 include('header.php');
 ?>
     <div class="conteudo">
-        <h1>Cadastro de Roupa - <?php echo(($id != 'novo' ? '<< nome da roupa >>' : 'Novo Cadastro')); ?></h1>
+        <h1>Cadastro de Roupa - <?php echo(($id != 'novo' ? $nome : 'Novo Cadastro')); ?></h1>
         <br />
         <div id="mensagem" class="alert alert-danger d-none" role="alert">
         </div>
-        <form id="frmRoupa">
+        <form id="frmRoupa" method="post" action="roupa.php">
             <div class="form-group">
                 <label for="txtId">Código Interno:</label>
-                <input class="form-control col-sm-4" type="text" value="" id="txtId" name="txtId" readonly="readonly" />
+                <input class="form-control col-sm-4" type="text" value="<?php echo($txtid); ?>" id="txtId" name="txtId" readonly="readonly" />
             </div>
             <div class="form-group">
                 <label for="txtNome">Nome:</label>
-                <input class="form-control" type="text" value="" id="txtNome" name="txtNome" required />
+                <input class="form-control" type="text" value="<?php echo($nome); ?>" id="txtNome" name="txtNome" required />
             </div>
             <div class="form-group">
                 <label for="txtNivel">Nível:</label>
-                <input class="form-control col-sm-2" type="number" value="" id="txtNivel" name="txtNivel" min="0" max="30" required />
+                <input class="form-control col-sm-2" type="number" value="<?php echo($nivel); ?>" id="txtNivel" name="txtNivel" value="1" min="1" max="30" required />
             </div>
             <div class="form-group">
-                <label for="txtEixo">Eixo (colocar dinâmico):</label>
-                <select class="form-control col-sm-3" id="cmbEixo" name="cmbEixo">
-                    <option value="">Todos</option>
-                    <option value="E">Engenharia</option>
-                    <option value="N">Negócios</option>
-                    <option value="S">Saúde</option>
-                    <option value="H">Humanas</option>
+                <label for="txtEixo">Eixo:</label>
+                <?php
+                $seltxt         = ' selected="selected"';
+                $selecionado    = ($eixo == "*");
+
+                if ($selecionado)
+                {
+                    $seltxtef   = $seltxt;
+                }
+                else
+                {
+                    $seltxtef   = '';
+                }
+                
+                $opcoes = "<option value=\"*\"$seltxtef>Todos</option>";
+
+                $eixoobj  = new eixo();
+                $eixos    = $eixoobj->ListarRegistros(1);
+
+                foreach ($eixos as $eixoitem)
+                {
+                    $selecionado    = ($eixo == $eixoitem->id);
+                    
+                    if ($selecionado)
+                    {
+                        $seltxtef   = $seltxt;
+                    }
+                    else
+                    {
+                        $seltxtef   = '';
+                    }
+
+                    $opcoes .= "<option value=\"$eixoitem->id\"$seltxtef>$eixoitem->nome</option>";
+                }
+                ?>
+                <select class="form-control col-sm-3" id="cmbEixo" name="cmbEixo">                    
+                    <?php echo($opcoes); ?>
                 </select>
             </div>
             <div class="form-group">
                 <label for="txtBonus">Bônus (%):</label>
-                <input class="form-control col-sm-2" type="number" value="" id="txtBonus" name="txtBonus" min="0" max="100" required />
+                <input class="form-control col-sm-2" type="number" value="<?php echo($bonus); ?>" id="txtBonus" name="txtBonus" value="0" min="0" max="100" required />
             </div>
             <div class="form-group">
                 <label for="txtPreco">Preço:</label>
-                <input class="form-control col-sm-3" type="number" value="" id="txtBonus" name="txtPreco" min="0" max="10000" step="10" required />
+                <input class="form-control col-sm-3" type="number" value="<?php echo($preco); ?>" id="txtPreco" name="txtPreco" value="0" min="0" max="10000" step="10" required />
             </div>
             <div class="form-group">
                 <label>Ativo:</label>
                 <br />
+                <?php 
+                if ($ativo == 1)
+                {
+                    $ativo1 = ' active';
+                    $check1 = ' checked';
+                    $ativo0 = '';
+                    $check0 = '';
+                }
+                else
+                {
+                    $ativo1 = '';
+                    $check1 = '';
+                    $ativo0 = ' active';
+                    $check0 = ' checked';
+                }
+                ?>
                 <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-success active">
-                        <input type="radio" name="optAtivo" id="optSim" autocomplete="off" value="1" checked> Sim
+                    <label class="btn btn-success<?php echo($ativo1); ?>">
+                        <input type="radio" name="optAtivo" id="optSim" autocomplete="off" value="1"<?php echo($check1); ?>> Sim
                     </label>
-                    <label class="btn btn-secondary">
-                        <input type="radio" name="optAtivo" id="optNao" autocomplete="off" value="0"> Não
+                    <label class="btn btn-secondary<?php echo($ativo0); ?>">
+                        <input type="radio" name="optAtivo" id="optNao" autocomplete="off" value="0"<?php echo($check0); ?>> Não
                     </label>
                 </div>
             </div>
@@ -62,7 +129,7 @@ include('header.php');
             <button class="btn btn-info">
                 Gravar
             </button>
-            <button class="btn btn-danger">
+            <button id="cmdVoltar" type="button" class="btn btn-danger">
                 Voltar
             </button>
         </form>

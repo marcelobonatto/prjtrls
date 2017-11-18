@@ -27,7 +27,7 @@ $cadastro   = $_POST['cadastro'];
         <?php
         foreach ($lista as $obj)
         {
-            echo("<tr><td style=\"text-align: center\"><input type=\"checkbox\" value=\"$obj->id\" /></td>");
+            echo("<tr><td style=\"text-align: center\"><input name=\"chkX\" type=\"checkbox\" value=\"$obj->id\" /></td>");
 
             foreach ($colunas as $coluna)
             {

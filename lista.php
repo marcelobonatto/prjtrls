@@ -7,7 +7,7 @@ include_once('header.php');
         <a href="<?php echo($cadastro); ?>.php?id=novo" class="btn btn-info" role="button">
             <i class="material-icons">&#xE145;</i> Novo
         </a>
-        <button class="btn btn-danger">
+        <button id="cmdExcluir" class="btn btn-danger">
             <i class="material-icons">&#xE15D;</i> Desabilitar Selecionados
         </button>
         <?php

@@ -29,8 +29,7 @@ class bancodados
 
     public function Executar($comando)
     {
-        $mysqli = $this->Conectar();
-        
+        $mysqli = $this->Conectar();       
         $res = $mysqli->query($comando);
         $mysqli->close();
     }

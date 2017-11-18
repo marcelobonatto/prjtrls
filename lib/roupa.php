@@ -29,9 +29,9 @@ class roupa
     {
         $matriz = array();
 
-        $sql    = 'SELECT itemId, itemNome, itemNivel, itemTipo, itemCor, i.eixoId, eixoNome, itemLimite, itemBonus, itemPrecoNormal, itemAtivo ' .
+        $sql    = "SELECT itemId, itemNome, itemNivel, itemTipo, itemCor, i.eixoId, COALESCE(e.eixoNome, 'Todos') AS eixoNome, itemLimite, itemBonus, itemPrecoNormal, itemAtivo " .
                   'FROM itens i ' .
-                  'JOIN eixos e ON e.eixoId = i.eixoId ' .
+                  'LEFT JOIN eixos e ON e.eixoId = i.eixoId ' .
                   "WHERE itemTipo = 'R' " .
                   'ORDER BY itemNome';
 
@@ -63,6 +63,127 @@ class roupa
         }
 
         return $matriz;
+    }
+
+    public function Selecionar($id)
+    {
+        $sql    = "SELECT itemId, itemNome, itemNivel, itemTipo, itemCor, i.eixoId, COALESCE(e.eixoNome, 'Todos') AS eixoNome, itemLimite, itemBonus, itemPrecoNormal, itemAtivo " .
+                  'FROM itens i ' .
+                  'LEFT JOIN eixos e ON e.eixoId = i.eixoId ' .
+                  "WHERE itemId = '$id' " .
+                  'ORDER BY itemNome';
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== false)
+        {
+            if (count($res) > 0)
+            {
+                $item   = $res[0];
+
+                $this->id                    = $item[self::ITEM_ID];
+                $this->nome                  = $item[self::ITEM_NOME];
+                $this->nivel                 = $item[self::ITEM_NIVEL];
+                $this->tipo                  = $item[self::ITEM_TIPO];
+                $this->cor                   = $item[self::ITEM_COR];
+                $this->eixo                  = $item[self::EIXO_ID];
+                $this->eixoNome              = $item[self::EIXO_NOME];
+                $this->limite                = $item[self::ITEM_LIMITE];
+                $this->bonus                 = $item[self::ITEM_BONUS];
+                $this->preconormal           = $item[self::ITEM_PRECONORMAL];
+                $this->ativo                 = $item[self::ITEM_ATIVO];
+            }
+        }
+    }
+
+    public function Salvar()
+    {
+        if ($this->id == null)
+        {
+            $id     = '{ID}';
+        }
+        else
+        {
+            $id     = $this->id;
+        }
+
+        if ($this->eixo == '*')
+        {
+            $eixo   = 'NULL';
+        }
+        else
+        {
+            $eixo   = "'$this->eixo'";
+        }
+
+        if ($this->limite == null)
+        {
+            $limite   = -1;
+        }
+        else
+        {
+            $limite   = $this->limite;
+        }
+
+        if ($id == '{ID}')
+        {
+            return $this->Incluir($id, $eixo, $limite);
+        }
+        else
+        {
+            return $this->Atualizar($id, $eixo, $limite);
+        }
+    }
+
+    public function Incluir($id, $eixo, $limite)
+    {
+        $sql    = 'INSERT INTO itens ' .
+                  '(itemId, itemNome, itemNivel, itemTipo, itemCor, eixoId, itemLimite, itemBonus, itemPrecoNormal, itemAtivo) ' . 
+                  "VALUES ('$id', '$this->nome', $this->nivel, '$this->tipo', NULL, $eixo, $limite, $this->bonus, $this->preconormal, $this->ativo)";
+
+        $db         = new bancodados();
+        $this->id   = $db->ExecutarRetornaId($sql);
+
+        if ($this->id != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function Atualizar($id, $eixo, $limite)
+    {
+        $sql    = 'UPDATE itens ' .
+                  "SET itemNome = '$this->nome', " .
+                  "itemNivel = $this->nivel, " .
+                  "itemCor = NULL, " .
+                  "eixoId = $eixo, " .
+                  "itemLimite = $limite, " .
+                  "itemBonus = $this->bonus, " .
+                  "itemPrecoNormal = $this->preconormal, " .
+                  "itemAtivo = $this->ativo " .
+                  "WHERE itemId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public function Excluir()
+    {
+        $sql    = 'UPDATE itens ' .
+                  "SET itemAtivo = 0 " .
+                  "WHERE itemId = '$this->id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
     }
 }
 ?>

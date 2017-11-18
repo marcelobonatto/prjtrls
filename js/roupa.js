@@ -1,7 +1,9 @@
 $(document).ready(function() {
-    $("#frmRoupa").submit(function(event) {
+    var form = $("#frmRoupa");
+
+    form.submit(function(event) {
         var ehValido = form[0].checkValidity();
-        
+
         // cancels the form submission
         event.preventDefault();
 
@@ -18,34 +20,50 @@ $(document).ready(function() {
         }
     });
 
-    //TODO: mudar para aplicar para roupa
-
-    function submitForm(){
+    function submitForm() {
         // Initiate Variables With Form Content
-        var usuario = $("#usuario").val();
-        var senha = $("#senha").val();
-    
+        var id = $("#txtId").val();
+        var nome = $("#txtNome").val();
+        var nivel = $("#txtNivel").val();
+        var eixo = $("#cmbEixo").find("option:selected").val();
+        var bonus = $("#txtBonus").val();
+        var preco = $("#txtPreco").val();
+        var ativo = $("input[name='optAtivo']:checked").val();
+
         $.ajax({
             type: "POST",
-            url: "exec/versenha.php",
-            data: "usuario=" + usuario + "&senha=" + senha,
+            url: "exec/gravarroupa.php",
+            data: "id=" + id + "&nome=" + nome + "&nivel=" + nivel + "&eixo=" + eixo + "&bonus=" + bonus + "&preco=" + preco + "&ativo=" + ativo,
             success : function(text) {
-                if (text == "OK") {
-                    formSuccess();
+                var txtspl = text.split("|");
+
+                if (txtspl[0] == "OK") {
+                    var mensagem = $("#mensagem");
+                    
+                    if (mensagem.hasClass("alert-danger")) mensagem.removeClass("alert-danger");
+                    if (!mensagem.hasClass("alert-success")) mensagem.addClass("alert-success");
+                    mensagem.removeClass("d-none");
+                    
+                    mensagem.html("<i class=\"material-icons\">&#xE002;</i> O registro foi salvo!" +
+                                  "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
+
+                    $("#txtId").val(txtspl[1]);
                 }
                 else {
                     var mensagem = $("#mensagem");
 
+                    if (mensagem.hasClass("alert-success")) mensagem.removeClass("alert-success");
+                    if (!mensagem.hasClass("alert-danger")) mensagem.addClass("alert-danger");
                     mensagem.removeClass("d-none");
-                    mensagem.html("<i class=\"material-icons\">&#xE002;</i> O usuário ou a senha que você digitou estão errados." +
+
+                    mensagem.html("<i class=\"material-icons\">&#xE002;</i> " + text +
                                   "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
                 }
             }
         });
     }
 
-    function formSuccess()
-    {
-        location.href = "principal.php";
-    }
+    $("#cmdVoltar").click(function() {
+        location.href = "roupas.php";
+    });
 });
