@@ -3,6 +3,15 @@ include_once('autoload.php');
 
 if (!isset($_GET['id']))
 {
+    $getid      = 'novo';
+}
+else
+{
+    $getid      = $_GET['id'];
+}
+
+if ($getid == 'novo')
+{
     $id = 'novo';
 
     $txtid      = '';
@@ -43,7 +52,7 @@ include('header.php');
             </div>
             <div class="form-group">
                 <label for="txtSequencia">Sequencia:</label>
-                <input class="form-control col-sm-2" type="number" value="<?php echo($sequencia); ?>" id="txtSequencia" name="txtSequencia" value="1" min="1" max="1" required />
+                <input class="form-control col-sm-2" type="number" value="<?php echo($sequencia); ?>" id="txtSequencia" name="txtSequencia" value="1" min="1" max="9" required />
             </div>
             <div class="form-group">
                 <label for="txtSigla">Sigla:</label>

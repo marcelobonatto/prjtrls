@@ -85,11 +85,11 @@ class eixo
             {
                 $eixo   = $res[0];
 
-                $this->id                    = $item[self::EIXO_ID];
-                $this->nome                  = $item[self::EIXO_NOME];
-                $this->sequencia             = $item[self::EIXO_SEQUENCIA];
-                $this->sigla                  = $item[self::EIXO_SIGLA];
-                $this->ativo                 = $item[self::EIXO_ATIVO];
+                $this->id                    = $eixo[self::EIXO_ID];
+                $this->nome                  = $eixo[self::EIXO_NOME];
+                $this->sequencia             = $eixo[self::EIXO_SEQUENCIA];
+                $this->sigla                 = $eixo[self::EIXO_SIGLA];
+                $this->ativo                 = $eixo[self::EIXO_ATIVO];
             }
         }
     }
@@ -141,7 +141,7 @@ class eixo
                   "eixoSequencia = $this->sequencia, " .
                   "eixoSigla = '$this->sigla', " .
                   "eixoAtivo = $this->ativo " .
-                  "WHERE itemId = '$id'";
+                  "WHERE eixoId = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);
