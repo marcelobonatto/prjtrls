@@ -51,5 +51,83 @@ class escola
 
         return $matriz;
     }
+
+    public function Salvar()
+    {
+        if ($this->id == null)
+        {
+            $id = '{ID}';
+        }
+        else
+        {
+            $id = $this->id;
+        }
+
+        if ($id == '{ID}')
+        {
+            return $this->Incluir($id);
+        }
+        else
+        {
+            return $this->Atualizar($id);
+        }
+    }
+
+    public function Incluir($id)
+    {
+        $erro   = -1;
+
+        $sql    = 'INSERT INTO escolas ' .
+                  '(escolaId, escolaNome, escolaBairro, cidadeCodigo, estadoSigla, escolaAtivo) ' .
+                  "VALUES ('$id', '$this->nome', '$this->bairro', '$this->cidade', '$this->estado', $this->ativo)";
+
+        $db         = new bancodados();
+        $this->id   = $db->ExecutarRetornaId($sql);
+
+        if ($this->id == null)
+        {
+            $erro   = 1;
+        }
+
+        if ($this->cidade == null)
+        {
+            $erro   = 2;
+        }
+
+        if ($this->estado == null)
+        {
+            if ($erro < 2) $erro = 0;
+            $erro   += 4;
+        }
+
+        return $erro;
+    }
+
+    public function Atualizar($id)
+    {
+        $sql    = 'UPDATE escolas ' .
+                  "SET escolaNome = '$this->nome', " .
+                  "cidadeCodigo = '$this->bairro', " .
+                  "estadoSigla = '$this->estado', " .
+                  "escolaAtivo = $this->ativo " .
+                  "WHERE escolaId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public function Excluir()
+    {
+        $sql    = 'UPDATE escolas ' .
+                  "SET escolaAtivo = 0 " .
+                  "WHERE escolaId = '$this->id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
 }
 ?>

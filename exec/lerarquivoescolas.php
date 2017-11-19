@@ -22,10 +22,34 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                         $escolas[$pos]->bairro      = $linha[$coluna];
                         break;
                     case 2:
-                        $escolas[$pos]->cidadenome  = $linha[$coluna];
+                        $cidade                     = new cidade();
+                        $cidade->SelecionarPorNome($linha[$coluna]);
+
+                        if ($cidade->codigo != null)
+                        {
+                            $escolas[$pos]->cidade      = $cidade->codigo;
+                            $escolas[$pos]->cidadenome  = $cidade->nome;
+                        }
+                        else
+                        {
+                            $escolas[$pos]->cidade      = null;
+                            $escolas[$pos]->cidadenome  = null;
+                        }
+
                         break;
                     case 3:
-                        $escolas[$pos]->estado      = $linha[$coluna];
+                        $estado                     = new estado();
+                        $estado->SelecionarPorSigla($linha[$coluna]);
+
+                        if ($estado->sigla != null)
+                        {
+                            $escolas[$pos]->estado      = $estado->sigla;
+                        }
+                        else
+                        {
+                            $escolas[$pos]->estado      = null;
+                        }
+
                         break;
                     case 4:
                         $escolas[$pos]->ativo       = $linha[$coluna];

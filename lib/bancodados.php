@@ -20,7 +20,15 @@ class bancodados
         $mysqli = $this->Conectar();
 
         $res = $mysqli->query($comando);
-        $itens = $res->fetch_all();
+
+        if (!is_bool($res))
+        {
+            $itens = $res->fetch_all();
+        }
+        else
+        {
+            $itens = $res;
+        }
 
         $mysqli->close();
 
