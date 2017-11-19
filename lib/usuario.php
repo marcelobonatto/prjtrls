@@ -26,7 +26,7 @@ class usuario
         $db     = new bancodados();
         $res    = $db->SelecaoSimples($sql);
 
-        if ($res !== false)
+        if ($res !== FALSE)
         {
             if (count($res) > 0)
             {
@@ -51,7 +51,7 @@ class usuario
         $db     = new bancodados();
         $res    = $db->SelecaoSimples($sql);
 
-        if ($res !== false)
+        if ($res !== FALSE)
         {
             if (count($res) > 0)
             {

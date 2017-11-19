@@ -1,5 +1,5 @@
 <?php
-class cidade
+class escola
 {
     const ESCOLA_ID     = 0;
     const ESCOLA_NOME   = 1;
@@ -29,13 +29,13 @@ class cidade
         $db     = new bancodados();
         $res    = $db->SelecaoSimples($sql);
 
-        if ($res !== false)
+        if ($res !== FALSE)
         {
             if (count($res) > 0)
             {
                 foreach ($res as $escola)
                 {
-                    $obj                = new cidade();
+                    $obj                = new escola();
                     $obj->id            = $escola[self::ESCOLA_ID];
                     $obj->nome          = $escola[self::ESCOLA_NOME];
                     $obj->bairro        = $escola[self::ESCOLA_BAIRRO];
@@ -50,6 +50,84 @@ class cidade
         }
 
         return $matriz;
+    }
+
+    public function Salvar()
+    {
+        if ($this->id == null)
+        {
+            $id = '{ID}';
+        }
+        else
+        {
+            $id = $this->id;
+        }
+
+        if ($id == '{ID}')
+        {
+            return $this->Incluir($id);
+        }
+        else
+        {
+            return $this->Atualizar($id);
+        }
+    }
+
+    public function Incluir($id)
+    {
+        $erro   = -1;
+
+        $sql    = 'INSERT INTO escolas ' .
+                  '(escolaId, escolaNome, escolaBairro, cidadeCodigo, estadoSigla, escolaAtivo) ' .
+                  "VALUES ('$id', '$this->nome', '$this->bairro', '$this->cidade', '$this->estado', $this->ativo)";
+
+        $db         = new bancodados();
+        $this->id   = $db->ExecutarRetornaId($sql);
+
+        if ($this->id == null)
+        {
+            $erro   = 1;
+        }
+
+        if ($this->cidade == null)
+        {
+            $erro   = 2;
+        }
+
+        if ($this->estado == null)
+        {
+            if ($erro < 2) $erro = 0;
+            $erro   += 4;
+        }
+
+        return $erro;
+    }
+
+    public function Atualizar($id)
+    {
+        $sql    = 'UPDATE escolas ' .
+                  "SET escolaNome = '$this->nome', " .
+                  "cidadeCodigo = '$this->bairro', " .
+                  "estadoSigla = '$this->estado', " .
+                  "escolaAtivo = $this->ativo " .
+                  "WHERE escolaId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public function Excluir()
+    {
+        $sql    = 'UPDATE escolas ' .
+                  "SET escolaAtivo = 0 " .
+                  "WHERE escolaId = '$this->id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
     }
 }
 ?>

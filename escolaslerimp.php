@@ -11,7 +11,8 @@ $tabelaresult   = '{ "temsub": false, ' .
                   '"matrizes": [ ], ' .
                   '"colunas": [ { "propsup": "", "campo" : "nome", "titulo": "Nome", "subtitulo": "", "colunas": 1, "tipo": "texto", "controle": "impNome" }, ' .
                   '{ "propsup": "", "campo" : "bairro", "titulo": "Bairro", "subtitulo": "", "colunas": 1, "tipo": "texto", "controle": "impBairro" }, ' .
-                  '{ "propsup": "", "campo" : "cidade", "titulo": "Cidade", "subtitulo": "", "colunas": 1, "tipo": "texto", "controle": "impCidade" }, ' .
+                  '{ "propsup": "", "campo" : "cidade", "titulo": "Cód. Cidade", "subtitulo": "", "colunas": 1, "tipo": "texto", "controle": "impCodCidade" }, ' .
+                  '{ "propsup": "", "campo" : "cidadenome", "titulo": "Cidade", "subtitulo": "", "colunas": 1, "tipo": "texto", "controle": "impCidade" }, ' .
                   '{ "propsup": "", "campo" : "estado", "titulo": "Estado", "subtitulo": "", "colunas": 1, "tipo": "texto", "controle": "impEstado" }, ' .
                   '{ "propsup": "", "campo" : "ativo", "titulo": "Ativo", "subtitulo": "", "colunas": 1, "tipo": "check", "controle": "impAtivo" } ]' .
                   ' }';

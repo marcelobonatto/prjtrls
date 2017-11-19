@@ -20,7 +20,7 @@ class cidade
         $db     = new bancodados();
         $res    = $db->SelecaoSimples($sql);
 
-        if ($res !== false)
+        if ($res !== FALSE)
         {
             if (count($res) > 0)
             {
@@ -37,6 +37,30 @@ class cidade
         }
 
         return $matriz;
+    }
+
+    public function SelecionarPorNome($nome)
+    {
+        $matriz = array();
+
+        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla ' .
+                  'FROM cidades ' .
+                  "WHERE UPPER(cidadeNome) = UPPER('$nome')";
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                $cidade = $res[0];
+
+                $this->codigo    = $cidade[self::CIDADE_CODIGO];
+                $this->nome      = $cidade[self::CIDADE_NOME];
+                $this->estado    = $cidade[self::ESTADO_SIGLA];
+            }
+        }
     }
 }
 ?>
