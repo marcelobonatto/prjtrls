@@ -62,5 +62,36 @@ class cidade
             }
         }
     }
+
+    public function ListarRegistrosPorEstados($estado)
+    {
+        $matriz = array();
+
+        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla ' .
+                  'FROM cidades ' .
+                  'ORDER BY estadoSigla, cidadeNome '.
+                  "WHERE UPPER(estadoSigla) = UPPER('$estado')";
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                foreach ($res as $cidade)
+                {
+                    $obj            = new cidade();
+                    $obj->codigo    = $cidade[self::CIDADE_CODIGO];
+                    $obj->nome      = $cidade[self::CIDADE_NOME];
+                    $obj->estado    = $cidade[self::ESTADO_SIGLA];
+
+                    array_push($matriz, $obj);
+                }
+            }
+        }
+
+        return $matriz;
+    }
 }
 ?>
