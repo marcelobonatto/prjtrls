@@ -67,10 +67,39 @@ class missao
         return $matriz;
     }
 
+    public function Selecionar($id)
+    {
+        $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
+                  'missaoSequencia, missaoObrigatoria, missaoPai ' .
+                  'FROM missoes ' .
+                  "WHERE missaoId = '$id'";
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                $missao             = $res[0];
+
+                $this->id            = $missao[self::MISSAO_ID];
+                $this->nome          = $missao[self::MISSAO_NOME];
+                $this->titulo        = $missao[self::MISSAO_TITULO];
+                $this->descricao     = $missao[self::MISSAO_DESCRICAO];
+                $this->ativo         = $missao[self::MISSAO_ATIVO];
+                $this->idMoodle      = $missao[self::MISSAO_IDMOODLE];
+                $this->ano           = $missao[self::MISSAO_ANO];
+                $this->semestre      = $missao[self::MISSAO_SEMESTRE];
+                $this->sequencia     = $missao[self::MISSAO_SEQUENCIA];
+                $this->obrigatoria   = $missao[self::MISSAO_OBRIGATORIA];
+                $this->pai           = $missao[self::MISSAO_PAI];
+            }
+        }
+    }
+
     public function SelecionarPorNome($nome)
     {
-        $matriz = array();
-        
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
                   'missaoSequencia, missaoObrigatoria, missaoPai ' .
                   'FROM missoes ' .
@@ -83,26 +112,21 @@ class missao
         {
             if (count($res) > 0)
             {
-                $missao = $res[0];
+                $missao             = $res[0];
 
-                $obj                = new missao();
-                $obj->id            = $missao[self::MISSAO_ID];
-                $obj->nome          = $missao[self::MISSAO_NOME];
-                $obj->titulo        = $missao[self::MISSAO_TITULO];
-                $obj->descricao     = $missao[self::MISSAO_DESCRICAO];
-                $obj->ativo         = $missao[self::MISSAO_ATIVO];
-                $obj->idMoodle      = $missao[self::MISSAO_IDMOODLE];
-                $obj->ano           = $missao[self::MISSAO_ANO];
-                $obj->semestre      = $missao[self::MISSAO_SEMESTRE];
-                $obj->sequencia     = $missao[self::MISSAO_SEQUENCIA];
-                $obj->obrigatoria   = $missao[self::MISSAO_OBRIGATORIA];
-                $obj->pai           = $missao[self::MISSAO_PAI];
-
-                array_push($matriz, $obj);
+                $this->id            = $missao[self::MISSAO_ID];
+                $this->nome          = $missao[self::MISSAO_NOME];
+                $this->titulo        = $missao[self::MISSAO_TITULO];
+                $this->descricao     = $missao[self::MISSAO_DESCRICAO];
+                $this->ativo         = $missao[self::MISSAO_ATIVO];
+                $this->idMoodle      = $missao[self::MISSAO_IDMOODLE];
+                $this->ano           = $missao[self::MISSAO_ANO];
+                $this->semestre      = $missao[self::MISSAO_SEMESTRE];
+                $this->sequencia     = $missao[self::MISSAO_SEQUENCIA];
+                $this->obrigatoria   = $missao[self::MISSAO_OBRIGATORIA];
+                $this->pai           = $missao[self::MISSAO_PAI];
             }
         }
-
-        return $matriz;
     }
 
     public function Salvar()
