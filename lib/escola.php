@@ -1,5 +1,5 @@
 <?php
-class cidade
+class escola
 {
     const ESCOLA_ID     = 0;
     const ESCOLA_NOME   = 1;
@@ -29,13 +29,13 @@ class cidade
         $db     = new bancodados();
         $res    = $db->SelecaoSimples($sql);
 
-        if ($res !== false)
+        if ($res !== FALSE)
         {
             if (count($res) > 0)
             {
                 foreach ($res as $escola)
                 {
-                    $obj                = new cidade();
+                    $obj                = new escola();
                     $obj->id            = $escola[self::ESCOLA_ID];
                     $obj->nome          = $escola[self::ESCOLA_NOME];
                     $obj->bairro        = $escola[self::ESCOLA_BAIRRO];

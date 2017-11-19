@@ -29,7 +29,7 @@ class carteira
         $db     = new bancodados();
         $res    = $db->SelecaoSimples($sql);
 
-        if ($res !== false)
+        if ($res !== FALSE)
         {
             if (count($res) > 0)
             {
@@ -62,7 +62,7 @@ class carteira
         $db     = new bancodados();
         $res    = $db->SelecaoSimples($sql);
 
-        if ($res !== false)
+        if ($res !== FALSE)
         {
             if (count($res) > 0)
             {
