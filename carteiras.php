@@ -1,5 +1,5 @@
 <?php
-$titulo         = 'Cadastro de Carteiras';
+$titulo         = 'Cadastro de Carteiras do Jogo';
 $meusscripts    = 'carteiras';
 $cadastro       = 'carteira';
 $podeImportar   = true;

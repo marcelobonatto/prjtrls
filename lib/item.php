@@ -65,6 +65,38 @@ class item
         return $matriz;
     }
 
+    public function Selecionar($id)
+    {
+        $sql    = "SELECT itemId, itemNome, itemNivel, itemTipo, itemCor, i.eixoId, COALESCE(e.eixoNome, 'Todos') AS eixoNome, itemLimite, itemBonus, itemPrecoNormal, itemAtivo " .
+                  'FROM itens i ' .
+                  'LEFT JOIN eixos e ON e.eixoId = i.eixoId ' .
+                  "WHERE itemId = '$id' " .
+                  'ORDER BY itemNome';
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== false)
+        {
+            if (count($res) > 0)
+            {
+                $item   = $res[0];
+
+                $this->id                    = $item[self::ITEM_ID];
+                $this->nome                  = $item[self::ITEM_NOME];
+                $this->nivel                 = $item[self::ITEM_NIVEL];
+                $this->tipo                  = $item[self::ITEM_TIPO];
+                $this->cor                   = $item[self::ITEM_COR];
+                $this->eixo                  = $item[self::EIXO_ID];
+                $this->eixoNome              = $item[self::EIXO_NOME];
+                $this->limite                = $item[self::ITEM_LIMITE];
+                $this->bonus                 = $item[self::ITEM_BONUS];
+                $this->preconormal           = $item[self::ITEM_PRECONORMAL];
+                $this->ativo                 = $item[self::ITEM_ATIVO];
+            }
+        }
+    }
+  
     public function Salvar()
     {
         if ($this->id == null)
