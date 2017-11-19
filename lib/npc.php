@@ -6,15 +6,17 @@ class npc
     const NPC_CHAVE     = 2;
     const EIXO_ID       = 3;
     const EIXO_NOME     = 4;
-    const NPC_IMGNORMAL = 5;
-    const NPC_IMGICONE  = 6;
-    const NPC_ATIVO     = 7;
+    const EIXO_SIGLA    = 5;
+    const NPC_IMGNORMAL = 6;
+    const NPC_IMGICONE  = 7;
+    const NPC_ATIVO     = 8;
 
     public $id;
     public $nome;
     public $chave;
     public $eixo;
     public $eixoNome;
+    public $eixoSigla;
     public $imagemNormal;
     public $icone;
     public $ativo;
@@ -23,7 +25,7 @@ class npc
     {
         $matriz = array();
         
-        $sql    = 'SELECT npcId, npcNome, npcChave, n.eixoId, eixoNome, npcImgNormal, npcImgIcone, npcAtivo ' .
+        $sql    = 'SELECT npcId, npcNome, npcChave, n.eixoId, eixoNome, eixoSigla, npcImgNormal, npcImgIcone, npcAtivo ' .
                   'FROM npc n ' .
                   'LEFT JOIN eixos e ON e.eixoId = n.eixoId ' .
                   'ORDER BY npcNome';
@@ -43,6 +45,7 @@ class npc
                     $obj->chave         = $npc[self::NPC_CHAVE];
                     $obj->eixo          = $npc[self::EIXO_ID];
                     $obj->eixoNome      = $npc[self::EIXO_NOME];
+                    $obj->eixoSigla     = $npc[self::EIXO_SIGLA];
                     $obj->imagemNormal  = $npc[self::NPC_IMGNORMAL];
                     $obj->icone         = $npc[self::NPC_IMGICONE];
                     $obj->ativo         = $npc[self::NPC_ATIVO];
@@ -77,6 +80,7 @@ class npc
                 $this->chave                 = $npc[self::NPC_CHAVE];
                 $this->eixo                  = $npc[self::EIXO_ID];
                 $this->eixoNome              = $npc[self::EIXO_NOME];
+                $this->eixoSigla             = $npc[self::EIXO_SIGLA];
                 $this->imagemNormal          = $npc[self::NPC_IMGNORMAL];
                 $this->icone                 = $npc[self::NPC_IMGICONE];
                 $this->ativo                 = $npc[self::NPC_ATIVO];

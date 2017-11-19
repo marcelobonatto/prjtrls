@@ -7,7 +7,7 @@
                     <input class="form-control" type="text" value="<?php echo($nome); ?>" id="txtNome" name="txtNome" required />
                 </div>
                 <div class="form-group">
-                    <label for="txtTitulo">Nome:</label>
+                    <label for="txtTitulo">Título:</label>
                     <input class="form-control" type="text" value="<?php echo($titulo); ?>" id="txtTitulo" name="txtTitulo" required />
                 </div>
                 <div class="form-group">
