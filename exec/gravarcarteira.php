@@ -12,19 +12,19 @@ if (!isset($_POST['ativo'])) $mensagem[] = 'Indicador de ativo n&atilde;o inform
 
 if (count($mensagem) == 0)
 {
-    $item = new item();
+    $carteira = new carteira();
 
-    $item->id          = $id;
-    $item->nome        = $nome;
-    $item->nivel       = $nivel;
-    $item->tipo        = 'I';
-    $item->limite      = $limite;
-    $item->preconormal = $preco;
-    $item->ativo       = $ativo;
+    $carteira->id          = $id;
+    $carteira->nome        = $nome;
+    $carteira->nivel       = $nivel;
+    $carteira->tipo        = 'C';
+    $carteira->limite      = $limite;
+    $carteira->preconormal = $preco;
+    $carteira->ativo       = $ativo;
 
-    if ($item->Salvar())
+    if ($carteira->Salvar())
     {
-        echo("OK|$item->id");
+        echo("OK|$carteira->id");
     }
     else
     {

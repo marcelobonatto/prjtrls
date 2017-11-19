@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var form = $("#frmCarteira");
+    var form = $("#frmUsuario");
 
     form.submit(function(event) {
         var ehValido = form[0].checkValidity();
@@ -24,15 +24,13 @@ $(document).ready(function() {
         // Initiate Variables With Form Content
         var id = $("#txtId").val();
         var nome = $("#txtNome").val();
-        var nivel = $("#txtNivel").val();
-        var limite = $("#txtLimite").val();        
-        var preco = $("#txtPreco").val();
+        var senha = $("#txtSenha").val();
         var ativo = $("input[name='optAtivo']:checked").val();
 
         $.ajax({
             type: "POST",
-            url: "exec/gravarcarteira.php",
-            data: "id=" + id + "&nome=" + nome + "&nivel=" + nivel + "&limite=" + limite + "&preco=" + preco + "&ativo=" + ativo,
+            url: "exec/gravarusuario.php",
+            data: "id=" + id + "&nome=" + nome + "&senha=" + senha + "&ativo=" + ativo,
             success : function(text) {
                 var txtspl = text.split("|");
 
@@ -63,6 +61,6 @@ $(document).ready(function() {
     }
 
     $("#cmdVoltar").click(function() {
-        location.href = "carteiras.php";
+        location.href = "usuarios.php";
     });
 });
