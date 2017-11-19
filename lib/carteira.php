@@ -115,8 +115,6 @@ class carteira
                   '(itemId, itemNome, itemNivel, itemTipo, itemLimite, itemPrecoNormal, itemAtivo) ' . 
                   "VALUES ('$id', '$this->nome', $this->nivel, '$this->tipo', $this->limite, $this->preconormal, $this->ativo)";
 
-echo "SQL Inserir Carteira: ".$sql;
-
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);
 

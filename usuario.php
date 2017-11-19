@@ -12,38 +12,34 @@ else
 
 if ($getid == 'novo')
 {
-    $id         = 'novo';
+    $id = 'novo';
 
     $txtid      = '';
     $nome       = '';
-    $nivel      = 1;
-    $limite     = 0;
-    $preco      = 0;
+    $senha       = '';
     $ativo      = 1;
 }
 else
 {
     $id = $_GET['id'];
 
-    $item  = new item();
-    $item->Selecionar($id);
+    $usuario  = new usuario();
+    $usuario->Selecionar($id);
     
     $txtid      = $id;
-    $nome       = $item->nome;
-    $nivel      = $item->nivel;
-    $limite     = $item->limite;
-    $preco      = $item->preconormal;
-    $ativo      = $item->ativo;
+    $nome       = $usuario->nome;
+    $senha      = '';
+    $ativo      = $usuario->ativo;
 }
 
 include('header.php');
 ?>
     <div class="conteudo">
-        <h1>Cadastro de Carteira - <?php echo(($id != 'novo' ? $nome : 'Novo Cadastro')); ?></h1>
+        <h1>Cadastro de Usuario - <?php echo(($id != 'novo' ? $nome : 'Novo Cadastro')); ?></h1>
         <br />
         <div id="mensagem" class="alert alert-danger d-none" role="alert">
         </div>
-        <form id="frmCarteira" method="post" action="carteira.php">
+        <form id="frmUsuario" method="post" action="usuario.php">
             <div class="form-group">
                 <label for="txtId">Código Interno:</label>
                 <input class="form-control col-sm-4" type="text" value="<?php echo($txtid); ?>" id="txtId" name="txtId" readonly="readonly" />
@@ -53,16 +49,8 @@ include('header.php');
                 <input class="form-control" type="text" value="<?php echo($nome); ?>" id="txtNome" name="txtNome" required />
             </div>
             <div class="form-group">
-                <label for="txtNivel">Nível:</label>
-                <input class="form-control col-sm-2" type="number" value="<?php echo($nivel); ?>" id="txtNivel" name="txtNivel" min="1" max="30" required />
-            </div>
-            <div class="form-group">
-                <label for="txtLimite">Limite:</label>
-                <input class="form-control col-sm-2" type="number" value="<?php echo($limite); ?>" id="txtLimite" name="txtLimite" min="0" max="10000" required />
-            </div>
-            <div class="form-group">
-                <label for="txtPreco">Preço:</label>
-                <input class="form-control col-sm-3" type="number" value="<?php echo($preco); ?>" id="txtPreco" name="txtPreco" min="0" max="10000" step="10" required />
+                <label for="txtSenha">Senha:</label>
+                <input class="form-control" type="password" value="" id="txtSenha" name="txtSenha" required />
             </div>
             <div class="form-group">
                 <label>Ativo:</label>
@@ -102,6 +90,6 @@ include('header.php');
         </form>
     </div>
 <?php
-$js[]   = 'js/carteira.js';
+$js[]   = 'js/usuario.js';
 include('footer.php');
 ?>
