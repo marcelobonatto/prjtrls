@@ -30,6 +30,12 @@
                     <label>Curso no Moodle:</label>
                     <select class="form-control col-sm-3" id="cmdMoodle" name="cmbMoodle">
                         <option value=" ">&nbsp;</option>
+                        <?php
+                        foreach ($moodlearr as $moodle)
+                        {
+                            echo("\t\t<option value=\"$moodle->id\">[$moodle->shortname] $moodle->displayname</option>\n");
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="form-group">

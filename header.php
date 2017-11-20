@@ -1,5 +1,6 @@
 <?php
 $js     = array();
+header('Content-Type: text/html; charset=utf-8');
 ?>
 <!doctype html>
 <html lang="pt-BR" class="h-100">

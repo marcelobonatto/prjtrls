@@ -1,5 +1,6 @@
 <?php
 include_once('autoload.php');
+include_once('header.php');
 
 if (!isset($_GET['id']))
 {
@@ -37,10 +38,11 @@ else
 $outrasobj      = new missao();
 $outrasmss      = $outrasobj->ListarRegistrosExceto($getid, true);
 
-$emeobj         = new eixomissaoeixo();
-$emearr = $emeobj->ListarRegistros($id);
+$moodleobj      = new moodle_cursos();
+$moodlearr      = $moodleobj->Obter();
 
-include_once('header.php');
+$emeobj         = new eixomissaoeixo();
+$emearr         = $emeobj->ListarRegistros($id);
 ?>
     <div class="conteudo">
         <h1>Cadastro de Missão - <?php echo($id != 'novo' ? $nome : 'Novo Cadastro'); ?></h1>
