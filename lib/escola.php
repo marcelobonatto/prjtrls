@@ -52,6 +52,34 @@ class escola
         return $matriz;
     }
 
+    public function Selecionar($id)
+    {
+        $sql    = "SELECT escolaId, escolaNome, escolaBairro, e.cidadeCodigo, c.cidadeNome, e.estadoSigla, escolaAtivo " .
+                  'FROM escolas e ' .
+                  'JOIN cidades c ON c.cidadeCodigo = e.cidadeCodigo ' .
+                  "WHERE escolaId = '$id' " .
+                  'ORDER BY escolaNome';
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                $escola   = $res[0];
+
+                $this->id            = $escola[self::ESCOLA_ID];
+                $this->nome          = $escola[self::ESCOLA_NOME];
+                $this->bairro        = $escola[self::ESCOLA_BAIRRO];
+                $this->cidade        = $escola[self::CIDADE_CODIGO];
+                $this->cidadenome    = $escola[self::CIDADE_NOME];
+                $this->estado        = $escola[self::ESTADO_SIGLA];
+                $this->ativo         = $escola[self::ESCOLA_ATIVO];
+            }
+        }
+    }
+
     public function Salvar()
     {
         if ($this->id == null)
@@ -107,7 +135,8 @@ class escola
     {
         $sql    = 'UPDATE escolas ' .
                   "SET escolaNome = '$this->nome', " .
-                  "cidadeCodigo = '$this->bairro', " .
+                  "escolaBairro = '$this->bairro', " .
+                  "cidadeCodigo = '$this->cidade', " .
                   "estadoSigla = '$this->estado', " .
                   "escolaAtivo = $this->ativo " .
                   "WHERE escolaId = '$id'";
