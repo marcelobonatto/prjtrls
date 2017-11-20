@@ -67,6 +67,11 @@ class missao
         return $matriz;
     }
 
+    public function ListarRegistrosExceto($id)
+    {
+        
+    }
+
     public function Selecionar($id)
     {
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
@@ -96,6 +101,14 @@ class missao
                 $this->pai           = $missao[self::MISSAO_PAI];
             }
         }
+    }
+
+    public function SelecionarComEixo($id)
+    {
+        $this->Selecionar($id);
+
+        $eixo           = new missaoeixo();
+        $this->eixos    = $eixo->SelecionarComMissao($id);
     }
 
     public function SelecionarPorNome($nome)
@@ -187,9 +200,7 @@ class missao
             {
                 foreach ($this->eixos as $eixo)
                 {
-                    $eixoobj            = new missaoeixo();
-                    $eixoobj->missao    = $this->id;
-                    $eixoobj->eixo      = $eixo;
+                    $eixo->missao    = $this->id;
 
                     $reseixos   = $eixo->Salvar();
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: 19-Nov-2017 às 19:28
+-- Generation Time: 20-Nov-2017 às 00:04
 -- Versão do servidor: 5.6.35
 -- PHP Version: 7.1.8
 
@@ -5608,6 +5608,27 @@ INSERT INTO `cidades` (`cidadeCodigo`, `cidadeNome`, `estadoSigla`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `dialogosnpc`
+--
+
+CREATE TABLE `dialogosnpc` (
+  `dialogoId` varchar(36) NOT NULL,
+  `missaoId` varchar(36) NOT NULL,
+  `dialogoSequencia` int(11) NOT NULL,
+  `npcId` varchar(36) NOT NULL,
+  `dialogoTexto` varchar(8000) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `dialogosnpc`
+--
+
+INSERT INTO `dialogosnpc` (`dialogoId`, `missaoId`, `dialogoSequencia`, `npcId`, `dialogoTexto`) VALUES
+('e5e923b4-cd79-11e7-91b8-00051b7601a3', 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 1, 'b774ad6e-bc08-11e7-a674-a83b2f399337', 'E aí, cara, beleza?');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `eixos`
 --
 
@@ -5767,9 +5788,9 @@ CREATE TABLE `missoes` (
 --
 
 INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescricao`, `missaoAtivo`, `missaoIdMoodle`, `missaoAno`, `missaoSemestre`, `missaoSequencia`, `missaoObrigatoria`, `missaoPai`) VALUES
-('6330d556-cc8a-11e7-b4bf-07433e6c64b2', 'Missão E111', 'Missão Teste 1 (Engenharia) ', 'Esta é a descrição completa da missão teste 1 do eixo de engenharia. Esse texto pode ser bem grande.', 1, 'cfe68a40-31b6-4962-b072-cbe4bd0932a0', 1, 1, 1, 1, NULL),
-('633348e0-cc8a-11e7-b4bf-07433e6c64b2', 'Missão N111', 'Missão Teste 1 (Negócios)', 'Nesta missão você terá que ler o que está no Moodle e fazer.', 1, '6cac44e4-5269-42ef-b169-13042e4b5869', 1, 1, 1, 1, NULL),
-('633a70de-cc8a-11e7-b4bf-07433e6c64b2', 'Missão SE1', 'Side-quest Teste 1', 'Essa missão não é obrigatória, mas seria legal você fazer.', 1, '3e198323-6bb3-4f56-bed6-55dceb987a1f', 1, 1, 1, 0, '6330d556-cc8a-11e7-b4bf-07433e6c64b2');
+('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Missão E111', 'Missão Teste 1 (Engenharia) ', 'Esta é a descrição completa da missão teste 1 do eixo de engenharia. Esse texto pode ser bem grande.', 1, 'cfe68a40-31b6-4962-b072-cbe4bd0932a0', 1, 1, 1, 1, NULL),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Missão N111', 'Missão Teste 1 (Negócios)', 'Nesta missão você terá que ler o que está no Moodle e fazer.', 1, '6cac44e4-5269-42ef-b169-13042e4b5869', 1, 1, 1, 1, NULL),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Missão SE1', 'Side-quest Teste 1', 'Essa missão não é obrigatória, mas seria legal você fazer.', 1, '3e198323-6bb3-4f56-bed6-55dceb987a1f', 1, 1, 1, 0, 'ef88bb50-cd6a-11e7-91b8-00051b7601a3');
 
 -- --------------------------------------------------------
 
@@ -5789,21 +5810,9 @@ CREATE TABLE `missoeseixo` (
 --
 
 INSERT INTO `missoeseixo` (`missaoeixoId`, `missaoId`, `eixoId`, `missaoeixoPontos`) VALUES
-('63330740-cc8a-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('6339de94-cc8a-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('633a9cc6-cc8a-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('ba47826c-cc86-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('ba4c3b72-cc86-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('ba4cdf5a-cc86-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('cca78e52-cc86-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('cca7e8ca-cc86-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('cca84478-cc86-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('d44c3f9a-cc86-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('d44ce972-cc86-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('d44d6ef6-cc86-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('e3db11a2-cc86-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('e3dbaa22-cc86-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('e3dc0ea4-cc86-11e7-b4bf-07433e6c64b2', '', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100);
+('ef8bb332-cd6a-11e7-91b8-00051b7601a3', 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
+('ef8c77f4-cd6a-11e7-91b8-00051b7601a3', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
+('ef8cde9c-cd6a-11e7-91b8-00051b7601a3', 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100);
 
 -- --------------------------------------------------------
 
@@ -5948,6 +5957,12 @@ INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`
 --
 ALTER TABLE `cidades`
   ADD PRIMARY KEY (`cidadeCodigo`);
+
+--
+-- Indexes for table `dialogosnpc`
+--
+ALTER TABLE `dialogosnpc`
+  ADD PRIMARY KEY (`dialogoId`);
 
 --
 -- Indexes for table `eixos`

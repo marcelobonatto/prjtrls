@@ -1,1 +1,22 @@
-Eixos
+                <table class="table table-striped">
+                    <thead class="thead-dark">
+                        <th scope="col">
+                            Eixo
+                        </th>
+                        <th scope="col">
+                            Pontos
+                        </th>
+                    </thead>
+                    <tbody>
+                        <?php
+                        foreach ($emearr as $chave => $eme)
+                        {
+                            echo("<tr>\n");
+                            echo("\t<td>\n\t\t$eme->eixoNome\n\t\t<input type=\"hidden\" id=\"hidId$chave\" name=\"hidId[]\" value=\"$eme->id\" />\n\t</td>\n");
+                            echo("\t<td>\n\t\t");
+                            echo("<input type=\"number\" id=\"txtPontos$chave\" name=\"txtPontos[]\" value=\"$eme->pontos\" style=\"text-align: right\" min=\"0\" max=\"10000\" step=\"10\" />\n\t</td>\n");
+                            echo("</tr>\n");
+                        }
+                        ?>
+                    </tbody>
+                </table>

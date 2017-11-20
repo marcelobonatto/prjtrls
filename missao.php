@@ -34,10 +34,16 @@ else
     $pai            = $missao->pai;
 }
 
+$outrasobj      = new missao();
+$outrasmss      = $outrasobj->ListarRegistrosExceto($getid);
+
+$emeobj         = new eixomissaoeixo();
+$emearr = $emeobj->ListarRegistros($id);
+
 include_once('header.php');
 ?>
     <div class="conteudo">
-        <h1>Cadastro de Missão - <?php echo(($id != 'novo' ? $nome : 'Novo Cadastro')); ?></h1>
+        <h1>Cadastro de Missão - <?php echo($id != 'novo' ? $nome : 'Novo Cadastro'); ?></h1>
         <br />
         <div id="mensagem" class="alert alert-danger d-none" role="alert">
         </div>

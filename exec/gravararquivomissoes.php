@@ -25,7 +25,7 @@ if ($checados > 0)
 
     foreach ($checados as $indice => $checado)
     {
-        $missao                 = new missao();      
+        $missao                 = new missao();
         $missao->nome           = $nomes[$indice];
         $missao->titulo         = $titulos[$indice];
         $missao->descricao      = $descricoes[$indice];
