@@ -1,7 +1,4 @@
-                <div id="divNaoExiste" class="alert alert-info<?php echo($getid == "novo" ? '' : ' d-none'); ?>" role="alert">
-                    <i class="material-icons">&#xE88E;</i> Grave a missão antes de tentar cadastrar as falas.
-                </div>
-                <table class="table table-striped<?php echo($getid == "novo" ? ' d-none' : ''); ?>">
+                <table class="table table-striped">
                     <thead class="thead-dark">
                         <th scope="col">
                             Sequência
@@ -54,6 +51,14 @@
                             echo("\t</td>\n");
                             echo("\t<td>\n");
                             echo("\t\t<select id=\"cmbHumor$indice\" name=\"cmbHumor[]\">\n");
+                            echo("\t\t\t<option value=\"NO\">Normal</option>\n");
+                            echo("\t\t\t<option value=\"AL\">Alegre</option>\n");
+                            echo("\t\t\t<option value=\"EU\">Eufórico</option>\n");
+                            echo("\t\t\t<option value=\"TR\">Triste</option>\n");
+                            echo("\t\t\t<option value=\"CH\">Chorando</option>\n");
+                            echo("\t\t\t<option value=\"ZA\">Zangado</option>\n");
+                            echo("\t\t\t<option value=\"EB\">Extremamente Bravo</option>\n");
+                            echo("\t\t\t<option value=\"TQ\">Tranquilo</option>\n");
                             echo("\t\t</select>\n");
                             echo("\t</td>\n");
                             echo("\t<td>\n");

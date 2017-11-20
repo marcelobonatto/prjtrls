@@ -67,6 +67,11 @@ class missao
         return $matriz;
     }
 
+    public function ListarRegistrosExceto($id)
+    {
+        
+    }
+
     public function Selecionar($id)
     {
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 

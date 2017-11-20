@@ -34,6 +34,9 @@ else
     $pai            = $missao->pai;
 }
 
+$outrasobj      = new missao();
+$outrasmss      = $outrasobj->ListarRegistrosExceto($getid);
+
 $emeobj         = new eixomissaoeixo();
 $emearr = $emeobj->ListarRegistros($id);
 
