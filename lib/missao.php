@@ -67,9 +67,50 @@ class missao
         return $matriz;
     }
 
-    public function ListarRegistrosExceto($id)
+    public function ListarRegistrosExceto($id, $apenasObrigatorias)
     {
+        $matriz = array();
         
+        $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
+                  'missaoSequencia, missaoObrigatoria, missaoPai ' .
+                  'FROM missoes ' .
+                  "WHERE missaoId <> '$id' ";
+
+        if ($apenasObrigatorias)
+        {
+            $sql    .= 'AND missaoObrigatoria = 1 ';
+        }
+
+        $sql    .= 'ORDER BY missaoAno, missaoSemestre, missaoSequencia';
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                foreach ($res as $missao)
+                {
+                    $obj                = new missao();
+                    $obj->id            = $missao[self::MISSAO_ID];
+                    $obj->nome          = $missao[self::MISSAO_NOME];
+                    $obj->titulo        = $missao[self::MISSAO_TITULO];
+                    $obj->descricao     = $missao[self::MISSAO_DESCRICAO];
+                    $obj->ativo         = $missao[self::MISSAO_ATIVO];
+                    $obj->idMoodle      = $missao[self::MISSAO_IDMOODLE];
+                    $obj->ano           = $missao[self::MISSAO_ANO];
+                    $obj->semestre      = $missao[self::MISSAO_SEMESTRE];
+                    $obj->sequencia     = $missao[self::MISSAO_SEQUENCIA];
+                    $obj->obrigatoria   = $missao[self::MISSAO_OBRIGATORIA];
+                    $obj->pai           = $missao[self::MISSAO_PAI];
+
+                    array_push($matriz, $obj);
+                }
+            }
+        }
+
+        return $matriz;
     }
 
     public function Selecionar($id)

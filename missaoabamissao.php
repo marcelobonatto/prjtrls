@@ -29,7 +29,7 @@
                 <div class="form-group">
                     <label>Curso no Moodle:</label>
                     <select class="form-control col-sm-3" id="cmdMoodle" name="cmbMoodle">
-                        <option value=" ">&nbsp</option>
+                        <option value=" ">&nbsp;</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -51,11 +51,11 @@
                         $chkobr0    = ' checked';
                     }
                     ?>
-                    <div class="btn-group" data-toggle="buttons">
-                        <label class="btn btn-success<?php echo($obr1); ?>">
+                    <div id="divOptObrig" class="btn-group" data-toggle="buttons">
+                        <label id="lblObrSim" class="btn btn-success<?php echo($obr1); ?>">
                             <input type="radio" name="optObrigatoria" id="optObrSim" autocomplete="off" value="1"<?php echo($chkobr1); ?>> Sim
                         </label>
-                        <label class="btn btn-secondary<?php echo($obr0); ?>">
+                        <label id="lblObrNao" class="btn btn-secondary<?php echo($obr0); ?>">
                             <input type="radio" name="optObrigatoria" id="optObrNao" autocomplete="off" value="0"<?php echo($chkobr0); ?>> Não
                         </label>
                     </div>
@@ -64,6 +64,12 @@
                     <label class="cmbMissoes">Missão Pai:</label>
                     <select class="form-control col-sm-3" id="cmbMissoes" name="cmbMissoes" disabled>
                         <option value=" ">&nbsp</option>
+                        <?php
+                        foreach ($outrasmss as $outra)
+                        {
+                            echo("<option value=\"$outra->id\">[A: $outra->ano / S: $outra->semestre / Sq: $outra->sequencia]$outra->nome</option>\n");
+                        }
+                        ?>
                     </select>
                 </div>
                 <div class="form-group">

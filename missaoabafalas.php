@@ -56,8 +56,8 @@
                             echo("\t\t\t<option value=\"EU\">Eufórico</option>\n");
                             echo("\t\t\t<option value=\"TR\">Triste</option>\n");
                             echo("\t\t\t<option value=\"CH\">Chorando</option>\n");
+                            echo("\t\t\t<option value=\"IR\">Irritado</option>\n");
                             echo("\t\t\t<option value=\"ZA\">Zangado</option>\n");
-                            echo("\t\t\t<option value=\"EB\">Extremamente Bravo</option>\n");
                             echo("\t\t\t<option value=\"TQ\">Tranquilo</option>\n");
                             echo("\t\t</select>\n");
                             echo("\t</td>\n");

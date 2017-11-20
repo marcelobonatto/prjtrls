@@ -35,7 +35,7 @@ else
 }
 
 $outrasobj      = new missao();
-$outrasmss      = $outrasobj->ListarRegistrosExceto($getid);
+$outrasmss      = $outrasobj->ListarRegistrosExceto($getid, true);
 
 $emeobj         = new eixomissaoeixo();
 $emearr = $emeobj->ListarRegistros($id);
@@ -80,5 +80,6 @@ include_once('header.php');
         </form>
     </div>
 <?php
+$js[]   = "js/missao.js";
 include_once('footer.php');
 ?>
