@@ -103,7 +103,7 @@ $(document).ready(function() {
         var id = $("#txtId").val();
         var nome = $("#txtNome").val();
         var titulo = $("#txtTitulo").val();
-        var descricao = $("#txtDescricao").html();
+        var descricao = $("#txtDescricao").val();
         var ano = $("#txtAno").val();
         var semestre = $("#txtSemestre").val();
         var sequencia = $("#txtSequencia").val();
@@ -112,12 +112,17 @@ $(document).ready(function() {
         var pai = $("#cmdMissoes").find("option:selected").val();
         var ativo = $("input[name='optAtivo']:checked").val();
 
+        //Ver se não tem erro
+        $("hidden[id^='hidId']").each(function(index) {
+            alert($(this).id);
+        });
+
         $.ajax({
             type: "POST",
             url: "exec/gravarmissao.php",
-            data: "id=" + id + "&nome=" + nome + "&titulo=" + titulo + "&descricao=" + descricao + "&ano=" + ano +
-                  "&semestre=" + semestre + "&sequencia=" + sequencia + "&moodle=" + moodle + "&obrigatorio=" + obrigatorio +
-                  "&pai=" + pai + "&ativo=" + ativo,
+            data: { id: id, nome: nome, titulo: titulo, descricao: descricao, ano: ano,
+                    semestr: semestre, sequencia: sequencia, moodle: moodle, obrigatorio: obrigatorio,
+                    pai: pai, ativo: ativo },
             success : function(text) {
                 var txtspl = text.split("|");
 

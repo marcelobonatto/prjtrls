@@ -262,16 +262,18 @@ class missao
 
     public function Atualizar($id, $idmoodle, $pai)
     {
-        $sql    = 'UPDATE itens ' .
-                  "SET itemNome = '$this->nome', " .
-                  "itemNivel = $this->nivel, " .
-                  "itemCor = NULL, " .
-                  "eixoId = $eixo, " .
-                  "itemLimite = $limite, " .
-                  "itemBonus = $this->bonus, " .
-                  "itemPrecoNormal = $this->preconormal, " .
-                  "itemAtivo = $this->ativo " .
-                  "WHERE itemId = '$id'";
+        $sql    = 'UPDATE missoes ' .
+                  "SET missaoNome = '$this->nome', " .
+                  "missaoTitulo = '$this->titulo', " .
+                  "missaoDescricao = '$this->descricao', " .
+                  "missaoAtivo = $this->ativo, " .
+                  "missaoIdMoodle = $idmoodle, " .
+                  "missaoAno = $this->ano, " .
+                  "missaoSemestre = $this->semestre, " .
+                  "missaoSequencia = $this->sequencia, " .
+                  "missaoObrigatoria = $this->obrigatoria, " .
+                  "missaoPai = $pai " .
+                  "WHERE missaoId = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);

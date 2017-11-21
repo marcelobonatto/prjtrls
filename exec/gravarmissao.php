@@ -26,10 +26,10 @@ if (count($mensagem) == 0)
     $missao->ano            = $ano;
     $missao->semestre       = $semestre;
     $missao->sequencia      = $sequencia;
-    $missao->idmoodle       = $moodle;
-    $missao->obrigatorio    = $obrigatorio;
+    $missao->idMoodle       = $moodle;
+    $missao->obrigatoria    = $obrigatorio;
 
-    if ($obrigario == 1 || $pai == '')
+    if ($obrigatorio == 1 || $pai == '')
     {
         $missao->pai        = null;
     }
