@@ -28,7 +28,8 @@
                 </div>
                 <div class="form-group">
                     <label>Curso no Moodle:</label>
-                    <select class="form-control col-sm-3" id="cmdMoodle" name="cmbMoodle" required>                        
+                    <select class="form-control col-sm-3" id="cmdMoodle" name="cmbMoodle" required>
+                        <option></option>
                         <?php
                         foreach ($moodlearr as $moodle)
                         {

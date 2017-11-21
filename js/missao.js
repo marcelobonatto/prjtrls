@@ -94,7 +94,60 @@ $(document).ready(function() {
                 mensagem.addClass("d-none");
             }
 
-            //submitForm();
+            submitForm();
         }
+    });
+
+    function submitForm() {
+        // Initiate Variables With Form Content
+        var id = $("#txtId").val();
+        var nome = $("#txtNome").val();
+        var titulo = $("#txtTitulo").val();
+        var descricao = $("#txtDescricao").html();
+        var ano = $("#txtAno").val();
+        var semestre = $("#txtSemestre").val();
+        var sequencia = $("#txtSequencia").val();
+        var moodle = $("#cmdMoodle").find("option:selected").val();
+        var obrigatorio = $("input[name='optObrigatoria']:checked").val();
+        var pai = $("#cmdMissoes").find("option:selected").val();
+        var ativo = $("input[name='optAtivo']:checked").val();
+
+        $.ajax({
+            type: "POST",
+            url: "exec/gravarmissao.php",
+            data: "id=" + id + "&nome=" + nome + "&titulo=" + titulo + "&descricao=" + descricao + "&ano=" + ano +
+                  "&semestre=" + semestre + "&sequencia=" + sequencia + "&moodle=" + moodle + "&obrigatorio=" + obrigatorio +
+                  "&pai=" + pai + "&ativo=" + ativo,
+            success : function(text) {
+                var txtspl = text.split("|");
+
+                if (txtspl[0] == "OK") {
+                    var mensagem = $("#mensagem");
+                    
+                    if (mensagem.hasClass("alert-danger")) mensagem.removeClass("alert-danger");
+                    if (!mensagem.hasClass("alert-success")) mensagem.addClass("alert-success");
+                    mensagem.removeClass("d-none");
+                    
+                    mensagem.html("<i class=\"material-icons\">&#xE002;</i> O registro foi salvo!" +
+                                    "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
+
+                    $("#txtId").val(txtspl[1]);
+                }
+                else {
+                    var mensagem = $("#mensagem");
+
+                    if (mensagem.hasClass("alert-success")) mensagem.removeClass("alert-success");
+                    if (!mensagem.hasClass("alert-danger")) mensagem.addClass("alert-danger");
+                    mensagem.removeClass("d-none");
+
+                    mensagem.html("<i class=\"material-icons\">&#xE002;</i> " + text +
+                                    "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
+                }
+            }
+        });
+    }
+
+    $("#cmdVoltar").click(function() {
+        location.href = "missoes.php";
     });
 });
