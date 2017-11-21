@@ -14,6 +14,18 @@ else
 if ($getid == 'novo')
 {
     $id             = 'novo';
+
+    $txtid          = '';
+    $nome           = '';
+    $titulo         = '';
+    $descricao      = '';
+    $ativo          = true;
+    $idMoodle       = '';
+    $ano            = 1;
+    $semestre       = 1;
+    $sequencia      = 1;
+    $obrigatoria    = true;
+    $pai            = '';
 }
 else
 {
@@ -42,7 +54,7 @@ $moodleobj      = new moodle_cursos();
 $moodlearr      = $moodleobj->Obter();
 
 $emeobj         = new eixomissaoeixo();
-$emearr         = $emeobj->ListarRegistros($id);
+$emearr         = $emeobj->ListarRegistros($getid);
 ?>
     <div class="conteudo">
         <h1>Cadastro de Missão - <?php echo($id != 'novo' ? $nome : 'Novo Cadastro'); ?></h1>

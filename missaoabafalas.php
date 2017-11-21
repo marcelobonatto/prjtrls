@@ -1,4 +1,4 @@
-                <table class="table table-striped">
+                <table id="tbFalas" class="table table-striped">
                     <thead class="thead-dark">
                         <th scope="col">
                             Sequência
@@ -62,10 +62,10 @@
                             echo("\t\t</select>\n");
                             echo("\t</td>\n");
                             echo("\t<td>\n");
-                            echo("\t\t<textarea id=\"\" name=\"\" rows=\"3\" maxlength=\"8000\" style=\"width: 100%\">$dialogo->texto</textarea>\n");
+                            echo("\t\t<textarea id=\"txtFala$indice\" name=\"txtFala[]\" rows=\"3\" maxlength=\"8000\" style=\"width: 100%\">$dialogo->texto</textarea>\n");
                             echo("\t</td>\n");
                             echo("\t<td>\n");
-                            echo("\t\t<a href=\"#\" class=\"text-danger\" title=\"Remover\"><i class=\"material-icons\">&#xE15C;</i></a>&nbsp;&nbsp;\n");
+                            echo("\t\t<button id=\"cmdRemover$indice\" class=\"btn btn-link text-danger\" title=\"Remover\"><i class=\"material-icons\">&#xE15C;</i></button>&nbsp;&nbsp;\n");
                             echo("\t\t<a href=\"#\" class=\"text-primary\" title=\"Mover para Cima\"><i class=\"material-icons\">&#xE5D8;</i></a>&nbsp;&nbsp;\n");
                             echo("\t\t<a href=\"#\" class=\"text-primary\" title=\"Mover para Baixo\"><i class=\"material-icons\">&#xE5DB;</i></a>\n");
                             echo("\t</td>\n");
@@ -74,9 +74,9 @@
                         ?>
                         <tr>
                             <td colspan="5" class="text-center">
-                                <a href="#" class="btn btn-primary">
+                                <button id="cmdIncluirFala" class="btn btn-primary">
                                     <i class="material-icons">&#xE147;</i> Incluir uma nova fala
-                                </a>
+                                </button>
                             </td>
                         </tr>
                     </tbody>

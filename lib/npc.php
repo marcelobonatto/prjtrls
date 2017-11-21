@@ -58,6 +58,43 @@ class npc
         return $matriz;
     }
 
+    public function ListarSemImagens()
+    {
+        $matriz = array();
+        
+        $sql    = 'SELECT npcId, npcNome, npcChave, n.eixoId, eixoNome, eixoSigla, NULL AS npcImgNormal, NULL AS npcImgIcone, npcAtivo ' .
+                  'FROM npc n ' .
+                  'LEFT JOIN eixos e ON e.eixoId = n.eixoId ' .
+                  'ORDER BY npcNome';
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                foreach ($res as $npc)
+                {
+                    $obj                = new npc();
+                    $obj->id            = $npc[self::NPC_ID];
+                    $obj->nome          = $npc[self::NPC_NOME];
+                    $obj->chave         = $npc[self::NPC_CHAVE];
+                    $obj->eixo          = $npc[self::EIXO_ID];
+                    $obj->eixoNome      = $npc[self::EIXO_NOME];
+                    $obj->eixoSigla     = $npc[self::EIXO_SIGLA];
+                    $obj->imagemNormal  = null;
+                    $obj->icone         = null;
+                    $obj->ativo         = $npc[self::NPC_ATIVO];
+
+                    array_push($matriz, $obj);
+                }
+            }
+        }
+
+        return $matriz;
+    }
+
     public function Selecionar($id)
     {
         $sql    = "SELECT npcId, npcNome, npcChave, n.eixoId, eixoNome, npcImgNormal, npcImgIcone, npcAtivo " .

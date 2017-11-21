@@ -28,8 +28,7 @@
                 </div>
                 <div class="form-group">
                     <label>Curso no Moodle:</label>
-                    <select class="form-control col-sm-3" id="cmdMoodle" name="cmbMoodle">
-                        <option value=" ">&nbsp;</option>
+                    <select class="form-control col-sm-3" id="cmdMoodle" name="cmbMoodle" required>                        
                         <?php
                         foreach ($moodlearr as $moodle)
                         {
@@ -67,9 +66,21 @@
                     </div>
                 </div>
                 <div id="divPai" class="form-group">
+                    <?php
+                    if ($obrigatoria == 1)
+                    {
+                        $disabledMissoes    = ' disabled="disabled"';
+                        $requiredMissoes    = '';
+                    }
+                    else
+                    {
+                        $disabledMissoes    = '';
+                        $requiredMissoes    = ' required';
+                    }
+                    ?>
                     <label class="cmbMissoes">Missão Pai:</label>
-                    <select class="form-control col-sm-3" id="cmbMissoes" name="cmbMissoes" disabled>
-                        <option value=" ">&nbsp</option>
+                    <select class="form-control col-sm-3" id="cmbMissoes" name="cmbMissoes"<?php echo($disabledMissoes . $requiredMissoes); ?>>
+                        <option></option>
                         <?php
                         foreach ($outrasmss as $outra)
                         {

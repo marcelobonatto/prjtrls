@@ -38,25 +38,28 @@ class moodle_cursos
 
         curl_close($curl);
 
-        $dom = new domDocument;
-        $dom->loadXML($curl_response);
-
-        $s = simplexml_import_dom($dom);
-
         $arrcursos  = array();
 
-        foreach ($s->SINGLE->KEY[0]->MULTIPLE->SINGLE as $mcursos)
+        if (substr($curl_response, 0, 5) == '<? xml')
         {
-            $arrcursos[]    = new moodle_cursos();
-            $poscurso       = count($arrcursos) - 1;
+            $dom = new domDocument();
+            $dom->loadXML($curl_response, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
 
-            foreach($mcursos->KEY as $chaves)
+            $s = simplexml_import_dom($dom);
+
+            foreach ($s->SINGLE->KEY[0]->MULTIPLE->SINGLE as $mcursos)
             {
-                $campo                          = $chaves['name'];
+                $arrcursos[]    = new moodle_cursos();
+                $poscurso       = count($arrcursos) - 1;
 
-                if (property_exists('moodle_cursos', $campo))
+                foreach($mcursos->KEY as $chaves)
                 {
-                    $arrcursos[$poscurso]->$campo   = $chaves->VALUE;
+                    $campo                          = $chaves['name'];
+
+                    if (property_exists('moodle_cursos', $campo))
+                    {
+                        $arrcursos[$poscurso]->$campo   = $chaves->VALUE;
+                    }
                 }
             }
         }
