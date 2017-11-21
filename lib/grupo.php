@@ -16,7 +16,7 @@ class grupo
         $ok     = false;
 
         $sql    = 'SELECT grupoId, grupoNome, grupoAtivo ' .
-                  'FROM grupos ' .
+                  'FROM gruposusu ' .
                   "WHERE grupoNome = '$grupo'";
 
         $db     = new bancodados();
@@ -41,7 +41,7 @@ class grupo
         $matriz = array();
 
         $sql    = 'SELECT grupoId, grupoNome, grupoAtivo ' .
-                  'FROM grupos ' .
+                  'FROM gruposusu ' .
                   'ORDER BY grupoNome';
 
         $db     = new bancodados();
@@ -73,7 +73,7 @@ class grupo
     public function Selecionar($id)
     {
         $sql    = "SELECT grupoId, grupoNome, grupoAtivo " .
-                'FROM grupos ' .
+                'FROM gruposusu ' .
                 "WHERE grupoId = '$id' " .
                 'ORDER BY grupoNome';
 
@@ -118,7 +118,7 @@ class grupo
 
     public function Incluir($id)
     {
-        $sql    = 'INSERT INTO grupos ' .
+        $sql    = 'INSERT INTO gruposusu ' .
                 '(grupoId, grupoNome, grupoAtivo) ' . 
                 "VALUES ('$id', '$this->nome', $this->ativo)";
 
@@ -126,8 +126,6 @@ class grupo
 
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);
-
-        echo "Incluir: ".$sql;
         
         if ($this->id != null)
         {
@@ -141,13 +139,11 @@ class grupo
 
     public function Atualizar($id)
     {
-        $sql    = 'UPDATE grupos ' .
+        $sql    = 'UPDATE gruposusu ' .
                 "SET grupoNome = '$this->nome', " .
                 "grupoAtivo = $this->ativo " .
                 "WHERE grupoId = '$id'";
-
-echo "Alterar: ".$sql;
-
+//echo "inserir: ".$sql;
         $db         = new bancodados();
         $db->Executar($sql);
 
@@ -156,7 +152,7 @@ echo "Alterar: ".$sql;
 
     public function Excluir()
     {
-        $sql    = 'UPDATE grupos ' .
+        $sql    = 'UPDATE gruposusu ' .
                 "SET grupoAtivo = 0 " .
                 "WHERE grupoId = '$this->id'";
 
