@@ -33,7 +33,16 @@
                         <?php
                         foreach ($moodlearr as $moodle)
                         {
-                            echo("\t\t<option value=\"$moodle->id\">[$moodle->shortname] $moodle->displayname</option>\n");
+                            if ($moodle->id == $idMoodle)
+                            {
+                                $selmoodle  = ' selected=\"selected\"';
+                            }
+                            else
+                            {
+                                $selmoodle  = '';
+                            }
+
+                            echo("\t\t<option value=\"$moodle->id\"$selmoodle>[$moodle->shortname] $moodle->displayname</option>\n");
                         }
                         ?>
                     </select>
@@ -85,7 +94,16 @@
                         <?php
                         foreach ($outrasmss as $outra)
                         {
-                            echo("<option value=\"$outra->id\">[A: $outra->ano / S: $outra->semestre / Sq: $outra->sequencia]$outra->nome</option>\n");
+                            if ($outra->id == $pai && $obrigatoria == 0)
+                            {
+                                $selpai = ' selected=\"selected\"';
+                            }
+                            else
+                            {
+                                $selpai  = '';
+                            }
+
+                            echo("<option value=\"$outra->id\"$selpai>[A: $outra->ano / S: $outra->semestre / Sq: $outra->sequencia]$outra->nome</option>\n");
                         }
                         ?>
                     </select>

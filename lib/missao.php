@@ -241,9 +241,9 @@ class missao
             {
                 foreach ($this->eixos as $eixo)
                 {
-                    $eixo->missao    = $this->id;
+                    $eixo->missao   = $this->id;
 
-                    $reseixos   = $eixo->Salvar();
+                    $reseixos       = $eixo->Salvar();
 
                     if (!$reseixos)
                     {

@@ -112,17 +112,26 @@ $(document).ready(function() {
         var pai = $("#cmdMissoes").find("option:selected").val();
         var ativo = $("input[name='optAtivo']:checked").val();
 
+        var eixos = new Array();
+
         //Ver se não tem erro
-        $("hidden[id^='hidId']").each(function(index) {
-            alert($(this).id);
+        $("[id^='hidId']").each(function(index) {
+            var pontos      = 0;
+            var valpontos   = $("#txtPontos" + index).val();
+            var ideixo      = $("#hidId" + index).val();
+
+            if (valpontos != null)
+            {
+                eixos.push(ideixo + "|" + valpontos);
+            }
         });
 
         $.ajax({
             type: "POST",
             url: "exec/gravarmissao.php",
             data: { id: id, nome: nome, titulo: titulo, descricao: descricao, ano: ano,
-                    semestr: semestre, sequencia: sequencia, moodle: moodle, obrigatorio: obrigatorio,
-                    pai: pai, ativo: ativo },
+                    semestre: semestre, sequencia: sequencia, moodle: moodle, obrigatorio: obrigatorio,
+                    pai: pai, ativo: ativo, eixos: eixos },
             success : function(text) {
                 var txtspl = text.split("|");
 

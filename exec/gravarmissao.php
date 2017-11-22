@@ -12,7 +12,23 @@ if (!isset($_POST['semestre']))     $mensagem[] = 'Semestre n&atilde;o informado
 if (!isset($_POST['sequencia']))    $mensagem[] = 'Sequencia n&atilde;o informada';                         else $sequencia     = $_POST['sequencia'];
 if (!isset($_POST['moodle']))       $mensagem[] = 'Id do Moodle n&atilde;o informado';                      else $moodle        = $_POST['moodle'];
 if (!isset($_POST['obrigatorio']))  $mensagem[] = 'Indicador de missão obrigatória n&atilde;o informado';   else $obrigatorio   = $_POST['obrigatorio'];
-if (!isset($_POST['pai']))          $mensagem[] = 'Pai n&atilde;o informado';                               else $pai           = $_POST['pai'];
+
+if (!isset($_POST['pai']))
+{
+    if ($obrigatorio == 0)
+    {
+        $mensagem[] = 'Pai n&atilde;o informado';
+    }
+    else
+    {
+        $pai        = null;
+    }
+}
+else
+{
+    $pai            = $_POST['pai'];
+}
+
 if (!isset($_POST['ativo']))        $mensagem[] = 'Indicador de ativo n&atilde;o informado';                else $ativo         = $_POST['ativo'];
 
 if (count($mensagem) == 0)
@@ -40,6 +56,9 @@ if (count($mensagem) == 0)
 
     $missao->ativo          = $ativo;
 
+    $eixosmissao    = new missaoeixo();
+    $eixosarr       = $eixosmissao->ListarPorMissao($this->id);
+
     if ($missao->Salvar())
     {
         echo("OK|$missao->id");
@@ -51,6 +70,8 @@ if (count($mensagem) == 0)
 }
 else
 {
+    $html   = '';
+
     foreach ($mensagem as $linha)
     {
         $html   .= "- $linha<br />"; 
