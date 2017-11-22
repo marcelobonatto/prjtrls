@@ -2,7 +2,8 @@
 class moodle_cursos
 {
     const ENDERECO      = 'http://localhost/moodle/';
-    const TOKEN         = 'd799f165d712e0ff700d64e0f9ab2615';
+    //const TOKEN         = 'd799f165d712e0ff700d64e0f9ab2615'; //celepar
+    const TOKEN         = '6d545b9f02e20a1e81c91e5b7c40fa92'; //notebook
     const FUNCAO        = 'core_course_get_courses_by_field';
     const CATEGORIA     = 2;
 

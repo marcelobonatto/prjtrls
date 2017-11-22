@@ -31,6 +31,14 @@ else
 
 if (!isset($_POST['ativo']))        $mensagem[] = 'Indicador de ativo n&atilde;o informado';                else $ativo         = $_POST['ativo'];
 
+if (isset($_POST['eixos']))
+{
+    foreach ()
+    {
+        
+    }
+}
+
 if (count($mensagem) == 0)
 {
     $missao                 = new missao();

@@ -120,7 +120,7 @@ $(document).ready(function() {
             var valpontos   = $("#txtPontos" + index).val();
             var ideixo      = $("#hidId" + index).val();
 
-            if (valpontos != null)
+            if (valpontos != null && valpontos.length > 0)
             {
                 eixos.push(ideixo + "|" + valpontos);
             }
