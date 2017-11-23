@@ -250,6 +250,20 @@ class missao
                     }
                 }
             }
+
+            if ($this->falasnpc != null)
+            {
+                foreach ($this->falasnpc as $fala)
+                {
+                    $fala->missao   = $this->id;
+                    $resfalas       = $fala->Salvar();
+
+                    if (!$resfalas)
+                    {
+                        $erro   = 4;
+                    }
+                }
+            }
         }
         else
         {
