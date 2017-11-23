@@ -118,11 +118,12 @@ $(document).ready(function() {
         $("[id^='hidId']").each(function(index) {
             var pontos      = 0;
             var valpontos   = $("#txtPontos" + index).val();
-            var ideixo      = $("#hidId" + index).val();
+            var id          = $("#hidId" + index).val();
+            var ideixo      = $("#hidEixo" + index).val();
 
             if (valpontos != null && valpontos.length > 0)
             {
-                eixos.push(ideixo + "|" + valpontos);
+                eixos.push(id + "|" + ideixo + "|" + valpontos);
             }
         });
 

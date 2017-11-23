@@ -14,6 +14,8 @@ class missaoeixo
 
     public function ListarPorMissao($missao)
     {
+        $matriz = array();
+
         $sql    = 'SELECT missaoeixoId, missaoId, eixoId, missaoeixoPontos ' .
                   'FROM missoeseixo ' .
                   "WHERE missaoId = '$missao'";
@@ -29,9 +31,9 @@ class missaoeixo
                 {
                     $obj                = new missao();
                     $obj->id            = $eixo[self::MISSAOEIXO_ID];
-                    $obj->missao        = $eixo[self::MISSAOEIXO_ID];
-                    $obj->eixo          = $eixo[self::MISSAOEIXO_ID];
-                    $obj->pontos        = $eixo[self::MISSAOEIXO_ID];
+                    $obj->missao        = $eixo[self::MISSAO_ID];
+                    $obj->eixo          = $eixo[self::EIXO_ID];
+                    $obj->pontos        = $eixo[self::MISSAOEIXO_PONTOS];
 
                     array_push($matriz, $obj);
                 }
@@ -56,15 +58,14 @@ class missaoeixo
         {
             return $this->Incluir($id);
         }
-        else
+        else if ($this->pontos > 0)
         {
             return $this->Atualizar($id);
         }
-    }
-
-    public function SalvarComVerificacao()
-    {
-        return $this->Salvar();
+        else
+        {
+            return $this->Excluir($id);
+        }
     }
 
     public function Incluir($id)
@@ -93,6 +94,16 @@ class missaoeixo
                   "eixoId = '$this->eixo', " .
                   "missaoeixoPontos = $this->pontos " .
                   "WHERE missaoeixoId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public function Excluir($id)
+    {
+        $sql        = "DELETE FROM missoeseixo WHERE missaoeixoId = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);

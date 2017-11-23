@@ -33,9 +33,13 @@ if (!isset($_POST['ativo']))        $mensagem[] = 'Indicador de ativo n&atilde;o
 
 if (isset($_POST['eixos']))
 {
-    foreach ()
+    if (count($_POST['eixos']) > 0)
     {
-        
+        $eixossel   = $_POST['eixos'];
+    }
+    else
+    {
+        $mensagem[] = '&Eacute; necess&aacute;rio informar a pontua&ccedil;&atilde;o de pelo menos um eixo';
     }
 }
 
@@ -64,8 +68,43 @@ if (count($mensagem) == 0)
 
     $missao->ativo          = $ativo;
 
-    $eixosmissao    = new missaoeixo();
-    $eixosarr       = $eixosmissao->ListarPorMissao($this->id);
+    $eixosobj   = new missaoeixo();
+    $eixosarr   = $eixosobj->ListarPorMissao($id);
+    
+    $eixos  = array();
+
+    foreach ($eixossel as $eixo)
+    {
+        $eixos[]                = new missaoeixo();
+        $poseixo                = count($eixos) - 1;
+
+        $spleixo                = explode('|', $eixo);
+
+        if (strlen($eixo[0]) > 0)
+        {
+            $eixos[$poseixo]->id    = $spleixo[0];
+        }
+
+        $eixos[$poseixo]->eixo      = $spleixo[1];
+        $eixos[$poseixo]->pontos    = $spleixo[2];
+    }
+
+    foreach ($eixosarr as $eixoitm)
+    {
+        $posdel = array_search($eixoitm->id, array_column($eixos, 'id'));
+
+        if ($posdel === FALSE)
+        {
+            $eixos[]                = new missaoeixo();
+            $poseixo                = count($eixos) - 1;
+
+            $eixos[$poseixo]->id        = $eixoitm->id;
+            $eixos[$poseixo]->eixo      = $eixoitm->eixo;
+            $eixos[$poseixo]->pontos    = 0;
+        }
+    }
+
+    $missao->eixos          = $eixos;
 
     if ($missao->Salvar())
     {

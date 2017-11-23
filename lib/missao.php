@@ -127,7 +127,7 @@ class missao
         {
             if (count($res) > 0)
             {
-                $missao             = $res[0];
+                $missao              = $res[0];
 
                 $this->id            = $missao[self::MISSAO_ID];
                 $this->nome          = $missao[self::MISSAO_NOME];
@@ -242,7 +242,6 @@ class missao
                 foreach ($this->eixos as $eixo)
                 {
                     $eixo->missao   = $this->id;
-
                     $reseixos       = $eixo->Salvar();
 
                     if (!$reseixos)
@@ -277,6 +276,15 @@ class missao
 
         $db         = new bancodados();
         $db->Executar($sql);
+
+        if ($this->eixos != null)
+        {
+            foreach ($this->eixos as $eixo)
+            {
+                $eixo->missao   = $this->id;
+                $eixo->Salvar();
+            }
+        }
 
         return true;
     }
