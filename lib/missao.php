@@ -67,9 +67,50 @@ class missao
         return $matriz;
     }
 
-    public function ListarRegistrosExceto($id)
+    public function ListarRegistrosExceto($id, $apenasObrigatorias)
     {
+        $matriz = array();
         
+        $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
+                  'missaoSequencia, missaoObrigatoria, missaoPai ' .
+                  'FROM missoes ' .
+                  "WHERE missaoId <> '$id' ";
+
+        if ($apenasObrigatorias)
+        {
+            $sql    .= 'AND missaoObrigatoria = 1 ';
+        }
+
+        $sql    .= 'ORDER BY missaoAno, missaoSemestre, missaoSequencia';
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                foreach ($res as $missao)
+                {
+                    $obj                = new missao();
+                    $obj->id            = $missao[self::MISSAO_ID];
+                    $obj->nome          = $missao[self::MISSAO_NOME];
+                    $obj->titulo        = $missao[self::MISSAO_TITULO];
+                    $obj->descricao     = $missao[self::MISSAO_DESCRICAO];
+                    $obj->ativo         = $missao[self::MISSAO_ATIVO];
+                    $obj->idMoodle      = $missao[self::MISSAO_IDMOODLE];
+                    $obj->ano           = $missao[self::MISSAO_ANO];
+                    $obj->semestre      = $missao[self::MISSAO_SEMESTRE];
+                    $obj->sequencia     = $missao[self::MISSAO_SEQUENCIA];
+                    $obj->obrigatoria   = $missao[self::MISSAO_OBRIGATORIA];
+                    $obj->pai           = $missao[self::MISSAO_PAI];
+
+                    array_push($matriz, $obj);
+                }
+            }
+        }
+
+        return $matriz;
     }
 
     public function Selecionar($id)
@@ -86,7 +127,7 @@ class missao
         {
             if (count($res) > 0)
             {
-                $missao             = $res[0];
+                $missao              = $res[0];
 
                 $this->id            = $missao[self::MISSAO_ID];
                 $this->nome          = $missao[self::MISSAO_NOME];
@@ -200,9 +241,8 @@ class missao
             {
                 foreach ($this->eixos as $eixo)
                 {
-                    $eixo->missao    = $this->id;
-
-                    $reseixos   = $eixo->Salvar();
+                    $eixo->missao   = $this->id;
+                    $reseixos       = $eixo->Salvar();
 
                     if (!$reseixos)
                     {
@@ -221,19 +261,30 @@ class missao
 
     public function Atualizar($id, $idmoodle, $pai)
     {
-        $sql    = 'UPDATE itens ' .
-                  "SET itemNome = '$this->nome', " .
-                  "itemNivel = $this->nivel, " .
-                  "itemCor = NULL, " .
-                  "eixoId = $eixo, " .
-                  "itemLimite = $limite, " .
-                  "itemBonus = $this->bonus, " .
-                  "itemPrecoNormal = $this->preconormal, " .
-                  "itemAtivo = $this->ativo " .
-                  "WHERE itemId = '$id'";
+        $sql    = 'UPDATE missoes ' .
+                  "SET missaoNome = '$this->nome', " .
+                  "missaoTitulo = '$this->titulo', " .
+                  "missaoDescricao = '$this->descricao', " .
+                  "missaoAtivo = $this->ativo, " .
+                  "missaoIdMoodle = $idmoodle, " .
+                  "missaoAno = $this->ano, " .
+                  "missaoSemestre = $this->semestre, " .
+                  "missaoSequencia = $this->sequencia, " .
+                  "missaoObrigatoria = $this->obrigatoria, " .
+                  "missaoPai = $pai " .
+                  "WHERE missaoId = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);
+
+        if ($this->eixos != null)
+        {
+            foreach ($this->eixos as $eixo)
+            {
+                $eixo->missao   = $this->id;
+                $eixo->Salvar();
+            }
+        }
 
         return true;
     }

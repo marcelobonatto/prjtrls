@@ -3,16 +3,22 @@ class bancodados
 {
     function Conectar()
     {
+        $mysqli = null;
+
         if (PHP_OS == 'WINNT')
         {
             //No Windows
-            return new mysqli("localhost", "root", "", "prjtrls");
+            $mysqli = new mysqli("localhost", "root", "", "prjtrls");
         }
         else
         {
             //No Mac
-            return new mysqli("localhost", "root", "root", "prjtrls", 8889);        
+            $mysqli = new mysqli("localhost", "root", "root", "prjtrls", 8889);
         }
+
+        $mysqli->set_charset("utf8");
+
+        return $mysqli;
     }
     
     public function SelecaoSimples($comando)

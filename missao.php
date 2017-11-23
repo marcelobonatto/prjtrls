@@ -1,5 +1,6 @@
 <?php
 include_once('autoload.php');
+include_once('header.php');
 
 if (!isset($_GET['id']))
 {
@@ -13,6 +14,18 @@ else
 if ($getid == 'novo')
 {
     $id             = 'novo';
+
+    $txtid          = '';
+    $nome           = '';
+    $titulo         = '';
+    $descricao      = '';
+    $ativo          = true;
+    $idMoodle       = '';
+    $ano            = 1;
+    $semestre       = 1;
+    $sequencia      = 1;
+    $obrigatoria    = true;
+    $pai            = '';
 }
 else
 {
@@ -35,12 +48,13 @@ else
 }
 
 $outrasobj      = new missao();
-$outrasmss      = $outrasobj->ListarRegistrosExceto($getid);
+$outrasmss      = $outrasobj->ListarRegistrosExceto($getid, true);
+
+$moodleobj      = new moodle_cursos();
+$moodlearr      = $moodleobj->Obter();
 
 $emeobj         = new eixomissaoeixo();
-$emearr = $emeobj->ListarRegistros($id);
-
-include_once('header.php');
+$emearr         = $emeobj->ListarRegistros($getid);
 ?>
     <div class="conteudo">
         <h1>Cadastro de Missão - <?php echo($id != 'novo' ? $nome : 'Novo Cadastro'); ?></h1>
@@ -80,5 +94,6 @@ include_once('header.php');
         </form>
     </div>
 <?php
+$js[]   = "js/missao.js";
 include_once('footer.php');
 ?>
