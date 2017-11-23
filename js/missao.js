@@ -26,10 +26,11 @@ $(document).ready(function() {
 
         html    = "<tr>\n" +
                   "\t<td>\n" +
-                  "\t\t<input type=\"number\" id=\"txtSequencia" + total + "\" name=\"txtSequencia[]\" value=\"" + total +"\" min=\"1\" max=\"99\" class=\"text-right\" />\n" +
+                  "\t\t<input type=\"number\" id=\"txtSequencia" + total + "\" value=\"" + total +"\" min=\"1\" max=\"99\" class=\"text-right\" />\n" +
+                  "\t\t<input type=\"hidden\" id=\"hidIdFala" + total + "\" value=\"\" />\n" +                  
                   "\t</td>\n" +
                   "\t<td>\n" +
-                  "\t\t<select id=\"cmbNPC" + total + "\" name=\"cmbNPC[]\">\n";
+                  "\t\t<select id=\"cmbNPC" + total + "\">\n";
 
         for (i = 0; i < json.length; i++)
         {
@@ -40,7 +41,7 @@ $(document).ready(function() {
         html    += "\t\t</select>\n" +
                    "\t</td>\n" + 
                    "\t<td>\n" + 
-                   "\t\t<select id=\"cmbHumor" + total + "\" name=\"cmbHumor[]\">\n" + 
+                   "\t\t<select id=\"cmbHumor" + total + "\">\n" + 
                    "\t\t\t<option value=\"NO\">Normal</option>\n" + 
                    "\t\t\t<option value=\"AL\">Alegre</option>\n" + 
                    "\t\t\t<option value=\"EU\">Eufórico</option>\n" + 
@@ -52,7 +53,7 @@ $(document).ready(function() {
                    "\t\t</select>\n" + 
                    "\t</td>\n" + 
                    "\t<td>\n" + 
-                   "\t\t<textarea id=\"txtFala" + total + "\" name=\"txtFala[]\" rows=\"3\" maxlength=\"8000\" style=\"width: 100%\"></textarea>\n" + 
+                   "\t\t<textarea id=\"txtFala" + total + "\" rows=\"3\" maxlength=\"8000\" style=\"width: 100%\"></textarea>\n" + 
                    "\t</td>\n" + 
                    "\t<td>\n" + 
                    "\t\t<button id=\"cmdRemover" + total + "\" class=\"btn btn-link text-danger\" title=\"Remover\"><i class=\"material-icons\">&#xE15C;</i></button>&nbsp;&nbsp;\n" + 
@@ -112,20 +113,8 @@ $(document).ready(function() {
         var pai = $("#cmdMissoes").find("option:selected").val();
         var ativo = $("input[name='optAtivo']:checked").val();
 
-        var eixos = new Array();
-
-        //Ver se não tem erro
-        $("[id^='hidId']").each(function(index) {
-            var pontos      = 0;
-            var valpontos   = $("#txtPontos" + index).val();
-            var id          = $("#hidId" + index).val();
-            var ideixo      = $("#hidEixo" + index).val();
-
-            if (valpontos != null && valpontos.length > 0)
-            {
-                eixos.push(id + "|" + ideixo + "|" + valpontos);
-            }
-        });
+        var eixos = definirEixos();
+        var falas = definirFalas();
 
         $.ajax({
             type: "POST",
@@ -160,6 +149,85 @@ $(document).ready(function() {
                 }
             }
         });
+    }
+
+    function definirEixos()
+    {
+        var eixos = new Array();
+        
+        $("[id^='hidId']").each(function(index) {
+            var pontos      = 0;
+            var valpontos   = $("#txtPontos" + index).val();
+            var id          = $("#hidId" + index).val();
+            var ideixo      = $("#hidEixo" + index).val();
+
+            if (valpontos != null && valpontos.length > 0)
+            {
+                eixos.push(id + "|" + ideixo + "|" + valpontos);
+            }
+        });
+
+        return eixos;
+    }
+
+    function definirFalas()
+    {
+//TODO: Agora é essa parte!!! Vai, planeta!!!
+
+        var falas = new Array();
+
+        $("[id^='hidFala']").each(function(index) {
+            var id          = $("#hidFala");
+        });
+
+        echo("<tr>\n");
+        echo("\t<td>\n");
+        echo("\t\t<input type=\"number\" id=\"txtSequencia$indice\" name=\"txtSequencia[]\" value=\"$dialogo->sequencia\" min=\"1\" max=\"99\" class=\"text-right\" />\n");
+        echo("\t\t<input type=\"hidden\" id=\"hidIdFala$indice\" name=\"hidFala[]\" value=\"$dialogo->id\" />\n");
+        echo("\t</td>\n");
+        echo("\t<td>\n");
+        echo("\t\t<select id=\"cmbNPC$indice\" name=\"cmbNPC[]\">\n");
+
+        foreach ($npcs as $npc)
+        {
+            if ($dialogo->npc == $npc->id)
+            {
+                $selected   = ' selected="selected"';
+            }
+            else
+            {
+                $selected   = '';
+            }
+
+            echo("\t\t\t<option value=\"$npc->id\"$selected>[$npc->eixoSigla] $npc->nome</option>\n");
+        }
+
+        echo("\t\t</select>\n");
+        echo("\t</td>\n");
+        echo("\t<td>\n");
+        echo("\t\t<select id=\"cmbHumor$indice\" name=\"cmbHumor[]\">\n");
+        echo("\t\t\t<option value=\"NO\">Normal</option>\n");
+        echo("\t\t\t<option value=\"AL\">Alegre</option>\n");
+        echo("\t\t\t<option value=\"EU\">Eufórico</option>\n");
+        echo("\t\t\t<option value=\"TR\">Triste</option>\n");
+        echo("\t\t\t<option value=\"CH\">Chorando</option>\n");
+        echo("\t\t\t<option value=\"IR\">Irritado</option>\n");
+        echo("\t\t\t<option value=\"ZA\">Zangado</option>\n");
+        echo("\t\t\t<option value=\"TQ\">Tranquilo</option>\n");
+        echo("\t\t</select>\n");
+        echo("\t</td>\n");
+        echo("\t<td>\n");
+        echo("\t\t<textarea id=\"txtFala$indice\" name=\"txtFala[]\" rows=\"3\" maxlength=\"8000\" style=\"width: 100%\">$dialogo->texto</textarea>\n");
+        echo("\t</td>\n");
+        echo("\t<td>\n");
+        echo("\t\t<button id=\"cmdRemover$indice\" class=\"btn btn-link text-danger\" title=\"Remover\"><i class=\"material-icons\">&#xE15C;</i></button>&nbsp;&nbsp;\n");
+        echo("\t\t<a href=\"#\" class=\"text-primary\" title=\"Mover para Cima\"><i class=\"material-icons\">&#xE5D8;</i></a>&nbsp;&nbsp;\n");
+        echo("\t\t<a href=\"#\" class=\"text-primary\" title=\"Mover para Baixo\"><i class=\"material-icons\">&#xE5DB;</i></a>\n");
+        echo("\t</td>\n");
+        echo("</tr>\n");
+
+
+        return falas;
     }
 
     $("#cmdVoltar").click(function() {
