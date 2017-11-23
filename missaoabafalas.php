@@ -28,10 +28,11 @@
                         {
                             echo("<tr>\n");
                             echo("\t<td>\n");
-                            echo("\t\t<input type=\"number\" id=\"txtSequencia$indice\" name=\"txtSequencia[]\" value=\"$dialogo->sequencia\" min=\"1\" max=\"99\" class=\"text-right\" />\n");
+                            echo("\t\t<input type=\"number\" id=\"txtSequencia$indice\" value=\"$dialogo->sequencia\" min=\"1\" max=\"99\" class=\"text-right\" />\n");
+                            echo("\t\t<input type=\"hidden\" id=\"hidIdFala$indice\" value=\"$dialogo->id\" />\n");
                             echo("\t</td>\n");
                             echo("\t<td>\n");
-                            echo("\t\t<select id=\"cmbNPC$indice\" name=\"cmbNPC[]\">\n");
+                            echo("\t\t<select id=\"cmbNPC$indice\">\n");
 
                             foreach ($npcs as $npc)
                             {
@@ -50,19 +51,19 @@
                             echo("\t\t</select>\n");
                             echo("\t</td>\n");
                             echo("\t<td>\n");
-                            echo("\t\t<select id=\"cmbHumor$indice\" name=\"cmbHumor[]\">\n");
-                            echo("\t\t\t<option value=\"NO\">Normal</option>\n");
-                            echo("\t\t\t<option value=\"AL\">Alegre</option>\n");
-                            echo("\t\t\t<option value=\"EU\">Eufórico</option>\n");
-                            echo("\t\t\t<option value=\"TR\">Triste</option>\n");
-                            echo("\t\t\t<option value=\"CH\">Chorando</option>\n");
-                            echo("\t\t\t<option value=\"IR\">Irritado</option>\n");
-                            echo("\t\t\t<option value=\"ZA\">Zangado</option>\n");
-                            echo("\t\t\t<option value=\"TQ\">Tranquilo</option>\n");
+                            echo("\t\t<select id=\"cmbHumor$indice\">\n");
+                            echo("\t\t\t<option value=\"NO\"" . ($dialogo->humor == "NO" ? ' selected="selected"' : '') . ">Normal</option>\n");
+                            echo("\t\t\t<option value=\"AL\"" . ($dialogo->humor == "AL" ? ' selected="selected"' : '') . ">Alegre</option>\n");
+                            echo("\t\t\t<option value=\"EU\"" . ($dialogo->humor == "EU" ? ' selected="selected"' : '') . ">Eufórico</option>\n");
+                            echo("\t\t\t<option value=\"TR\"" . ($dialogo->humor == "TR" ? ' selected="selected"' : '') . ">Triste</option>\n");
+                            echo("\t\t\t<option value=\"CH\"" . ($dialogo->humor == "CH" ? ' selected="selected"' : '') . ">Chorando</option>\n");
+                            echo("\t\t\t<option value=\"IR\"" . ($dialogo->humor == "IR" ? ' selected="selected"' : '') . ">Irritado</option>\n");
+                            echo("\t\t\t<option value=\"ZA\"" . ($dialogo->humor == "ZA" ? ' selected="selected"' : '') . ">Zangado</option>\n");
+                            echo("\t\t\t<option value=\"TQ\"" . ($dialogo->humor == "TQ" ? ' selected="selected"' : '') . ">Tranquilo</option>\n");
                             echo("\t\t</select>\n");
                             echo("\t</td>\n");
                             echo("\t<td>\n");
-                            echo("\t\t<textarea id=\"txtFala$indice\" name=\"txtFala[]\" rows=\"3\" maxlength=\"8000\" style=\"width: 100%\">$dialogo->texto</textarea>\n");
+                            echo("\t\t<textarea id=\"txtFala$indice\" rows=\"3\" maxlength=\"8000\" style=\"width: 100%\">$dialogo->texto</textarea>\n");
                             echo("\t</td>\n");
                             echo("\t<td>\n");
                             echo("\t\t<button id=\"cmdRemover$indice\" class=\"btn btn-link text-danger\" title=\"Remover\"><i class=\"material-icons\">&#xE15C;</i></button>&nbsp;&nbsp;\n");

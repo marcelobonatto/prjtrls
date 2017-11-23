@@ -26,10 +26,11 @@ $(document).ready(function() {
 
         html    = "<tr>\n" +
                   "\t<td>\n" +
-                  "\t\t<input type=\"number\" id=\"txtSequencia" + total + "\" name=\"txtSequencia[]\" value=\"" + total +"\" min=\"1\" max=\"99\" class=\"text-right\" />\n" +
+                  "\t\t<input type=\"number\" id=\"txtSequencia" + total + "\" value=\"" + total +"\" min=\"1\" max=\"99\" class=\"text-right\" />\n" +
+                  "\t\t<input type=\"hidden\" id=\"hidIdFala" + total + "\" value=\"\" />\n" +                  
                   "\t</td>\n" +
                   "\t<td>\n" +
-                  "\t\t<select id=\"cmbNPC" + total + "\" name=\"cmbNPC[]\">\n";
+                  "\t\t<select id=\"cmbNPC" + total + "\">\n";
 
         for (i = 0; i < json.length; i++)
         {
@@ -40,7 +41,7 @@ $(document).ready(function() {
         html    += "\t\t</select>\n" +
                    "\t</td>\n" + 
                    "\t<td>\n" + 
-                   "\t\t<select id=\"cmbHumor" + total + "\" name=\"cmbHumor[]\">\n" + 
+                   "\t\t<select id=\"cmbHumor" + total + "\">\n" + 
                    "\t\t\t<option value=\"NO\">Normal</option>\n" + 
                    "\t\t\t<option value=\"AL\">Alegre</option>\n" + 
                    "\t\t\t<option value=\"EU\">Eufórico</option>\n" + 
@@ -52,7 +53,7 @@ $(document).ready(function() {
                    "\t\t</select>\n" + 
                    "\t</td>\n" + 
                    "\t<td>\n" + 
-                   "\t\t<textarea id=\"txtFala" + total + "\" name=\"txtFala[]\" rows=\"3\" maxlength=\"8000\" style=\"width: 100%\"></textarea>\n" + 
+                   "\t\t<textarea id=\"txtFala" + total + "\" rows=\"3\" maxlength=\"8000\" style=\"width: 100%\"></textarea>\n" + 
                    "\t</td>\n" + 
                    "\t<td>\n" + 
                    "\t\t<button id=\"cmdRemover" + total + "\" class=\"btn btn-link text-danger\" title=\"Remover\"><i class=\"material-icons\">&#xE15C;</i></button>&nbsp;&nbsp;\n" + 
@@ -112,27 +113,15 @@ $(document).ready(function() {
         var pai = $("#cmdMissoes").find("option:selected").val();
         var ativo = $("input[name='optAtivo']:checked").val();
 
-        var eixos = new Array();
-
-        //Ver se não tem erro
-        $("[id^='hidId']").each(function(index) {
-            var pontos      = 0;
-            var valpontos   = $("#txtPontos" + index).val();
-            var id          = $("#hidId" + index).val();
-            var ideixo      = $("#hidEixo" + index).val();
-
-            if (valpontos != null && valpontos.length > 0)
-            {
-                eixos.push(id + "|" + ideixo + "|" + valpontos);
-            }
-        });
+        var eixos = definirEixos();
+        var falas = definirFalas();
 
         $.ajax({
             type: "POST",
             url: "exec/gravarmissao.php",
             data: { id: id, nome: nome, titulo: titulo, descricao: descricao, ano: ano,
                     semestre: semestre, sequencia: sequencia, moodle: moodle, obrigatorio: obrigatorio,
-                    pai: pai, ativo: ativo, eixos: eixos },
+                    pai: pai, ativo: ativo, eixos: eixos, falas: falas },
             success : function(text) {
                 var txtspl = text.split("|");
 
@@ -160,6 +149,47 @@ $(document).ready(function() {
                 }
             }
         });
+    }
+
+    function definirEixos()
+    {
+        var eixos = new Array();
+        
+        $("[id^='hidId']").each(function(index) {
+            var pontos      = 0;
+            var valpontos   = $("#txtPontos" + index).val();
+            var id          = $("#hidId" + index).val();
+            var ideixo      = $("#hidEixo" + index).val();
+
+            if (valpontos != null && valpontos.length > 0)
+            {
+                eixos.push(id + "|" + ideixo + "|" + valpontos);
+            }
+        });
+
+        return eixos;
+    }
+
+    function definirFalas()
+    {
+        var falas = new Array();
+
+        $("[id^='hidIdFala']").each(function(index) {
+            var pos = this.id.replace("hidIdFala", "");
+
+            var id      = $("#hidIdFala" + pos).val();
+            var seq     = $("#txtSequencia" + pos).val();
+            var npc     = $("#cmbNPC" + pos).val();
+            var humor   = $("#cmbHumor" + pos).val();
+            var fala    = $("#txtFala" + pos).val();
+
+            if (seq.length > 0 && fala.length > 0)
+            {
+                falas.push(id + "|" + seq + "|" + npc + "|" + humor + "|" + fala);
+            }
+        });
+
+        return falas;
     }
 
     $("#cmdVoltar").click(function() {

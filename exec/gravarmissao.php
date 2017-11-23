@@ -43,6 +43,14 @@ if (isset($_POST['eixos']))
     }
 }
 
+if (isset($_POST['falas']))
+{
+    if (count($_POST['falas']) > 0)
+    {
+        $falassel   = $_POST['falas'];
+    }
+}
+
 if (count($mensagem) == 0)
 {
     $missao                 = new missao();
@@ -105,6 +113,45 @@ if (count($mensagem) == 0)
     }
 
     $missao->eixos          = $eixos;
+
+    $falaobj    = new dialogonpc();
+    $falaarr    = $falaobj->ListarPorMissao($id);
+
+    $falas  = array();
+    
+    foreach ($falassel as $fala)
+    {
+        $falas[]                = new dialogonpc();
+        $posfala                = count($falas) - 1;
+
+        $splfala                = explode('|', $eixo);
+
+        if (strlen($eixo[0]) > 0)
+        {
+            $falas[$posfala]->id    = $splfala[0];
+        }
+
+        $falas[$posfala]->sequencia = $splfala[1];
+        $falas[$posfala]->npc       = $splfala[2];
+        $falas[$posfala]->humor     = $splfala[3];
+        $falas[$posfala]->texto     = $splfala[4];
+    }
+
+    foreach ($falasarr as $falaitm)
+    {
+        $posdel = array_search($falaitm->id, array_column($falas, 'id'));
+
+        if ($posdel === FALSE)
+        {
+            $falas[]                = new dialogonpc();
+            $poseixo                = count($falas) - 1;
+
+            $falas[$posfala]->sequencia = $falaitm->sequencia;
+            $falas[$posfala]->npc       = '';
+            $falas[$posfala]->humor     = '';
+            $falas[$posfala]->texto     = '';
+        }
+    }
 
     if ($missao->Salvar())
     {

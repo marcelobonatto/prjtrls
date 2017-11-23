@@ -11,9 +11,10 @@ class dialogonpc
     public $missao;
     public $sequencia;
     public $npc;
+    public $humor;
     public $texto;
 
-    public function ListarRegistros($missao)
+    public function ListarPorMissao($missao)
     {
         $matriz = array();
 
