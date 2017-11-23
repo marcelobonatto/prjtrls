@@ -121,7 +121,7 @@ $(document).ready(function() {
             url: "exec/gravarmissao.php",
             data: { id: id, nome: nome, titulo: titulo, descricao: descricao, ano: ano,
                     semestre: semestre, sequencia: sequencia, moodle: moodle, obrigatorio: obrigatorio,
-                    pai: pai, ativo: ativo, eixos: eixos },
+                    pai: pai, ativo: ativo, eixos: eixos, falas: falas },
             success : function(text) {
                 var txtspl = text.split("|");
 
@@ -172,60 +172,22 @@ $(document).ready(function() {
 
     function definirFalas()
     {
-//TODO: Agora é essa parte!!! Vai, planeta!!!
-
         var falas = new Array();
 
-        $("[id^='hidFala']").each(function(index) {
-            var id          = $("#hidFala");
+        $("[id^='hidIdFala']").each(function(index) {
+            var pos = this.id.replace("hidIdFala", "");
+
+            var id      = $("#hidIdFala" + pos).val();
+            var seq     = $("#txtSequencia" + pos).val();
+            var npc     = $("#cmbNPC" + pos).val();
+            var humor   = $("#cmbHumor" + pos).val();
+            var fala    = $("#txtFala" + pos).val();
+
+            if (seq.length > 0 && fala.length > 0)
+            {
+                falas.push(id + "|" + seq + "|" + npc + "|" + humor + "|" + fala);
+            }
         });
-
-        echo("<tr>\n");
-        echo("\t<td>\n");
-        echo("\t\t<input type=\"number\" id=\"txtSequencia$indice\" name=\"txtSequencia[]\" value=\"$dialogo->sequencia\" min=\"1\" max=\"99\" class=\"text-right\" />\n");
-        echo("\t\t<input type=\"hidden\" id=\"hidIdFala$indice\" name=\"hidFala[]\" value=\"$dialogo->id\" />\n");
-        echo("\t</td>\n");
-        echo("\t<td>\n");
-        echo("\t\t<select id=\"cmbNPC$indice\" name=\"cmbNPC[]\">\n");
-
-        foreach ($npcs as $npc)
-        {
-            if ($dialogo->npc == $npc->id)
-            {
-                $selected   = ' selected="selected"';
-            }
-            else
-            {
-                $selected   = '';
-            }
-
-            echo("\t\t\t<option value=\"$npc->id\"$selected>[$npc->eixoSigla] $npc->nome</option>\n");
-        }
-
-        echo("\t\t</select>\n");
-        echo("\t</td>\n");
-        echo("\t<td>\n");
-        echo("\t\t<select id=\"cmbHumor$indice\" name=\"cmbHumor[]\">\n");
-        echo("\t\t\t<option value=\"NO\">Normal</option>\n");
-        echo("\t\t\t<option value=\"AL\">Alegre</option>\n");
-        echo("\t\t\t<option value=\"EU\">Eufórico</option>\n");
-        echo("\t\t\t<option value=\"TR\">Triste</option>\n");
-        echo("\t\t\t<option value=\"CH\">Chorando</option>\n");
-        echo("\t\t\t<option value=\"IR\">Irritado</option>\n");
-        echo("\t\t\t<option value=\"ZA\">Zangado</option>\n");
-        echo("\t\t\t<option value=\"TQ\">Tranquilo</option>\n");
-        echo("\t\t</select>\n");
-        echo("\t</td>\n");
-        echo("\t<td>\n");
-        echo("\t\t<textarea id=\"txtFala$indice\" name=\"txtFala[]\" rows=\"3\" maxlength=\"8000\" style=\"width: 100%\">$dialogo->texto</textarea>\n");
-        echo("\t</td>\n");
-        echo("\t<td>\n");
-        echo("\t\t<button id=\"cmdRemover$indice\" class=\"btn btn-link text-danger\" title=\"Remover\"><i class=\"material-icons\">&#xE15C;</i></button>&nbsp;&nbsp;\n");
-        echo("\t\t<a href=\"#\" class=\"text-primary\" title=\"Mover para Cima\"><i class=\"material-icons\">&#xE5D8;</i></a>&nbsp;&nbsp;\n");
-        echo("\t\t<a href=\"#\" class=\"text-primary\" title=\"Mover para Baixo\"><i class=\"material-icons\">&#xE5DB;</i></a>\n");
-        echo("\t</td>\n");
-        echo("</tr>\n");
-
 
         return falas;
     }
