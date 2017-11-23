@@ -58,5 +58,73 @@ class estado
             }
         }
     }
+
+    public function Selecionar($sigla)
+    {
+        $sql    = "SELECT estadoSigla, estadoNome " .
+                'FROM estados ' .
+                "WHERE estadoSigla = '$sigla' " .
+                'ORDER BY estadoNome';
+
+                echo "SQL: ".$sql;                
+                
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== false)
+        {
+            if (count($res) > 0)
+            {
+                $estado   = $res[0];
+
+                $this->sigla             = $estado[self::ESTADO_SIGLA];
+                $this->nome              = $estado[self::ESTADO_NOME];
+            }
+        }
+    }
+
+    public function Salvar($id)
+    {
+        if ($id == 'novo' || $id == 'novosigla')
+        {
+            return $this->Incluir();
+        }
+        else
+        {
+            return $this->Atualizar();
+        }
+    }
+
+    public function Incluir()
+    {
+        $sql    = 'INSERT INTO estados ' .
+                '(estadoSigla, estadoNome) ' . 
+                "VALUES ('$this->sigla', '$this->nome')";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        if ($this->id != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function Atualizar()
+    {
+        $sql    = 'UPDATE estados ' .
+                "SET estadoNome = '$this->nome', " .
+                "estadoSigla = '$this->sigla', " .
+                "WHERE estadoSigla = '$this->sigla'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
 }
 ?>
