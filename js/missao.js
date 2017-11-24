@@ -99,8 +99,6 @@ $(document).ready(function() {
 
         obj.parent().parent().remove();
 
-//        pos++;
-
         var elements    = document.querySelectorAll('input[id^="txtSequencia"]');
         var txtseqarr   = new Array();
 
