@@ -5682,7 +5682,42 @@ CREATE TABLE IF NOT EXISTS `escolas` (
   PRIMARY KEY (`escolaId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `escolas`
+--
+
+INSERT INTO `escolas` (`escolaId`, `escolaNome`, `escolaBairro`, `cidadeCodigo`, `estadoSigla`, `escolaAtivo`) VALUES
+('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Unidade 1', 'Xaxim', '4106902', 'PR', 1),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Unidade 2', 'Bigorrilho', '4106902', 'PR', 1),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Unidade 3', 'Santa Felicidade', '4106902', 'PR', 1);
+
 -- --------------------------------------------------------
+
+
+--
+-- Estrutura da tabela `alunos`
+--
+
+DROP TABLE IF EXISTS `alunos`;
+CREATE TABLE IF NOT EXISTS `alunos` (
+  `alunoId` varchar(36) NOT NULL,
+  `alunoNome` varchar(100) NOT NULL,
+  `alunoMatricula` int(11) NOT NULL,
+  `alunoLoginMoodle` varchar(12) NOT NULL,
+  `alunoAtivo` tinyint(4) NOT NULL DEFAULT '0',
+  `escolaId` varchar(36) NOT NULL,
+  PRIMARY KEY (`alunoId`),
+  KEY `fk_escolas_idx` (`escolaId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `alunos`
+--
+
+INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodle`, `alunoAtivo`, `escolaId`) VALUES
+('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Aluno 1', 12345678901, 'loginAl1', 1, 'ef88bb50-cd6a-11e7-91b8-00051b7601a3'),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Aluno 2', 22345678902, 'loginAl2', 1, 'ef8c126e-cd6a-11e7-91b8-00051b7601a3'),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Aluno 3', 33345678903, 'loginAl3', 1, 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3');
 
 --
 -- Estrutura da tabela `estados`
@@ -5779,7 +5814,7 @@ INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `
 ('652a4a36-c0b7-11e7-9b90-00306776e789', 'Seringa Mentora', 0, 'I', NULL, 'e886580e-bb13-11e7-a2a8-00306776e789', -1, 10, 800, 1),
 ('652af4b1-c0b7-11e7-9b90-00306776e789', 'Roupa de Programador Preta', 1, 'R', 1, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 20, 1200, 1),
 ('8db9b73c-c0b7-11e7-9b90-00306776e789', 'Carteira Minúscula', 1, 'C', NULL, NULL, 200, 0, 200, 1),
-('4b8c2a0a-cc89-11e7-b4bf-07433e6c64b2', 'Cueca Invisível', 2, 'R', NULL, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 20, 1600, 1),
+('4b8c2a0a-cc89-11e7-b4bf-07433e6c64b2', 'Roupa Invisível', 2, 'R', NULL, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 20, 1600, 1),
 ('f5eaec44-cca6-11e7-b4bf-07433e6c64b2', 'Jaleco Power', 2, 'R', NULL, 'S', -1, 20, 1200, 1),
 ('f5eb0c06-cca6-11e7-b4bf-07433e6c64b2', 'Erlenmeyer', 2, 'I', NULL, 'S', -1, 20, 800, 1),
 ('35a1dbfe-cca7-11e7-b4bf-07433e6c64b2', 'Jaleco Power', 2, 'R', NULL, 'S', -1, 20, 1200, 1),
