@@ -298,6 +298,15 @@ class missao
                 $eixo->missao   = $this->id;
                 $eixo->Salvar();
             }
+            
+            if ($this->falasnpc != null)
+            {
+                foreach ($this->falasnpc as $fala)
+                {
+                    $fala->missao   = $this->id;
+                    $resfalas       = $fala->Salvar();
+                }
+            }
         }
 
         return true;

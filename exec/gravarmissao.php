@@ -115,7 +115,7 @@ if (count($mensagem) == 0)
     $missao->eixos          = $eixos;
 
     $falaobj    = new dialogonpc();
-    $falaarr    = $falaobj->ListarPorMissao($id);
+    $falasarr   = $falaobj->ListarPorMissao($id);
 
     $falas  = array();
     
@@ -124,7 +124,7 @@ if (count($mensagem) == 0)
         $falas[]                = new dialogonpc();
         $posfala                = count($falas) - 1;
 
-        $splfala                = explode('|', $eixo);
+        $splfala                = explode('|', $fala);
 
         if (strlen($eixo[0]) > 0)
         {
@@ -144,14 +144,17 @@ if (count($mensagem) == 0)
         if ($posdel === FALSE)
         {
             $falas[]                = new dialogonpc();
-            $poseixo                = count($falas) - 1;
+            $posfala                = count($falas) - 1;
 
+            $falas[$posfala]->id        = $falaitm->id;
             $falas[$posfala]->sequencia = $falaitm->sequencia;
             $falas[$posfala]->npc       = '';
             $falas[$posfala]->humor     = '';
             $falas[$posfala]->texto     = '';
         }
     }
+
+    $missao->falasnpc       = $falas;
 
     if ($missao->Salvar())
     {
