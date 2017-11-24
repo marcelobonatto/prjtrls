@@ -24,9 +24,20 @@ $(document).ready(function() {
     $("#cmdIncluirFala").click(function() {
         var total = $("#tbFalas tbody tr").length;
 
+        var seq = $("input[id^='txtSequencia']:last").val();
+        
+        if (seq != null)
+        {
+            seq++;
+        }
+        else
+        {
+            seq = total;
+        }
+
         html    = "<tr>\n" +
                   "\t<td>\n" +
-                  "\t\t<input type=\"number\" id=\"txtSequencia" + total + "\" value=\"" + total +"\" min=\"1\" max=\"99\" class=\"text-right\" />\n" +
+                  "\t\t<input type=\"number\" id=\"txtSequencia" + total + "\" value=\"" + total +"\" min=\"1\" max=\"99\" class=\"text-right\" readonly=\"readonly\" />\n" +
                   "\t\t<input type=\"hidden\" id=\"hidIdFala" + total + "\" value=\"\" />\n" +                  
                   "\t</td>\n" +
                   "\t<td>\n" +
@@ -56,26 +67,114 @@ $(document).ready(function() {
                    "\t\t<textarea id=\"txtFala" + total + "\" rows=\"3\" maxlength=\"8000\" style=\"width: 100%\"></textarea>\n" + 
                    "\t</td>\n" + 
                    "\t<td>\n" + 
-                   "\t\t<button id=\"cmdRemover" + total + "\" class=\"btn btn-link text-danger\" title=\"Remover\"><i class=\"material-icons\">&#xE15C;</i></button>&nbsp;&nbsp;\n" + 
-                   "\t\t<a href=\"#\" class=\"text-primary\" title=\"Mover para Cima\"><i class=\"material-icons\">&#xE5D8;</i></a>&nbsp;&nbsp;\n" + 
-                   "\t\t<a href=\"#\" class=\"text-primary\" title=\"Mover para Baixo\"><i class=\"material-icons\">&#xE5DB;</i></a>\n" + 
+                   "\t\t<button type=\"button\" id=\"cmdRemover" + total + "\" class=\"btn btn-link text-danger\" title=\"Remover\"><i class=\"material-icons\">&#xE15C;</i></button>&nbsp;&nbsp;\n" + 
+                   "\t\t<button type=\"button\" id=\"cmdCima" + total + "\" class=\"btn btn-link text-primary\" title=\"Mover para Cima\"><i class=\"material-icons\">&#xE5D8;</i></button>&nbsp;&nbsp;\n" +
+                   "\t\t<button type=\"button\" id=\"cmdBaixo" + total + "\"  class=\"btn btn-link text-primary\" title=\"Mover para Baixo\"><i class=\"material-icons\">&#xE5DB;</i></button>\n" +
                    "\t</td>\n" + 
                    "</tr>\n";
 
         $("#tbFalas tr:last").before(html);
 
-        $("#cmdRemover" + total).on('click', function() {
+        $("#cmdRemover" + total).on("click", function() {
             removerFala($(this));
+        });
+
+        $("#cmdCima" + total).on('click', function() {
+            trocarConteudo($(this), "C");
+        });
+
+        $("#cmdBaixo" + total).on("click", function() {
+            trocarConteudo($(this), "B");
         });
     });
 
-    $("button[id^='cmdRemover']").on('click', function() {
+    $("button[id^='cmdRemover']").on("click", function() {
         removerFala($(this));
     });
 
     function removerFala(obj)
     {
+        var pos = obj.attr('id').replace("cmdRemover", "");
+        var seq = $("#txtSequencia" + pos).val();
+
         obj.parent().parent().remove();
+
+//        pos++;
+
+        var elements    = document.querySelectorAll('input[id^="txtSequencia"]');
+        var txtseqarr   = new Array();
+
+        for (i = 0; i < elements.length; i++)
+        {
+            if (elements[i].id.indexOf("txtSequencia") > -1)
+            {
+                var posid = elements[i].id.replace("txtSequencia", "");
+                
+                if (posid > pos)
+                {
+                    txtseqarr.push(elements[i].id);
+                }
+            }
+        }
+
+        txtseqarr.sort();
+
+        for (i = 0; i < txtseqarr.length; i++)
+        {
+            $("#" + txtseqarr[i]).val(seq);
+            seq++;
+            pos++;
+        }
+    }
+
+    $("button[id^='cmdCima']").on("click", function() {
+        trocarConteudo($(this), "C");
+    });
+
+    $("button[id^='cmdBaixo']").on("click", function() {
+        trocarConteudo($(this), "B");
+    });
+
+    function trocarConteudo(obj, direcao)
+    {
+        var pu      = (direcao == "C" ? "first" : "last");
+        var idgen   = (direcao == "C" ? "cmdCima" : "cmdBaixo");
+        var objpu   = $("button[id^='" + idgen + "']:" + pu).attr("id");
+        var este    = obj.attr("id");
+        
+        if (objpu != este)
+        {
+            var poseste = este.replace(idgen, "");
+
+            var idoutro = "";
+            var tr      = obj.closest("tr");
+            
+            if (direcao == "C")
+            {
+                idoutro = tr.prev().find("button[id^='" + idgen +"']").attr("id");
+            }
+            else
+            {
+                idoutro = tr.nextAll().find("button[id^='" + idgen +"']").attr("id");
+            }
+
+            var posoutro    = idoutro.replace(idgen, "");
+            
+            var id      = $("#hidIdFala" + posoutro).val();
+            var npc     = $("#cmbNPC" + posoutro).val();
+            var humor   = $("#cmbHumor" + posoutro).val();
+            var fala    = $("#txtFala" + posoutro).val();
+
+            $("#hidIdFala" + posoutro).val($("#hidIdFala" + poseste).val());
+            $("#cmbNPC" + posoutro).val($("#cmbNPC" + poseste).val());
+            $("#cmbHumor" + posoutro).val($("#cmbHumor" + poseste).val());
+            $("#txtFala" + posoutro).val($("#txtFala" + poseste).val());
+
+            $("#hidIdFala" + poseste).val(id);
+            $("#cmbNPC" + poseste).val(npc);
+            $("#cmbHumor" + poseste).val(humor);
+            $("#txtFala" + poseste).val(fala);
+        }
     }
 
     form    = $("#frmMissao");

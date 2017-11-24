@@ -96,7 +96,7 @@
                         {
                             if ($outra->id == $pai && $obrigatoria == 0)
                             {
-                                $selpai = ' selected=\"selected\"';
+                                $selpai = ' selected="selected"';
                             }
                             else
                             {
