@@ -1,6 +1,22 @@
 <?php
 $js     = array();
 header('Content-Type: text/html; charset=utf-8');
+
+session_start();
+
+if (!isset($_SESSION['u812hhy']))
+{
+    header('Location: index.php');
+}
+else
+{
+    include_once('lib/encriptacao.php');
+
+    $encrip     = new encriptacao();
+
+    $usucod     = $_SESSION['u812hhy'];
+    $usudesc    = json_decode($encrip->descriptar($usucod));
+}
 ?>
 <!doctype html>
 <html lang="pt-BR" class="h-100">
@@ -10,9 +26,9 @@ header('Content-Type: text/html; charset=utf-8');
         <title>Projeto Trilhas</title>
         
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/ext/bootstrap.min.css" />
 
-        <link rel="stylesheet" href="css/material-icons.css" />
+        <link rel="stylesheet" href="css/ext/material-icons.css" />
         <link rel="stylesheet" href="css/prjtrls.css" />
     </head>
     <body class="h-100">
@@ -64,7 +80,7 @@ header('Content-Type: text/html; charset=utf-8');
                     ?>
                 </ul>
                 <div class="navbar-text text-right" style="color: #cddc29">
-                    Conectado como <strong>{ Nome do Usuário }</strong>
+                    Conectado como <strong><?php echo($usudesc->nome); ?></strong>
                     <br />
                     <a href="sair.php" class="lnkinicial">Sair</a>
                 </div>

@@ -6,9 +6,9 @@
         <title>Projeto Trilhas</title>
         
         <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/ext/bootstrap.min.css" />
 
-        <link rel="stylesheet" href="css/material-icons.css" />
+        <link rel="stylesheet" href="css/ext/material-icons.css" />
         <link rel="stylesheet" href="css/prjtrls.css" />
     </head>
     <body class="h-100 fundointeiro">
@@ -38,9 +38,9 @@
             </div>
         </div>
 
-        <script src="js/jquery-3.2.1.min.js"></script>
-        <script src="js/popper.min.js"></script>
-        <script src="js/bootstrap.min.js"></script>
+        <script src="js/ext/jquery-3.2.1.min.js"></script>
+        <script src="js/ext/popper.min.js"></script>
+        <script src="js/ext/bootstrap.min.js"></script>
         <script src="js/index.js"></script>
     </body>
 </html>

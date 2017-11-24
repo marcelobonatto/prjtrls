@@ -3,12 +3,12 @@ class encriptacao
 {
     public function encriptar($texto)
     {
-        return executar($texto, 'e');
+        return $this->executar($texto, 'e');
     }
 
     public function descriptar($texto)
     {
-        return executar($texto, 'd');
+        return $this->executar($texto, 'd');
     }
 
     function executar($texto, $acao = 'e')

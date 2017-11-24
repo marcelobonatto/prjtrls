@@ -32,7 +32,15 @@ class usuario
             {
                 if (password_verify($senha, $res[0][self::USUARIO_SENHA]))
                 {
-                    $ok     = true;
+                    $usuario        = $res[0];
+
+                    $this->id       = $usuario[self::USUARIO_ID];
+                    $this->nome     = $usuario[self::USUARIO_NOME];
+                    $this->senha    = $usuario[self::USUARIO_SENHA];
+                    $this->sal      = $usuario[self::USUARIO_SAL];
+                    $this->ativo    = $usuario[self::USUARIO_ATIVO];
+
+                    $ok             = true;
                 }
             }
         }
