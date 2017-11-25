@@ -61,12 +61,15 @@ class bancodados
 
         $mysqli->close();
 
+        echo "SQL (Inserir COM ID): ".$comando;
+
         if ($res === TRUE)
         {
             return $nextid;
         }
         else
         {
+            echo("res FALSE");
             return null;
         }
     }
