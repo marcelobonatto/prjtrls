@@ -205,9 +205,9 @@ $(document).ready(function() {
         var ano = $("#txtAno").val();
         var semestre = $("#txtSemestre").val();
         var sequencia = $("#txtSequencia").val();
-        var moodle = $("#cmdMoodle").find("option:selected").val();
+        var moodle = $("#cmbMoodle").find("option:selected").val();
         var obrigatorio = $("input[name='optObrigatoria']:checked").val();
-        var pai = $("#cmdMissoes").find("option:selected").val();
+        var pai = $("#cmbMissoes").find("option:selected").val();
         var ativo = $("input[name='optAtivo']:checked").val();
 
         var eixos = definirEixos();

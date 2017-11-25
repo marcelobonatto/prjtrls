@@ -78,14 +78,14 @@ if (count($mensagem) == 0)
 
     $missao->ativo          = $ativo;
 
-    $eixosobj   = new missaoeixo();
+    $eixosobj   = new lib\missaoeixo();
     $eixosarr   = $eixosobj->ListarPorMissao($id);
     
     $eixos  = array();
 
     foreach ($eixossel as $eixo)
     {
-        $eixos[]                = new missaoeixo();
+        $eixos[]                = new lib\missaoeixo();
         $poseixo                = count($eixos) - 1;
 
         $spleixo                = explode('|', $eixo);
@@ -116,14 +116,14 @@ if (count($mensagem) == 0)
 
     $missao->eixos          = $eixos;
 
-    $falaobj    = new dialogonpc();
+    $falaobj    = new lib\dialogonpc();
     $falasarr   = $falaobj->ListarPorMissao($id);
 
     $falas  = array();
     
     foreach ($falassel as $fala)
     {
-        $falas[]                = new dialogonpc();
+        $falas[]                = new lib\dialogonpc();
         $posfala                = count($falas) - 1;
 
         $splfala                = explode('|', $fala);
