@@ -5924,18 +5924,21 @@ CREATE TABLE IF NOT EXISTS `perguntas` (
   `perguntaId` varchar(36) NOT NULL,
   `perguntaEnunciado` varchar(1000) NOT NULL,
   `perguntaCodigo` varchar(20) NOT NULL,
+  `eixoId` varchar(36) NOT NULL,  
   `perguntaAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`perguntaId`)
+  PRIMARY KEY (`perguntaId`),
+  KEY `FK_eixos` (`eixoId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `perguntas`
 --
 
-INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `perguntaAtivo`) VALUES
-('457cfdb0-bd80-11e7-ab1c-00306776e789', 'Enunciado da pergunta 1', 'P001', 1),
-('457d4115-bd80-11e7-ab1c-00306776e789', 'Enunciado da pergunta 2', 'P002', 1),
-('54c1cf86-cb25-11e7-af74-35b8fabdc297', 'Com quantas perguntas 3 se faz uma canoa?', 'P003', 1);
+INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `eixoId`, `perguntaAtivo`) VALUES
+('457cfdb0-bd80-11e7-ab1c-00306776e789', 'Enunciado da pergunta 1', 'P001', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('457d4115-bd80-11e7-ab1c-00306776e789', 'Enunciado da pergunta 2', 'P002', 'e8860b43-bb13-11e7-a2a8-00306776e789', 1),
+('54c1cf86-cb25-11e7-af74-35b8fabdc297', 'Com quantas perguntas 3 se faz uma canoa?', 'P003', 'e886580e-bb13-11e7-a2a8-00306776e789', 1),
+('457d7777-bd84-11e7-ab1c-00306776e794', 'Enunciado da pergunta 4', 'P004', 'e8869db8-bb13-11e7-a2a8-00306776e789', 1);
 
 -- --------------------------------------------------------
 
