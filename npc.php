@@ -1,6 +1,8 @@
 <?php
 include_once('autoload.php');
 
+use lib\npc;
+
 if (!isset($_GET['id']))
 {
     $getid      = 'novo';

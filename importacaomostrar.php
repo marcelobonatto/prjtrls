@@ -1,4 +1,6 @@
 <?php
+use lib\tabela;
+
 function mostrarArquivo($jsonimp, $valores, $acaoform)
 {    
     $rowspan    = '';

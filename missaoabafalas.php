@@ -18,10 +18,10 @@
                     </thead>
                     <tbody>
                         <?php
-                        $dialogoobj = new dialogonpc();
+                        $dialogoobj = new lib\dialogonpc();
                         $dialogos   = $dialogoobj->ListarPorMissao($id);
 
-                        $npcobj     = new npc();
+                        $npcobj     = new lib\npc();
                         $npcs       = $npcobj->ListarRegistros(1);
 
                         foreach ($dialogos as $indice => $dialogo)

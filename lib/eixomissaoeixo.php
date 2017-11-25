@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class eixomissaoeixo
 {
     const MISSAOEIXO_ID     = 0;

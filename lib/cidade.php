@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class cidade
 {
     const CIDADE_CODIGO     = 0;
@@ -16,6 +18,37 @@ class cidade
         $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla ' .
                   'FROM cidades ' .
                   'ORDER BY estadoSigla, cidadeNome';
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                foreach ($res as $cidade)
+                {
+                    $obj            = new cidade();
+                    $obj->codigo    = $cidade[self::CIDADE_CODIGO];
+                    $obj->nome      = $cidade[self::CIDADE_NOME];
+                    $obj->estado    = $cidade[self::ESTADO_SIGLA];
+
+                    array_push($matriz, $obj);
+                }
+            }
+        }
+
+        return $matriz;
+    }
+
+    public function ListarPorEstado($estado)
+    {
+        $matriz = array();
+
+        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla ' .
+                  'FROM cidades ' .
+                  "WHERE estadoSigla = '$estado' " .
+                  'ORDER BY cidadeNome';
 
         $db     = new bancodados();
         $res    = $db->SelecaoSimples($sql);

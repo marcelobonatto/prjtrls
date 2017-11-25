@@ -1,6 +1,8 @@
 <?php
 include_once('autoload.php');
 
+use lib\estado;
+
 if ($_GET['id']=='novo')
 {
     $getid      = 'novo';

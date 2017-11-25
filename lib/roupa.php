@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class roupa
 {
     const ITEM_ID			= 0;

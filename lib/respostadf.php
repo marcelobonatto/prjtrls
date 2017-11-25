@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class respostadf
 {
     public $id;

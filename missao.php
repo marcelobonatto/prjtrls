@@ -31,7 +31,7 @@ else
 {
     $id             = $getid;
 
-    $missao         = new missao();
+    $missao         = new lib\missao();
     $missao->Selecionar($id);
 
     $txtid          = $missao->id;
@@ -47,13 +47,13 @@ else
     $pai            = $missao->pai;
 }
 
-$outrasobj      = new missao();
+$outrasobj      = new lib\missao();
 $outrasmss      = $outrasobj->ListarRegistrosExceto($getid, true);
 
-$moodleobj      = new moodle_cursos();
+$moodleobj      = new lib\moodle\moodle_cursos();
 $moodlearr      = $moodleobj->Obter();
 
-$emeobj         = new eixomissaoeixo();
+$emeobj         = new lib\eixomissaoeixo();
 $emearr         = $emeobj->ListarRegistros($getid);
 ?>
     <div class="conteudo">

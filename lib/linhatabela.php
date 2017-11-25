@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class linhatabela
 {
     public $ehtitulo;

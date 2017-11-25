@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class carteira
 {
     const ITEM_ID			= 0;

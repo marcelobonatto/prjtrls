@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class item
 {
     const ITEM_ID			= 0;

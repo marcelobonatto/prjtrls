@@ -14,7 +14,7 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                 switch ($coluna)
                 {
                     case 0:
-                        $escolas[]                  = new escola();
+                        $escolas[]                  = new lib\escola();
                         $pos                        = count($escolas) - 1;
                         $escolas[$pos]->nome        = $linha[$coluna];
                         break;
@@ -22,7 +22,7 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                         $escolas[$pos]->bairro      = $linha[$coluna];
                         break;
                     case 2:
-                        $cidade                     = new cidade();
+                        $cidade                     = new lib\cidade();
                         $cidade->SelecionarPorNome($linha[$coluna]);
 
                         if ($cidade->codigo != null)
@@ -38,7 +38,7 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
 
                         break;
                     case 3:
-                        $estado                     = new estado();
+                        $estado                     = new lib\estado();
                         $estado->SelecionarPorSigla($linha[$coluna]);
 
                         if ($estado->sigla != null)

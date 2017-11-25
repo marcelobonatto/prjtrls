@@ -6,5 +6,5 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "eixo",  colj, "eixo", "#lista");
+    carregarTabela(1, "lib\\eixo",  colj, "eixo", "#lista");
 });

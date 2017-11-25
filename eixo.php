@@ -24,7 +24,7 @@ else
 {
     $id = $_GET['id'];
 
-    $eixo  = new eixo();
+    $eixo  = new lib\eixo();
     $eixo->Selecionar($id);
     
     $txtid      = $id;

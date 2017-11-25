@@ -6,5 +6,5 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "cidade",  colj, "cidade", "#lista");
+    carregarTabela(1, "lib\\cidade",  colj, "cidade", "#lista");
 });

@@ -2,6 +2,8 @@
 $js     = array();
 header('Content-Type: text/html; charset=utf-8');
 
+include_once('autoload.php');
+
 session_start();
 
 if (!isset($_SESSION['u812hhy']))
@@ -10,9 +12,7 @@ if (!isset($_SESSION['u812hhy']))
 }
 else
 {
-    include_once('lib/encriptacao.php');
-
-    $encrip     = new encriptacao();
+    $encrip     = new lib\encriptacao();
 
     $usucod     = $_SESSION['u812hhy'];
     $usudesc    = json_decode($encrip->descriptar($usucod));

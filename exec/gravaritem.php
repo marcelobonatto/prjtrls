@@ -13,7 +13,7 @@ if (!isset($_POST['ativo'])) $mensagem[] = 'Indicador de ativo n&atilde;o inform
 
 if (count($mensagem) == 0)
 {
-    $item = new item();
+    $item = new lib\item();
 
     $item->id          = $id;
     $item->nome        = $nome;

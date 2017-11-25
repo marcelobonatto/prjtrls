@@ -14,7 +14,7 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                 switch ($coluna)
                 {
                     case 0:
-                        $missoes[]                      = new missao();
+                        $missoes[]                      = new lib\missao();
                         $pos                            = count($missoes) - 1;
                         $missoes[$pos]->nome            = $linha[$coluna];
                         break;
@@ -55,7 +55,7 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                             }
                             else
                             {
-                                $missaobusca                = new missao();
+                                $missaobusca                = new lib\missao();
                                 $missaobusca->SelecionarPorNome($linha[$coluna]);
 
                                 if ($missaobusca->id != null)
@@ -78,7 +78,7 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                     case 16:
                         if (strlen($linha[$coluna]) > 0)
                         {
-                            $missoes[$pos]->eixos[]                 = new eixo();
+                            $missoes[$pos]->eixos[]                 = new lib\eixo();
                             $poseixo                                = count($missoes[$pos]->eixos) - 1;
                             $missoes[$pos]->eixos[$poseixo]->sigla  = $linha[$coluna];
                         }

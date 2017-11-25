@@ -10,7 +10,7 @@ echo $_POST['id'].': '.$sigla.' - '.$nome;
 
 if (count($mensagem) == 0)
 {
-    $estado = new estado();
+    $estado = new lib\estado();
 
     $estado->sigla       = $sigla;
     $estado->nome        = $nome;

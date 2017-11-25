@@ -1,6 +1,9 @@
 <?php
 require_once('../autoload.php');
 
+use lib\usuario;
+use lib\encriptacao;
+
 if (!isset($_POST['usuario']))
 {
     echo('Usuário não informado');

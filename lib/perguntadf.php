@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class perguntadf
 {
     const PERGUNTA_ID           = 0;
