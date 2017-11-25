@@ -42,7 +42,7 @@ class moodle_cursos
 
         if (substr($curl_response, 0, 2) == '<?' && strpos($curl_response, 'xml') !== FALSE)
         {
-            $dom = new domDocument();
+            $dom = new \domDocument();
             $dom->loadXML($curl_response, LIBXML_NOENT | LIBXML_XINCLUDE | LIBXML_NOERROR | LIBXML_NOWARNING);
 
             $s = simplexml_import_dom($dom);

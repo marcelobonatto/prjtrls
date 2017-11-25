@@ -1,5 +1,5 @@
 <?php
-define ('BASE_URI', '/Applications/MAMP/htdocs/prjtrlsadm/');
+define ('BASE_URI', '/Applications/MAMP/htdocs/prjtrls/');
 
 spl_autoload_register(function ($class) {
     $file = BASE_URI . str_replace('\\', '/', $class) . '.php';

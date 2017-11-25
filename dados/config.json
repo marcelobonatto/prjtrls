@@ -1,7 +1,7 @@
 {
     "moodle" : {
-        "endereco": "http://localhost/moodle/",
-        "token": "d799f165d712e0ff700d64e0f9ab2615",
+        "endereco": "http://localhost:8888/moodle/",
+        "token": "99b5a72a789063381ad45e4ca7e7c93b",
         "missoes": {
             "funcao": "core_course_get_courses_by_field",
             "categoria": 2
