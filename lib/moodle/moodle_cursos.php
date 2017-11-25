@@ -56,7 +56,7 @@ class moodle_cursos
                 {
                     $campo                          = $chaves['name'];
 
-                    if (property_exists('moodle_cursos', $campo))
+                    if (property_exists('lib\\moodle\\moodle_cursos', $campo))
                     {
                         $arrcursos[$poscurso]->$campo   = $chaves->VALUE;
                     }

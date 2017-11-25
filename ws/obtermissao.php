@@ -5,11 +5,13 @@ header('Content-Type: application/json');
 
 $mensagens  = array();
 
-//if (isset($_POST['token']))
-if (isset($_GET['token']))
+//GET apenas para testes
+
+if (isset($_POST['token']))
+//if (isset($_GET['token']))
 {
-//    $token          = $_POST['token'];
-    $token          = $_GET['token'];
+    $token          = $_POST['token'];
+//    $token          = $_GET['token'];
 }
 else
 {
@@ -17,11 +19,11 @@ else
     $token          = '';
 }
 
-//if (isset($_POST['codigo']))
-if (isset($_GET['codigo']))
+if (isset($_POST['codigo']))
+//if (isset($_GET['codigo']))
 {
-//    $codigo         = $_POST['codigo'];
-    $codigo         = $_GET['codigo'];
+    $codigo         = $_POST['codigo'];
+//    $codigo         = $_GET['codigo'];
 }
 else
 {
@@ -32,16 +34,9 @@ else
 if (count($mensagens) == 0)
 {
     $missao         = new lib\ws\jsmissao();
-}
-else
-{
-    $missao         = new lib\ws\jsmissaoerros();
-}
 
-if (count($mensagens) == 0)
-{
     //tem que fazer os testes se o token está ativo
-    $missaoobj  = new lib\missao();
+    $missaoobj      = new lib\missao();
     $missaoobj->SelecionarComOutrosCadastros($codigo);
 
     if ($missaoobj->id != null)
@@ -82,20 +77,20 @@ if (count($mensagens) == 0)
     }
     else
     {
-        $missao                         = new lib\ws\jsmissaoerros();
-        $missao->erros                  = array();
-        $missao->erros[0]               = new lib\ws\jsmissaoerro();
-        $missao->erros[0]->mensagem     = 'Código da missão não existe';
+        $mensagens[]                    = 'Código da missão não existe';
     }
 }
-else
+
+if (count($mensagens) > 0)
 {
+    $missao         = new lib\ws\jsmissaoerros();
+
     $missao->erros  = array();
     $i              = 0;
     
     foreach ($mensagens as $mensagem)
     {
-        $missao->erros[$i]              = new lib\ws\jsmissaoerro();
+        $missao->erros[$i]              = new lib\ws\jserro();
         $missao->erros[$i]->mensagem    = $mensagem;
         $i++;
     }
