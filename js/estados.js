@@ -5,5 +5,5 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "estado",  colj, "estado", "#lista");
+    carregarTabela(1, "lib\\estado",  colj, "estado", "#lista");
 });

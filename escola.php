@@ -25,7 +25,7 @@ else
 {
     $id = $_GET['id'];
 
-    $escola  = new escola();
+    $escola  = new lib\escola();
     $escola->Selecionar($id);
     
     $txtid      = $id;
@@ -57,7 +57,7 @@ include('header.php');
                 <input class="form-control" type="text" value="<?php echo($bairro); ?>" id="txtBairro" name="txtBairro" required />
             </div>
             <div class="form-group">
-                <label for="txtEstado">Estado:</label>
+                <label for="cmbEstado">Estado:</label>
                 <?php
                 $seltxt         = ' selected="selected"';
                 $selecionado    = ($estado == "*");
@@ -73,7 +73,7 @@ include('header.php');
                 
                 $opcoes = "<option value=\"*\"$seltxtef>(Selecione)</option>";
 
-                $estadoobj  = new estado();
+                $estadoobj  = new lib\estado();
                 $estados    = $estadoobj->ListarRegistros(1);
 
                 foreach ($estados as $estadoitem)
@@ -97,7 +97,7 @@ include('header.php');
                 </select>
             </div>
             <div class="form-group">
-                <label for="txtCidade">Cidade:</label>
+                <label for="cmbCidade">Cidade:</label>
                 <?php
                 $seltxt         = ' selected="selected"';
                 $selecionado    = ($cidade == "*");
@@ -113,8 +113,8 @@ include('header.php');
                 
                 $opcoes = "<option value=\"*\"$seltxtef>(Selecione)</option>";
 
-                $cidadeobj  = new cidade();
-                $cidades    = $cidadeobj->ListarRegistros(1);
+                $cidadeobj  = new lib\cidade();
+                $cidades    = $cidadeobj->ListarPorEstado($estado);
 
                 foreach ($cidades as $cidadeitem)
                 {

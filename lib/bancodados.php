@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class bancodados
 {
     function Conectar()
@@ -8,12 +10,12 @@ class bancodados
         if (PHP_OS == 'WINNT')
         {
             //No Windows
-            $mysqli = new mysqli("localhost", "root", "", "prjtrls");
+            $mysqli = new \mysqli("localhost", "root", "", "prjtrls");
         }
         else
         {
             //No Mac
-            $mysqli = new mysqli("localhost", "root", "root", "prjtrls", 8889);
+            $mysqli = new \mysqli("localhost", "root", "root", "prjtrls", 8889);
         }
 
         $mysqli->set_charset("utf8");

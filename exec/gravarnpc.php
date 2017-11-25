@@ -13,7 +13,7 @@ if (!isset($_POST['ativo'])) $mensagem[] = 'Indicador de ativo n&atilde;o inform
 
 if (count($mensagem) == 0)
 {
-    $npc = new npc();
+    $npc = new lib\npc();
 
     $npc->id          = $id;
     $npc->nome        = $nome;

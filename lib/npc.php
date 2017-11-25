@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class npc
 {
     const NPC_ID        = 0;

@@ -11,7 +11,7 @@ if (!isset($_POST['ativo'])) $mensagem[] = 'Indicador de ativo n&atilde;o inform
 
 if (count($mensagem) == 0)
 {
-    $eixo = new eixo();
+    $eixo = new lib\eixo();
 
     $eixo->id          = $id;
     $eixo->nome        = $nome;

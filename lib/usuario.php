@@ -1,5 +1,5 @@
 <?php
-header('Content-type: text/html; charset=utf-8');
+namespace lib;
 
 class usuario
 {

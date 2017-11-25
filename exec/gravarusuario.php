@@ -10,7 +10,7 @@ if (!isset($_POST['ativo'])) $mensagem[] = 'Indicador de ativo n&atilde;o inform
 
 if (count($mensagem) == 0)
 {
-    $usuario = new usuario();
+    $usuario = new lib\usuario();
 
     $usuario->id          = $id;
     $usuario->nome        = $nome;

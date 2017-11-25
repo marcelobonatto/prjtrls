@@ -13,7 +13,7 @@ if (!isset($_POST['ativo'])) $mensagem[] = 'Indicador de ativo n&atilde;o inform
 
 if (count($mensagem) == 0)
 {
-    $roupa = new roupa();
+    $roupa = new lib\roupa();
 
     $roupa->id          = $id;
     $roupa->nome        = $nome;

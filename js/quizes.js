@@ -6,7 +6,7 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "pergunta",  colj, "quiz", "#lista");
+    carregarTabela(1, "lib\\pergunta",  colj, "quiz", "#lista");
 
     $("#cmdImportar").on("click", function() {
         location.href = "quizimp.php";

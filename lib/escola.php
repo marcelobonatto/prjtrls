@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class escola
 {
     const ESCOLA_ID     = 0;

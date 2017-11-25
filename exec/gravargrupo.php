@@ -9,7 +9,7 @@ if (!isset($_POST['ativo'])) $mensagem[] = 'Indicador de ativo n&atilde;o inform
 
 if (count($mensagem) == 0)
 {
-    $grupo = new grupo();
+    $grupo = new lib\grupo();
 
     $grupo->id          = $id;
     $grupo->nome        = $nome;

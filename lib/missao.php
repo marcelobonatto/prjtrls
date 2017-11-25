@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class missao
 {
     const MISSAO_ID             = 0;
@@ -149,7 +151,15 @@ class missao
         $this->Selecionar($id);
 
         $eixo           = new missaoeixo();
-        $this->eixos    = $eixo->SelecionarComMissao($id);
+        $this->eixos    = $eixo->ListarPorMissao($id);
+    }
+
+    public function SelecionarComOutrosCadastros($id)
+    {
+        $this->SelecionarComEixo($id);
+
+        $fala           = new dialogonpc();
+        $this->falasnpc = $fala->ListarPorMissao($id);
     }
 
     public function SelecionarPorNome($nome)

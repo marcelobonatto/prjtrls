@@ -9,7 +9,7 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "roupa",  colj, "roupa", "#lista");
+    carregarTabela(1, "lib\\roupa",  colj, "roupa", "#lista");
 
     $("#cmdImportar").on("click", function() {
         location.href = "itensimp.php";

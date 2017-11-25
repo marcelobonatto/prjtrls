@@ -1,7 +1,7 @@
 <?php
 include('../autoload.php');
 
-$npcobj     = new npc();
+$npcobj     = new lib\npc();
 $npcs       = $npcobj->ListarSemImagens();
 
 header('Content-Type: application/json');

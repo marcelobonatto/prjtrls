@@ -14,7 +14,7 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                 switch ($coluna)
                 {
                     case 0:
-                        $itens[]                        = new item();
+                        $itens[]                        = new lib\item();
                         $pos                            = count($itens) - 1;
                         $itens[$pos]->nome              = $linha[$coluna];
                         break;

@@ -62,6 +62,20 @@ $(document).ready(function() {
         });
     }
 
+    $("#cmbEstado").on('change', function() {
+        $("#cmbCidade").empty();
+        $("#cmbCidade").append(new Option("(Selecione)", "*"));
+
+        estado = $(this).val();
+
+        $.getJSON("exec/lercidades.php", { estado: estado })
+            .done(function(data) {
+                $.each(data, function(index, item) {
+                    $("#cmbCidade").append(new Option(item.nome, item.codigo));
+                });
+            });
+    });
+
     $("#cmdVoltar").click(function() {
         location.href = "escolas.php";
     });

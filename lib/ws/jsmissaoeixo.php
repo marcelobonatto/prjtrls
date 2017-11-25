@@ -1,4 +1,6 @@
 <?php
+namespace lib\ws;
+
 class jsmissaoeixo
 {
     public $eixo;

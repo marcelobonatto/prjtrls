@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class eixo
 {
     const EIXO_ID           = 0;

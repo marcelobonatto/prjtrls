@@ -6,5 +6,5 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "npc",  colj, "npc", "#lista");
+    carregarTabela(1, "lib\\npc",  colj, "npc", "#lista");
 });

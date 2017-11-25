@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class celulatabela
 {
     public $spanlinha       = 1;

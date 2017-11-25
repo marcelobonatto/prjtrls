@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class estado
 {
     const ESTADO_SIGLA  = 0;

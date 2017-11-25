@@ -1,6 +1,8 @@
 <?php
 require_once('../autoload.php');
 
+use lib\missao;
+
 $mensagem   = array();
 
 if (!isset($_POST['id']))           $id         = null;                                                     else $id            = $_POST['id'];

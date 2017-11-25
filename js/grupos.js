@@ -5,5 +5,5 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "grupo",  colj, "grupo", "#lista");
+    carregarTabela(1, "lib\\grupo",  colj, "grupo", "#lista");
 });

@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "missao",  colj, "missao", "#lista");
+    carregarTabela(1, "lib\\missao",  colj, "missao", "#lista");
 
     $("#cmdImportar").on("click", function() {
         location.href = "missoesimp.php";

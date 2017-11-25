@@ -1,4 +1,6 @@
 <?php
+namespace lib\moodle;
+
 class moodle_cursos
 {
     public $id;

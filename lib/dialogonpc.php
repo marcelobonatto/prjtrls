@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class dialogonpc
 {
     const DIALOGO_ID        = 0;

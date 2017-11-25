@@ -1,4 +1,6 @@
 <?php
+namespace lib;
+
 class encriptacao
 {
     public function encriptar($texto)

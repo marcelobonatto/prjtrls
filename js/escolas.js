@@ -8,7 +8,7 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "escola",  colj, "escola", "#lista");
+    carregarTabela(1, "lib\\escola",  colj, "escola", "#lista");
 
     $("#cmdImportar").on("click", function() {
         location.href = "escolasimp.php";

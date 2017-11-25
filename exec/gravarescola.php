@@ -12,7 +12,7 @@ if (!isset($_POST['ativo'])) $mensagem[] = 'Indicador de ativo n&atilde;o inform
 
 if (count($mensagem) == 0)
 {
-    $escola = new escola();
+    $escola = new lib\escola();
 
     $escola->id          = $id;
     $escola->nome        = $nome;

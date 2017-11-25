@@ -14,7 +14,7 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                 switch ($coluna)
                 {
                     case 0:
-                        $perguntas[]                    = new perguntadf();
+                        $perguntas[]                    = new lib\perguntadf();
                         $pos                            = count($perguntas) - 1;
                         $perguntas[$pos]->codigo        = $linha[$coluna];
                         break;
@@ -46,7 +46,7 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                     case 33:
                         if (strlen($linha[$coluna]) > 0)
                         {
-                            $perguntas[$pos]->erradas[]                 = new respostadf();
+                            $perguntas[$pos]->erradas[]                 = new lib\respostadf();
                             $posresp                                    = count($perguntas[$pos]->erradas) - 1;
                             $perguntas[$pos]->erradas[$posresp]->codigo = $linha[$coluna];
                         }

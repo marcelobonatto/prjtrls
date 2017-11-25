@@ -12,7 +12,7 @@ if (!isset($_POST['ativo'])) $mensagem[] = 'Indicador de ativo n&atilde;o inform
 
 if (count($mensagem) == 0)
 {
-    $carteira = new carteira();
+    $carteira = new lib\carteira();
 
     $carteira->id          = $id;
     $carteira->nome        = $nome;
