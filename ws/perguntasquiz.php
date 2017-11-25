@@ -33,7 +33,9 @@ else
 
 if (count($mensagens) == 0)
 {
-    $quiz         = new lib\ws\jsquiz();
+    $quiz           = new lib\ws\jsquiz();
+
+    $eixoobj        = new lib\eixo();
 }
 
 if (count($mensagens) > 0)
