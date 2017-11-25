@@ -77,7 +77,7 @@ include('header.php');
                 
                 $opcoes = "<option value=\"*\"$seltxtef>Todos</option>";
 
-                $eixoobj  = new eixo();
+                $eixoobj  = new lib\eixo();
                 $eixos    = $eixoobj->ListarRegistros(1);
 
                 foreach ($eixos as $eixoitem)

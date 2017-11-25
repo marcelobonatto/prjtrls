@@ -1,8 +1,6 @@
 <?php
 include_once('autoload.php');
 
-use lib\roupa;
-
 if (!isset($_GET['id']))
 {
     $getid      = 'novo';
@@ -18,36 +16,43 @@ if ($getid == 'novo')
 
     $txtid      = '';
     $nome       = '';
-    $nivel      = 1;
-    $eixo       = '*';
-    $bonus      = 0;
-    $preco      = 0;
+    $loginMoodle      = '';
+    $escola       = '*';
+    $matricula  = 0;
     $ativo      = 1;
 }
 else
 {
     $id = $_GET['id'];
 
-    $roupa  = new roupa();
-    $roupa->Selecionar($id);
+    $aluno  = new aluno();
+    $aluno->Selecionar($id);
     
     $txtid      = $id;
-    $nome       = $roupa->nome;
-    $nivel      = $roupa->nivel;
-    $eixo       = $roupa->eixo;
-    $bonus      = $roupa->bonus;
-    $preco      = $roupa->preconormal;
-    $ativo      = $roupa->ativo;
+    $nome       = $aluno->nome;
+    $loginMoodle      = $aluno->loginMoodle;
+    $escola       = $aluno->escola;
+    $matricula  = $aluno->matricula;
+    $ativo      = $aluno->ativo;
 }
+
+/*
+alunoId (id)
+alunoNome (nome)
+alunoLoginMoodle (loginMoodle) 
+escolaId (escola)
+alunoMatricula (matricula)
+alunoAtivo (ativo)
+*/
 
 include('header.php');
 ?>
     <div class="conteudo">
-        <h1>Cadastro de Roupa - <?php echo(($id != 'novo' ? $nome : 'Novo Cadastro')); ?></h1>
+        <h1>Cadastro de ALUNO - <?php echo(($id != 'novo' ? $nome : 'Novo Cadastro')); ?></h1>
         <br />
         <div id="mensagem" class="alert alert-danger d-none" role="alert">
         </div>
-        <form id="frmRoupa" method="post" action="roupa.php">
+        <form id="frmAluno" method="post" action="aluno.php">
             <div class="form-group">
                 <label for="txtId">Código Interno:</label>
                 <input class="form-control col-sm-4" type="text" value="<?php echo($txtid); ?>" id="txtId" name="txtId" readonly="readonly" />
@@ -57,14 +62,18 @@ include('header.php');
                 <input class="form-control" type="text" value="<?php echo($nome); ?>" id="txtNome" name="txtNome" required />
             </div>
             <div class="form-group">
-                <label for="txtNivel">Nível:</label>
-                <input class="form-control col-sm-2" type="number" value="<?php echo($nivel); ?>" id="txtNivel" name="txtNivel" value="1" min="1" max="30" required />
+                <label for="txtId">Matrícula:</label>
+                <input class="form-control col-sm-4" type="text" value="<?php echo($matricula); ?>" id="txtMatricula" name="txtMatricula" required />
+            </div>            
+            <div class="form-group">
+                <label for="txtLoginMoodle">LoginMoodle:</label>
+                <input class="form-control" type="text" value="<?php echo($loginMoodle); ?>" id="txtLoginMoodle" name="txtLoginMoodle" required />
             </div>
             <div class="form-group">
-                <label for="txtEixo">Eixo:</label>
+                <label for="txtEscola">Escola:</label>
                 <?php
                 $seltxt         = ' selected="selected"';
-                $selecionado    = ($eixo == "*");
+                $selecionado    = ($escola == "*");
 
                 if ($selecionado)
                 {
@@ -77,12 +86,12 @@ include('header.php');
                 
                 $opcoes = "<option value=\"*\"$seltxtef>Todos</option>";
 
-                $eixoobj  = new lib\eixo();
-                $eixos    = $eixoobj->ListarRegistros(1);
+                $escolaobj  = new escola();
+                $escolas    = $escolaobj->ListarRegistros(1);
 
-                foreach ($eixos as $eixoitem)
+                foreach ($escolas as $escolaitem)
                 {
-                    $selecionado    = ($eixo == $eixoitem->id);
+                    $selecionado    = ($escola == $escolaitem->id);
                     
                     if ($selecionado)
                     {
@@ -93,20 +102,12 @@ include('header.php');
                         $seltxtef   = '';
                     }
 
-                    $opcoes .= "<option value=\"$eixoitem->id\"$seltxtef>$eixoitem->nome</option>";
+                    $opcoes .= "<option value=\"$escolaitem->id\"$seltxtef>$escolaitem->nome</option>";
                 }
                 ?>
-                <select class="form-control col-sm-3" id="cmbEixo" name="cmbEixo">                    
+                <select class="form-control col-sm-3" id="cmbEscola" name="cmbEscola">                    
                     <?php echo($opcoes); ?>
                 </select>
-            </div>
-            <div class="form-group">
-                <label for="txtBonus">Bônus (%):</label>
-                <input class="form-control col-sm-2" type="number" value="<?php echo($bonus); ?>" id="txtBonus" name="txtBonus" value="0" min="0" max="100" required />
-            </div>
-            <div class="form-group">
-                <label for="txtPreco">Preço:</label>
-                <input class="form-control col-sm-3" type="number" value="<?php echo($preco); ?>" id="txtPreco" name="txtPreco" value="0" min="0" max="10000" step="10" required />
             </div>
             <div class="form-group">
                 <label>Ativo:</label>
@@ -146,6 +147,6 @@ include('header.php');
         </form>
     </div>
 <?php
-$js[]   = 'js/roupa.js';
+$js[]   = 'js/aluno.js';
 include('footer.php');
 ?>

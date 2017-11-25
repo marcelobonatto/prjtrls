@@ -7,7 +7,7 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "perguntadf",  colj, "perguntadf", "#lista");
+    carregarTabela(1, "lib\\perguntadf",  colj, "perguntadf", "#lista");
 
     $("#cmdImportar").on("click", function() {
         location.href = "dfinalimp.php";
