@@ -15,6 +15,13 @@ else
     
     if ($usuario->VerificarConexao($_POST['usuario'], $_POST['senha']))
     {
+        $encrip                 = new encriptacao();
+
+        $usucod = "{ \"id\": \"$usuario->id\", \"nome\": \"$usuario->nome\" }";
+
+        session_start();
+        $_SESSION['u812hhy']    = $encrip->encriptar($usucod);
+
         echo('OK');
     }
     else
