@@ -1,7 +1,7 @@
 <?php
 include_once('../autoload.php');
 
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 
 $mensagens  = array();
 
@@ -38,15 +38,17 @@ if (count($mensagens) == 0)
     $eixoobj        = new lib\eixo();
     $eixoarr        = $eixoobj->ListarRegistros(1);
     $maxcont        = count($eixoarr);
-    $escolha        = mt_rand(1, $maxcont);
+    //$escolha        = mt_rand(1, $maxcont);
+    $escolha        = 3;
 
     $pergobj        = new lib\pergunta();
     $pergarr        = $pergobj->ListarPorCategoria($eixoarr[$escolha - 1]->id);
-    
     $chaves         = array_keys($pergarr);
     $escperg        = array();
 
     $max            = (count($chaves) > 10 ? 10 : count($chaves));
+
+    var_dump($chaves);
 
     for ($pos = 0; $pos < $max; $pos++)
     {
@@ -55,9 +57,10 @@ if (count($mensagens) == 0)
         $escperg[]      = $pergarr[$posrnd - 1];
 
         array_splice($chaves, $posrnd - 1, 1);
-    }
 
-    var_dump($escperg);
+        var_dump($chaves);
+        var_dump($escperg);
+    }
 }
 
 if (count($mensagens) > 0)

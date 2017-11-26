@@ -75,7 +75,7 @@ class pergunta
                     $obj->ativo         = $perg[self::PERGUNTA_ATIVO];
 
                     $certa              = new resposta();
-                    $certa->Selecionar($obj->id);
+                    $certa->SelecionarCerta($obj->id);
                     $this->certa        = $certa;
 
                     $erradas            = new resposta();
