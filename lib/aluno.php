@@ -183,8 +183,6 @@ class aluno
                   "alunoAtivo = $this->ativo " .
                   "WHERE alunoId = '$id'";
 
-echo "SQL (Atualizar): ".$sql;
-
         $db         = new bancodados();
         $db->Executar($sql);
 

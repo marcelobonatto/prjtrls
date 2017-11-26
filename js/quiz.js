@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var form = $("#frmAluno");
+    var form = $("#frmPergunta");
 
     form.submit(function(event) {
         var ehValido = form[0].checkValidity();
@@ -21,27 +21,25 @@ $(document).ready(function() {
     });
 
 /*
-alunoId (id)
-alunoNome (nome)
-alunoLoginMoodle (loginMoodle) 
-escolaId (escola)
-alunoMatricula (matricula)
-alunoAtivo (ativo)
+id (i.d)
+codigo (no.me)
+enunciado (login.moodle)
+eixo (esco.la)
+ativo (ati.vo)
 */
 
     function submitForm() {
         // Initiate Variables With Form Content
         var id = $("#txtId").val();
-        var nome = $("#txtNome").val();
-        var loginMoodle = $("#txtLoginMoodle").val();
-        var escola = $("#cmbEscola").find("option:selected").val();
-        var matricula = $("#txtMatricula").val();
+        var codigo = $("#txtCodigo").val();
+        var enunciado = $("#txtEnunciado").val();
+        var eixo = $("#cmbEixo").find("option:selected").val();
         var ativo = $("input[name='optAtivo']:checked").val();
 
         $.ajax({
             type: "POST",
-            url: "exec/gravaraluno.php",
-            data: "id=" + id + "&nome=" + nome + "&loginMoodle=" + loginMoodle + "&escola=" + escola + "&matricula=" + matricula + "&ativo=" + ativo,
+            url: "exec/gravarquiz.php",
+            data: "id=" + id + "&codigo=" + codigo + "&enunciado=" + enunciado + "&eixo=" + eixo + "&ativo=" + ativo,
             success : function(text) {
                 var txtspl = text.split("|");
 
@@ -72,6 +70,6 @@ alunoAtivo (ativo)
     }
 
     $("#cmdVoltar").click(function() {
-        location.href = "alunos.php";
+        location.href = "perguntas.php";
     });
 });

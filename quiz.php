@@ -1,6 +1,14 @@
 <?php
 include_once('autoload.php');
 
+/*
+id (i.d)
+codigo (no.me)
+enunciado (login.moodle)
+eixo (esco.la)
+ativo (ati.vo)
+*/
+
 if (!isset($_GET['id']))
 {
     $getid      = 'novo';
@@ -15,65 +23,50 @@ if ($getid == 'novo')
     $id         = 'novo';
 
     $txtid      = '';
-    $nome       = '';
-    $loginMoodle      = '';
-    $escola       = '*';
-    $matricula  = 0;
+    $codigo       = '';
+    $enunciado      = '';
+    $eixo       = '*';
     $ativo      = 1;
 }
 else
 {
     $id = $_GET['id'];
 
-    $aluno  = new aluno();
-    $aluno->Selecionar($id);
+    $pergunta  = new pergunta();
+    $pergunta->Selecionar($id);
     
     $txtid      = $id;
-    $nome       = $aluno->nome;
-    $loginMoodle      = $aluno->loginMoodle;
-    $escola       = $aluno->escola;
-    $matricula  = $aluno->matricula;
-    $ativo      = $aluno->ativo;
+    $codigo       = $pergunta->codigo;
+    $enunciado      = $pergunta->enunciado;
+    $eixo       = $pergunta->eixo;
+    $ativo      = $pergunta->ativo;
 }
-
-/*
-alunoId (id)
-alunoNome (nome)
-alunoLoginMoodle (loginMoodle) 
-escolaId (escola)
-alunoMatricula (matricula)
-alunoAtivo (ativo)
-*/
 
 include('header.php');
 ?>
     <div class="conteudo">
-        <h1>Cadastro de ALUNO - <?php echo(($id != 'novo' ? $nome : 'Novo Cadastro')); ?></h1>
+        <h1>Cadastro de QUIZ - <?php echo(($id != 'novo' ? $codigo : 'Novo Cadastro')); ?></h1>
         <br />
         <div id="mensagem" class="alert alert-danger d-none" role="alert">
         </div>
-        <form id="frmAluno" method="post" action="aluno.php">
+        <form id="frmPergunta" method="post" action="pergunta.php">
             <div class="form-group">
                 <label for="txtId">Código Interno:</label>
                 <input class="form-control col-sm-4" type="text" value="<?php echo($txtid); ?>" id="txtId" name="txtId" readonly="readonly" />
             </div>
             <div class="form-group">
-                <label for="txtNome">Nome:</label>
-                <input class="form-control" type="text" value="<?php echo($nome); ?>" id="txtNome" name="txtNome" required />
+                <label for="txtCodigo">Referência:</label>
+                <input class="form-control" type="text" value="<?php echo($codigo); ?>" id="txtCodigo" name="txtCodigo" required />
+            </div>       
+            <div class="form-group">
+                <label for="txtEnunciado">Enunciado:</label>
+                <input class="form-control" type="text" value="<?php echo($enunciado); ?>" id="txtEnunciado" name="txtEnunciado" required />
             </div>
             <div class="form-group">
-                <label for="txtId">Matrícula:</label>
-                <input class="form-control col-sm-4" type="text" value="<?php echo($matricula); ?>" id="txtMatricula" name="txtMatricula" required />
-            </div>            
-            <div class="form-group">
-                <label for="txtLoginMoodle">LoginMoodle:</label>
-                <input class="form-control" type="text" value="<?php echo($loginMoodle); ?>" id="txtLoginMoodle" name="txtLoginMoodle" required />
-            </div>
-            <div class="form-group">
-                <label for="txtEscola">Escola:</label>
+                <label for="txtEixo">Eixo:</label>
                 <?php
                 $seltxt         = ' selected="selected"';
-                $selecionado    = ($escola == "*");
+                $selecionado    = ($eixo == "*");
 
                 if ($selecionado)
                 {
@@ -86,12 +79,12 @@ include('header.php');
                 
                 $opcoes = "<option value=\"*\"$seltxtef>Todos</option>";
 
-                $escolaobj  = new escola();
-                $escolas    = $escolaobj->ListarRegistros(1);
+                $eixoobj  = new eixo();
+                $eixos    = $eixoobj->ListarRegistros(1);
 
-                foreach ($escolas as $escolaitem)
+                foreach ($eixos as $eixoitem)
                 {
-                    $selecionado    = ($escola == $escolaitem->id);
+                    $selecionado    = ($eixo == $eixoitem->id);
                     
                     if ($selecionado)
                     {
@@ -102,10 +95,10 @@ include('header.php');
                         $seltxtef   = '';
                     }
 
-                    $opcoes .= "<option value=\"$escolaitem->id\"$seltxtef>$escolaitem->nome</option>";
+                    $opcoes .= "<option value=\"$eixoitem->id\"$seltxtef>$eixoitem->codigo</option>";
                 }
                 ?>
-                <select class="form-control col-sm-3" id="cmbEscola" name="cmbEscola">                    
+                <select class="form-control col-sm-3" id="cmbEixo" name="cmbEixo">                    
                     <?php echo($opcoes); ?>
                 </select>
             </div>
@@ -147,6 +140,6 @@ include('header.php');
         </form>
     </div>
 <?php
-$js[]   = 'js/aluno.js';
+$js[]   = 'js/quiz.js';
 include('footer.php');
 ?>
