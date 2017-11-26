@@ -36,6 +36,28 @@ if (count($mensagens) == 0)
     $quiz           = new lib\ws\jsquiz();
 
     $eixoobj        = new lib\eixo();
+    $eixoarr        = $eixoobj->ListarRegistros(1);
+    $maxcont        = count($eixoarr);
+    $escolha        = mt_rand(1, $maxcont);
+
+    $pergobj        = new lib\pergunta();
+    $pergarr        = $pergobj->ListarPorCategoria($eixoarr[$escolha - 1]->id);
+    
+    $chaves         = array_keys($pergarr);
+    $escperg        = array();
+
+    $max            = (count($chaves) > 10 ? 10 : count($chaves));
+
+    for ($pos = 0; $pos < $max; $pos++)
+    {
+        $totalperg      = count($chaves);
+        $posrnd         = mt_rand(1, $totalperg);
+        $escperg[]      = $pergarr[$posrnd - 1];
+
+        array_splice($chaves, $posrnd - 1, 1);
+    }
+
+    var_dump($escperg);
 }
 
 if (count($mensagens) > 0)
@@ -47,8 +69,8 @@ if (count($mensagens) > 0)
     
     foreach ($mensagens as $mensagem)
     {
-        $missao->quiz[$i]               = new lib\ws\jserro();
-        $missao->quiz[$i]->mensagem     = $mensagem;
+        $quiz->erros[$i]            = new lib\ws\jserro();
+        $quiz->erros[$i]->mensagem  = $mensagem;
         $i++;
     }
 }

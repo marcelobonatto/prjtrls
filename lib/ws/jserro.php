@@ -1,7 +1,7 @@
 <?php
 namespace lib\ws;
 
-class jsmissaoerro
+class jserro
 {
     public $mensagem;
 }
