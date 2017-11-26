@@ -1,8 +1,9 @@
 <?php
 namespace lib\ws;
 
-class jsquiz
+class jsquizpergunta
 {
+    public $id;
     public $codigo;
     public $enunciado;
     public $respostas;

@@ -75,11 +75,11 @@ class pergunta
                     $obj->ativo         = $perg[self::PERGUNTA_ATIVO];
 
                     $certa              = new resposta();
-                    $certa->Selecionar($obj->id);
-                    $this->certa        = $certa;
+                    $certa->SelecionarCerta($obj->id);
+                    $obj->certa         = $certa;
 
                     $erradas            = new resposta();
-                    $this->erradas      = $erradas->SelecionarErradas($obj->id);
+                    $obj->erradas       = $erradas->SelecionarErradas($obj->id);
 
                     array_push($matriz, $obj);
                 }
