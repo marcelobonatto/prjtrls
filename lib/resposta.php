@@ -45,7 +45,7 @@ class resposta
                   'FROM respostas ' .
                   "WHERE perguntaId = '$pergunta' " .
                   'AND respostaNivel < 10';
-
+                  
         $db     = new bancodados();
         $res    = $db->SelecaoSimples($sql);
 

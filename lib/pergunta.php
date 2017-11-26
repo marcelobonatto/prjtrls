@@ -76,10 +76,10 @@ class pergunta
 
                     $certa              = new resposta();
                     $certa->SelecionarCerta($obj->id);
-                    $this->certa        = $certa;
+                    $obj->certa         = $certa;
 
                     $erradas            = new resposta();
-                    $this->erradas      = $erradas->SelecionarErradas($obj->id);
+                    $obj->erradas       = $erradas->SelecionarErradas($obj->id);
 
                     array_push($matriz, $obj);
                 }
