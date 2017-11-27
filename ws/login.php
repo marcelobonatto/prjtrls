@@ -58,8 +58,8 @@ if (count($mensagens) > 0)
     }
 }
 
-$login->token  = $token;
-$login->codigo = $codigo;
+$login->usuario = $usuario;
+$login->chave   = $chave;
 
 echo(json_encode($login));
 ?>

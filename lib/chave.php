@@ -24,7 +24,15 @@ class chave
     public function descompactar($chave)
     {
 //echo(urlencode(gzcompress(base64_encode($chave), 9)));
+/*
+        $enc64   = base64_encode($chave);
+        echo("DESC:  $enc64<br />");
 
+        $com    = gzcompress($enc64);
+        echo("COM:  $com<br />");
+
+        $enc    = urlencode($com);
+        echo("ENC:  $enc<br />");   */ 
 /*
     $enc64   = base64_encode($chave);
     echo("DESC:  $enc64<br />");
@@ -41,10 +49,10 @@ class chave
     $unc    = gzuncompress($dec);
     echo("UNC:  $unc<br />");
 
-    $dec64   = base64_encode($unc);
+    $dec64   = base64_decode($unc);
     echo("DESC:  $dec64<br />");
 */
-
+/*
         $dec    = urldecode($chave);
 echo("DEC:  $dec<br />");
 
@@ -60,8 +68,43 @@ echo("DEC:  $dec<br />");
         {
             $letras[]   = substr($desc, $letra, 3);
         }
+*/
+        $contarq    = file_get_contents(realpath('../dados/config.json'));
+        $json       = json_decode($contarq);
 
-        $this->texto    = $letras;
+        $posbusca   = array_search('UNITY', array_column($json->sistemas, 'sistema'));
+
+        if ($posbusca !== FALSE)
+        {
+            $chaveunity = $json->sistemas[$posbusca]->chave;
+
+            $letrun     = array();
+
+            for ($j = 0; $j < strlen($chaveunity); $j++)
+            {
+/*                $caracter   
+                $letrun[]   = 
+                $carsrun[]  =              */
+            }
+
+            $unc        = gzuncompress($chave);
+            $dec        = base64_decode($unc);
+
+            $cars       = array();
+            $letra      = array();
+            
+            for ($c = 0; $c < strlen($dec); $c += 3)
+            {
+                $caracter   = substr($dec, $c, 3);
+                $cars[]     = $caracter;
+                $letracar   = chr(hexdec($caracter));
+                $letra[]    = $letracar;
+            }
+
+
+
+            $this->texto    = $letra;
+        }
     }
 }
 ?>
