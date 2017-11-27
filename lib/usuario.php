@@ -90,8 +90,6 @@ class usuario
                 'FROM usuarios ' .
                 "WHERE usuarioId = '$id' " .
                 'ORDER BY usuarioNome';
-
-                echo "SQL: ".$sql;                
                 
         $db     = new bancodados();
         $res    = $db->SelecaoSimples($sql);
