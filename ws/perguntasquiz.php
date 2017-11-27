@@ -19,10 +19,10 @@ else
     $token          = '';
 }
 
-if (isset($_POST['codigo']))
+if (isset($_POST['pedido']))
 //if (isset($_GET['pedido']))
 {
-    $pedido         = $_POST['codigo'];
+    $pedido         = $_POST['pedido'];
 //    $pedido         = $_GET['pedido'];
 }
 else
@@ -66,7 +66,7 @@ if (count($mensagens) == 0)
                 $escperg                = $pergarr[$chaves[$posrnd - 1]];
                 $pergunta               = $quiz->perguntas[$posperg];
 
-                $pergunta->codigo       = $escperg->codigo;
+                $pergunta->codigo       = $escperg->id;
                 $pergunta->enunciado    = $escperg->enunciado;
 
                 $maxresp                = (count($escperg->erradas) > 3 ? 3 : count($escperg->erradas));
@@ -105,8 +105,7 @@ if (count($mensagens) == 0)
                         $resposta->correta      = false;
                     }
 
-                    $resposta->id           = $escresp->id;
-                    $resposta->codigo       = $escresp->codigo;
+                    $resposta->codigo       = $escresp->id;
                     $resposta->texto        = $escresp->texto;
                 }
 

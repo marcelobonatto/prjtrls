@@ -49,6 +49,46 @@ class perguntadf
         return $matriz;
     }
 
+    public function ListarPorNivel($nivel)
+    {
+        $matriz = array();
+        
+        $sql    = 'SELECT perguntadfId, perguntadfEnunciado, perguntadfCodigo, perguntadfDificuldade, perguntadfAtivo ' .
+                  'FROM perguntasdf ' .
+                  "WHERE perguntadfDificuldade = $nivel " .
+                  'ORDER BY perguntadfEnunciado';
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                foreach ($res as $perg)
+                {
+                    $obj                = new perguntadf();
+                    $obj->id            = $perg[self::PERGUNTA_ID];
+                    $obj->enunciado     = $perg[self::PERGUNTA_ENUNCIADO];
+                    $obj->codigo        = $perg[self::PERGUNTA_CODIGO];
+                    $obj->dificuldade   = $perg[self::PERGUNTA_DIFICULDADE];
+                    $obj->ativo         = $perg[self::PERGUNTA_ATIVO];
+
+                    $certa              = new respostadf();
+                    $certa->SelecionarCerta($obj->id);
+                    $obj->certa         = $certa;
+
+                    $erradas            = new respostadf();
+                    $obj->erradas       = $erradas->SelecionarErradas($obj->id);
+
+                    array_push($matriz, $obj);
+                }
+            }
+        }
+
+        return $matriz;
+    }
+
     public function Salvar()
     {
         $erro       = -1;

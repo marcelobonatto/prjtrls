@@ -1,7 +1,7 @@
 <?php
 namespace lib\ws;
 
-class jsquizresposta
+class jsdfresposta
 {
     public $codigo;
     public $texto;

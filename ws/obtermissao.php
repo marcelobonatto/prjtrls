@@ -56,7 +56,7 @@ if (count($mensagens) == 0)
             $eixoobj2                           = new lib\eixo();
             $eixoobj2->Selecionar($eixoobj->eixo);
 
-            $missao->eixos[$poseixo]->eixo      = strtoupper($eixoobj2->nome);
+            $missao->eixos[$poseixo]->nome      = strtoupper($eixoobj2->nome);
             $missao->eixos[$poseixo]->pontos    = $eixoobj->pontos;
         }
 

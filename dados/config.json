@@ -6,5 +6,49 @@
             "funcao": "core_course_get_courses_by_field",
             "categoria": 2
         }
-    }
+    },
+    "desafiofinal" : [
+            {
+                "nivel": 1,
+                "nomenivel": "Iniciante",
+                "pontos": 20,
+                "perguntas": 10,
+                "segundos": 120
+            },
+            {
+                "nivel": 2,
+                "nomenivel": "Amador",
+                "pontos": 40,
+                "perguntas": 15,
+                "segundos": 150
+            },
+            {
+                "nivel": 3,
+                "nomenivel": "Profissional",
+                "pontos": 60,
+                "perguntas": 20,
+                "segundos": 165
+            },
+            {
+                "nivel": 4,
+                "nomenivel": "Top",
+                "pontos": 80,
+                "perguntas": 25,
+                "segundos": 180
+            },
+            {
+                "nivel": 5,
+                "nomenivel": "Sabe Tudo",
+                "pontos": 100,
+                "perguntas": 30,
+                "segundos": 150
+            },
+            {
+                "nivel": 6,
+                "nomenivel": "Desafio Insano",
+                "pontos": 400,
+                "perguntas": 50,
+                "segundos": 150
+            }
+        ]
 }
