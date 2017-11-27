@@ -1,22 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.3
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: 23-Nov-2017 às 20:50
--- Versão do servidor: 5.7.19
--- PHP Version: 7.0.23
+-- Host: localhost:8889
+-- Generation Time: 27-Nov-2017 às 02:08
+-- Versão do servidor: 5.6.35
+-- PHP Version: 7.1.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `prjtrls`
@@ -25,15 +17,25 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `autorizacao`
+--
+
+CREATE TABLE `autorizacao` (
+  `autoId` varchar(36) NOT NULL,
+  `usuarioId` varchar(36) NOT NULL,
+  `autoData` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `cidades`
 --
 
-DROP TABLE IF EXISTS `cidades`;
-CREATE TABLE IF NOT EXISTS `cidades` (
+CREATE TABLE `cidades` (
   `cidadeCodigo` varchar(7) NOT NULL,
   `cidadeNome` varchar(100) NOT NULL,
-  `estadoSigla` varchar(2) NOT NULL,
-  PRIMARY KEY (`cidadeCodigo`)
+  `estadoSigla` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5621,15 +5623,13 @@ INSERT INTO `cidades` (`cidadeCodigo`, `cidadeNome`, `estadoSigla`) VALUES
 -- Estrutura da tabela `dialogosnpc`
 --
 
-DROP TABLE IF EXISTS `dialogosnpc`;
-CREATE TABLE IF NOT EXISTS `dialogosnpc` (
+CREATE TABLE `dialogosnpc` (
   `dialogoId` varchar(36) NOT NULL,
   `missaoId` varchar(36) NOT NULL,
   `dialogoSequencia` int(11) NOT NULL,
   `npcId` varchar(36) NOT NULL,
   `dialogoHumor` varchar(2) NOT NULL,
-  `dialogoTexto` varchar(8000) NOT NULL,
-  PRIMARY KEY (`dialogoId`)
+  `dialogoTexto` varchar(8000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5645,14 +5645,12 @@ INSERT INTO `dialogosnpc` (`dialogoId`, `missaoId`, `dialogoSequencia`, `npcId`,
 -- Estrutura da tabela `eixos`
 --
 
-DROP TABLE IF EXISTS `eixos`;
-CREATE TABLE IF NOT EXISTS `eixos` (
+CREATE TABLE `eixos` (
   `eixoId` varchar(36) NOT NULL,
   `eixoNome` varchar(100) NOT NULL,
   `eixoSequencia` int(11) NOT NULL,
   `eixoSigla` varchar(3) NOT NULL,
-  `eixoAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`eixoId`)
+  `eixoAtivo` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5671,63 +5669,24 @@ INSERT INTO `eixos` (`eixoId`, `eixoNome`, `eixoSequencia`, `eixoSigla`, `eixoAt
 -- Estrutura da tabela `escolas`
 --
 
-DROP TABLE IF EXISTS `escolas`;
-CREATE TABLE IF NOT EXISTS `escolas` (
+CREATE TABLE `escolas` (
   `escolaId` varchar(36) NOT NULL,
   `escolaNome` varchar(100) NOT NULL,
   `escolaBairro` varchar(36) NOT NULL,
   `cidadeCodigo` varchar(7) NOT NULL,
   `estadoSigla` varchar(2) NOT NULL,
-  `escolaAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`escolaId`)
+  `escolaAtivo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `escolas`
---
-
-INSERT INTO `escolas` (`escolaId`, `escolaNome`, `escolaBairro`, `cidadeCodigo`, `estadoSigla`, `escolaAtivo`) VALUES
-('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Unidade 1', 'Xaxim', '4106902', 'PR', 1),
-('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Unidade 2', 'Bigorrilho', '4106902', 'PR', 1),
-('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Unidade 3', 'Santa Felicidade', '4106902', 'PR', 1);
 
 -- --------------------------------------------------------
-
-
---
--- Estrutura da tabela `alunos`
---
-
-DROP TABLE IF EXISTS `alunos`;
-CREATE TABLE IF NOT EXISTS `alunos` (
-  `alunoId` varchar(36) NOT NULL,
-  `alunoNome` varchar(100) NOT NULL,
-  `alunoMatricula` int(11) NOT NULL,
-  `alunoLoginMoodle` varchar(12) NOT NULL,
-  `alunoAtivo` tinyint(4) NOT NULL DEFAULT '0',
-  `escolaId` varchar(36) NOT NULL,
-  PRIMARY KEY (`alunoId`),
-  KEY `fk_escolas_idx` (`escolaId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Extraindo dados da tabela `alunos`
---
-
-INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodle`, `alunoAtivo`, `escolaId`) VALUES
-('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Aluno 1', 12345678901, 'loginAl1', 1, 'ef88bb50-cd6a-11e7-91b8-00051b7601a3'),
-('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Aluno 2', 22345678902, 'loginAl2', 1, 'ef8c126e-cd6a-11e7-91b8-00051b7601a3'),
-('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Aluno 3', 33345678903, 'loginAl3', 1, 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3');
 
 --
 -- Estrutura da tabela `estados`
 --
 
-DROP TABLE IF EXISTS `estados`;
-CREATE TABLE IF NOT EXISTS `estados` (
+CREATE TABLE `estados` (
   `estadoSigla` varchar(2) NOT NULL,
-  `estadoNome` varchar(50) NOT NULL,
-  PRIMARY KEY (`estadoSigla`)
+  `estadoNome` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5769,12 +5728,10 @@ INSERT INTO `estados` (`estadoSigla`, `estadoNome`) VALUES
 -- Estrutura da tabela `gruposusu`
 --
 
-DROP TABLE IF EXISTS `gruposusu`;
-CREATE TABLE IF NOT EXISTS `gruposusu` (
+CREATE TABLE `gruposusu` (
   `grupoId` varchar(36) NOT NULL,
   `grupoNome` varchar(100) NOT NULL,
-  `grupoAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`grupoId`)
+  `grupoAtivo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5791,8 +5748,7 @@ INSERT INTO `gruposusu` (`grupoId`, `grupoNome`, `grupoAtivo`) VALUES
 -- Estrutura da tabela `itens`
 --
 
-DROP TABLE IF EXISTS `itens`;
-CREATE TABLE IF NOT EXISTS `itens` (
+CREATE TABLE `itens` (
   `itemId` varchar(36) NOT NULL,
   `itemNome` varchar(100) NOT NULL,
   `itemNivel` int(11) NOT NULL,
@@ -5802,8 +5758,7 @@ CREATE TABLE IF NOT EXISTS `itens` (
   `itemLimite` int(11) NOT NULL,
   `itemBonus` int(11) NOT NULL,
   `itemPrecoNormal` int(11) NOT NULL,
-  `itemAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`itemId`)
+  `itemAtivo` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5814,7 +5769,7 @@ INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `
 ('652a4a36-c0b7-11e7-9b90-00306776e789', 'Seringa Mentora', 0, 'I', NULL, 'e886580e-bb13-11e7-a2a8-00306776e789', -1, 10, 800, 1),
 ('652af4b1-c0b7-11e7-9b90-00306776e789', 'Roupa de Programador Preta', 1, 'R', 1, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 20, 1200, 1),
 ('8db9b73c-c0b7-11e7-9b90-00306776e789', 'Carteira Minúscula', 1, 'C', NULL, NULL, 200, 0, 200, 1),
-('4b8c2a0a-cc89-11e7-b4bf-07433e6c64b2', 'Roupa Invisível', 2, 'R', NULL, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 20, 1600, 1),
+('4b8c2a0a-cc89-11e7-b4bf-07433e6c64b2', 'Cueca Invisível', 2, 'R', NULL, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 20, 1600, 1),
 ('f5eaec44-cca6-11e7-b4bf-07433e6c64b2', 'Jaleco Power', 2, 'R', NULL, 'S', -1, 20, 1200, 1),
 ('f5eb0c06-cca6-11e7-b4bf-07433e6c64b2', 'Erlenmeyer', 2, 'I', NULL, 'S', -1, 20, 800, 1),
 ('35a1dbfe-cca7-11e7-b4bf-07433e6c64b2', 'Jaleco Power', 2, 'R', NULL, 'S', -1, 20, 1200, 1),
@@ -5827,8 +5782,7 @@ INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `
 -- Estrutura da tabela `missoes`
 --
 
-DROP TABLE IF EXISTS `missoes`;
-CREATE TABLE IF NOT EXISTS `missoes` (
+CREATE TABLE `missoes` (
   `missaoId` varchar(36) NOT NULL,
   `missaoNome` varchar(100) NOT NULL,
   `missaoTitulo` varchar(200) NOT NULL,
@@ -5839,9 +5793,7 @@ CREATE TABLE IF NOT EXISTS `missoes` (
   `missaoSemestre` int(11) NOT NULL,
   `missaoSequencia` int(11) NOT NULL,
   `missaoObrigatoria` tinyint(4) NOT NULL,
-  `missaoPai` varchar(36) DEFAULT NULL,
-  PRIMARY KEY (`missaoId`),
-  KEY `fk_missoes_missoes1_idx` (`missaoPai`)
+  `missaoPai` varchar(36) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5849,7 +5801,7 @@ CREATE TABLE IF NOT EXISTS `missoes` (
 --
 
 INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescricao`, `missaoAtivo`, `missaoIdMoodle`, `missaoAno`, `missaoSemestre`, `missaoSequencia`, `missaoObrigatoria`, `missaoPai`) VALUES
-('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Missão E111', 'Missão Teste 1 (Engenharia) ', 'Esta é a descrição completa da missão teste 1 do eixo de engenharia. Esse texto pode ser bem grande. E está aumentando...', 1, '2', 1, 1, 1, 1, NULL),
+('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Missão E111', 'Missão Teste 1 (Engenharia) ', 'Esta é a descrição completa da missão teste 1 do eixo de engenharia. Esse texto pode ser bem grande.', 1, '2', 1, 1, 1, 1, NULL),
 ('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Missão N111', 'Missão Teste 1 (Negócios)', 'Nesta missão você terá que ler o que está no Moodle e fazer.', 1, '6cac44e4-5269-42ef-b169-13042e4b5869', 1, 1, 1, 1, NULL),
 ('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Missão SE1', 'Side-quest Teste 1', 'Essa missão não é obrigatória, mas seria legal você fazer.', 1, '3e198323-6bb3-4f56-bed6-55dceb987a1f', 1, 1, 1, 0, 'ef88bb50-cd6a-11e7-91b8-00051b7601a3');
 
@@ -5859,15 +5811,11 @@ INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescrica
 -- Estrutura da tabela `missoeseixo`
 --
 
-DROP TABLE IF EXISTS `missoeseixo`;
-CREATE TABLE IF NOT EXISTS `missoeseixo` (
+CREATE TABLE `missoeseixo` (
   `missaoeixoId` varchar(36) NOT NULL,
   `missaoId` varchar(36) NOT NULL,
   `eixoId` varchar(36) NOT NULL,
-  `missaoeixoPontos` int(11) NOT NULL,
-  PRIMARY KEY (`missaoeixoId`),
-  KEY `missaoId` (`missaoId`),
-  KEY `eixoId` (`eixoId`)
+  `missaoeixoPontos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5885,17 +5833,14 @@ INSERT INTO `missoeseixo` (`missaoeixoId`, `missaoId`, `eixoId`, `missaoeixoPont
 -- Estrutura da tabela `npc`
 --
 
-DROP TABLE IF EXISTS `npc`;
-CREATE TABLE IF NOT EXISTS `npc` (
+CREATE TABLE `npc` (
   `npcId` varchar(36) NOT NULL,
   `npcNome` varchar(100) NOT NULL,
   `npcChave` varchar(30) NOT NULL,
   `eixoId` varchar(36) DEFAULT NULL,
   `npcImgNormal` longblob,
   `npcImgIcone` longblob,
-  `npcAtivo` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`npcId`),
-  KEY `eixoId` (`eixoId`)
+  `npcAtivo` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5919,15 +5864,12 @@ INSERT INTO `npc` (`npcId`, `npcNome`, `npcChave`, `eixoId`, `npcImgNormal`, `np
 -- Estrutura da tabela `perguntas`
 --
 
-DROP TABLE IF EXISTS `perguntas`;
-CREATE TABLE IF NOT EXISTS `perguntas` (
+CREATE TABLE `perguntas` (
   `perguntaId` varchar(36) NOT NULL,
   `perguntaEnunciado` varchar(1000) NOT NULL,
   `perguntaCodigo` varchar(20) NOT NULL,
-  `eixoId` varchar(36) NOT NULL,  
-  `perguntaAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`perguntaId`),
-  KEY `FK_eixos` (`eixoId`)
+  `eixoId` varchar(36) NOT NULL,
+  `perguntaAtivo` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5935,10 +5877,31 @@ CREATE TABLE IF NOT EXISTS `perguntas` (
 --
 
 INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `eixoId`, `perguntaAtivo`) VALUES
-('457cfdb0-bd80-11e7-ab1c-00306776e789', 'Enunciado da pergunta 1', 'P001', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('457cfdb0-bd80-11e7-ab1c-00306776e789', 'Enunciado da pergunta 1', 'P001', 'e8860b43-bb13-11e7-a2a8-00306776e789', 1),
 ('457d4115-bd80-11e7-ab1c-00306776e789', 'Enunciado da pergunta 2', 'P002', 'e8860b43-bb13-11e7-a2a8-00306776e789', 1),
-('54c1cf86-cb25-11e7-af74-35b8fabdc297', 'Com quantas perguntas 3 se faz uma canoa?', 'P003', 'e886580e-bb13-11e7-a2a8-00306776e789', 1),
-('457d7777-bd84-11e7-ab1c-00306776e794', 'Enunciado da pergunta 4', 'P004', 'e8869db8-bb13-11e7-a2a8-00306776e789', 1);
+('54c1cf86-cb25-11e7-af74-35b8fabdc297', 'Com quantas perguntas 3 se faz uma canoa?', 'P003', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2aac5dee-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 4 se faz uma canoa?', 'P004', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ac51e56-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 5 se faz uma canoa?', 'P005', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ac684b2-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 6 se faz uma canoa?', 'P006', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ac7a036-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 7 se faz uma canoa?', 'P007', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ac8a486-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 8 se faz uma canoa?', 'P008', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ac9c316-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 9 se faz uma canoa?', 'P009', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2acac932-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 10 se faz uma canoa?', 'P010', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2acbdec6-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 11 se faz uma canoa?', 'P011', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2accedd4-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 12 se faz uma canoa?', 'P012', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2acdff30-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 13 se faz uma canoa?', 'P013', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2acf1442-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 14 se faz uma canoa?', 'P014', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ad0215c-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 15 se faz uma canoa?', 'P015', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ad12d22-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 16 se faz uma canoa?', 'P016', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ad245e0-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 17 se faz uma canoa?', 'P017', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ad349a4-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 18 se faz uma canoa?', 'P018', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ad50078-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 19 se faz uma canoa?', 'P019', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ad6ddbc-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 20 se faz uma canoa?', 'P020', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ad854da-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 21 se faz uma canoa?', 'P021', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ad96fbe-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 22 se faz uma canoa?', 'P022', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2ada875a-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 23 se faz uma canoa?', 'P023', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2adbfd9c-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 24 se faz uma canoa?', 'P024', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('2add697a-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 25 se faz uma canoa?', 'P025', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1);
 
 -- --------------------------------------------------------
 
@@ -5946,14 +5909,12 @@ INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `e
 -- Estrutura da tabela `perguntasdf`
 --
 
-DROP TABLE IF EXISTS `perguntasdf`;
-CREATE TABLE IF NOT EXISTS `perguntasdf` (
+CREATE TABLE `perguntasdf` (
   `perguntadfId` varchar(36) NOT NULL,
   `perguntadfEnunciado` varchar(1000) NOT NULL,
   `perguntadfCodigo` varchar(20) NOT NULL,
   `perguntadfDificuldade` int(11) NOT NULL,
-  `perguntadfAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`perguntadfId`)
+  `perguntadfAtivo` tinyint(1) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
@@ -5962,7 +5923,29 @@ CREATE TABLE IF NOT EXISTS `perguntasdf` (
 
 INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCodigo`, `perguntadfDificuldade`, `perguntadfAtivo`) VALUES
 ('49a32090-bef8-11e7-a867-00306776e789', 'Voc', 'DF00001', 4, 1),
-('49a37b33-bef8-11e7-a867-00306776e789', 'Considere uma nuvem: quantos litros de pergunta 2 existem nela?', 'DF00002', 1, 1);
+('49a37b33-bef8-11e7-a867-00306776e789', 'Considere uma nuvem: quantos litros de pergunta 2 existem nela?', 'DF00002', 1, 1),
+('8d13182c-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 3 existem nela?', 'DF00003', 1, 1),
+('b4a14fe4-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 4 existem nela?', 'DF00004', 1, 1),
+('b4a8ed08-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 5 existem nela?', 'DF00005', 1, 1),
+('b4adb8f6-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 6 existem nela?', 'DF00006', 1, 1),
+('b4aed524-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 7 existem nela?', 'DF00007', 1, 1),
+('b4afff58-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 8 existem nela?', 'DF00008', 1, 1),
+('b4b11ffa-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 9 existem nela?', 'DF00009', 1, 1),
+('b4b26946-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 10 existem nela?', 'DF00010', 1, 1),
+('b4b38916-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 11 existem nela?', 'DF00011', 1, 1),
+('b4b4a1a2-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 12 existem nela?', 'DF00012', 1, 1),
+('b4b66118-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 13 existem nela?', 'DF00013', 1, 1),
+('b4b81a6c-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 14 existem nela?', 'DF00014', 1, 1),
+('b4b93686-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 15 existem nela?', 'DF00015', 1, 1),
+('b4ba5b88-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 16 existem nela?', 'DF00016', 1, 1),
+('b4bb72f2-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 17 existem nela?', 'DF00017', 1, 1),
+('b4bca58c-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 18 existem nela?', 'DF00018', 1, 1),
+('b4bdcf7a-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 19 existem nela?', 'DF00019', 1, 1),
+('b4bf0156-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 20 existem nela?', 'DF00020', 1, 1),
+('b4c04ba6-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 21 existem nela?', 'DF00021', 1, 1),
+('b4c17922-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 22 existem nela?', 'DF00022', 1, 1),
+('b4c3ec20-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 23 existem nela?', 'DF00023', 1, 1),
+('b4c66a7c-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 24 existem nela?', 'DF00024', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -5970,15 +5953,12 @@ INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCod
 -- Estrutura da tabela `respostas`
 --
 
-DROP TABLE IF EXISTS `respostas`;
-CREATE TABLE IF NOT EXISTS `respostas` (
+CREATE TABLE `respostas` (
   `respostaId` varchar(36) NOT NULL,
   `perguntaId` varchar(36) NOT NULL,
   `respostaCodigo` varchar(20) NOT NULL,
   `respostaTexto` varchar(1000) NOT NULL,
-  `respostaNivel` int(11) NOT NULL COMMENT '0 = improvável; 9 = provável; 10 = correta',
-  PRIMARY KEY (`respostaId`),
-  KEY `FK_perguntas` (`perguntaId`)
+  `respostaNivel` int(11) NOT NULL COMMENT '0 = improvável; 9 = provável; 10 = correta'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5986,6 +5966,94 @@ CREATE TABLE IF NOT EXISTS `respostas` (
 --
 
 INSERT INTO `respostas` (`respostaId`, `perguntaId`, `respostaCodigo`, `respostaTexto`, `respostaNivel`) VALUES
+('51e59602-d2d3-11e7-b419-1a8f80d3a0ab', '2aac5dee-d2cb-11e7-b419-1a8f80d3a0ab', 'P004R001', '42', 10),
+('51e59b3e-d2d3-11e7-b419-1a8f80d3a0ab', '2aac5dee-d2cb-11e7-b419-1a8f80d3a0ab', 'P004R002', '30', 7),
+('51e59d00-d2d3-11e7-b419-1a8f80d3a0ab', '2aac5dee-d2cb-11e7-b419-1a8f80d3a0ab', 'P004R003', '20', 5),
+('51e59e68-d2d3-11e7-b419-1a8f80d3a0ab', '2aac5dee-d2cb-11e7-b419-1a8f80d3a0ab', 'P004R004', '10', 3),
+('51f5cc7a-d2d3-11e7-b419-1a8f80d3a0ab', '2ac51e56-d2cb-11e7-b419-1a8f80d3a0ab', 'P005R001', '42', 10),
+('51f5d1a2-d2d3-11e7-b419-1a8f80d3a0ab', '2ac51e56-d2cb-11e7-b419-1a8f80d3a0ab', 'P005R002', '30', 7),
+('51f5d33c-d2d3-11e7-b419-1a8f80d3a0ab', '2ac51e56-d2cb-11e7-b419-1a8f80d3a0ab', 'P005R003', '20', 5),
+('51f5d47c-d2d3-11e7-b419-1a8f80d3a0ab', '2ac51e56-d2cb-11e7-b419-1a8f80d3a0ab', 'P005R004', '10', 3),
+('51fbbf90-d2d3-11e7-b419-1a8f80d3a0ab', '2ac684b2-d2cb-11e7-b419-1a8f80d3a0ab', 'P006R001', '42', 10),
+('51fbc530-d2d3-11e7-b419-1a8f80d3a0ab', '2ac684b2-d2cb-11e7-b419-1a8f80d3a0ab', 'P006R002', '30', 7),
+('51fbc6ca-d2d3-11e7-b419-1a8f80d3a0ab', '2ac684b2-d2cb-11e7-b419-1a8f80d3a0ab', 'P006R003', '20', 5),
+('51fbc800-d2d3-11e7-b419-1a8f80d3a0ab', '2ac684b2-d2cb-11e7-b419-1a8f80d3a0ab', 'P006R004', '10', 3),
+('51fd01b6-d2d3-11e7-b419-1a8f80d3a0ab', '2ac7a036-d2cb-11e7-b419-1a8f80d3a0ab', 'P007R001', '42', 10),
+('51fd0724-d2d3-11e7-b419-1a8f80d3a0ab', '2ac7a036-d2cb-11e7-b419-1a8f80d3a0ab', 'P007R002', '30', 7),
+('51fd08a0-d2d3-11e7-b419-1a8f80d3a0ab', '2ac7a036-d2cb-11e7-b419-1a8f80d3a0ab', 'P007R003', '20', 5),
+('51fd09d6-d2d3-11e7-b419-1a8f80d3a0ab', '2ac7a036-d2cb-11e7-b419-1a8f80d3a0ab', 'P007R004', '10', 3),
+('51fe42d8-d2d3-11e7-b419-1a8f80d3a0ab', '2ac8a486-d2cb-11e7-b419-1a8f80d3a0ab', 'P008R001', '42', 10),
+('51fe4864-d2d3-11e7-b419-1a8f80d3a0ab', '2ac8a486-d2cb-11e7-b419-1a8f80d3a0ab', 'P008R002', '30', 7),
+('51fe49a4-d2d3-11e7-b419-1a8f80d3a0ab', '2ac8a486-d2cb-11e7-b419-1a8f80d3a0ab', 'P008R003', '20', 5),
+('51fe4aee-d2d3-11e7-b419-1a8f80d3a0ab', '2ac8a486-d2cb-11e7-b419-1a8f80d3a0ab', 'P008R004', '10', 3),
+('51ffa402-d2d3-11e7-b419-1a8f80d3a0ab', '2ac9c316-d2cb-11e7-b419-1a8f80d3a0ab', 'P009R001', '42', 10),
+('51ffa970-d2d3-11e7-b419-1a8f80d3a0ab', '2ac9c316-d2cb-11e7-b419-1a8f80d3a0ab', 'P009R002', '30', 7),
+('51ffaad8-d2d3-11e7-b419-1a8f80d3a0ab', '2ac9c316-d2cb-11e7-b419-1a8f80d3a0ab', 'P009R003', '20', 5),
+('51ffabf0-d2d3-11e7-b419-1a8f80d3a0ab', '2ac9c316-d2cb-11e7-b419-1a8f80d3a0ab', 'P009R004', '10', 3),
+('5200f366-d2d3-11e7-b419-1a8f80d3a0ab', '2acac932-d2cb-11e7-b419-1a8f80d3a0ab', 'P010R001', '42', 10),
+('5200fc1c-d2d3-11e7-b419-1a8f80d3a0ab', '2acac932-d2cb-11e7-b419-1a8f80d3a0ab', 'P010R002', '30', 7),
+('5200fdd4-d2d3-11e7-b419-1a8f80d3a0ab', '2acac932-d2cb-11e7-b419-1a8f80d3a0ab', 'P010R003', '20', 5),
+('5200ff14-d2d3-11e7-b419-1a8f80d3a0ab', '2acac932-d2cb-11e7-b419-1a8f80d3a0ab', 'P010R004', '10', 3),
+('5202405e-d2d3-11e7-b419-1a8f80d3a0ab', '2acbdec6-d2cb-11e7-b419-1a8f80d3a0ab', 'P011R001', '42', 10),
+('5202461c-d2d3-11e7-b419-1a8f80d3a0ab', '2acbdec6-d2cb-11e7-b419-1a8f80d3a0ab', 'P011R002', '30', 7),
+('520247a2-d2d3-11e7-b419-1a8f80d3a0ab', '2acbdec6-d2cb-11e7-b419-1a8f80d3a0ab', 'P011R003', '20', 5),
+('520248f6-d2d3-11e7-b419-1a8f80d3a0ab', '2acbdec6-d2cb-11e7-b419-1a8f80d3a0ab', 'P011R004', '10', 3),
+('52038838-d2d3-11e7-b419-1a8f80d3a0ab', '2accedd4-d2cb-11e7-b419-1a8f80d3a0ab', 'P012R001', '42', 10),
+('52038dc4-d2d3-11e7-b419-1a8f80d3a0ab', '2accedd4-d2cb-11e7-b419-1a8f80d3a0ab', 'P012R002', '30', 7),
+('52038f36-d2d3-11e7-b419-1a8f80d3a0ab', '2accedd4-d2cb-11e7-b419-1a8f80d3a0ab', 'P012R003', '20', 5),
+('5203906c-d2d3-11e7-b419-1a8f80d3a0ab', '2accedd4-d2cb-11e7-b419-1a8f80d3a0ab', 'P012R004', '10', 3),
+('5204e08e-d2d3-11e7-b419-1a8f80d3a0ab', '2acdff30-d2cb-11e7-b419-1a8f80d3a0ab', 'P013R001', '42', 10),
+('5204e62e-d2d3-11e7-b419-1a8f80d3a0ab', '2acdff30-d2cb-11e7-b419-1a8f80d3a0ab', 'P013R002', '30', 7),
+('5204e78c-d2d3-11e7-b419-1a8f80d3a0ab', '2acdff30-d2cb-11e7-b419-1a8f80d3a0ab', 'P013R003', '20', 5),
+('5204e8d6-d2d3-11e7-b419-1a8f80d3a0ab', '2acdff30-d2cb-11e7-b419-1a8f80d3a0ab', 'P013R004', '10', 3),
+('520a7d3c-d2d3-11e7-b419-1a8f80d3a0ab', '2acf1442-d2cb-11e7-b419-1a8f80d3a0ab', 'P014R001', '42', 10),
+('520a8296-d2d3-11e7-b419-1a8f80d3a0ab', '2acf1442-d2cb-11e7-b419-1a8f80d3a0ab', 'P014R002', '30', 7),
+('520a8412-d2d3-11e7-b419-1a8f80d3a0ab', '2acf1442-d2cb-11e7-b419-1a8f80d3a0ab', 'P014R003', '20', 5),
+('520a8548-d2d3-11e7-b419-1a8f80d3a0ab', '2acf1442-d2cb-11e7-b419-1a8f80d3a0ab', 'P014R004', '10', 3),
+('520bc0ca-d2d3-11e7-b419-1a8f80d3a0ab', '2ad0215c-d2cb-11e7-b419-1a8f80d3a0ab', 'P015R001', '42', 10),
+('520bc674-d2d3-11e7-b419-1a8f80d3a0ab', '2ad0215c-d2cb-11e7-b419-1a8f80d3a0ab', 'P015R002', '30', 7),
+('520bc7be-d2d3-11e7-b419-1a8f80d3a0ab', '2ad0215c-d2cb-11e7-b419-1a8f80d3a0ab', 'P015R003', '20', 5),
+('520bc8f4-d2d3-11e7-b419-1a8f80d3a0ab', '2ad0215c-d2cb-11e7-b419-1a8f80d3a0ab', 'P015R004', '10', 3),
+('520d053e-d2d3-11e7-b419-1a8f80d3a0ab', '2ad12d22-d2cb-11e7-b419-1a8f80d3a0ab', 'P016R001', '42', 10),
+('520d0a66-d2d3-11e7-b419-1a8f80d3a0ab', '2ad12d22-d2cb-11e7-b419-1a8f80d3a0ab', 'P016R002', '30', 7),
+('520d0bf6-d2d3-11e7-b419-1a8f80d3a0ab', '2ad12d22-d2cb-11e7-b419-1a8f80d3a0ab', 'P016R003', '20', 5),
+('520d0d36-d2d3-11e7-b419-1a8f80d3a0ab', '2ad12d22-d2cb-11e7-b419-1a8f80d3a0ab', 'P016R004', '10', 3),
+('520e471e-d2d3-11e7-b419-1a8f80d3a0ab', '2ad245e0-d2cb-11e7-b419-1a8f80d3a0ab', 'P017R001', '42', 10),
+('520e4c96-d2d3-11e7-b419-1a8f80d3a0ab', '2ad245e0-d2cb-11e7-b419-1a8f80d3a0ab', 'P017R002', '30', 7),
+('520e4dfe-d2d3-11e7-b419-1a8f80d3a0ab', '2ad245e0-d2cb-11e7-b419-1a8f80d3a0ab', 'P017R003', '20', 5),
+('520e4f02-d2d3-11e7-b419-1a8f80d3a0ab', '2ad245e0-d2cb-11e7-b419-1a8f80d3a0ab', 'P017R004', '10', 3),
+('520f8a48-d2d3-11e7-b419-1a8f80d3a0ab', '2ad349a4-d2cb-11e7-b419-1a8f80d3a0ab', 'P018R001', '42', 10),
+('520f8f5c-d2d3-11e7-b419-1a8f80d3a0ab', '2ad349a4-d2cb-11e7-b419-1a8f80d3a0ab', 'P018R002', '30', 7),
+('520f9074-d2d3-11e7-b419-1a8f80d3a0ab', '2ad349a4-d2cb-11e7-b419-1a8f80d3a0ab', 'P018R003', '20', 5),
+('520f915a-d2d3-11e7-b419-1a8f80d3a0ab', '2ad349a4-d2cb-11e7-b419-1a8f80d3a0ab', 'P018R004', '10', 3),
+('5210ddb2-d2d3-11e7-b419-1a8f80d3a0ab', '2ad50078-d2cb-11e7-b419-1a8f80d3a0ab', 'P019R001', '42', 10),
+('5210e60e-d2d3-11e7-b419-1a8f80d3a0ab', '2ad50078-d2cb-11e7-b419-1a8f80d3a0ab', 'P019R002', '30', 7),
+('5210e7b2-d2d3-11e7-b419-1a8f80d3a0ab', '2ad50078-d2cb-11e7-b419-1a8f80d3a0ab', 'P019R003', '20', 5),
+('5210e8ca-d2d3-11e7-b419-1a8f80d3a0ab', '2ad50078-d2cb-11e7-b419-1a8f80d3a0ab', 'P019R004', '10', 3),
+('521221c2-d2d3-11e7-b419-1a8f80d3a0ab', '2ad6ddbc-d2cb-11e7-b419-1a8f80d3a0ab', 'P020R001', '42', 10),
+('521226e0-d2d3-11e7-b419-1a8f80d3a0ab', '2ad6ddbc-d2cb-11e7-b419-1a8f80d3a0ab', 'P020R002', '30', 7),
+('5212285c-d2d3-11e7-b419-1a8f80d3a0ab', '2ad6ddbc-d2cb-11e7-b419-1a8f80d3a0ab', 'P020R003', '20', 5),
+('5212297e-d2d3-11e7-b419-1a8f80d3a0ab', '2ad6ddbc-d2cb-11e7-b419-1a8f80d3a0ab', 'P020R004', '10', 3),
+('52137c98-d2d3-11e7-b419-1a8f80d3a0ab', '2ad854da-d2cb-11e7-b419-1a8f80d3a0ab', 'P021R001', '42', 10),
+('521381ca-d2d3-11e7-b419-1a8f80d3a0ab', '2ad854da-d2cb-11e7-b419-1a8f80d3a0ab', 'P021R002', '30', 7),
+('5213833c-d2d3-11e7-b419-1a8f80d3a0ab', '2ad854da-d2cb-11e7-b419-1a8f80d3a0ab', 'P021R003', '20', 5),
+('5213845e-d2d3-11e7-b419-1a8f80d3a0ab', '2ad854da-d2cb-11e7-b419-1a8f80d3a0ab', 'P021R004', '10', 3),
+('5214c0c6-d2d3-11e7-b419-1a8f80d3a0ab', '2ad96fbe-d2cb-11e7-b419-1a8f80d3a0ab', 'P022R001', '42', 10),
+('5214c5d0-d2d3-11e7-b419-1a8f80d3a0ab', '2ad96fbe-d2cb-11e7-b419-1a8f80d3a0ab', 'P022R002', '30', 7),
+('5214c738-d2d3-11e7-b419-1a8f80d3a0ab', '2ad96fbe-d2cb-11e7-b419-1a8f80d3a0ab', 'P022R003', '20', 5),
+('5214c882-d2d3-11e7-b419-1a8f80d3a0ab', '2ad96fbe-d2cb-11e7-b419-1a8f80d3a0ab', 'P022R004', '10', 3),
+('52168528-d2d3-11e7-b419-1a8f80d3a0ab', '2ada875a-d2cb-11e7-b419-1a8f80d3a0ab', 'P023R001', '42', 10),
+('52168a32-d2d3-11e7-b419-1a8f80d3a0ab', '2ada875a-d2cb-11e7-b419-1a8f80d3a0ab', 'P023R002', '30', 7),
+('52168b90-d2d3-11e7-b419-1a8f80d3a0ab', '2ada875a-d2cb-11e7-b419-1a8f80d3a0ab', 'P023R003', '20', 5),
+('52168ca8-d2d3-11e7-b419-1a8f80d3a0ab', '2ada875a-d2cb-11e7-b419-1a8f80d3a0ab', 'P023R004', '10', 3),
+('52183486-d2d3-11e7-b419-1a8f80d3a0ab', '2adbfd9c-d2cb-11e7-b419-1a8f80d3a0ab', 'P024R001', '42', 10),
+('521839c2-d2d3-11e7-b419-1a8f80d3a0ab', '2adbfd9c-d2cb-11e7-b419-1a8f80d3a0ab', 'P024R002', '30', 7),
+('52183b66-d2d3-11e7-b419-1a8f80d3a0ab', '2adbfd9c-d2cb-11e7-b419-1a8f80d3a0ab', 'P024R003', '20', 5),
+('52183cb0-d2d3-11e7-b419-1a8f80d3a0ab', '2adbfd9c-d2cb-11e7-b419-1a8f80d3a0ab', 'P024R004', '10', 3),
+('52198570-d2d3-11e7-b419-1a8f80d3a0ab', '2add697a-d2cb-11e7-b419-1a8f80d3a0ab', 'P025R001', '42', 10),
+('52198a34-d2d3-11e7-b419-1a8f80d3a0ab', '2add697a-d2cb-11e7-b419-1a8f80d3a0ab', 'P025R002', '30', 7),
+('52198bc4-d2d3-11e7-b419-1a8f80d3a0ab', '2add697a-d2cb-11e7-b419-1a8f80d3a0ab', 'P025R003', '20', 5),
+('52198cdc-d2d3-11e7-b419-1a8f80d3a0ab', '2add697a-d2cb-11e7-b419-1a8f80d3a0ab', 'P025R004', '10', 3),
 ('54ca07dc-cb25-11e7-af74-35b8fabdc297', '54c1cf86-cb25-11e7-af74-35b8fabdc297', 'P003R001', '42', 10),
 ('54cc8052-cb25-11e7-af74-35b8fabdc297', '54c1cf86-cb25-11e7-af74-35b8fabdc297', 'P003R002', '30', 7),
 ('54ccaa82-cb25-11e7-af74-35b8fabdc297', '54c1cf86-cb25-11e7-af74-35b8fabdc297', 'P003R003', '20', 5),
@@ -5997,16 +6065,133 @@ INSERT INTO `respostas` (`respostaId`, `perguntaId`, `respostaCodigo`, `resposta
 -- Estrutura da tabela `respostasdf`
 --
 
-DROP TABLE IF EXISTS `respostasdf`;
-CREATE TABLE IF NOT EXISTS `respostasdf` (
+CREATE TABLE `respostasdf` (
   `respostadfId` varchar(36) NOT NULL,
   `perguntadfId` varchar(36) NOT NULL,
   `respostadfCodigo` varchar(20) NOT NULL,
   `respostadfTexto` varchar(1000) NOT NULL,
-  `respostadfNivel` int(11) NOT NULL COMMENT '0 = improvável; 9 = provável; 10 = correta',
-  PRIMARY KEY (`respostadfId`),
-  KEY `FK_perguntasdf` (`perguntadfId`)
+  `respostadfNivel` int(11) NOT NULL COMMENT '0 = improvável; 9 = provável; 10 = correta'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `respostasdf`
+--
+
+INSERT INTO `respostasdf` (`respostadfId`, `perguntadfId`, `respostadfCodigo`, `respostadfTexto`, `respostadfNivel`) VALUES
+('cd8a70a0-d30c-11e7-b419-1a8f80d3a0ab', '8d13182c-d309-11e7-b419-1a8f80d3a0ab', 'DF00003R01', 'É, essa é a resposta 01', 10),
+('cd931552-d30c-11e7-b419-1a8f80d3a0ab', '8d13182c-d309-11e7-b419-1a8f80d3a0ab', 'DF00003R03', 'É, essa é a resposta 03', 8),
+('cd936af2-d30c-11e7-b419-1a8f80d3a0ab', 'b4a14fe4-d309-11e7-b419-1a8f80d3a0ab', 'DF00004R02', 'É, essa é a resposta 02', 10),
+('cd96ecf4-d30c-11e7-b419-1a8f80d3a0ab', 'b4a14fe4-d309-11e7-b419-1a8f80d3a0ab', 'DF00004R04', 'É, essa é a resposta 04', 8),
+('cd972476-d30c-11e7-b419-1a8f80d3a0ab', 'b4a8ed08-d309-11e7-b419-1a8f80d3a0ab', 'DF00005R01', 'É, essa é a resposta 01', 8),
+('cd97651c-d30c-11e7-b419-1a8f80d3a0ab', 'b4a8ed08-d309-11e7-b419-1a8f80d3a0ab', 'DF00005R03', 'É, essa é a resposta 03', 10),
+('cd97b558-d30c-11e7-b419-1a8f80d3a0ab', 'b4adb8f6-d309-11e7-b419-1a8f80d3a0ab', 'DF00006R02', 'É, essa é a resposta 02', 8),
+('cd97f5c2-d30c-11e7-b419-1a8f80d3a0ab', 'b4adb8f6-d309-11e7-b419-1a8f80d3a0ab', 'DF00006R04', 'É, essa é a resposta 04', 10),
+('cd9829c0-d30c-11e7-b419-1a8f80d3a0ab', 'b4aed524-d309-11e7-b419-1a8f80d3a0ab', 'DF00007R01', 'É, essa é a resposta 01', 10),
+('cd986c00-d30c-11e7-b419-1a8f80d3a0ab', 'b4aed524-d309-11e7-b419-1a8f80d3a0ab', 'DF00007R03', 'É, essa é a resposta 03', 8),
+('cd98bc78-d30c-11e7-b419-1a8f80d3a0ab', 'b4afff58-d309-11e7-b419-1a8f80d3a0ab', 'DF00008R02', 'É, essa é a resposta 02', 10),
+('cd993356-d30c-11e7-b419-1a8f80d3a0ab', 'b4afff58-d309-11e7-b419-1a8f80d3a0ab', 'DF00008R04', 'É, essa é a resposta 04', 8),
+('cd997820-d30c-11e7-b419-1a8f80d3a0ab', 'b4b11ffa-d309-11e7-b419-1a8f80d3a0ab', 'DF00009R01', 'É, essa é a resposta 01', 8),
+('cd99b2ae-d30c-11e7-b419-1a8f80d3a0ab', 'b4b11ffa-d309-11e7-b419-1a8f80d3a0ab', 'DF00009R03', 'É, essa é a resposta 03', 10),
+('cd9a3e36-d30c-11e7-b419-1a8f80d3a0ab', 'b4b26946-d309-11e7-b419-1a8f80d3a0ab', 'DF00010R02', 'É, essa é a resposta 02', 8),
+('cd9a923c-d30c-11e7-b419-1a8f80d3a0ab', 'b4b26946-d309-11e7-b419-1a8f80d3a0ab', 'DF00010R04', 'É, essa é a resposta 04', 10),
+('cd9ac57c-d30c-11e7-b419-1a8f80d3a0ab', 'b4b38916-d309-11e7-b419-1a8f80d3a0ab', 'DF00011R01', 'É, essa é a resposta 01', 10),
+('cd9b02c6-d30c-11e7-b419-1a8f80d3a0ab', 'b4b38916-d309-11e7-b419-1a8f80d3a0ab', 'DF00011R03', 'É, essa é a resposta 03', 8),
+('cd9b7152-d30c-11e7-b419-1a8f80d3a0ab', 'b4b4a1a2-d309-11e7-b419-1a8f80d3a0ab', 'DF00012R02', 'É, essa é a resposta 02', 10),
+('cd9c046e-d30c-11e7-b419-1a8f80d3a0ab', 'b4b4a1a2-d309-11e7-b419-1a8f80d3a0ab', 'DF00012R04', 'É, essa é a resposta 04', 8),
+('cd9c42a8-d30c-11e7-b419-1a8f80d3a0ab', 'b4b66118-d309-11e7-b419-1a8f80d3a0ab', 'DF00013R01', 'É, essa é a resposta 01', 8),
+('cd9c9708-d30c-11e7-b419-1a8f80d3a0ab', 'b4b66118-d309-11e7-b419-1a8f80d3a0ab', 'DF00013R03', 'É, essa é a resposta 03', 10),
+('cd9cfb8a-d30c-11e7-b419-1a8f80d3a0ab', 'b4b81a6c-d309-11e7-b419-1a8f80d3a0ab', 'DF00014R02', 'É, essa é a resposta 02', 8),
+('cd9d4d10-d30c-11e7-b419-1a8f80d3a0ab', 'b4b81a6c-d309-11e7-b419-1a8f80d3a0ab', 'DF00014R04', 'É, essa é a resposta 04', 10),
+('cd9d9a54-d30c-11e7-b419-1a8f80d3a0ab', 'b4b93686-d309-11e7-b419-1a8f80d3a0ab', 'DF00015R01', 'É, essa é a resposta 01', 10),
+('cd9dece8-d30c-11e7-b419-1a8f80d3a0ab', 'b4b93686-d309-11e7-b419-1a8f80d3a0ab', 'DF00015R03', 'É, essa é a resposta 03', 8),
+('eda4b666-d30c-11e7-b419-1a8f80d3a0ab', '8d13182c-d309-11e7-b419-1a8f80d3a0ab', 'DF00003R01', 'É, essa é a resposta 01', 10),
+('edba6d3a-d30c-11e7-b419-1a8f80d3a0ab', '8d13182c-d309-11e7-b419-1a8f80d3a0ab', 'DF00003R02', 'É, essa é a resposta 02', 5),
+('edbaf9f8-d30c-11e7-b419-1a8f80d3a0ab', '8d13182c-d309-11e7-b419-1a8f80d3a0ab', 'DF00003R03', 'É, essa é a resposta 03', 8),
+('edbb3eb8-d30c-11e7-b419-1a8f80d3a0ab', '8d13182c-d309-11e7-b419-1a8f80d3a0ab', 'DF00003R04', 'É, essa é a resposta 04', 1),
+('edbb75e0-d30c-11e7-b419-1a8f80d3a0ab', 'b4a14fe4-d309-11e7-b419-1a8f80d3a0ab', 'DF00004R01', 'É, essa é a resposta 01', 1),
+('edbbb44c-d30c-11e7-b419-1a8f80d3a0ab', 'b4a14fe4-d309-11e7-b419-1a8f80d3a0ab', 'DF00004R02', 'É, essa é a resposta 02', 10),
+('edbbdd00-d30c-11e7-b419-1a8f80d3a0ab', 'b4a14fe4-d309-11e7-b419-1a8f80d3a0ab', 'DF00004R03', 'É, essa é a resposta 03', 5),
+('edbc1748-d30c-11e7-b419-1a8f80d3a0ab', 'b4a14fe4-d309-11e7-b419-1a8f80d3a0ab', 'DF00004R04', 'É, essa é a resposta 04', 8),
+('edbc80ac-d30c-11e7-b419-1a8f80d3a0ab', 'b4a8ed08-d309-11e7-b419-1a8f80d3a0ab', 'DF00005R01', 'É, essa é a resposta 01', 8),
+('edbce222-d30c-11e7-b419-1a8f80d3a0ab', 'b4a8ed08-d309-11e7-b419-1a8f80d3a0ab', 'DF00005R02', 'É, essa é a resposta 02', 1),
+('edbd1bac-d30c-11e7-b419-1a8f80d3a0ab', 'b4a8ed08-d309-11e7-b419-1a8f80d3a0ab', 'DF00005R03', 'É, essa é a resposta 03', 10),
+('edbd4d3e-d30c-11e7-b419-1a8f80d3a0ab', 'b4a8ed08-d309-11e7-b419-1a8f80d3a0ab', 'DF00005R04', 'É, essa é a resposta 04', 5),
+('edbdbc1a-d30c-11e7-b419-1a8f80d3a0ab', 'b4adb8f6-d309-11e7-b419-1a8f80d3a0ab', 'DF00006R01', 'É, essa é a resposta 01', 5),
+('edc65b36-d30c-11e7-b419-1a8f80d3a0ab', 'b4adb8f6-d309-11e7-b419-1a8f80d3a0ab', 'DF00006R02', 'É, essa é a resposta 02', 8),
+('edc68bec-d30c-11e7-b419-1a8f80d3a0ab', 'b4adb8f6-d309-11e7-b419-1a8f80d3a0ab', 'DF00006R03', 'É, essa é a resposta 03', 1),
+('edc6d21e-d30c-11e7-b419-1a8f80d3a0ab', 'b4adb8f6-d309-11e7-b419-1a8f80d3a0ab', 'DF00006R04', 'É, essa é a resposta 04', 10),
+('edc702d4-d30c-11e7-b419-1a8f80d3a0ab', 'b4aed524-d309-11e7-b419-1a8f80d3a0ab', 'DF00007R01', 'É, essa é a resposta 01', 10),
+('edc737b8-d30c-11e7-b419-1a8f80d3a0ab', 'b4aed524-d309-11e7-b419-1a8f80d3a0ab', 'DF00007R02', 'É, essa é a resposta 02', 5),
+('edc782b8-d30c-11e7-b419-1a8f80d3a0ab', 'b4aed524-d309-11e7-b419-1a8f80d3a0ab', 'DF00007R03', 'É, essa é a resposta 03', 8),
+('edc7b7d8-d30c-11e7-b419-1a8f80d3a0ab', 'b4aed524-d309-11e7-b419-1a8f80d3a0ab', 'DF00007R04', 'É, essa é a resposta 04', 1),
+('edc7ea0a-d30c-11e7-b419-1a8f80d3a0ab', 'b4afff58-d309-11e7-b419-1a8f80d3a0ab', 'DF00008R01', 'É, essa é a resposta 01', 1),
+('edc81f02-d30c-11e7-b419-1a8f80d3a0ab', 'b4afff58-d309-11e7-b419-1a8f80d3a0ab', 'DF00008R02', 'É, essa é a resposta 02', 10),
+('edc85314-d30c-11e7-b419-1a8f80d3a0ab', 'b4afff58-d309-11e7-b419-1a8f80d3a0ab', 'DF00008R03', 'É, essa é a resposta 03', 5),
+('edc8871c-d30c-11e7-b419-1a8f80d3a0ab', 'b4afff58-d309-11e7-b419-1a8f80d3a0ab', 'DF00008R04', 'É, essa é a resposta 04', 8),
+('edc8c2f4-d30c-11e7-b419-1a8f80d3a0ab', 'b4b11ffa-d309-11e7-b419-1a8f80d3a0ab', 'DF00009R01', 'É, essa é a resposta 01', 8),
+('edc8f88c-d30c-11e7-b419-1a8f80d3a0ab', 'b4b11ffa-d309-11e7-b419-1a8f80d3a0ab', 'DF00009R02', 'É, essa é a resposta 02', 1),
+('edc93dc4-d30c-11e7-b419-1a8f80d3a0ab', 'b4b11ffa-d309-11e7-b419-1a8f80d3a0ab', 'DF00009R03', 'É, essa é a resposta 03', 10),
+('edc97186-d30c-11e7-b419-1a8f80d3a0ab', 'b4b11ffa-d309-11e7-b419-1a8f80d3a0ab', 'DF00009R04', 'É, essa é a resposta 04', 5),
+('edc9aa66-d30c-11e7-b419-1a8f80d3a0ab', 'b4b26946-d309-11e7-b419-1a8f80d3a0ab', 'DF00010R01', 'É, essa é a resposta 01', 5),
+('edc9e5a8-d30c-11e7-b419-1a8f80d3a0ab', 'b4b26946-d309-11e7-b419-1a8f80d3a0ab', 'DF00010R02', 'É, essa é a resposta 02', 8),
+('edca71ee-d30c-11e7-b419-1a8f80d3a0ab', 'b4b26946-d309-11e7-b419-1a8f80d3a0ab', 'DF00010R03', 'É, essa é a resposta 03', 1),
+('edcac4be-d30c-11e7-b419-1a8f80d3a0ab', 'b4b26946-d309-11e7-b419-1a8f80d3a0ab', 'DF00010R04', 'É, essa é a resposta 04', 10),
+('edcafa7e-d30c-11e7-b419-1a8f80d3a0ab', 'b4b38916-d309-11e7-b419-1a8f80d3a0ab', 'DF00011R01', 'É, essa é a resposta 01', 10),
+('edcb9420-d30c-11e7-b419-1a8f80d3a0ab', 'b4b38916-d309-11e7-b419-1a8f80d3a0ab', 'DF00011R02', 'É, essa é a resposta 02', 5),
+('edcbef24-d30c-11e7-b419-1a8f80d3a0ab', 'b4b38916-d309-11e7-b419-1a8f80d3a0ab', 'DF00011R03', 'É, essa é a resposta 03', 8),
+('edcc3452-d30c-11e7-b419-1a8f80d3a0ab', 'b4b38916-d309-11e7-b419-1a8f80d3a0ab', 'DF00011R04', 'É, essa é a resposta 04', 1),
+('edcc7016-d30c-11e7-b419-1a8f80d3a0ab', 'b4b4a1a2-d309-11e7-b419-1a8f80d3a0ab', 'DF00012R01', 'É, essa é a resposta 01', 1),
+('edcca57c-d30c-11e7-b419-1a8f80d3a0ab', 'b4b4a1a2-d309-11e7-b419-1a8f80d3a0ab', 'DF00012R02', 'É, essa é a resposta 02', 10),
+('edccddf8-d30c-11e7-b419-1a8f80d3a0ab', 'b4b4a1a2-d309-11e7-b419-1a8f80d3a0ab', 'DF00012R03', 'É, essa é a resposta 03', 5),
+('edcd1408-d30c-11e7-b419-1a8f80d3a0ab', 'b4b4a1a2-d309-11e7-b419-1a8f80d3a0ab', 'DF00012R04', 'É, essa é a resposta 04', 8),
+('edcd9e32-d30c-11e7-b419-1a8f80d3a0ab', 'b4b66118-d309-11e7-b419-1a8f80d3a0ab', 'DF00013R01', 'É, essa é a resposta 01', 8),
+('edcdd064-d30c-11e7-b419-1a8f80d3a0ab', 'b4b66118-d309-11e7-b419-1a8f80d3a0ab', 'DF00013R02', 'É, essa é a resposta 02', 1),
+('edce1088-d30c-11e7-b419-1a8f80d3a0ab', 'b4b66118-d309-11e7-b419-1a8f80d3a0ab', 'DF00013R03', 'É, essa é a resposta 03', 10),
+('edce4b8e-d30c-11e7-b419-1a8f80d3a0ab', 'b4b66118-d309-11e7-b419-1a8f80d3a0ab', 'DF00013R04', 'É, essa é a resposta 04', 5),
+('edce87b6-d30c-11e7-b419-1a8f80d3a0ab', 'b4b81a6c-d309-11e7-b419-1a8f80d3a0ab', 'DF00014R01', 'É, essa é a resposta 01', 5),
+('edcecae6-d30c-11e7-b419-1a8f80d3a0ab', 'b4b81a6c-d309-11e7-b419-1a8f80d3a0ab', 'DF00014R02', 'É, essa é a resposta 02', 8),
+('edcf03da-d30c-11e7-b419-1a8f80d3a0ab', 'b4b81a6c-d309-11e7-b419-1a8f80d3a0ab', 'DF00014R03', 'É, essa é a resposta 03', 1),
+('edcf6622-d30c-11e7-b419-1a8f80d3a0ab', 'b4b81a6c-d309-11e7-b419-1a8f80d3a0ab', 'DF00014R04', 'É, essa é a resposta 04', 10),
+('edcf9c96-d30c-11e7-b419-1a8f80d3a0ab', 'b4b93686-d309-11e7-b419-1a8f80d3a0ab', 'DF00015R01', 'É, essa é a resposta 01', 10),
+('edcfdb66-d30c-11e7-b419-1a8f80d3a0ab', 'b4b93686-d309-11e7-b419-1a8f80d3a0ab', 'DF00015R02', 'É, essa é a resposta 02', 5),
+('edd038a4-d30c-11e7-b419-1a8f80d3a0ab', 'b4b93686-d309-11e7-b419-1a8f80d3a0ab', 'DF00015R03', 'É, essa é a resposta 03', 8),
+('edd0bb26-d30c-11e7-b419-1a8f80d3a0ab', 'b4b93686-d309-11e7-b419-1a8f80d3a0ab', 'DF00015R04', 'É, essa é a resposta 04', 1),
+('edd110e4-d30c-11e7-b419-1a8f80d3a0ab', 'b4ba5b88-d309-11e7-b419-1a8f80d3a0ab', 'DF00016R01', 'É, essa é a resposta 01', 1),
+('edd19c76-d30c-11e7-b419-1a8f80d3a0ab', 'b4ba5b88-d309-11e7-b419-1a8f80d3a0ab', 'DF00016R02', 'É, essa é a resposta 02', 10),
+('edd1f748-d30c-11e7-b419-1a8f80d3a0ab', 'b4ba5b88-d309-11e7-b419-1a8f80d3a0ab', 'DF00016R03', 'É, essa é a resposta 03', 5),
+('edd24a68-d30c-11e7-b419-1a8f80d3a0ab', 'b4ba5b88-d309-11e7-b419-1a8f80d3a0ab', 'DF00016R04', 'É, essa é a resposta 04', 8),
+('edd2a5bc-d30c-11e7-b419-1a8f80d3a0ab', 'b4bb72f2-d309-11e7-b419-1a8f80d3a0ab', 'DF00017R01', 'É, essa é a resposta 01', 8),
+('edd2fe7c-d30c-11e7-b419-1a8f80d3a0ab', 'b4bb72f2-d309-11e7-b419-1a8f80d3a0ab', 'DF00017R02', 'É, essa é a resposta 02', 1),
+('edd36484-d30c-11e7-b419-1a8f80d3a0ab', 'b4bb72f2-d309-11e7-b419-1a8f80d3a0ab', 'DF00017R03', 'É, essa é a resposta 03', 10),
+('edd3b8f8-d30c-11e7-b419-1a8f80d3a0ab', 'b4bb72f2-d309-11e7-b419-1a8f80d3a0ab', 'DF00017R04', 'É, essa é a resposta 04', 5),
+('edd41bf4-d30c-11e7-b419-1a8f80d3a0ab', 'b4bca58c-d309-11e7-b419-1a8f80d3a0ab', 'DF00018R01', 'É, essa é a resposta 01', 5),
+('edd4716c-d30c-11e7-b419-1a8f80d3a0ab', 'b4bca58c-d309-11e7-b419-1a8f80d3a0ab', 'DF00018R02', 'É, essa é a resposta 02', 8),
+('edd4c612-d30c-11e7-b419-1a8f80d3a0ab', 'b4bca58c-d309-11e7-b419-1a8f80d3a0ab', 'DF00018R03', 'É, essa é a resposta 03', 1),
+('edd51c84-d30c-11e7-b419-1a8f80d3a0ab', 'b4bca58c-d309-11e7-b419-1a8f80d3a0ab', 'DF00018R04', 'É, essa é a resposta 04', 10),
+('edd575a8-d30c-11e7-b419-1a8f80d3a0ab', 'b4bdcf7a-d309-11e7-b419-1a8f80d3a0ab', 'DF00019R01', 'É, essa é a resposta 01', 10),
+('edd5c968-d30c-11e7-b419-1a8f80d3a0ab', 'b4bdcf7a-d309-11e7-b419-1a8f80d3a0ab', 'DF00019R02', 'É, essa é a resposta 02', 5),
+('edd61d14-d30c-11e7-b419-1a8f80d3a0ab', 'b4bdcf7a-d309-11e7-b419-1a8f80d3a0ab', 'DF00019R03', 'É, essa é a resposta 03', 8),
+('edd68b3c-d30c-11e7-b419-1a8f80d3a0ab', 'b4bdcf7a-d309-11e7-b419-1a8f80d3a0ab', 'DF00019R04', 'É, essa é a resposta 04', 1),
+('edd71dae-d30c-11e7-b419-1a8f80d3a0ab', 'b4bf0156-d309-11e7-b419-1a8f80d3a0ab', 'DF00020R01', 'É, essa é a resposta 01', 1),
+('edd778c6-d30c-11e7-b419-1a8f80d3a0ab', 'b4bf0156-d309-11e7-b419-1a8f80d3a0ab', 'DF00020R02', 'É, essa é a resposta 02', 10),
+('edd820f0-d30c-11e7-b419-1a8f80d3a0ab', 'b4bf0156-d309-11e7-b419-1a8f80d3a0ab', 'DF00020R03', 'É, essa é a resposta 03', 5),
+('edd8992c-d30c-11e7-b419-1a8f80d3a0ab', 'b4bf0156-d309-11e7-b419-1a8f80d3a0ab', 'DF00020R04', 'É, essa é a resposta 04', 8),
+('edd90da8-d30c-11e7-b419-1a8f80d3a0ab', 'b4c04ba6-d309-11e7-b419-1a8f80d3a0ab', 'DF00021R01', 'É, essa é a resposta 01', 8),
+('edd9b852-d30c-11e7-b419-1a8f80d3a0ab', 'b4c04ba6-d309-11e7-b419-1a8f80d3a0ab', 'DF00021R02', 'É, essa é a resposta 02', 1),
+('edda0df2-d30c-11e7-b419-1a8f80d3a0ab', 'b4c04ba6-d309-11e7-b419-1a8f80d3a0ab', 'DF00021R03', 'É, essa é a resposta 03', 10),
+('edda6784-d30c-11e7-b419-1a8f80d3a0ab', 'b4c04ba6-d309-11e7-b419-1a8f80d3a0ab', 'DF00021R04', 'É, essa é a resposta 04', 5),
+('eddb522a-d30c-11e7-b419-1a8f80d3a0ab', 'b4c17922-d309-11e7-b419-1a8f80d3a0ab', 'DF00022R01', 'É, essa é a resposta 01', 5),
+('eddbc9b2-d30c-11e7-b419-1a8f80d3a0ab', 'b4c17922-d309-11e7-b419-1a8f80d3a0ab', 'DF00022R02', 'É, essa é a resposta 02', 8),
+('eddcddb6-d30c-11e7-b419-1a8f80d3a0ab', 'b4c17922-d309-11e7-b419-1a8f80d3a0ab', 'DF00022R03', 'É, essa é a resposta 03', 1),
+('eddd665a-d30c-11e7-b419-1a8f80d3a0ab', 'b4c17922-d309-11e7-b419-1a8f80d3a0ab', 'DF00022R04', 'É, essa é a resposta 04', 10),
+('edde392c-d30c-11e7-b419-1a8f80d3a0ab', 'b4c3ec20-d309-11e7-b419-1a8f80d3a0ab', 'DF00023R01', 'É, essa é a resposta 01', 10),
+('edde8dfa-d30c-11e7-b419-1a8f80d3a0ab', 'b4c3ec20-d309-11e7-b419-1a8f80d3a0ab', 'DF00023R02', 'É, essa é a resposta 02', 5),
+('eddee0fc-d30c-11e7-b419-1a8f80d3a0ab', 'b4c3ec20-d309-11e7-b419-1a8f80d3a0ab', 'DF00023R03', 'É, essa é a resposta 03', 8),
+('eddf369c-d30c-11e7-b419-1a8f80d3a0ab', 'b4c3ec20-d309-11e7-b419-1a8f80d3a0ab', 'DF00023R04', 'É, essa é a resposta 04', 1),
+('eddf8ad4-d30c-11e7-b419-1a8f80d3a0ab', 'b4c66a7c-d309-11e7-b419-1a8f80d3a0ab', 'DF00024R01', 'É, essa é a resposta 01', 1),
+('eddfe448-d30c-11e7-b419-1a8f80d3a0ab', 'b4c66a7c-d309-11e7-b419-1a8f80d3a0ab', 'DF00024R02', 'É, essa é a resposta 02', 10),
+('ede036b4-d30c-11e7-b419-1a8f80d3a0ab', 'b4c66a7c-d309-11e7-b419-1a8f80d3a0ab', 'DF00024R03', 'É, essa é a resposta 03', 5),
+('ede09244-d30c-11e7-b419-1a8f80d3a0ab', 'b4c66a7c-d309-11e7-b419-1a8f80d3a0ab', 'DF00024R04', 'É, essa é a resposta 04', 8);
 
 -- --------------------------------------------------------
 
@@ -6014,14 +6199,12 @@ CREATE TABLE IF NOT EXISTS `respostasdf` (
 -- Estrutura da tabela `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE IF NOT EXISTS `usuarios` (
+CREATE TABLE `usuarios` (
   `usuarioId` varchar(36) NOT NULL,
   `usuarioNome` varchar(255) NOT NULL,
   `usuarioSenha` varchar(8000) NOT NULL,
   `usuarioSal` varchar(8000) NOT NULL,
-  `usuarioAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`usuarioId`)
+  `usuarioAtivo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6032,6 +6215,112 @@ INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`
 ('ea58f8e6-b84f-11e7-89f4-9ef90429c14d', 'administrador', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1);
 
 --
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `autorizacao`
+--
+ALTER TABLE `autorizacao`
+  ADD PRIMARY KEY (`autoId`);
+
+--
+-- Indexes for table `cidades`
+--
+ALTER TABLE `cidades`
+  ADD PRIMARY KEY (`cidadeCodigo`);
+
+--
+-- Indexes for table `dialogosnpc`
+--
+ALTER TABLE `dialogosnpc`
+  ADD PRIMARY KEY (`dialogoId`);
+
+--
+-- Indexes for table `eixos`
+--
+ALTER TABLE `eixos`
+  ADD PRIMARY KEY (`eixoId`);
+
+--
+-- Indexes for table `escolas`
+--
+ALTER TABLE `escolas`
+  ADD PRIMARY KEY (`escolaId`);
+
+--
+-- Indexes for table `estados`
+--
+ALTER TABLE `estados`
+  ADD PRIMARY KEY (`estadoSigla`);
+
+--
+-- Indexes for table `gruposusu`
+--
+ALTER TABLE `gruposusu`
+  ADD PRIMARY KEY (`grupoId`);
+
+--
+-- Indexes for table `itens`
+--
+ALTER TABLE `itens`
+  ADD PRIMARY KEY (`itemId`);
+
+--
+-- Indexes for table `missoes`
+--
+ALTER TABLE `missoes`
+  ADD PRIMARY KEY (`missaoId`),
+  ADD KEY `fk_missoes_missoes1_idx` (`missaoPai`);
+
+--
+-- Indexes for table `missoeseixo`
+--
+ALTER TABLE `missoeseixo`
+  ADD PRIMARY KEY (`missaoeixoId`),
+  ADD KEY `missaoId` (`missaoId`),
+  ADD KEY `eixoId` (`eixoId`);
+
+--
+-- Indexes for table `npc`
+--
+ALTER TABLE `npc`
+  ADD PRIMARY KEY (`npcId`),
+  ADD KEY `eixoId` (`eixoId`);
+
+--
+-- Indexes for table `perguntas`
+--
+ALTER TABLE `perguntas`
+  ADD PRIMARY KEY (`perguntaId`);
+
+--
+-- Indexes for table `perguntasdf`
+--
+ALTER TABLE `perguntasdf`
+  ADD PRIMARY KEY (`perguntadfId`);
+
+--
+-- Indexes for table `respostas`
+--
+ALTER TABLE `respostas`
+  ADD PRIMARY KEY (`respostaId`),
+  ADD KEY `FK_perguntas` (`perguntaId`);
+
+--
+-- Indexes for table `respostasdf`
+--
+ALTER TABLE `respostasdf`
+  ADD PRIMARY KEY (`respostadfId`),
+  ADD KEY `FK_perguntasdf` (`perguntadfId`);
+
+--
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usuarioId`);
+
+--
 -- Constraints for dumped tables
 --
 
@@ -6040,8 +6329,3 @@ INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`
 --
 ALTER TABLE `missoes`
   ADD CONSTRAINT `fk_missoes_missoes1` FOREIGN KEY (`missaoPai`) REFERENCES `missoes` (`missaoId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
