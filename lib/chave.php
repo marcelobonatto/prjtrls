@@ -82,9 +82,9 @@ echo("DEC:  $dec<br />");
 
             for ($j = 0; $j < strlen($chaveunity); $j++)
             {
-/*                $caracter   
-                $letrun[]   = 
-                $carsrun[]  =              */
+                $caracter   = substr($chaveunity, $j, 1);
+                $letrun[]   = $caracter;
+                $carsrun[]  = ord($caracter);
             }
 
             $unc        = gzuncompress($chave);
@@ -96,12 +96,37 @@ echo("DEC:  $dec<br />");
             for ($c = 0; $c < strlen($dec); $c += 3)
             {
                 $caracter   = substr($dec, $c, 3);
-                $cars[]     = $caracter;
+                $cars[]     = hexdec($caracter);
                 $letracar   = chr(hexdec($caracter));
                 $letra[]    = $letracar;
             }
 
+            if (strlen($chaveunity) == count($letra))
+            {
+                $letunt = '';
 
+                for ($cmp = 0; $cmp < strlen($chaveunity); $cmp++)
+                {
+                    if ($cmp < 14)
+                    {
+                        $chrunt = $carsrun[$cmp];
+                        $chrinf = $cars[$cmp];
+
+                        $dif    = $chrinf - $chrunt;
+
+                        $letunt .= chr($dif);
+
+                        echo("$chrinf - $chrunt = $dif (" . chr($dif) . ")<br />");
+                    }
+                    else if ($cmp == 14)
+                    {
+                        $d = \DateTime::createFromFormat('YmdHis', $letunt);
+                        $ehdata = $d && $d->format('YmdHis') == $letunt;
+
+                        echo("$letunt - $ehdata<br />");
+                    }
+                }
+            }
 
             $this->texto    = $letra;
         }
