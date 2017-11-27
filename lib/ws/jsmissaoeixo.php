@@ -3,7 +3,7 @@ namespace lib\ws;
 
 class jsmissaoeixo
 {
-    public $eixo;
+    public $nome;
     public $pontos;
 }
 ?>

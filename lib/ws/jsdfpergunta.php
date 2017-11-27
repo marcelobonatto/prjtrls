@@ -1,7 +1,7 @@
 <?php
 namespace lib\ws;
 
-class jsquizpergunta
+class jsdfpergunta
 {
     public $codigo;
     public $enunciado;
