@@ -28,7 +28,9 @@ if (isset($_GET['chave']))
     $chobj          = new lib\chave();
     $chobj->descompactar($chave);
 
-    echo("$chobj->texto<br />");
+    echo('<pre>');
+    var_dump($chobj->texto);
+    echo('</pre><br />');
 }
 else
 {
