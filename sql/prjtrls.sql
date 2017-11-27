@@ -6308,6 +6308,19 @@ INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`
 ('ea58f8e6-b84f-11e7-89f4-9ef90429c14d', 'administrador', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1),
 ('f77e1088-d311-11e7-b419-1a8f80d3a0ab', 'loginAl3', '69df03e43856c6e700519ac5909afcff9632a913', '', 1);
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `missaoaluno`
+--
+
+CREATE TABLE `missaoaluno` (
+  `missaoalunoId` varchar(36) NOT NULL,
+  `missaoId` varchar(36) NOT NULL,
+  `alunoId` varchar(255) NOT NULL,
+  `statusMissao` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Indexes for dumped tables
 --
@@ -6442,3 +6455,11 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `missoes`
   ADD CONSTRAINT `fk_missoes_missoes1` FOREIGN KEY (`missaoPai`) REFERENCES `missoes` (`missaoId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Indexes for table `missaoaluno`
+--
+ALTER TABLE `missaoaluno`
+  ADD PRIMARY KEY (`missaoalunoId`),
+  ADD CONSTRAINT `fk_missaoaluno_alunos` FOREIGN KEY (`alunoId`) REFERENCES `alunos` (`alunoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_missaoaluno_missoes` FOREIGN KEY (`missaoId`) REFERENCES `missoes` (`missaoId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
