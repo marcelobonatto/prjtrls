@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:8889
--- Generation Time: 27-Nov-2017 às 02:08
+-- Generation Time: 27-Nov-2017 às 02:53
 -- Versão do servidor: 5.6.35
 -- PHP Version: 7.1.8
 
@@ -17,13 +17,39 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `alunos`
+--
+
+CREATE TABLE `alunos` (
+  `alunoId` varchar(36) NOT NULL,
+  `alunoNome` varchar(100) NOT NULL,
+  `alunoMatricula` int(11) NOT NULL,
+  `alunoLoginMoodle` varchar(12) NOT NULL,
+  `alunoAtivo` tinyint(4) NOT NULL DEFAULT '0',
+  `escolaId` varchar(36) NOT NULL,
+  `usuarioId` varchar(36) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `alunos`
+--
+
+INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodle`, `alunoAtivo`, `escolaId`, `usuarioId`) VALUES
+('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Aluno 1', 2147483647, 'loginAl1', 1, 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'e057a428-d311-11e7-b419-1a8f80d3a0ab'),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Aluno 2', 2147483647, 'loginAl2', 1, 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'e057af2c-d311-11e7-b419-1a8f80d3a0ab'),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Aluno 3', 2147483647, 'loginAl3', 1, 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'f77e1088-d311-11e7-b419-1a8f80d3a0ab');
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `autorizacao`
 --
 
 CREATE TABLE `autorizacao` (
   `autoId` varchar(36) NOT NULL,
   `usuarioId` varchar(36) NOT NULL,
-  `autoData` datetime NOT NULL
+  `autoData` datetime NOT NULL,
+  `autoIP` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -5678,6 +5704,15 @@ CREATE TABLE `escolas` (
   `escolaAtivo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `escolas`
+--
+
+INSERT INTO `escolas` (`escolaId`, `escolaNome`, `escolaBairro`, `cidadeCodigo`, `estadoSigla`, `escolaAtivo`) VALUES
+('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Unidade 1', 'Xaxim', '4106902', 'PR', 1),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Unidade 2', 'Bigorrilho', '4106902', 'PR', 1),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Unidade 3', 'Santa Felicidade', '4106902', 'PR', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -5775,6 +5810,62 @@ INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `
 ('35a1dbfe-cca7-11e7-b4bf-07433e6c64b2', 'Jaleco Power', 2, 'R', NULL, 'S', -1, 20, 1200, 1),
 ('35a235cc-cca7-11e7-b4bf-07433e6c64b2', 'Erlenmeyer', 2, 'I', NULL, 'S', -1, 20, 800, 1),
 ('35a252e6-cca7-11e7-b4bf-07433e6c64b2', 'Carteira Média', 2, 'C', NULL, NULL, 2000, 0, 800, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `jogadores`
+--
+
+CREATE TABLE `jogadores` (
+  `alunoId` varchar(36) NOT NULL,
+  `jogadorDinheiro` decimal(10,2) NOT NULL,
+  `jogadorPontuacao` int(11) NOT NULL,
+  `jogadorCabelo` int(11) NOT NULL COMMENT 'Cores que estão no Unity',
+  `jogadorPele` int(11) NOT NULL COMMENT 'Cores que estão no Unity',
+  `jogadorSexo` int(11) NOT NULL COMMENT '0 = Masculino; 1 = Feminino',
+  `jogadorAno` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `jogadores`
+--
+
+INSERT INTO `jogadores` (`alunoId`, `jogadorDinheiro`, `jogadorPontuacao`, `jogadorCabelo`, `jogadorPele`, `jogadorSexo`, `jogadorAno`) VALUES
+('ef88bb50-cd6a-11e7-91b8-00051b7601a3', '200.00', 0, 1, 1, 0, 1),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', '200.00', 1000, 2, 2, 1, 2),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', '2000.00', 2500, 3, 3, 0, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `jogadoreseixo`
+--
+
+CREATE TABLE `jogadoreseixo` (
+  `jogadoreixoId` varchar(36) NOT NULL,
+  `alunoId` varchar(36) NOT NULL,
+  `eixoId` varchar(36) NOT NULL,
+  `jogadoreixoPontos` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `jogadoreseixo`
+--
+
+INSERT INTO `jogadoreseixo` (`jogadoreixoId`, `alunoId`, `eixoId`, `jogadoreixoPontos`) VALUES
+('226b7620-d315-11e7-b419-1a8f80d3a0ab', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'e885bc95-bb13-11e7-a2a8-00306776e789', 250),
+('226b8da4-d315-11e7-b419-1a8f80d3a0ab', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'e8860b43-bb13-11e7-a2a8-00306776e789', 350),
+('226b96f0-d315-11e7-b419-1a8f80d3a0ab', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'e886580e-bb13-11e7-a2a8-00306776e789', 200),
+('226b9eac-d315-11e7-b419-1a8f80d3a0ab', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'e8869db8-bb13-11e7-a2a8-00306776e789', 200),
+('65953936-d315-11e7-b419-1a8f80d3a0ab', 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1100),
+('65957054-d315-11e7-b419-1a8f80d3a0ab', 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'e8860b43-bb13-11e7-a2a8-00306776e789', 600),
+('6595967e-d315-11e7-b419-1a8f80d3a0ab', 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'e886580e-bb13-11e7-a2a8-00306776e789', 250),
+('6595aff6-d315-11e7-b419-1a8f80d3a0ab', 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'e8869db8-bb13-11e7-a2a8-00306776e789', 50),
+('dc7b9bea-d314-11e7-b419-1a8f80d3a0ab', 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'e885bc95-bb13-11e7-a2a8-00306776e789', 0),
+('dc7ba644-d314-11e7-b419-1a8f80d3a0ab', 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'e8860b43-bb13-11e7-a2a8-00306776e789', 0),
+('dc7bad60-d314-11e7-b419-1a8f80d3a0ab', 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'e886580e-bb13-11e7-a2a8-00306776e789', 0),
+('dc7bb404-d314-11e7-b419-1a8f80d3a0ab', 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'e8869db8-bb13-11e7-a2a8-00306776e789', 0);
 
 -- --------------------------------------------------------
 
@@ -6212,11 +6303,21 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`, `usuarioAtivo`) VALUES
-('ea58f8e6-b84f-11e7-89f4-9ef90429c14d', 'administrador', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1);
+('e057a428-d311-11e7-b419-1a8f80d3a0ab', 'loginAl1', '1b3d643f389627f6d932e93563bfbf82574c6150', '', 1),
+('e057af2c-d311-11e7-b419-1a8f80d3a0ab', 'loginAl2', '2926ea670beeb151beef5c43bef118491d87f1a2', '', 1),
+('ea58f8e6-b84f-11e7-89f4-9ef90429c14d', 'administrador', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1),
+('f77e1088-d311-11e7-b419-1a8f80d3a0ab', 'loginAl3', '69df03e43856c6e700519ac5909afcff9632a913', '', 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `alunos`
+--
+ALTER TABLE `alunos`
+  ADD PRIMARY KEY (`alunoId`),
+  ADD KEY `fk_escolas_idx` (`escolaId`);
 
 --
 -- Indexes for table `autorizacao`
@@ -6265,6 +6366,18 @@ ALTER TABLE `gruposusu`
 --
 ALTER TABLE `itens`
   ADD PRIMARY KEY (`itemId`);
+
+--
+-- Indexes for table `jogadores`
+--
+ALTER TABLE `jogadores`
+  ADD PRIMARY KEY (`alunoId`);
+
+--
+-- Indexes for table `jogadoreseixo`
+--
+ALTER TABLE `jogadoreseixo`
+  ADD PRIMARY KEY (`jogadoreixoId`);
 
 --
 -- Indexes for table `missoes`
