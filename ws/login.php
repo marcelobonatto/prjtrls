@@ -8,11 +8,11 @@ $mensagens  = array();
 
 //GET apenas para testes
 
-//if (isset($_POST['usuario']))
-if (isset($_GET['usuario']))
+if (isset($_POST['usuario']))
+//if (isset($_GET['usuario']))
 {
-//    $usuario          = $_POST['usuario'];
-    $usuario          = $_GET['usuario'];
+    $usuario          = $_POST['usuario'];
+//    $usuario          = $_GET['usuario'];
 }
 else
 {
@@ -20,11 +20,11 @@ else
     $usuario        = '';
 }
 
-//if (isset($_POST['chave']))
-if (isset($_GET['chave']))
+if (isset($_POST['chave']))
+//if (isset($_GET['chave']))
 {
-//    $chave         = $_POST['chave'];
-    $chave          = $_GET['chave'];
+    $chave         = $_POST['chave'];
+//    $chave          = $_GET['chave'];
 
     $chobj          = new lib\chave();
     $chobj->descompactar($chave);

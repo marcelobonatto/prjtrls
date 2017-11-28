@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 28-Nov-2017 às 13:49
--- Versão do servidor: 5.7.19
+-- Generation Time: Nov 28, 2017 at 09:06 PM
+-- Server version: 5.7.19
 -- PHP Version: 7.0.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `alunos`
+-- Table structure for table `alunos`
 --
 
 DROP TABLE IF EXISTS `alunos`;
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS `alunos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `alunos`
+-- Dumping data for table `alunos`
 --
 
 INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodle`, `alunoAtivo`, `escolaId`, `usuarioId`) VALUES
@@ -53,7 +53,7 @@ INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodl
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `autorizacao`
+-- Table structure for table `autorizacao`
 --
 
 DROP TABLE IF EXISTS `autorizacao`;
@@ -66,29 +66,91 @@ CREATE TABLE IF NOT EXISTS `autorizacao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `autorizacao`
+-- Dumping data for table `autorizacao`
 --
 
 INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
+('011a6591-d451-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('04058c69-d479-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('0a59e83a-d427-11e7-b2c2-0a002700000d', 'ea58f8e6-b84f-11e7-89f4-9ef90429c14d', '2017-11-27 13:23:05', '::1'),
+('0a866876-d47c-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('0fd84f0c-d44b-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('116dbf03-d450-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('1572cd90-d44b-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('19c884f7-d47d-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('21773b05-d451-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('21b16ae5-d47c-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('26401971-d44f-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('3228ed8d-d427-11e7-b2c2-0a002700000d', 'ea58f8e6-b84f-11e7-89f4-9ef90429c14d', '2017-11-27 13:23:05', '::1'),
 ('32f17f8b-d435-11e7-b2c2-0a002700000d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('3aaebbdb-d47f-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('3e693325-d47d-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('40d9e641-d44f-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('42d31c7f-d438-11e7-b2c2-0a002700000d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('47af5fbf-d451-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('5017ec3a-d451-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('5115cdbe-d44f-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('52e61a7b-d439-11e7-b2c2-0a002700000d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('52fd95d1-d47c-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('52ff2569-d478-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('5b80e6b5-d451-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('5be711a5-d432-11e7-b2c2-0a002700000d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('62411674-d451-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('63dae4b0-d427-11e7-b2c2-0a002700000d', 'ea58f8e6-b84f-11e7-89f4-9ef90429c14d', '2017-11-27 13:23:05', '::1'),
+('6778e795-d451-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('679a4ee2-d432-11e7-b2c2-0a002700000d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('69cbe4f4-d44b-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('6da4f015-d451-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('6ebe275f-d44b-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('712fcf3b-d472-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('72bedb6a-d44f-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('72c3ff25-d477-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('79788f94-d438-11e7-b2c2-0a002700000d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('7d00b8fa-d438-11e7-b2c2-0a002700000d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('7f88b4f4-d450-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('861ff641-d44f-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('887fbdd1-d450-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('91c17600-d44f-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('961cc467-d478-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('9777ef66-d477-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('a32baf77-d478-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('a336a45c-d427-11e7-b2c2-0a002700000d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('a4a7144d-d47c-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('aa89af1d-d44f-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('b0ea63af-d478-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('b372dca6-d44e-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('b7e3156b-d47b-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('b9a72760-d44e-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('be0d8a3e-d47b-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('be59128b-d44a-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('c41e29e4-d432-11e7-b2c2-0a002700000d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('cc5e5e39-d432-11e7-b2c2-0a002700000d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
-('d3d78dc2-d432-11e7-b2c2-0a002700000d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1');
+('cf706c6b-d478-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('cfe139b7-d47c-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('d00fbd62-d44a-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('d3d78dc2-d432-11e7-b2c2-0a002700000d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('d454a45b-d44e-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('d5a8bc67-d44f-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('da12b784-d450-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('e0640887-d450-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('e1af11ab-d478-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('e5927953-d477-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('e6ffe26d-d44e-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('e7312ab8-d44a-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('ed249901-d478-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('efc56d1c-d44e-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('efefd155-d478-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('f04118ca-d44a-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('f0655602-d47b-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('f228fbe8-d477-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('f7f57bbb-d44e-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('fda7c9b8-d478-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('fff4a9bb-d44e-11e7-8a07-1c39470d9087', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cidades`
+-- Table structure for table `cidades`
 --
 
 DROP TABLE IF EXISTS `cidades`;
@@ -100,7 +162,7 @@ CREATE TABLE IF NOT EXISTS `cidades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `cidades`
+-- Dumping data for table `cidades`
 --
 
 INSERT INTO `cidades` (`cidadeCodigo`, `cidadeNome`, `estadoSigla`) VALUES
@@ -5681,7 +5743,7 @@ INSERT INTO `cidades` (`cidadeCodigo`, `cidadeNome`, `estadoSigla`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `dialogosnpc`
+-- Table structure for table `dialogosnpc`
 --
 
 DROP TABLE IF EXISTS `dialogosnpc`;
@@ -5696,7 +5758,7 @@ CREATE TABLE IF NOT EXISTS `dialogosnpc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `dialogosnpc`
+-- Dumping data for table `dialogosnpc`
 --
 
 INSERT INTO `dialogosnpc` (`dialogoId`, `missaoId`, `dialogoSequencia`, `npcId`, `dialogoHumor`, `dialogoTexto`) VALUES
@@ -5705,7 +5767,7 @@ INSERT INTO `dialogosnpc` (`dialogoId`, `missaoId`, `dialogoSequencia`, `npcId`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `eixos`
+-- Table structure for table `eixos`
 --
 
 DROP TABLE IF EXISTS `eixos`;
@@ -5719,7 +5781,7 @@ CREATE TABLE IF NOT EXISTS `eixos` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `eixos`
+-- Dumping data for table `eixos`
 --
 
 INSERT INTO `eixos` (`eixoId`, `eixoNome`, `eixoSequencia`, `eixoSigla`, `eixoAtivo`) VALUES
@@ -5731,7 +5793,7 @@ INSERT INTO `eixos` (`eixoId`, `eixoNome`, `eixoSequencia`, `eixoSigla`, `eixoAt
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `escolas`
+-- Table structure for table `escolas`
 --
 
 DROP TABLE IF EXISTS `escolas`;
@@ -5746,7 +5808,7 @@ CREATE TABLE IF NOT EXISTS `escolas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `escolas`
+-- Dumping data for table `escolas`
 --
 
 INSERT INTO `escolas` (`escolaId`, `escolaNome`, `escolaBairro`, `cidadeCodigo`, `estadoSigla`, `escolaAtivo`) VALUES
@@ -5757,7 +5819,7 @@ INSERT INTO `escolas` (`escolaId`, `escolaNome`, `escolaBairro`, `cidadeCodigo`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `estados`
+-- Table structure for table `estados`
 --
 
 DROP TABLE IF EXISTS `estados`;
@@ -5768,7 +5830,7 @@ CREATE TABLE IF NOT EXISTS `estados` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `estados`
+-- Dumping data for table `estados`
 --
 
 INSERT INTO `estados` (`estadoSigla`, `estadoNome`) VALUES
@@ -5803,7 +5865,7 @@ INSERT INTO `estados` (`estadoSigla`, `estadoNome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `gruposusu`
+-- Table structure for table `gruposusu`
 --
 
 DROP TABLE IF EXISTS `gruposusu`;
@@ -5815,7 +5877,7 @@ CREATE TABLE IF NOT EXISTS `gruposusu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `gruposusu`
+-- Dumping data for table `gruposusu`
 --
 
 INSERT INTO `gruposusu` (`grupoId`, `grupoNome`, `grupoAtivo`) VALUES
@@ -5825,7 +5887,7 @@ INSERT INTO `gruposusu` (`grupoId`, `grupoNome`, `grupoAtivo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `itens`
+-- Table structure for table `itens`
 --
 
 DROP TABLE IF EXISTS `itens`;
@@ -5844,7 +5906,7 @@ CREATE TABLE IF NOT EXISTS `itens` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `itens`
+-- Dumping data for table `itens`
 --
 
 INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `eixoId`, `itemLimite`, `itemBonus`, `itemPrecoNormal`, `itemAtivo`) VALUES
@@ -5861,7 +5923,30 @@ INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `jogadores`
+-- Table structure for table `itensmochila`
+--
+
+DROP TABLE IF EXISTS `itensmochila`;
+CREATE TABLE IF NOT EXISTS `itensmochila` (
+  `itemmochilaId` varchar(36) NOT NULL,
+  `alunoId` varchar(36) NOT NULL,
+  `itemId` varchar(36) NOT NULL,
+  `itemmochilaSelecionado` tinyint(1) NOT NULL,
+  PRIMARY KEY (`itemmochilaId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `itensmochila`
+--
+
+INSERT INTO `itensmochila` (`itemmochilaId`, `alunoId`, `itemId`, `itemmochilaSelecionado`) VALUES
+('927c020e-d478-11e7-8a07-1c39470d9087', 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', '4b8c2a0a-cc89-11e7-b4bf-07433e6c64b2', 1),
+('927c1a42-d478-11e7-8a07-1c39470d9087', 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', '8db9b73c-c0b7-11e7-9b90-00306776e789', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `jogadores`
 --
 
 DROP TABLE IF EXISTS `jogadores`;
@@ -5877,7 +5962,7 @@ CREATE TABLE IF NOT EXISTS `jogadores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `jogadores`
+-- Dumping data for table `jogadores`
 --
 
 INSERT INTO `jogadores` (`alunoId`, `jogadorDinheiro`, `jogadorPontuacao`, `jogadorCabelo`, `jogadorPele`, `jogadorSexo`, `jogadorAno`) VALUES
@@ -5888,7 +5973,7 @@ INSERT INTO `jogadores` (`alunoId`, `jogadorDinheiro`, `jogadorPontuacao`, `joga
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `jogadoreseixo`
+-- Table structure for table `jogadoreseixo`
 --
 
 DROP TABLE IF EXISTS `jogadoreseixo`;
@@ -5901,7 +5986,7 @@ CREATE TABLE IF NOT EXISTS `jogadoreseixo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `jogadoreseixo`
+-- Dumping data for table `jogadoreseixo`
 --
 
 INSERT INTO `jogadoreseixo` (`jogadoreixoId`, `alunoId`, `eixoId`, `jogadoreixoPontos`) VALUES
@@ -5921,7 +6006,7 @@ INSERT INTO `jogadoreseixo` (`jogadoreixoId`, `alunoId`, `eixoId`, `jogadoreixoP
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `jogadoresmissao`
+-- Table structure for table `jogadoresmissao`
 --
 
 DROP TABLE IF EXISTS `jogadoresmissao`;
@@ -5937,7 +6022,7 @@ CREATE TABLE IF NOT EXISTS `jogadoresmissao` (
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `jogadoresmissao`
+-- Dumping data for table `jogadoresmissao`
 --
 
 INSERT INTO `jogadoresmissao` (`jogadormissaoId`, `alunoId`, `missaoId`, `jogadormissaoAprovado`, `jogadormissaoCumprida`, `jogadormissaoJogando`, `jogadormissaoLiberada`) VALUES
@@ -5953,7 +6038,7 @@ INSERT INTO `jogadoresmissao` (`jogadormissaoId`, `alunoId`, `missaoId`, `jogado
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `missoes`
+-- Table structure for table `missoes`
 --
 
 DROP TABLE IF EXISTS `missoes`;
@@ -5974,7 +6059,7 @@ CREATE TABLE IF NOT EXISTS `missoes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `missoes`
+-- Dumping data for table `missoes`
 --
 
 INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescricao`, `missaoAtivo`, `missaoIdMoodle`, `missaoAno`, `missaoSemestre`, `missaoSequencia`, `missaoObrigatoria`, `missaoPai`) VALUES
@@ -5990,7 +6075,7 @@ INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescrica
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `missoeseixo`
+-- Table structure for table `missoeseixo`
 --
 
 DROP TABLE IF EXISTS `missoeseixo`;
@@ -6005,7 +6090,7 @@ CREATE TABLE IF NOT EXISTS `missoeseixo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `missoeseixo`
+-- Dumping data for table `missoeseixo`
 --
 
 INSERT INTO `missoeseixo` (`missaoeixoId`, `missaoId`, `eixoId`, `missaoeixoPontos`) VALUES
@@ -6016,7 +6101,7 @@ INSERT INTO `missoeseixo` (`missaoeixoId`, `missaoId`, `eixoId`, `missaoeixoPont
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `npc`
+-- Table structure for table `npc`
 --
 
 DROP TABLE IF EXISTS `npc`;
@@ -6033,7 +6118,7 @@ CREATE TABLE IF NOT EXISTS `npc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `npc`
+-- Dumping data for table `npc`
 --
 
 INSERT INTO `npc` (`npcId`, `npcNome`, `npcChave`, `eixoId`, `npcImgNormal`, `npcImgIcone`, `npcAtivo`) VALUES
@@ -6050,7 +6135,7 @@ INSERT INTO `npc` (`npcId`, `npcNome`, `npcChave`, `eixoId`, `npcImgNormal`, `np
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `perguntas`
+-- Table structure for table `perguntas`
 --
 
 DROP TABLE IF EXISTS `perguntas`;
@@ -6064,7 +6149,7 @@ CREATE TABLE IF NOT EXISTS `perguntas` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `perguntas`
+-- Dumping data for table `perguntas`
 --
 
 INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `eixoId`, `perguntaAtivo`) VALUES
@@ -6097,7 +6182,7 @@ INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `e
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `perguntasdf`
+-- Table structure for table `perguntasdf`
 --
 
 DROP TABLE IF EXISTS `perguntasdf`;
@@ -6111,7 +6196,7 @@ CREATE TABLE IF NOT EXISTS `perguntasdf` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `perguntasdf`
+-- Dumping data for table `perguntasdf`
 --
 
 INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCodigo`, `perguntadfDificuldade`, `perguntadfAtivo`) VALUES
@@ -6143,7 +6228,7 @@ INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCod
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `quizzes`
+-- Table structure for table `quizzes`
 --
 
 DROP TABLE IF EXISTS `quizzes`;
@@ -6153,22 +6238,59 @@ CREATE TABLE IF NOT EXISTS `quizzes` (
   `alunoIdDesafiado` varchar(36) NOT NULL,
   `quizData` datetime NOT NULL,
   `quizLimite` datetime NOT NULL,
-  `alunoIdVencedor` varchar(36) NOT NULL,
+  `alunoIdVencedor` varchar(36) DEFAULT NULL,
   `quizDesafioResp` tinyint(1) NOT NULL,
+  `quizDataResp` datetime DEFAULT NULL,
+  `quizDesafianteViu` tinyint(1) NOT NULL,
+  `quizDesafiadoViu` tinyint(1) NOT NULL,
   PRIMARY KEY (`quizId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Extraindo dados da tabela `quizzes`
+-- Dumping data for table `quizzes`
 --
 
-INSERT INTO `quizzes` (`quizId`, `alunoIdDesafiante`, `alunoIdDesafiado`, `quizData`, `quizLimite`, `alunoIdVencedor`, `quizDesafioResp`) VALUES
-('36d45d26-d43c-11e7-b2c2-0a002700000d', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', '2017-11-28 14:35:00', '2017-11-29 14:35:00', '', 0);
+INSERT INTO `quizzes` (`quizId`, `alunoIdDesafiante`, `alunoIdDesafiado`, `quizData`, `quizLimite`, `alunoIdVencedor`, `quizDesafioResp`, `quizDataResp`, `quizDesafianteViu`, `quizDesafiadoViu`) VALUES
+('36d45d26-d43c-11e7-b2c2-0a002700000d', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', '2017-11-28 14:35:00', '2017-11-29 14:35:00', '', 0, NULL, 0, 0);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `respostas`
+-- Table structure for table `quizzespergresp`
+--
+
+DROP TABLE IF EXISTS `quizzespergresp`;
+CREATE TABLE IF NOT EXISTS `quizzespergresp` (
+  `qprId` varchar(36) NOT NULL,
+  `quizId` varchar(36) NOT NULL,
+  `alunoId` varchar(36) NOT NULL,
+  `perguntaId` varchar(36) NOT NULL,
+  `respostaIdRespondida` varchar(36) DEFAULT NULL,
+  `qprCorreta` tinyint(1) DEFAULT NULL,
+  `qprTempoResposta` int(11) DEFAULT NULL,
+  PRIMARY KEY (`qprId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `quizzespergresp`
+--
+
+INSERT INTO `quizzespergresp` (`qprId`, `quizId`, `alunoId`, `perguntaId`, `respostaIdRespondida`, `qprCorreta`, `qprTempoResposta`) VALUES
+('66ed3d8e-d44d-11e7-8a07-1c39470d9087', '36d45d26-d43c-11e7-b2c2-0a002700000d', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', '2ad854da-d2cb-11e7-b419-1a8f80d3a0ab', '521221c2-d2d3-11e7-b419-1a8f80d3a0ab', 1, 15),
+('66ed8d2d-d44d-11e7-8a07-1c39470d9087', '36d45d26-d43c-11e7-b2c2-0a002700000d', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', '2adbfd9c-d2cb-11e7-b419-1a8f80d3a0ab', '52183b66-d2d3-11e7-b419-1a8f80d3a0ab', 0, 12),
+('66edba6d-d44d-11e7-8a07-1c39470d9087', '36d45d26-d43c-11e7-b2c2-0a002700000d', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', '2ac51e56-d2cb-11e7-b419-1a8f80d3a0ab', '51f5cc7a-d2d3-11e7-b419-1a8f80d3a0ab', 1, 15),
+('66edd377-d44d-11e7-8a07-1c39470d9087', '36d45d26-d43c-11e7-b2c2-0a002700000d', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', '54c1cf86-cb25-11e7-af74-35b8fabdc297', '54ccaa82-cb25-11e7-af74-35b8fabdc297', 0, 10),
+('66ede92c-d44d-11e7-8a07-1c39470d9087', '36d45d26-d43c-11e7-b2c2-0a002700000d', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', '2ac8a486-d2cb-11e7-b419-1a8f80d3a0ab', '51fe42d8-d2d3-11e7-b419-1a8f80d3a0ab', 1, 5),
+('66ee2f47-d44d-11e7-8a07-1c39470d9087', '36d45d26-d43c-11e7-b2c2-0a002700000d', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', '2acdff30-d2cb-11e7-b419-1a8f80d3a0ab', '5204e78c-d2d3-11e7-b419-1a8f80d3a0ab', 0, 20),
+('66ee56e1-d44d-11e7-8a07-1c39470d9087', '36d45d26-d43c-11e7-b2c2-0a002700000d', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', '2ad349a4-d2cb-11e7-b419-1a8f80d3a0ab', NULL, NULL, NULL),
+('66ee7547-d44d-11e7-8a07-1c39470d9087', '36d45d26-d43c-11e7-b2c2-0a002700000d', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', '2ad854da-d2cb-11e7-b419-1a8f80d3a0ab', NULL, NULL, NULL),
+('66ee9426-d44d-11e7-8a07-1c39470d9087', '36d45d26-d43c-11e7-b2c2-0a002700000d', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', '2add697a-d2cb-11e7-b419-1a8f80d3a0ab', NULL, NULL, NULL),
+('66eeb1f6-d44d-11e7-8a07-1c39470d9087', '36d45d26-d43c-11e7-b2c2-0a002700000d', 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', '2ad50078-d2cb-11e7-b419-1a8f80d3a0ab', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `respostas`
 --
 
 DROP TABLE IF EXISTS `respostas`;
@@ -6183,7 +6305,7 @@ CREATE TABLE IF NOT EXISTS `respostas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `respostas`
+-- Dumping data for table `respostas`
 --
 
 INSERT INTO `respostas` (`respostaId`, `perguntaId`, `respostaCodigo`, `respostaTexto`, `respostaNivel`) VALUES
@@ -6283,7 +6405,7 @@ INSERT INTO `respostas` (`respostaId`, `perguntaId`, `respostaCodigo`, `resposta
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `respostasdf`
+-- Table structure for table `respostasdf`
 --
 
 DROP TABLE IF EXISTS `respostasdf`;
@@ -6298,7 +6420,7 @@ CREATE TABLE IF NOT EXISTS `respostasdf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `respostasdf`
+-- Dumping data for table `respostasdf`
 --
 
 INSERT INTO `respostasdf` (`respostadfId`, `perguntadfId`, `respostadfCodigo`, `respostadfTexto`, `respostadfNivel`) VALUES
@@ -6420,7 +6542,7 @@ INSERT INTO `respostasdf` (`respostadfId`, `perguntadfId`, `respostadfCodigo`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Table structure for table `usuarios`
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -6434,7 +6556,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`, `usuarioAtivo`) VALUES
@@ -6448,7 +6570,7 @@ INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`
 --
 
 --
--- Limitadores para a tabela `missoes`
+-- Constraints for table `missoes`
 --
 ALTER TABLE `missoes`
   ADD CONSTRAINT `fk_missoes_missoes1` FOREIGN KEY (`missaoPai`) REFERENCES `missoes` (`missaoId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
