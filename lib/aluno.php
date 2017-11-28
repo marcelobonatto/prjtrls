@@ -1,13 +1,15 @@
 <?php
+namespace lib;
+
 class aluno
 {
-    const ALUNO_ID        = 0;
-    const ALUNO_NOME      = 1;
+    const ALUNO_ID          = 0;
+    const ALUNO_NOME        = 1;
     const ALUNO_LOGINMOODLE = 2;
-    const ESCOLA_ID       = 3;
-    const ESCOLA_NOME     = 4;
-    const ALUNO_MATRICULA = 5;
-    const ALUNO_ATIVO     = 6;
+    const ESCOLA_ID         = 3;
+    const ESCOLA_NOME       = 4;
+    const ALUNO_MATRICULA   = 5;
+    const ALUNO_ATIVO       = 6;
 
     public $id;
     public $nome;
@@ -120,6 +122,34 @@ class aluno
                 $this->escolaNome              = $aluno[self::ESCOLA_NOME];
                 $this->matricula          = $aluno[self::ALUNO_MATRICULA];
                 $this->ativo                 = $aluno[self::ALUNO_ATIVO];
+            }
+        }
+    }
+
+    public function SelecionarPorUsuario($usuario)
+    {
+        $sql    = "SELECT alunoId, alunoNome, alunoLoginMoodle, n.escolaId, escolaNome, alunoMatricula, alunoAtivo " .
+                  'FROM alunos n ' .
+                  'LEFT JOIN escolas e ON e.escolaId = n.escolaId ' .
+                  "WHERE usuarioId = '$usuario' " .
+                  'ORDER BY alunoNome';
+                  
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                $aluno   = $res[0];
+
+                $this->id           = $aluno[self::ALUNO_ID];
+                $this->nome         = $aluno[self::ALUNO_NOME];
+                $this->loginMoodle  = $aluno[self::ALUNO_LOGINMOODLE];
+                $this->escola       = $aluno[self::ESCOLA_ID];
+                $this->escolaNome   = $aluno[self::ESCOLA_NOME];
+                $this->matricula    = $aluno[self::ALUNO_MATRICULA];
+                $this->ativo        = $aluno[self::ALUNO_ATIVO];
             }
         }
     }
