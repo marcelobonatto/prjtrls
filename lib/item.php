@@ -67,6 +67,46 @@ class item
         return $matriz;
     }
 
+    public function ListarTudoAtivo()
+    {
+        $matriz = array();
+
+        $sql    = 'SELECT itemId, itemNome, itemNivel, itemTipo, itemCor, i.eixoId, eixoNome, itemLimite, itemBonus, itemPrecoNormal, itemAtivo ' .
+                  'FROM itens i ' .
+                  'LEFT JOIN eixos e ON e.eixoId = i.eixoId ' .
+                  "WHERE itemAtivo = 1 " .
+                  'ORDER BY itemNome';
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                foreach ($res as $item)
+                {
+                    $obj                        = new item();
+                    $obj->id                    = $item[self::ITEM_ID];
+                    $obj->nome                  = $item[self::ITEM_NOME];
+                    $obj->nivel                 = $item[self::ITEM_NIVEL];
+                    $obj->tipo                  = $item[self::ITEM_TIPO];
+                    $obj->cor                   = $item[self::ITEM_COR];
+                    $obj->eixo                  = $item[self::EIXO_ID];
+                    $obj->eixoNome              = $item[self::EIXO_NOME];
+                    $obj->limite                = $item[self::ITEM_LIMITE];
+                    $obj->bonus                 = $item[self::ITEM_BONUS];
+                    $obj->preconormal           = $item[self::ITEM_PRECONORMAL];
+                    $obj->ativo                 = $item[self::ITEM_ATIVO];
+
+                    array_push($matriz, $obj);
+                }
+            }
+        }
+
+        return $matriz;
+    }
+
     public function Selecionar($id)
     {
         $sql    = "SELECT itemId, itemNome, itemNivel, itemTipo, itemCor, i.eixoId, COALESCE(e.eixoNome, 'Todos') AS eixoNome, itemLimite, itemBonus, itemPrecoNormal, itemAtivo " .

@@ -142,17 +142,61 @@ if (count($mensagens) == 0)
             $mocobj         = new lib\mochila();
             $mocarr         = $mocobj->ListarPorAluno($aluobj->id);
 
+            $itemobj        = new lib\item();
+            $itemarr        = $itemobj->ListarTudoAtivo();
+
             $login->mochila = array();
             
             foreach ($mocarr as $mochila)
             {
-                $login->mochila[]   = new lib\ws\jsloginmochila();
-                $posmochila         = count($login->mochila) - 1;
+                $positem            = array_search($mochila->item, array_column($itemarr, 'id'));
 
-                $itemobj            = new lib\item();
-                $itemobj->Selecionar($mochila->item);
+                if ($positem !== FALSE)
+                {
+                    $login->mochila[]   = new lib\ws\jsloginmochila();
+                    $posmochila         = count($login->mochila) - 1;
+                    $item               = $itemarr[$positem];
 
-                switch ($itemobj->tipo)
+                    switch ($item->tipo)
+                    {
+                        case 'C':
+                            $tipoitem   = 'CARTEIRA';
+                            break;                    
+                        case 'I':
+                            $tipoitem   = 'ITEM';
+                            break;
+                        case 'R':
+                            $tipoitem   = 'ROUPA';
+                            break;
+                    }
+
+                    $login->mochila[$posmochila]->codigo        = $mochila->item;
+                    $login->mochila[$posmochila]->tipo          = $tipoitem;
+                    $login->mochila[$posmochila]->nome          = $item->nome;
+                    $login->mochila[$posmochila]->eixo          = strtoupper($item->eixoNome);
+                    $login->mochila[$posmochila]->limite        = $item->limite;
+                    $login->mochila[$posmochila]->bonus         = $item->bonus;
+                    $login->mochila[$posmochila]->nivel         = $item->nivel;
+                    $login->mochila[$posmochila]->estausando    = $mochila->selecionado;
+                }
+            }
+
+            $login->loja = array();
+            
+            foreach ($itemarr as $loja)
+            {
+                $comprado       = false;
+                $posmoc         = array_search($loja->id, array_column($mocarr, 'item'));
+
+                if ($posmoc !== FALSE)
+                {
+                    $comprado   = true;
+                }
+
+                $login->loja[]   = new lib\ws\jsloginloja();
+                $posloja         = count($login->loja) - 1;
+
+                switch ($loja->tipo)
                 {
                     case 'C':
                         $tipoitem   = 'CARTEIRA';
@@ -165,14 +209,15 @@ if (count($mensagens) == 0)
                         break;
                 }
 
-                $login->mochila[$posmochila]->codigo        = $mochila->item;
-                $login->mochila[$posmochila]->tipo          = $tipoitem;
-                $login->mochila[$posmochila]->nome          = $itemobj->nome;
-                $login->mochila[$posmochila]->eixo          = strtoupper($itemobj->eixoNome);
-                $login->mochila[$posmochila]->limite        = $itemobj->limite;
-                $login->mochila[$posmochila]->bonus         = $itemobj->bonus;
-                $login->mochila[$posmochila]->nivel         = $itemobj->nivel;
-                $login->mochila[$posmochila]->estausando    = $mochila->selecionado;
+                $login->loja[$posloja]->codigo      = $loja->id;
+                $login->loja[$posloja]->tipo        = $tipoitem;
+                $login->loja[$posloja]->nome        = $loja->nome;
+                $login->loja[$posloja]->eixo        = strtoupper($loja->eixoNome);
+                $login->loja[$posloja]->limite      = $loja->limite;
+                $login->loja[$posloja]->bonus       = $loja->bonus;
+                $login->loja[$posloja]->nivel       = $loja->nivel;
+                $login->loja[$posloja]->comprado    = $comprado;
+                $login->loja[$posloja]->preco       = $loja->preconormal;
             }
         }
         else
@@ -188,9 +233,9 @@ if (count($mensagens) == 0)
 
 if (count($mensagens) > 0)
 {
-    $login         = new lib\ws\jsloginerros();
+    $login          = new lib\ws\jsloginerros();
 
-    $login->erros  = array();
+    $login->erros   = array();
     $i              = 0;
     
     foreach ($mensagens as $mensagem)
