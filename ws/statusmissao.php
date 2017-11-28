@@ -19,16 +19,16 @@ else
     $token          = '';
 }
 
-if (isset($_POST['aluno']))
-//if (isset($_GET['aluno']))
+if (isset($_POST['missaoaluno']))
+//if (isset($_GET['missaoaluno']))
 {
-    $aluno         = $_POST['aluno'];
-//    $aluno         = $_GET['aluno'];
+    $missaoaluno         = $_POST['missaoaluno'];
+//    $missaoaluno         = $_GET['missaoaluno'];
 }
 else
 {
-    $mensagens[]    = 'Aluno não informado';
-    $aluno          = '';
+    $mensagens[]    = 'Missao/Aluno não informado';
+    $missaoaluno          = '';
 }
 
 if (isset($_POST['aluno']))
@@ -69,8 +69,14 @@ else
 
 if (count($mensagens) == 0)
 {
-    $missaoalunojs                 = new lib\ws\jsmissaoaluno();
+    $jsmissaoaluno                 = new lib\ws\jsmissaoaluno();
 
     $missaoaluno            = new lib\missaoaluno();
-    $mandasalvar            = $missaoaluno->Salvar();
+
+    $missaoaluno->id = $jsmissaoaluno->missaoaluno;
+    $missaoaluno->missao = $jsmissaoaluno->missao;
+    $missaoaluno->aluno = $jsmissaoaluno->aluno;
+    $missaoaluno->status = $jsmissaoaluno->status;
+    
+    $salvou                 = $missaoaluno->Salvar();
 }

@@ -11,7 +11,7 @@ class missaoaluno
     public $id;
     public $missao;
     public $aluno;
-    public $statusMissao;
+    public $status;
 
     public function Salvar()
     {
@@ -38,7 +38,7 @@ class missaoaluno
     {
         $sql    = 'INSERT INTO missaoaluno ' .
                   '(missaoalunoId, missaoId, alunoId, statusMissao) ' .
-                  "VALUES ('$id', '$this->missao', '$this->aluno', $this->statusMissao)";
+                  "VALUES ('$id', '$this->missao', '$this->aluno', $this->status)";
 
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);
@@ -58,7 +58,7 @@ class missaoaluno
         $sql    = 'UPDATE missaoaluno ' .
                   "SET missaoId = '$this->missao', " .
                   "alunoId = '$this->aluno', " .
-                  "statusMissao = $this->statusMissao " .
+                  "statusMissao = $this->status " .
                   "WHERE missaoalunoId = '$id'";
 
         $db         = new bancodados();
