@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 
 -- --------------------------------------------------------
 
---
+--`
 -- Table structure for table `alunos`
 --
 
@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `alunos` (
   KEY `fk_escolas_idx` (`escolaId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
+--`
 -- Dumping data for table `alunos`
 --
 
@@ -60,7 +60,7 @@ DROP TABLE IF EXISTS `autorizacao`;
 CREATE TABLE IF NOT EXISTS `autorizacao` (
   `autoId` varchar(36) NOT NULL,
   `usuarioId` varchar(36) NOT NULL,
-  `autoData` datetime NOT NULL,
+  `autoData` datetime NOT NULL,L
   `autoIP` varchar(50) NOT NULL,
   PRIMARY KEY (`autoId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -5757,7 +5757,7 @@ CREATE TABLE IF NOT EXISTS `dialogosnpc` (
   PRIMARY KEY (`dialogoId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
+-- Extraindo dados da tabela `dialogosnpc`
 -- Dumping data for table `dialogosnpc`
 --
 
@@ -5780,7 +5780,7 @@ CREATE TABLE IF NOT EXISTS `eixos` (
   PRIMARY KEY (`eixoId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
---
+-- Extraindo dados da tabela `eixos`
 -- Dumping data for table `eixos`
 --
 
@@ -5792,7 +5792,7 @@ INSERT INTO `eixos` (`eixoId`, `eixoNome`, `eixoSequencia`, `eixoSigla`, `eixoAt
 
 -- --------------------------------------------------------
 
---
+---- Estrutura da tabela `escolas`
 -- Table structure for table `escolas`
 --
 
@@ -5921,8 +5921,6 @@ INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `
 ('35a252e6-cca7-11e7-b4bf-07433e6c64b2', 'Carteira Média', 2, 'C', NULL, NULL, 2000, 0, 800, 1);
 
 -- --------------------------------------------------------
-
---
 -- Table structure for table `itensmochila`
 --
 
@@ -6004,8 +6002,6 @@ INSERT INTO `jogadoreseixo` (`jogadoreixoId`, `alunoId`, `eixoId`, `jogadoreixoP
 ('dc7bb404-d314-11e7-b419-1a8f80d3a0ab', 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'e8869db8-bb13-11e7-a2a8-00306776e789', 0);
 
 -- --------------------------------------------------------
-
---
 -- Table structure for table `jogadoresmissao`
 --
 
@@ -6227,7 +6223,7 @@ INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCod
 
 -- --------------------------------------------------------
 
---
+--`
 -- Table structure for table `quizzes`
 --
 
@@ -6559,11 +6555,149 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- Dumping data for table `usuarios`
 --
 
-INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`, `usuarioAtivo`) VALUES
+INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`, `usuarioAtivo`) VALUES,
 ('e057a428-d311-11e7-b419-1a8f80d3a0ab', 'loginAl1', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1),
 ('e057af2c-d311-11e7-b419-1a8f80d3a0ab', 'loginAl2', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1),
-('ea58f8e6-b84f-11e7-89f4-9ef90429c14d', 'administrador', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1),
+('ea58f8e6-b84f-11e7-89f4-9ef90429c14d', 'administrador', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1),;
 ('f77e1088-d311-11e7-b419-1a8f80d3a0ab', 'loginAl3', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `missaoaluno`
+--
+
+CREATE TABLE `missaoaluno` (
+  `missaoalunoId` varchar(36) NOT NULL,
+  `missaoId` varchar(36) NOT NULL,
+  `alunoId` varchar(255) NOT NULL,
+  `statusMissao` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `alunos`
+--
+ALTER TABLE `alunos`
+  ADD PRIMARY KEY (`alunoId`),
+  ADD KEY `fk_escolas_idx` (`escolaId`);
+
+--
+-- Indexes for table `autorizacao`
+--
+ALTER TABLE `autorizacao`
+  ADD PRIMARY KEY (`autoId`);
+
+--
+-- Indexes for table `cidades`
+--
+ALTER TABLE `cidades`
+  ADD PRIMARY KEY (`cidadeCodigo`);
+
+--
+-- Indexes for table `dialogosnpc`
+--
+ALTER TABLE `dialogosnpc`
+  ADD PRIMARY KEY (`dialogoId`);
+
+--
+-- Indexes for table `eixos`
+--
+ALTER TABLE `eixos`
+  ADD PRIMARY KEY (`eixoId`);
+
+--
+-- Indexes for table `escolas`
+--
+ALTER TABLE `escolas`
+  ADD PRIMARY KEY (`escolaId`);
+
+--
+-- Indexes for table `estados`
+--
+ALTER TABLE `estados`
+  ADD PRIMARY KEY (`estadoSigla`);
+
+--
+-- Indexes for table `gruposusu`
+--
+ALTER TABLE `gruposusu`
+  ADD PRIMARY KEY (`grupoId`);
+
+--
+-- Indexes for table `itens`
+--
+ALTER TABLE `itens`
+  ADD PRIMARY KEY (`itemId`);
+
+--
+-- Indexes for table `jogadores`
+--
+ALTER TABLE `jogadores`
+  ADD PRIMARY KEY (`alunoId`);
+
+--
+-- Indexes for table `jogadoreseixo`
+--
+ALTER TABLE `jogadoreseixo`
+  ADD PRIMARY KEY (`jogadoreixoId`);
+
+--
+-- Indexes for table `missoes`
+--
+ALTER TABLE `missoes`
+  ADD PRIMARY KEY (`missaoId`),
+  ADD KEY `fk_missoes_missoes1_idx` (`missaoPai`);
+
+--
+-- Indexes for table `missoeseixo`
+--
+ALTER TABLE `missoeseixo`
+  ADD PRIMARY KEY (`missaoeixoId`),
+  ADD KEY `missaoId` (`missaoId`),
+  ADD KEY `eixoId` (`eixoId`);
+
+--
+-- Indexes for table `npc`
+--
+ALTER TABLE `npc`
+  ADD PRIMARY KEY (`npcId`),
+  ADD KEY `eixoId` (`eixoId`);
+
+--
+-- Indexes for table `perguntas`
+--
+ALTER TABLE `perguntas`
+  ADD PRIMARY KEY (`perguntaId`);
+
+--
+-- Indexes for table `perguntasdf`
+--
+ALTER TABLE `perguntasdf`
+  ADD PRIMARY KEY (`perguntadfId`);
+
+--
+-- Indexes for table `respostas`
+--
+ALTER TABLE `respostas`
+  ADD PRIMARY KEY (`respostaId`),
+  ADD KEY `FK_perguntas` (`perguntaId`);
+
+--
+-- Indexes for table `respostasdf`
+--
+ALTER TABLE `respostasdf`
+  ADD PRIMARY KEY (`respostadfId`),
+  ADD KEY `FK_perguntasdf` (`perguntadfId`);
+
+--
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usuarioId`);
 
 --
 -- Constraints for dumped tables
@@ -6575,6 +6709,13 @@ INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`
 ALTER TABLE `missoes`
   ADD CONSTRAINT `fk_missoes_missoes1` FOREIGN KEY (`missaoPai`) REFERENCES `missoes` (`missaoId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
+--
+-- Indexes for table `missaoaluno`
+--
+ALTER TABLE `missaoaluno`
+  ADD PRIMARY KEY (`missaoalunoId`),
+  ADD CONSTRAINT `fk_missaoaluno_alunos` FOREIGN KEY (`alunoId`) REFERENCES `alunos` (`alunoId`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_missaoaluno_missoes` FOREIGN KEY (`missaoId`) REFERENCES `missoes` (`missaoId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
