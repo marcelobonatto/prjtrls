@@ -20,55 +20,10 @@ class chave
 {
     public $real;
     public $texto;
+    public $erro        = 0;
 
     public function descompactar($chave)
     {
-//echo(urlencode(gzcompress(base64_encode($chave), 9)));
-/*
-        $enc64   = base64_encode($chave);
-        echo("DESC:  $enc64<br />");
-
-        $com    = gzcompress($enc64);
-        echo("COM:  $com<br />");
-
-        $enc    = urlencode($com);
-        echo("ENC:  $enc<br />");   */ 
-/*
-    $enc64   = base64_encode($chave);
-    echo("DESC:  $enc64<br />");
-
-    $com    = gzcompress($enc64);
-    echo("COM:  $com<br />");
-
-    $enc    = urlencode($com);
-    echo("ENC:  $enc<br />");    
-
-    $dec    = urldecode($enc);
-    echo("DEC:  $dec<br />");
-
-    $unc    = gzuncompress($dec);
-    echo("UNC:  $unc<br />");
-
-    $dec64   = base64_decode($unc);
-    echo("DESC:  $dec64<br />");
-*/
-/*
-        $dec    = urldecode($chave);
-echo("DEC:  $dec<br />");
-
-        $unc    = gzuncompress($dec);
-        echo("UNC:  $unc<br />");
-
-        $desc   = base64_decode($unc);
-        echo("DESC:  $desc<br />");        
-
-        $letras = array();
-
-        for ($letra = 0; $letra < strlen($desc); $letra += 3)
-        {
-            $letras[]   = substr($desc, $letra, 3);
-        }
-*/
         $contarq    = file_get_contents(realpath('../dados/config.json'));
         $json       = json_decode($contarq);
 
@@ -103,7 +58,10 @@ echo("DEC:  $dec<br />");
 
             if (strlen($chaveunity) == count($letra))
             {
-                $letunt = '';
+                $letunt     = '';
+                $letsnh     = '';
+                $ok         = true;
+                $fimsenha   = false;
 
                 for ($cmp = 0; $cmp < strlen($chaveunity); $cmp++)
                 {
@@ -115,20 +73,60 @@ echo("DEC:  $dec<br />");
                         $dif    = $chrinf - $chrunt;
 
                         $letunt .= chr($dif);
-
-                        echo("$chrinf - $chrunt = $dif (" . chr($dif) . ")<br />");
                     }
                     else if ($cmp == 14)
                     {
-                        $d = \DateTime::createFromFormat('YmdHis', $letunt);
-                        $ehdata = $d && $d->format('YmdHis') == $letunt;
+                        $data   = \DateTime::createFromFormat('YmdHis', $letunt);
+                        $ehdata = $data && $data->format('YmdHis') == $letunt;
 
-                        echo("$letunt - $ehdata<br />");
+                        if (!$ehdata)
+                        {
+                            $this->erro = 2;
+                            break;
+                        }
+
+                        if ($carsrun[$cmp] != $cars[$cmp])
+                        {
+                            $this->erro = 3;
+                            break;
+                        }
+                    }
+                    else if (($cmp > 14 && $cmp < 26) || $fimsenha)
+                    {
+                        if ($carsrun[$cmp] != $cars[$cmp])
+                        {
+                            $this->erro = 3;
+                            break;
+                        }
+                    }
+                    else if ($cmp >= 26 && !$fimsenha)
+                    {
+                        $chrunt = $carsrun[$cmp];
+                        $chrinf = $cars[$cmp];
+
+                        $dif    = $chrinf - $chrunt;
+
+                        if ($dif == 127)
+                        {
+                            $fimsenha   = true;
+                        }
+                        else
+                        {
+                            $letsnh     .= chr($dif);
+                        }
                     }
                 }
             }
+            else
+            {
+                $this->erro = 1;
+            }
 
-            $this->texto    = $letra;
+            if ($this->erro == 0)
+            {
+                $this->real     = $data->format('Y-m-d H:i:s');
+                $this->texto    = $letsnh;
+            }
         }
     }
 }
