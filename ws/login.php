@@ -138,6 +138,42 @@ if (count($mensagens) == 0)
                 $login->quiz[$posquiz]->seuspontos      = $qprconteu;
                 $login->quiz[$posquiz]->pontosdele      = $qprcontctr;
             }
+
+            $mocobj         = new lib\mochila();
+            $mocarr         = $mocobj->ListarPorAluno($aluobj->id);
+
+            $login->mochila = array();
+            
+            foreach ($mocarr as $mochila)
+            {
+                $login->mochila[]   = new lib\ws\jsloginmochila();
+                $posmochila         = count($login->mochila) - 1;
+
+                $itemobj            = new lib\item();
+                $itemobj->Selecionar($mochila->item);
+
+                switch ($itemobj->tipo)
+                {
+                    case 'C':
+                        $tipoitem   = 'CARTEIRA';
+                        break;                    
+                    case 'I':
+                        $tipoitem   = 'ITEM';
+                        break;
+                    case 'R':
+                        $tipoitem   = 'ROUPA';
+                        break;
+                }
+
+                $login->mochila[$posmochila]->codigo        = $mochila->item;
+                $login->mochila[$posmochila]->tipo          = $tipoitem;
+                $login->mochila[$posmochila]->nome          = $itemobj->nome;
+                $login->mochila[$posmochila]->eixo          = strtoupper($itemobj->eixoNome);
+                $login->mochila[$posmochila]->limite        = $itemobj->limite;
+                $login->mochila[$posmochila]->bonus         = $itemobj->bonus;
+                $login->mochila[$posmochila]->nivel         = $itemobj->nivel;
+                $login->mochila[$posmochila]->estausando    = $mochila->selecionado;
+            }
         }
         else
         {
