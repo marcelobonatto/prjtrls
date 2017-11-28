@@ -1,6 +1,7 @@
 <?php
 include_once('../autoload.php');
 
+date_default_timezone_set('America/Sao_Paulo');
 header('Content-Type: application/json');
 
 $mensagens  = array();
@@ -110,6 +111,32 @@ if (count($mensagens) == 0)
                 $login->missoes[$posmissao]->cumprida       = $jm->cumprida;
                 $login->missoes[$posmissao]->jogando        = $jm->jogando;
                 $login->missoes[$posmissao]->aprovada       = $jm->liberada;
+            }
+
+            $quizobj            = new lib\quiz();
+            $quizarr            = $quizobj->ListarPorJogador($aluobj->id);
+
+            $login->quiz        = array();
+
+            foreach ($quizarr as $quiz)
+            {
+                $login->quiz[]                          = new lib\ws\jsloginquiz();
+                $posquiz                                = count($login->quiz) - 1;
+
+                $contra                                 = ($quiz->alunoDesafiante != $aluobj->id ? $quiz->alunoDesafiante : $quiz->alunoDesafiado);
+
+                $qprobj                                 = new lib\quizresposta();
+                $qprconteu                              = $qprobj->ContarPontos($aluobj->id, $quiz->id);
+                $qprcontctr                             = $qprobj->ContarPontos($contra, $quiz->id);
+
+                $login->quiz[$posquiz]->codigo          = $quiz->id;
+                $login->quiz[$posquiz]->contra          = $contra;
+                $login->quiz[$posquiz]->pedido          = date('Y-m-d H:i:s', strtotime($quiz->data));
+                $login->quiz[$posquiz]->validade        = date('Y-m-d H:i:s', strtotime($quiz->limite));
+                $login->quiz[$posquiz]->vocerespondeu   = ($quiz->alunoDesafiante == $aluobj->id);
+                $login->quiz[$posquiz]->elerespondeu    = ($quiz->alunoDesafiante != $aluobj->id);
+                $login->quiz[$posquiz]->seuspontos      = $qprconteu;
+                $login->quiz[$posquiz]->pontosdele      = $qprcontctr;
             }
         }
         else
