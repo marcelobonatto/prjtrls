@@ -3,13 +3,13 @@ namespace lib;
 
 class aluno
 {
-    const ALUNO_ID        = 0;
-    const ALUNO_NOME      = 1;
+    const ALUNO_ID          = 0;
+    const ALUNO_NOME        = 1;
     const ALUNO_LOGINMOODLE = 2;
-    const ESCOLA_ID       = 3;
-    const ESCOLA_NOME     = 4;
-    const ALUNO_MATRICULA = 5;
-    const ALUNO_ATIVO     = 6;
+    const ESCOLA_ID         = 3;
+    const ESCOLA_NOME       = 4;
+    const ALUNO_MATRICULA   = 5;
+    const ALUNO_ATIVO       = 6;
 
     public $id;
     public $nome;
@@ -133,7 +133,7 @@ class aluno
                   'LEFT JOIN escolas e ON e.escolaId = n.escolaId ' .
                   "WHERE usuarioId = '$usuario' " .
                   'ORDER BY alunoNome';
-
+                  
         $db     = new bancodados();
         $res    = $db->SelecaoSimples($sql);
 

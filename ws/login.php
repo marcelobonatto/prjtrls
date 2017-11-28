@@ -103,7 +103,7 @@ if (count($mensagens) == 0)
                 $login->missoes[$posmissao]->ano            = $jm->missaoAno;
                 $login->missoes[$posmissao]->semestre       = $jm->missaoSemestre;
                 $login->missoes[$posmissao]->codigo         = $jm->missao;
-                $login->missoes[$posmissao]->sequencia      = $jm->missaoSequenca;
+                $login->missoes[$posmissao]->sequencia      = $jm->missaoSequencia;
                 $login->missoes[$posmissao]->obrigatorio    = $jm->missaoObrigatoria;
                 $login->missoes[$posmissao]->ligadoa        = $jm->missaoPai;
                 $login->missoes[$posmissao]->liberada       = $jm->liberada;
