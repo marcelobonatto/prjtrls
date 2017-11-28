@@ -6574,6 +6574,19 @@ CREATE TABLE `missaoaluno` (
   `statusMissao` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `missaoaluno`
+--
+
+CREATE TABLE `missaoaluno` (
+  `missaoalunoId` varchar(36) NOT NULL,
+  `missaoId` varchar(36) NOT NULL,
+  `alunoId` varchar(255) NOT NULL,
+  `statusMissao` tinyint(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Indexes for dumped tables
 --
@@ -6708,7 +6721,10 @@ ALTER TABLE `usuarios`
 --
 ALTER TABLE `missoes`
   ADD CONSTRAINT `fk_missoes_missoes1` FOREIGN KEY (`missaoPai`) REFERENCES `missoes` (`missaoId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
 COMMIT;
+=======
+
 --
 -- Indexes for table `missaoaluno`
 --
