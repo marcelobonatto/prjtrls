@@ -44,7 +44,7 @@ if (isset($_GET['valor']))
     $b64            = base64_decode($valor);
     $json           = json_decode($b64);
 
-    $cjs            = array("nome", "usuario", "unidade", "ano");
+    $cjs            = array('nome', 'usuario', 'unidade', 'matricula', 'ano');
 
     if (json_last_error() == JSON_ERROR_NONE)
     {
@@ -66,10 +66,32 @@ else
     $mensagens[]    = 'Os valores do cadastro não foram informados';
     $valor          = '';
 }
+//Exemplo JSON
+//{ "nome": "Aluno 4", "usuario": "aluno4", "unidade": "ef88bb50-cd6a-11e7-91b8-00051b7601a3", "matricula": 1951, "ano": 1 }
 
+//TODO: Continuar daqui fazendo a montagem do JSON de resposta
 if (count($mensagens) == 0)
 {
-
+    $usuario            = new lib\usuario();
+    $usuario->nome      = $cjs->usuario;
+    $usuario->senha     = $chobj->valor;
+    $usuario->sal       = '';
+    $usuario->ativo     = 1;
+    
+    if ($usuario-Salvar())
+    {
+        $aluno              = new lib\aluno();
+        $aluno->id          = $usuario->id;
+        $aluno->nome        = $cjs->nome;
+        $aluno->loginMoodle = $cjs->usuario;
+        $aluno->escola      = $cjs->unidade;
+        $aluno->matricula   = $cjs->matricula;
+        $aluno->ativo       = 1;
+    }
+    else
+    {
+        $mensagens[]    = 'Não foi possível salvar no banco o novo usuário';
+    }
 }
 
 if (count($mensagens) > 0)

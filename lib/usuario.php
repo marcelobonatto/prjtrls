@@ -120,6 +120,8 @@ class usuario
             $id     = $this->id;
         }
 
+        $senha  = password_hash($_POST['senha'], PASSWORD_DEFAULT);
+
         if ($id == '{ID}')
         {
             return $this->Incluir($id);
@@ -130,11 +132,11 @@ class usuario
         }
     }
 
-    public function Incluir($id)
+    public function Incluir($id, $senha)
     {
         $sql    = 'INSERT INTO usuarios ' .
-                '(usuarioId, usuarioNome, usuarioSenha, usuarioAtivo) ' . 
-                "VALUES ('$id', '$this->nome', '$this->senha', $this->ativo)";
+                  '(usuarioId, usuarioNome, usuarioSenha, usuarioAtivo) ' . 
+                  "VALUES ('$id', '$this->nome', '$senha', $this->ativo)";
 
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);
@@ -149,13 +151,13 @@ class usuario
         }
     }
 
-    public function Atualizar($id)
+    public function Atualizar($id, $senha)
     {
         $sql    = 'UPDATE usuarios ' .
-                "SET usuarioNome = '$this->nome', " .
-                "usuarioSenha = '$this->senha', " .
-                "usuarioAtivo = $this->ativo " .
-                "WHERE usuarioId = '$id'";
+                  "SET usuarioNome = '$this->nome', " .
+                  "usuarioSenha = '$senha', " .
+                  "usuarioAtivo = $this->ativo " .
+                  "WHERE usuarioId = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);

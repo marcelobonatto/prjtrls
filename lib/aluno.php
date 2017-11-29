@@ -17,6 +17,7 @@ class aluno
     public $escola;
     public $escolaNome;
     public $matricula;
+    public $usuario;
     public $ativo;
 
 /*
