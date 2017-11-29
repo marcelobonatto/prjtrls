@@ -59,6 +59,7 @@ class bancodados
         $nextid     = $uuid->id;
         
         $comando    = str_replace('{ID}', $nextid, $comando);
+
         $res        = $mysqli->query($comando);
 
         $mysqli->close();

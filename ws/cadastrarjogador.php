@@ -1,17 +1,17 @@
 <?php
 include_once('../autoload.php');
 
-//header('Content-Type: application/json');
+header('Content-Type: application/json');
 
 $mensagens  = array();
 
 //GET apenas para testes
 
-//if (isset($_POST['chave']))
-if (isset($_GET['chave']))
+if (isset($_POST['chave']))
+//if (isset($_GET['chave']))
 {
-//    $chave          = $_POST['chave'];
-    $chave          = $_GET['chave'];
+    $chave          = $_POST['chave'];
+//    $chave          = $_GET['chave'];
 
     $chobj          = new lib\chave();
     $chobj->descompactar($chave);
@@ -35,11 +35,11 @@ else
     $chave          = '';
 }
 
-//if (isset($_POST['valor']))
-if (isset($_GET['valor']))
+if (isset($_POST['valor']))
+//if (isset($_GET['valor']))
 {
-//    $valor         = $_POST['valor'];
-    $valor          = $_GET['valor'];
+    $valor         = $_POST['valor'];
+//    $valor          = $_GET['valor'];
 
     $b64            = base64_decode($valor);
     $json           = json_decode($b64);
@@ -53,6 +53,7 @@ if (isset($_GET['valor']))
             if (array_search($cjsv, $cjs) === FALSE)
             {
                 $mensagens[] = 'O JSON informado não é válido';
+                break;
             }
         }
     }
@@ -66,31 +67,53 @@ else
     $mensagens[]    = 'Os valores do cadastro não foram informados';
     $valor          = '';
 }
+
 //Exemplo JSON
 //{ "nome": "Aluno 4", "usuario": "aluno4", "unidade": "ef88bb50-cd6a-11e7-91b8-00051b7601a3", "matricula": 1951, "ano": 1 }
+//eyAibm9tZSI6ICJBbHVubyA0IiwgInVzdWFyaW8iOiAiYWx1bm80IiwgInVuaWRhZGUiOiAiZWY4OGJiNTAtY2Q2YS0xMWU3LTkxYjgtMDAwNTFiNzYwMWEzIiwgIm1hdHJpY3VsYSI6IDE5NTEsICJhbm8iOiAxIH0%3D
 
-//TODO: Continuar daqui fazendo a montagem do JSON de resposta
+//url exemplo:
+//http://localhost/prjtrlsadm/ws/cadastrarjogador.php?chave=MjAxNzExMjkxMTIxMDUtaG15fDpkakNsZUB8NiZ5ZGQ7Lyk%2FL2NzLCd3NVA5cyJgaF9nK1BNfUlGVS0jflQtJE02RFUlM0VbVEBea3d0ZXN0ZQ0K&valor=eyAibm9tZSI6ICJBbHVubyA0IiwgInVzdWFyaW8iOiAiYWx1bm80IiwgInVuaWRhZGUiOiAiZWY4OGJiNTAtY2Q2YS0xMWU3LTkxYjgtMDAwNTFiNzYwMWEzIiwgIm1hdHJpY3VsYSI6IDE5NTEsICJhbm8iOiAxIH0%3D
+
 if (count($mensagens) == 0)
 {
     $usuario            = new lib\usuario();
-    $usuario->nome      = $cjs->usuario;
-    $usuario->senha     = $chobj->valor;
-    $usuario->sal       = '';
-    $usuario->ativo     = 1;
-    
-    if ($usuario-Salvar())
+    $usuario->SelecionarPorNomeUsuario($json->usuario);
+
+    if ($usuario->id == null)
     {
-        $aluno              = new lib\aluno();
-        $aluno->id          = $usuario->id;
-        $aluno->nome        = $cjs->nome;
-        $aluno->loginMoodle = $cjs->usuario;
-        $aluno->escola      = $cjs->unidade;
-        $aluno->matricula   = $cjs->matricula;
-        $aluno->ativo       = 1;
+        $jogador            = new lib\ws\jscadastrar();      
+
+        $usuario->nome      = $json->usuario;
+        $usuario->senha     = $chobj->texto;
+        $usuario->ativo     = 1;
+        
+        if ($usuario->Salvar())
+        {
+            $aluno              = new lib\aluno();
+            $aluno->usuario     = $usuario->id;
+            $aluno->nome        = $json->nome;
+            $aluno->loginMoodle = $json->usuario;
+            $aluno->escola      = $json->unidade;
+            $aluno->matricula   = $json->matricula;
+            $aluno->ativo       = 1;
+
+            $jogador->idusuario = $usuario->id;
+            $jogador->gravou    = true;
+
+            if (!$aluno->Salvar())
+            {
+                $mensagens[]    = 'Não foi possível salvar no banco o novo aluno';
+            }
+        }
+        else
+        {
+            $mensagens[]    = 'Não foi possível salvar no banco o novo usuário';
+        }
     }
     else
     {
-        $mensagens[]    = 'Não foi possível salvar no banco o novo usuário';
+        $mensagens[]    = 'Nome de usuário já utilizado';
     }
 }
 
@@ -107,6 +130,8 @@ if (count($mensagens) > 0)
         $jogador->erros[$i]->mensagem   = $mensagem;
         $i++;
     }
+
+    $jogador->gravou    = false;
 }
 
 $jogador->chave     = $chave;

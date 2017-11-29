@@ -5,5 +5,6 @@ class jscadastrarbase
 {
     public $chave;
     public $valor;
+    public $gravou;
 }
 ?>

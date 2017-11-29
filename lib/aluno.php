@@ -188,8 +188,8 @@ class aluno
     public function Incluir($id, $escola)
     {
         $sql    = 'INSERT INTO alunos ' .
-                  '(alunoId, alunoNome, alunoLoginMoodle, escolaId, alunoMatricula, alunoAtivo) ' . 
-                  "VALUES ('$id', '$this->nome', '$this->loginMoodle', $escola, $this->matricula, $this->ativo)";
+                  '(alunoId, alunoNome, alunoLoginMoodle, escolaId, alunoMatricula, alunoAtivo, usuarioId) ' . 
+                  "VALUES ('$id', '$this->nome', '$this->loginMoodle', $escola, $this->matricula, $this->ativo, '$this->usuario')";
 
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);
