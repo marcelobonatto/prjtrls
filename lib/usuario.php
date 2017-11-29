@@ -109,6 +109,31 @@ class usuario
         }
     }
 
+    public function SelecionarPorNomeUsuario($nome)
+    {
+        $sql    = "SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioAtivo " .
+                  'FROM usuarios ' .
+                  "WHERE usuarioNome = '$nome' " .
+                  'ORDER BY usuarioNome';
+                
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== false)
+        {
+            if (count($res) > 0)
+            {
+                $usuario   = $res[0];
+
+                $this->id                = $usuario[self::USUARIO_ID];
+                $this->nome              = $usuario[self::USUARIO_NOME];
+                $this->senha             = $usuario[self::USUARIO_SENHA];
+                $this->sal               = $usuario[self::USUARIO_SAL];
+                $this->ativo             = $usuario[self::USUARIO_ATIVO];
+            }
+        }
+    }
+
     public function Salvar()
     {
         if ($this->id == null)
@@ -120,21 +145,23 @@ class usuario
             $id     = $this->id;
         }
 
+        $senha  = password_hash($this->senha, PASSWORD_DEFAULT);
+
         if ($id == '{ID}')
         {
-            return $this->Incluir($id);
+            return $this->Incluir($id, $senha);
         }
         else
         {
-            return $this->Atualizar($id);
+            return $this->Atualizar($id, $senha);
         }
     }
 
-    public function Incluir($id)
+    public function Incluir($id, $senha)
     {
         $sql    = 'INSERT INTO usuarios ' .
-                '(usuarioId, usuarioNome, usuarioSenha, usuarioAtivo) ' . 
-                "VALUES ('$id', '$this->nome', '$this->senha', $this->ativo)";
+                  '(usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioAtivo) ' . 
+                  "VALUES ('$id', '$this->nome', '$senha', '', $this->ativo)";
 
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);
@@ -149,13 +176,13 @@ class usuario
         }
     }
 
-    public function Atualizar($id)
+    public function Atualizar($id, $senha)
     {
         $sql    = 'UPDATE usuarios ' .
-                "SET usuarioNome = '$this->nome', " .
-                "usuarioSenha = '$this->senha', " .
-                "usuarioAtivo = $this->ativo " .
-                "WHERE usuarioId = '$id'";
+                  "SET usuarioNome = '$this->nome', " .
+                  "usuarioSenha = '$senha', " .
+                  "usuarioAtivo = $this->ativo " .
+                  "WHERE usuarioId = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);

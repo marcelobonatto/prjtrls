@@ -30,9 +30,9 @@ class chave
         $posbusca   = array_search('UNITY', array_column($json->sistemas, 'sistema'));
 
         if ($posbusca !== FALSE)
-        {
+        {          
             $chaveunity = $json->sistemas[$posbusca]->chave;
-
+/*
             $letrun     = array();
 
             for ($j = 0; $j < strlen($chaveunity); $j++)
@@ -120,12 +120,36 @@ class chave
             else
             {
                 $this->erro = 1;
+            }*/
+
+            $chavedec = base64_decode($chave);
+
+            if (strlen(trim($chavedec)) > 77)
+            {
+                $letunt = substr($chavedec, 0, 14);
+                $data   = \DateTime::createFromFormat('YmdHis', $letunt);
+                $ehdata = $data && $data->format('YmdHis') == $letunt;
+                
+                if (!$ehdata)
+                {
+                    $this->erro = 2;
+                }
+
+                if (substr($chavedec, 14, 63) != $chaveunity)
+                {
+                    $this->erro = 3;
+                }
+            }
+            else
+            {
+                $this->erro = 1;
             }
 
             if ($this->erro == 0)
             {
                 $this->real     = $data->format('Y-m-d H:i:s');
-                $this->texto    = $letsnh;
+                //$this->texto    = $letsnh;
+                $this->texto    = substr($chavedec, 77, strlen(trim($chavedec)) - 77);
             }
         }
     }
