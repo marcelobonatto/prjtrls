@@ -54,6 +54,42 @@ class escola
         return $matriz;
     }
 
+    public function ListarPorCidade($cidade)
+    {
+        $matriz = array();
+
+        $sql    = 'SELECT escolaId, escolaNome, escolaBairro, e.cidadeCodigo, c.cidadeNome, e.estadoSigla, escolaAtivo ' .
+                  'FROM escolas e ' .
+                  'JOIN cidades c ON c.cidadeCodigo = e.cidadeCodigo ' .
+                  "WHERE e.cidadeCodigo = '$cidade' " .
+                  'ORDER BY escolaNome';
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                foreach ($res as $escola)
+                {
+                    $obj                = new escola();
+                    $obj->id            = $escola[self::ESCOLA_ID];
+                    $obj->nome          = $escola[self::ESCOLA_NOME];
+                    $obj->bairro        = $escola[self::ESCOLA_BAIRRO];
+                    $obj->cidade        = $escola[self::CIDADE_CODIGO];
+                    $obj->cidadenome    = $escola[self::CIDADE_NOME];
+                    $obj->estado        = $escola[self::ESTADO_SIGLA];
+                    $obj->ativo         = $escola[self::ESCOLA_ATIVO];
+
+                    array_push($matriz, $obj);
+                }
+            }
+        }
+
+        return $matriz;
+    }
+
     public function Selecionar($id)
     {
         $sql    = "SELECT escolaId, escolaNome, escolaBairro, e.cidadeCodigo, c.cidadeNome, e.estadoSigla, escolaAtivo " .
