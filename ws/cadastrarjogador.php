@@ -50,12 +50,15 @@ if (isset($_GET['valor']))
     {
         foreach ($json as $cjsv => $valinfo)
         {
-
+            if (array_search($cjsv, $cjs) === FALSE)
+            {
+                $mensagens[] = 'O JSON informado não é válido';
+            }
         }
     }
     else
     {
-        $mensagens[]    = "Não foi informado um JSON com os valores a serem cadastrados";
+        $mensagens[]    = 'Não foi informado um JSON com os valores a serem cadastrados';
     }
 }
 else
