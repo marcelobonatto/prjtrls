@@ -29,6 +29,42 @@ class jogadormissao
     public $jogando;
     public $liberada;
 
+    public function SelecionarPorMissao($aluno, $missao)
+    {
+        $matriz = array();
+        
+        $sql    = 'SELECT jogadormissaoId, alunoId, jm.missaoId, m.missaoAno, m.missaoSemestre, m.missaoSequencia, m.missaoObrigatoria, m.missaoPai, ' .
+                  'jogadormissaoAprovado, jogadormissaoCumprida, jogadormissaoJogando, jogadormissaoLiberada ' .
+                  'FROM jogadoresmissao jm ' .
+                  'JOIN missoes m ON m.missaoId = jm.missaoId ' .
+                  "WHERE missaoId = '$missao' " .
+                  "AND alunoId = '$aluno'";
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                $jm                         = $res[0];
+
+                $this->id                   = $jm[self::JOGADORMISSAO_ID];
+                $this->aluno                = $jm[self::ALUNO_ID];
+                $this->missao               = $jm[self::MISSAO_ID];
+                $this->missaoAno            = $jm[self::MISSAO_ANO];
+                $this->missaoSemestre       = $jm[self::MISSAO_SEMESTRE];
+                $this->missaoSequencia      = $jm[self::MISSAO_SEQUENCIA];
+                $this->missaoObrigatoria    = $jm[self::MISSAO_OBRIGATORIA];
+                $this->missaoPai            = $jm[self::MISSAO_PAI];
+                $this->aprovado             = $jm[self::JOGADORMISSAO_APROVADO];
+                $this->cumprida             = $jm[self::JOGADORMISSAO_CUMPRIDA];
+                $this->jogando              = $jm[self::JOGADORMISSAO_JOGANDO];
+                $this->liberada             = $jm[self::JOGADORMISSAO_LIBERADA];
+            }
+        }
+    }
+
     public function ListarPorJogador($aluno)
     {
         $matriz = array();
