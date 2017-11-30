@@ -118,7 +118,7 @@ class missao
     public function Selecionar($id)
     {
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
-                  'missaoSequencia, missaoObrigatoria, missaoPai ' .
+                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia ' .
                   'FROM missoes ' .
                   "WHERE missaoId = '$id'";
 
@@ -165,9 +165,46 @@ class missao
     public function SelecionarPorNome($nome)
     {
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
-                  'missaoSequencia, missaoObrigatoria, missaoPai ' .
+                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia ' .
                   'FROM missoes ' .
                   "WHERE missaoNome = '$nome'";
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                $missao             = $res[0];
+
+                $this->id            = $missao[self::MISSAO_ID];
+                $this->nome          = $missao[self::MISSAO_NOME];
+                $this->titulo        = $missao[self::MISSAO_TITULO];
+                $this->descricao     = $missao[self::MISSAO_DESCRICAO];
+                $this->ativo         = $missao[self::MISSAO_ATIVO];
+                $this->idMoodle      = $missao[self::MISSAO_IDMOODLE];
+                $this->ano           = $missao[self::MISSAO_ANO];
+                $this->semestre      = $missao[self::MISSAO_SEMESTRE];
+                $this->sequencia     = $missao[self::MISSAO_SEQUENCIA];
+                $this->obrigatoria   = $missao[self::MISSAO_OBRIGATORIA];
+                $this->pai           = $missao[self::MISSAO_PAI];
+            }
+        }
+    }
+
+    public function SelecionarMissaoAnterior($eixo, $referencia)
+    {
+        $sql    = 'SELECT m.missaoId, m.missaoNome, m.missaoTitulo, m.missaoDescricao, m.missaoAtivo, m.missaoIdMoodle, m.missaoAno, m.missaoSemestre, ' .
+		          'm.missaoObrigatoria, m.missaoPai, m.missaoReferencia ' . 
+                  'FROM missoes m ' .
+                  'JOIN missoeseixo me ON me.missaoId = m.missaoId ' .
+                  'JOIN (SELECT MAX(m.missaoReferencia) AS referencia, me.eixoId ' .
+			      'FROM missoes m JOIN missoeseixo me ON me.missaoId = m.missaoId ' .
+			      "WHERE m.missaoReferencia < $referencia " .
+                  'AND COALESCE(me.missaoeixoPontos, 0) > 0 ' .
+		          ') ma ON ma.referencia = m.missaoReferencia ' .
+                  "WHERE me.eixoId = '$eixo'";
 
         $db     = new bancodados();
         $res    = $db->SelecaoSimples($sql);
