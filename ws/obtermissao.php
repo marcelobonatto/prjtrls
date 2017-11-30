@@ -12,6 +12,22 @@ if (isset($_POST['token']))
 {
     $token          = $_POST['token'];
 //    $token          = $_GET['token'];
+
+    $auto           = new lib\autorizacao();
+    $autoresp       = $auto->Validar(base64_decode($token));
+
+    switch ($autoresp)
+    {
+        case 1:
+            $mensagens[]    = 'Token inválido';
+            break;
+        case 2:
+            $mensagens[]    = 'Validade do token vencida';
+            break;
+        case 3:
+            $mensagens[]    = 'Não consegui atualizar o token';
+            break;
+    }
 }
 else
 {

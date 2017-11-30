@@ -46,5 +46,46 @@ class jogador
             }
         }
     }
+
+    public function Salvar($incluir)
+    {
+        if ($incluir)
+        {
+            return $this->Incluir();
+        }
+        else
+        {
+            return $this->Atualizar();
+        }
+    }
+
+    public function Incluir()
+    {
+        $sql    = 'INSERT INTO jogadores ' .
+                  '(alunoId, jogadorDinheiro, jogadorPontuacao, jogadorCabelo, jogadorPele, jogadorSexo, jogadorAno) ' . 
+                  "VALUES ('$this->$id', $this->dinheiro, $this->pontos, $this->cabelo, $this->pele, $this->sexo, $this->ano)";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public function Atualizar()
+    {
+        $sql    = 'UPDATE jogadores ' .
+                  "SET jogadorDinheiro = $this->dinheiro, " .
+                  "jogadorPontuacao = $this->pontos, " .
+                  "jogadorCabelo = $this->cabelo, " .
+                  "jogadorPele = $this->pele, " .
+                  "jogadorSexo = $this->sexo, " .
+                  "jogadorAno = $this->ano " .
+                  "WHERE alunoId = '$this->id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
 }
 ?>

@@ -105,6 +105,37 @@ if (count($mensagens) == 0)
             {
                 $mensagens[]    = 'Não foi possível salvar no banco o novo aluno';
             }
+            else
+            {
+                $jogobj             = new lib\jogador();
+                $jogobj->id         = $aluno->id;
+                $jogobj->dinheiro   = 0;
+                $jogobj->pontos     = 0;
+                $jogobj->cabelo     = 0;
+                $jogobj->pele       = 0;
+                $jogobj->sexo       = 0;
+                $jogobj->ano        = $json->ano;
+
+                if (!$jogobj->Salvar(true))
+                {
+                    $mensagens[]    = 'Não foi possível gravar os dados do jogador';
+                }
+                else
+                {                
+                    $auto           = new lib\autorizacao();
+                    $auto->usuario  = $usuario->id;
+                    $auto->data     = DateTime::createFromFormat('Y-m-d H:i:s', 'now');
+
+                    if ($auto->Salvar())
+                    {
+                        $jogador->token = base64_encode($auto->id);
+                    }
+                    else
+                    {
+                        $mensagens[]    = 'Não foi possível obter autorização para o jogador';
+                    }
+                }
+            }
         }
         else
         {
