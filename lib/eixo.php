@@ -47,6 +47,39 @@ class eixo
         return $matriz;
     }
 
+    public function ListarApenasAtivos()
+    {
+        $matriz = array();
+
+        $sql    = 'SELECT eixoId, eixoNome, eixoSequencia, eixoSigla, eixoAtivo ' .
+                  'FROM eixos ' .
+                  "WHERE eixoAtivo = 1 " .
+                  'ORDER BY eixoSequencia';
+
+        $db     = new bancodados();
+        $res    = $db->SelecaoSimples($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                foreach ($res as $eixo)
+                {
+                    $obj            = new eixo();
+                    $obj->id        = $eixo[self::EIXO_ID];
+                    $obj->nome      = $eixo[self::EIXO_NOME];
+                    $obj->sequencia = $eixo[self::EIXO_SEQUENCIA];
+                    $obj->sigla     = $eixo[self::EIXO_SIGLA];
+                    $obj->ativo     = $eixo[self::EIXO_ATIVO];
+
+                    array_push($matriz, $obj);
+                }
+            }
+        }
+
+        return $matriz;
+    }
+
     public function SelecionarPorSigla($sigla)
     {
         $sql    = 'SELECT eixoId, eixoNome, eixoSequencia, eixoSigla, eixoAtivo ' .

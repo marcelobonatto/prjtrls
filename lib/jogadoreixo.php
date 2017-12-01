@@ -48,5 +48,59 @@ class jogadoreixo
 
         return $matriz;
     }
+
+    public function Salvar()
+    {
+        if ($this->id == null)
+        {
+            $id     = '{ID}';
+        }
+        else
+        {
+            $id     = $this->id;
+        }
+
+        if ($id == '{ID}')
+        {
+            return $this->Incluir($id);
+        }
+        else
+        {
+            return $this->Atualizar($id);
+        }
+    }
+
+    public function Incluir($id)
+    {
+        $sql    = 'INSERT INTO jogadoreseixo ' .
+                  '(jogadoreixoId, alunoId, eixoId, jogadoreixoPontos) ' . 
+                  "VALUES ('$id', '$this->aluno', '$this->eixo', $this->pontos)";
+
+        $db         = new bancodados();
+        $this->id   = $db->ExecutarRetornaId($sql);
+
+        if ($this->id != null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    public function Atualizar($id)
+    {
+        $sql    = 'UPDATE jogadoreseixo ' .
+                  "SET alunoId = '$this->nome', " .
+                  "eixoId = $this->sequencia, " .
+                  "jogadoreixoPontos = '$this->sigla' " .
+                  "WHERE jogadoreixoId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
 }
 ?>

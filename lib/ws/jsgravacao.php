@@ -1,7 +1,7 @@
 <?php
 namespace lib\ws;
 
-class jscustom
+class jsgravacao
 {
     public $token;
     public $valor;

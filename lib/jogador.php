@@ -63,7 +63,7 @@ class jogador
     {
         $sql    = 'INSERT INTO jogadores ' .
                   '(alunoId, jogadorDinheiro, jogadorPontuacao, jogadorCabelo, jogadorPele, jogadorSexo, jogadorAno) ' . 
-                  "VALUES ('$this->$id', $this->dinheiro, $this->pontos, $this->cabelo, $this->pele, $this->sexo, $this->ano)";
+                  "VALUES ('$this->id', $this->dinheiro, $this->pontos, $this->cabelo, $this->pele, $this->sexo, $this->ano)";
 
         $db         = new bancodados();
         $db->Executar($sql);

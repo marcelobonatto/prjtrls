@@ -5,7 +5,7 @@ header('Content-Type: application/json');
 
 $mensagens  = array();
 
-$custom          = new lib\ws\jscustom();
+$custom          = new lib\ws\jsgravacao();
 
 //GET apenas para testes
 
