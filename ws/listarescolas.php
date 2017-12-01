@@ -6,7 +6,7 @@ header('Content-Type: application/json');
 $mensagens  = array();
 
 //GET apenas para testes
-
+/*
 if (isset($_POST['token']))
 //if (isset($_GET['token']))
 {
@@ -34,7 +34,7 @@ else
     $mensagens[]    = 'Token não informado';
     $token          = '';
 }
-
+*/
 if (isset($_POST['cidade']))
 //if (isset($_GET['cidade']))
 {
