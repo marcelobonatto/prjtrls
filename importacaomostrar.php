@@ -1,5 +1,4 @@
 <?php
-use lib\tabela;
 
 function mostrarArquivo($jsonimp, $valores, $acaoform)
 {    
@@ -14,7 +13,7 @@ function mostrarArquivo($jsonimp, $valores, $acaoform)
     $numlinhas  = 0;
     $numcolunas = 0;
 
-    $tabela     = new tabela();
+    $tabela     = new lib\ui\tabela();
 
     //Criação dos títulos
     $linhaobj   = criarTabelaTitulo($tabela, $numlinhas);
@@ -176,7 +175,7 @@ function mostrarFinal($valcols, $valores)
     $numlinhas  = 0;
     $numcolunas = 0;
 
-    $tabela = new tabela();
+    $tabela = new lib\ui\tabela();
     $linha  = criarTabelaTitulo($tabela, $numlinhas);
     
     foreach ($valcols as $numcoluna => $valcol)
@@ -245,7 +244,7 @@ function criarTabelaNormal($tabela, $numlinha)
 
 function criarLinha($tabela, $numlinha, $ehtitulo)
 {
-    $tabela->linhas[$numlinha]              = new linhatabela();
+    $tabela->linhas[$numlinha]              = new lib\ui\linhatabela();
     $tabela->linhas[$numlinha]->ehtitulo    = $ehtitulo;
 
     return $tabela->linhas[$numlinha];
@@ -273,7 +272,7 @@ function criarCelulaCheckBox($linha, $numcoluna, $spanlinha, $spancoluna, $alinh
 
 function criarCelulaControle($linha, $numcoluna, $spanlinha, $spancoluna, $alinhamento, $tipo, $valor, $checado, $nomecontrole, $nomectrlhidden, $ehmatriz, $habilitado, $pai, $classe)
 {
-    $linha->celulas[$numcoluna]                     = new celulatabela();
+    $linha->celulas[$numcoluna]                     = new lib\ui\celulatabela();
     $linha->celulas[$numcoluna]->spanlinha          = $spanlinha;
     $linha->celulas[$numcoluna]->spancoluna         = $spancoluna;
     $linha->celulas[$numcoluna]->alinhamento        = $alinhamento;

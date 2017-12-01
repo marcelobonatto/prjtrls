@@ -5,6 +5,8 @@ header('Content-Type: application/json');
 
 $mensagens  = array();
 
+$conf       = new lib\ws\jsgravacao();
+
 //GET apenas para testes
 
 //if (isset($_POST['token']))
@@ -12,6 +14,22 @@ if (isset($_GET['token']))
 {
 //    $token          = $_POST['token'];
     $token          = $_GET['token'];
+
+    $auto           = new lib\autorizacao();
+    $autoresp       = $auto->Validar(base64_decode($token));
+
+    switch ($autoresp)
+    {
+        case 1:
+            $mensagens[]    = 'Token inválido';
+            break;
+        case 2:
+            $mensagens[]    = 'Validade do token vencida';
+            break;
+        case 3:
+            $mensagens[]    = 'Não consegui atualizar o token';
+            break;
+    }
 }
 else
 {
@@ -63,20 +81,49 @@ if (isset($_GET['status']))
 }
 else
 {
-    $mensagens[]    = 'Status não informado';
+    $mensagens[]     = 'Status não informado';
     $status          = '';
 }
 
+//url exemplo:
+//http://localhost/prjtrlsadm/ws/confirmarmissao.php?token=ZjJiMWRkNGUtZDNjYy0xMWU3LWIxZGYtNTJhZTc0M2JjODNk&valor=eyAiYWx1bm8iOiAiZWY4OGJiNTAtY2Q2YS0xMWU3LTkxYjgtMDAwNTFiNzYwMWEzIiwgIm1pc3NhbyI6ICJlZjg4YmI1MC1jZDZhLTExZTctOTFiOC0wMDA1MWI3NjAxYTMiIH0%3D
+
 if (count($mensagens) == 0)
 {
-    $jsmissaoaluno                 = new lib\ws\jsmissaoaluno();
+    $maobj                = new lib\missaoaluno();
 
-    $missaoaluno            = new lib\missaoaluno();
-
-    $missaoaluno->id = $jsmissaoaluno->missaoaluno;
-    $missaoaluno->missao = $jsmissaoaluno->missao;
-    $missaoaluno->aluno = $jsmissaoaluno->aluno;
-    $missaoaluno->status = $jsmissaoaluno->status;
+    $maobj->id            = $missaoaluno;
+    $maobj->missao        = $missao;
+    $maobj->aluno         = $aluno;
+    $maobj->status        = $status;
     
-    $salvou                 = $missaoaluno->Salvar();
+    if ($maobj->Salvar())
+    {
+        $conf->gravou    = true;
+        $conf->valor     = "$missaoaluno / $missao / $aluno / $status";
+    }
+    else
+    {
+        $mensagens[]    = 'Não foi possível atualizar a missão do aluno';
+    }
 }
+
+if (count($mensagens) > 0)
+{
+    $conf->erros    = array();
+    $i              = 0;
+    
+    foreach ($mensagens as $mensagem)
+    {
+        $conf->erros[$i]             = new lib\ws\jserro();
+        $conf->erros[$i]->mensagem   = $mensagem;
+        $i++;
+    }
+
+    $conf->gravou    = false;
+}
+
+$conf->token     = $token;
+$conf->valor     = $valor;
+
+echo(json_encode($conf));

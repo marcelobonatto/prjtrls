@@ -7,11 +7,11 @@ $mensagens  = array();
 
 //GET apenas para testes
 
-if (isset($_POST['chave']))
-//if (isset($_GET['chave']))
+//if (isset($_POST['chave']))
+if (isset($_GET['chave']))
 {
-    $chave          = $_POST['chave'];
-//    $chave          = $_GET['chave'];
+//    $chave          = $_POST['chave'];
+    $chave          = $_GET['chave'];
 
     $chobj          = new lib\chave();
     $chobj->descompactar($chave);
@@ -35,11 +35,11 @@ else
     $chave          = '';
 }
 
-if (isset($_POST['valor']))
-//if (isset($_GET['valor']))
+//if (isset($_POST['valor']))
+if (isset($_GET['valor']))
 {
-    $valor         = $_POST['valor'];
-//    $valor          = $_GET['valor'];
+//    $valor         = $_POST['valor'];
+    $valor          = $_GET['valor'];
 
     $b64            = base64_decode($valor);
     $json           = json_decode($b64);
@@ -105,42 +105,85 @@ if (count($mensagens) == 0)
             {
                 $mensagens[]    = 'Não foi possível salvar no banco o novo aluno';
             }
-            else
-            {
-                $jogobj             = new lib\jogador();
-                $jogobj->id         = $aluno->id;
-                $jogobj->dinheiro   = 0;
-                $jogobj->pontos     = 0;
-                $jogobj->cabelo     = 0;
-                $jogobj->pele       = 0;
-                $jogobj->sexo       = 0;
-                $jogobj->ano        = $json->ano;
-
-                if (!$jogobj->Salvar(true))
-                {
-                    $mensagens[]    = 'Não foi possível gravar os dados do jogador';
-                }
-                else
-                {                
-                    $auto           = new lib\autorizacao();
-                    $auto->usuario  = $usuario->id;
-                    $auto->data     = DateTime::createFromFormat('Y-m-d H:i:s', 'now');
-
-                    if ($auto->Salvar())
-                    {
-                        $jogador->token = base64_encode($auto->id);
-                    }
-                    else
-                    {
-                        $mensagens[]    = 'Não foi possível obter autorização para o jogador';
-                    }
-                }
-            }
         }
         else
         {
             $mensagens[]    = 'Não foi possível salvar no banco o novo usuário';
         }
+
+        if (count($mensagens) == 0)
+        {
+            $jogobj             = new lib\jogador();
+            $jogobj->id         = $aluno->id;
+            $jogobj->dinheiro   = 0;
+            $jogobj->pontos     = 0;
+            $jogobj->cabelo     = 0;
+            $jogobj->pele       = 0;
+            $jogobj->sexo       = 0;
+            $jogobj->ano        = $json->ano;
+
+            if (!$jogobj->Salvar(true))
+            {
+                $mensagens[]    = 'Não foi possível gravar os dados do jogador';
+            }
+        }
+
+        if (count($mensagens) == 0)
+        {
+            $misobj         = new lib\missao();
+            $misarr         = $misobj->ListarTodosAtivos();
+
+            foreach ($misarr as $misitm)
+            {
+                $misalu             = new lib\missaoaluno();
+                $misalu->missao     = $misitm->id;
+                $misalu->aluno      = $aluno->id;
+                $misalu->status     = 0;
+
+                if (!$misalu->Salvar())
+                {
+                    $mensagens[]    = 'Não foi possível gravar os dados de missão do aluno';
+                    break;
+                }
+            }
+        }
+
+        if (count($mensagens) == 0)
+        {
+            $eixobj         = new lib\eixo();
+            $eixarr         = $eixobj->ListarApenasAtivos();
+
+            foreach ($eixarr as $eixitm)
+            {
+                $eixalu             = new lib\jogadoreixo();
+                $eixalu->aluno      = $aluno->id;
+                $eixalu->eixo       = $eixitm->id;
+                $eixalu->pontos     = 0;
+
+                if (!$eixalu->Salvar())
+                {
+                    $mensagens[]    = 'Não foi possível gravar os dados de missão do aluno';
+                    break;
+                }
+            }
+        }
+
+        if (count($mensagens) == 0)
+        {
+            $auto           = new lib\autorizacao();
+            $auto->usuario  = $usuario->id;
+            $auto->data     = DateTime::createFromFormat('Y-m-d H:i:s', 'now');
+
+            if ($auto->Salvar())
+            {
+                $jogador->token = base64_encode($auto->id);
+            }
+            else
+            {
+                $mensagens[]    = 'Não foi possível obter autorização para o jogador';
+            }
+        }
+
     }
     else
     {
