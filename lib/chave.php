@@ -30,7 +30,7 @@ class chave
         $posbusca   = array_search('UNITY', array_column($json->sistemas, 'sistema'));
 
         if ($posbusca !== FALSE)
-        {          
+        {
             $chaveunity = $json->sistemas[$posbusca]->chave;
 /*
             $letrun     = array();
@@ -151,6 +151,10 @@ class chave
                 //$this->texto    = $letsnh;
                 $this->texto    = substr($chavedec, 77, strlen(trim($chavedec)) - 77);
             }
+        }
+        else
+        {
+            $this->erro = 4;
         }
     }
 }
