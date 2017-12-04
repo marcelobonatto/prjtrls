@@ -6,34 +6,29 @@ class aluno
     const ALUNO_ID          = 0;
     const ALUNO_NOME        = 1;
     const ALUNO_LOGINMOODLE = 2;
-    const ESCOLA_ID         = 3;
-    const ESCOLA_NOME       = 4;
-    const ALUNO_MATRICULA   = 5;
-    const ALUNO_ATIVO       = 6;
+    const ALUNO_EMAIL       = 3;
+    const ALUNO_ANO         = 4;    
+    const ESCOLA_ID         = 5;
+    const ESCOLA_NOME       = 6;
+    const ALUNO_MATRICULA   = 7;
+    const ALUNO_ATIVO       = 8;
 
     public $id;
     public $nome;
     public $loginMoodle;
+    public $email;
+    public $ano;    
     public $escola;
     public $escolaNome;
     public $matricula;
     public $usuario;
     public $ativo;
 
-/*
-    alunoId (id)
-    alunoNome (nome)
-    alunoLoginMoodle (loginMoodle) 
-    escolaId (escola)
-    alunoMatricula (matricula)
-    alunoAtivo (ativo)
-*/
-
     public function ListarRegistros($pagina)
     {
         $matriz = array();
         
-        $sql    = 'SELECT alunoId, alunoNome, alunoLoginMoodle, n.escolaId, escolaNome, alunoMatricula, alunoAtivo ' .
+        $sql    = 'SELECT alunoId, alunoNome, alunoLoginMoodle, email, ano, n.escolaId, escolaNome, alunoMatricula, alunoAtivo ' .
                   'FROM alunos n ' .
                   'LEFT JOIN escolas e ON e.escolaId = n.escolaId ' .
                   'ORDER BY alunoNome';
@@ -51,6 +46,8 @@ class aluno
                     $obj->id            = $aluno[self::ALUNO_ID];
                     $obj->nome          = $aluno[self::ALUNO_NOME];
                     $obj->loginMoodle         = $aluno[self::ALUNO_LOGINMOODLE];
+                    $obj->email      = $aluno[self::ALUNO_EMAIL];
+                    $obj->ano  = $aluno[self::ALUNO_ANO];                    
                     $obj->escola          = $aluno[self::ESCOLA_ID];
                     $obj->escolaNome      = $aluno[self::ESCOLA_NOME];
                     $obj->matricula  = $aluno[self::ALUNO_MATRICULA];
@@ -68,7 +65,7 @@ class aluno
     {
         $matriz = array();
         
-        $sql    = 'SELECT alunoId, alunoNome, alunoLoginMoodle, n.escolaId, escolaNome, NULL AS alunoMatricula, alunoAtivo ' .
+        $sql    = 'SELECT alunoId, alunoNome, alunoLoginMoodle, email, ano, n.escolaId, escolaNome, NULL AS alunoMatricula, alunoAtivo ' .
                   'FROM alunos n ' .
                   'LEFT JOIN escolas e ON e.escolaId = n.escolaId ' .
                   'ORDER BY alunoNome';
@@ -86,6 +83,8 @@ class aluno
                     $obj->id            = $aluno[self::ALUNO_ID];
                     $obj->nome          = $aluno[self::ALUNO_NOME];
                     $obj->loginMoodle         = $aluno[self::ALUNO_LOGINMOODLE];
+                    $obj->email      = $aluno[self::ALUNO_EMAIL];
+                    $obj->ano  = $aluno[self::ALUNO_ANO];                         
                     $obj->escola          = $aluno[self::ESCOLA_ID];
                     $obj->escolaNome      = $aluno[self::ESCOLA_NOME];
                     $obj->matricula  = null;
@@ -101,7 +100,7 @@ class aluno
 
     public function Selecionar($id)
     {
-        $sql    = "SELECT alunoId, alunoNome, alunoLoginMoodle, n.escolaId, escolaNome, alunoMatricula, alunoAtivo " .
+        $sql    = "SELECT alunoId, alunoNome, alunoLoginMoodle, email, ano, n.escolaId, escolaNome, alunoMatricula, alunoAtivo " .
                   'FROM alunos n ' .
                   'LEFT JOIN escolas e ON e.escolaId = n.escolaId ' .
                   "WHERE alunoId = '$id' " .
@@ -119,6 +118,8 @@ class aluno
                 $this->id                    = $aluno[self::ALUNO_ID];
                 $this->nome                  = $aluno[self::ALUNO_NOME];
                 $this->loginMoodle                 = $aluno[self::ALUNO_LOGINMOODLE];
+                $this->email              = $aluno[self::ALUNO_EMAIL];
+                $this->ano          = $aluno[self::ALUNO_ANO];                
                 $this->escola                  = $aluno[self::ESCOLA_ID];
                 $this->escolaNome              = $aluno[self::ESCOLA_NOME];
                 $this->matricula          = $aluno[self::ALUNO_MATRICULA];
@@ -129,7 +130,7 @@ class aluno
 
     public function SelecionarPorUsuario($usuario)
     {
-        $sql    = "SELECT alunoId, alunoNome, alunoLoginMoodle, n.escolaId, escolaNome, alunoMatricula, alunoAtivo " .
+        $sql    = "SELECT alunoId, alunoNome, alunoLoginMoodle, email, ano, n.escolaId, escolaNome, alunoMatricula, alunoAtivo " .
                   'FROM alunos n ' .
                   'LEFT JOIN escolas e ON e.escolaId = n.escolaId ' .
                   "WHERE usuarioId = '$usuario' " .
@@ -147,6 +148,8 @@ class aluno
                 $this->id           = $aluno[self::ALUNO_ID];
                 $this->nome         = $aluno[self::ALUNO_NOME];
                 $this->loginMoodle  = $aluno[self::ALUNO_LOGINMOODLE];
+                $this->email              = $aluno[self::ALUNO_EMAIL];
+                $this->ano          = $aluno[self::ALUNO_ANO];                  
                 $this->escola       = $aluno[self::ESCOLA_ID];
                 $this->escolaNome   = $aluno[self::ESCOLA_NOME];
                 $this->matricula    = $aluno[self::ALUNO_MATRICULA];
@@ -188,8 +191,8 @@ class aluno
     public function Incluir($id, $escola)
     {
         $sql    = 'INSERT INTO alunos ' .
-                  '(alunoId, alunoNome, alunoLoginMoodle, escolaId, alunoMatricula, alunoAtivo, usuarioId) ' . 
-                  "VALUES ('$id', '$this->nome', '$this->loginMoodle', $escola, $this->matricula, $this->ativo, '$this->usuario')";
+                  '(alunoId, alunoNome, alunoLoginMoodle, email, ano, escolaId, alunoMatricula, alunoAtivo, usuarioId) ' . 
+                  "VALUES ('$id', '$this->nome', '$this->loginMoodle', '$this->email', '$this->ano', $escola, $this->matricula, $this->ativo, '$this->usuario')";
 
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);
@@ -209,6 +212,8 @@ class aluno
         $sql    = 'UPDATE alunos ' .
                   "SET alunoNome = '$this->nome', " .
                   "alunoLoginMoodle = '$this->loginMoodle', " .
+                  "email = $this->$email, " .
+                  "ano = $this->ano, " .                  
                   "escolaId = $escola, " .
                   "alunoMatricula = $this->matricula, " .
                   "alunoAtivo = $this->ativo " .

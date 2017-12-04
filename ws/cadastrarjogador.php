@@ -7,11 +7,11 @@ $mensagens  = array();
 
 //GET apenas para testes
 
-//if (isset($_POST['chave']))
-if (isset($_GET['chave']))
+if (isset($_POST['chave']))
+//if (isset($_GET['chave']))
 {
-//    $chave          = $_POST['chave'];
-    $chave          = $_GET['chave'];
+    $chave          = $_POST['chave'];
+//    $chave          = $_GET['chave'];
 
     $chobj          = new lib\chave();
     $chobj->descompactar($chave);
@@ -35,16 +35,16 @@ else
     $chave          = '';
 }
 
-//if (isset($_POST['valor']))
-if (isset($_GET['valor']))
+if (isset($_POST['valor']))
+//if (isset($_GET['valor']))
 {
-//    $valor         = $_POST['valor'];
-    $valor          = $_GET['valor'];
+    $valor         = $_POST['valor'];
+//    $valor          = $_GET['valor'];
 
     $b64            = base64_decode($valor);
     $json           = json_decode($b64);
 
-    $cjs            = array('nome', 'usuario', 'unidade', 'matricula', 'ano');
+    $cjs            = array('nome', 'usuario', 'senha', 'email', 'unidade', 'matricula', 'ano');
 
     if (json_last_error() == JSON_ERROR_NONE)
     {
@@ -94,6 +94,8 @@ if (count($mensagens) == 0)
             $aluno->usuario     = $usuario->id;
             $aluno->nome        = $json->nome;
             $aluno->loginMoodle = $json->usuario;
+            $aluno->email       = $json->email;
+            $aluno->ano         = $json->ano;            
             $aluno->escola      = $json->unidade;
             $aluno->matricula   = $json->matricula;
             $aluno->ativo       = 1;

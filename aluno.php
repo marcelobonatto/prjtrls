@@ -17,6 +17,8 @@ if ($getid == 'novo')
     $txtid      = '';
     $nome       = '';
     $loginMoodle      = '';
+    $email       = '';
+    $ano  = 0;   
     $escola       = '*';
     $matricula  = 0;
     $ativo      = 1;
@@ -31,19 +33,12 @@ else
     $txtid      = $id;
     $nome       = $aluno->nome;
     $loginMoodle      = $aluno->loginMoodle;
+    $email       = $aluno->email;
+    $ano  = $aluno->ano;    
     $escola       = $aluno->escola;
     $matricula  = $aluno->matricula;
     $ativo      = $aluno->ativo;
 }
-
-/*
-alunoId (id)
-alunoNome (nome)
-alunoLoginMoodle (loginMoodle) 
-escolaId (escola)
-alunoMatricula (matricula)
-alunoAtivo (ativo)
-*/
 
 include('header.php');
 ?>
@@ -69,6 +64,14 @@ include('header.php');
                 <label for="txtLoginMoodle">LoginMoodle:</label>
                 <input class="form-control" type="text" value="<?php echo($loginMoodle); ?>" id="txtLoginMoodle" name="txtLoginMoodle" required />
             </div>
+            <div class="form-group">
+                <label for="txtE-mail">E-mail:</label>
+                <input class="form-control" type="text" value="<?php echo($email); ?>" id="txtEmail" name="txtEmail" required />
+            </div>
+            <div class="form-group">
+                <label for="txtId">Ano:</label>
+                <input class="form-control col-sm-4" type="text" value="<?php echo($ano); ?>" id="txtAno" name="txtAno" min="1" max="3" required />
+            </div>             
             <div class="form-group">
                 <label for="txtEscola">Escola:</label>
                 <?php
