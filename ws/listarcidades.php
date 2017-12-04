@@ -5,8 +5,11 @@ header('Content-Type: application/json');
 
 $mensagens  = array();
 
+$estado = "PR";
+
 //GET apenas para testes
 
+/*
 if (isset($_POST['token']))
 //if (isset($_GET['token']))
 {
@@ -34,11 +37,11 @@ else
     $mensagens[]    = 'Token não informado';
     $token          = '';
 }
-
+*/
 if (count($mensagens) == 0)
 {
     $cidobj         = new lib\cidade();
-    $cidarr         = $cidobj->ListarPorEstado('PR');
+    $cidarr         = $cidobj->ListarPorEstado($estado);
 
     if (count($cidarr) == 0)
     {
