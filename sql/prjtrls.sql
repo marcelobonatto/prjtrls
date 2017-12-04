@@ -25,6 +25,8 @@ CREATE TABLE `alunos` (
   `alunoNome` varchar(100) NOT NULL,
   `alunoMatricula` int(11) NOT NULL,
   `alunoLoginMoodle` varchar(12) NOT NULL,
+  `alunoEmail` varchar(40) NOT NULL,
+  `alunoAno` tinyint(1) NOT NULL,
   `alunoAtivo` tinyint(4) NOT NULL DEFAULT '0',
   `escolaId` varchar(36) NOT NULL,
   `usuarioId` varchar(36) NOT NULL
@@ -34,11 +36,11 @@ CREATE TABLE `alunos` (
 -- Extraindo dados da tabela `alunos`
 --
 
-INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodle`, `alunoAtivo`, `escolaId`, `usuarioId`) VALUES
-('a436c700-d62f-11e7-b52d-14b65896e7c5', 'Aluno 4', 1951, 'aluno4', 1, 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'a4368150-d62f-11e7-b52d-14b65896e7c5'),
-('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Aluno 1', 2147483647, 'loginAl1', 1, 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'e057a428-d311-11e7-b419-1a8f80d3a0ab'),
-('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Aluno 2', 2147483647, 'loginAl2', 1, 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'e057af2c-d311-11e7-b419-1a8f80d3a0ab'),
-('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Aluno 3', 2147483647, 'loginAl3', 1, 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'f77e1088-d311-11e7-b419-1a8f80d3a0ab');
+INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodle`, `alunoEmail`, `alunoAno`, `alunoAtivo`, `escolaId`, `usuarioId`) VALUES
+('a436c700-d62f-11e7-b52d-14b65896e7c5', 'Aluno 4', 1951, 'aluno4', 'aluno4@emailjogo.com.br', 1, 1, 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'a4368150-d62f-11e7-b52d-14b65896e7c5'),
+('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Aluno 1', 2147483647, 'loginAl1', 'loginAl1@emailjogo.com.br', 1, 1, 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'e057a428-d311-11e7-b419-1a8f80d3a0ab'),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Aluno 2', 2147483647, 'loginAl2', 'loginAl2@emailjogo.com.br', 2, 1, 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'e057af2c-d311-11e7-b419-1a8f80d3a0ab'),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Aluno 3', 2147483647, 'loginAl3', 'loginAl3@emailjogo.com.br', 3, 1, 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'f77e1088-d311-11e7-b419-1a8f80d3a0ab');
 
 -- --------------------------------------------------------
 
