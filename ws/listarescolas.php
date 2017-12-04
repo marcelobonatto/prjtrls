@@ -88,7 +88,6 @@ if (count($mensagens) > 0)
     }
 }
 
-$escola->token  = $token;
 $escola->cidade = $cidade;
 
 echo(json_encode($escola));

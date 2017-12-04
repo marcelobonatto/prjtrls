@@ -77,7 +77,5 @@ if (count($mensagens) > 0)
     }
 }
 
-$cidade->token  = $token;
-
 echo(json_encode($cidade));
 ?>

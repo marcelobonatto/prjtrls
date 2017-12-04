@@ -192,7 +192,7 @@ class aluno
     {
         $sql    = 'INSERT INTO alunos ' .
                   '(alunoId, alunoNome, alunoLoginMoodle, email, ano, escolaId, alunoMatricula, alunoAtivo, usuarioId) ' . 
-                  "VALUES ('$id', '$this->nome', '$this->loginMoodle', '$this->email', '$this->ano', $escola, $this->matricula, $this->ativo, '$this->usuario')";
+                  "VALUES ('$id', '$this->nome', '$this->loginMoodle', '$this->email', $this->ano, $escola, $this->matricula, $this->ativo, '$this->usuario')";
 
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);

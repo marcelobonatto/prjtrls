@@ -43,6 +43,26 @@ class bancodados
         return $itens;
     }
 
+    public function SelecionarAssociativa($comando)
+    {
+        $mysqli = $this->Conectar();
+
+        $res = $mysqli->query($comando);
+
+        if (!is_bool($res))
+        {
+            $itens = $res->fetch_all(MYSQLI_ASSOC);
+        }
+        else
+        {
+            $itens = $res;
+        }
+
+        $mysqli->close();
+
+        return $itens;
+    }
+
     public function Executar($comando)
     {
         $mysqli = $this->Conectar();       
