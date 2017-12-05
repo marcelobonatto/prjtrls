@@ -25,7 +25,7 @@ CREATE TABLE `alunos` (
   `alunoNome` varchar(100) NOT NULL,
   `alunoMatricula` int(11) NOT NULL,
   `alunoLoginMoodle` varchar(12) NOT NULL,
-  `alunoEmail` varchar(40) NOT NULL,
+  `alunoEmail` varchar(255) NOT NULL,
   `alunoAno` tinyint(1) NOT NULL,
   `alunoAtivo` tinyint(4) NOT NULL DEFAULT '0',
   `escolaId` varchar(36) NOT NULL,

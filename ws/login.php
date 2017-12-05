@@ -91,7 +91,7 @@ if (count($mensagens) == 0)
                 $login->eixos[$poseixo]->pontos = $je->pontos;
             }
         
-            $jmobj              = new lib\jogadormissao();
+            $jmobj              = new lib\missaoaluno();
             $jmarr              = $jmobj->ListarPorJogador($aluobj->id);
 
             $login->missoes     = array();
@@ -111,6 +111,7 @@ if (count($mensagens) == 0)
                 $login->missoes[$posmissao]->cumprida       = $jm->cumprida;
                 $login->missoes[$posmissao]->jogando        = $jm->jogando;
                 $login->missoes[$posmissao]->aprovada       = $jm->liberada;
+                $login->missoes[$posmissao]->eixo           = strtoupper($jm->eixoNome);
             }
 
             $quizobj            = new lib\quiz();
