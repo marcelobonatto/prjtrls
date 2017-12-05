@@ -130,7 +130,7 @@ class aluno
 
     public function SelecionarPorUsuario($usuario)
     {
-        $sql    = "SELECT alunoId, alunoNome, alunoLoginMoodle, email, ano, n.escolaId, escolaNome, alunoMatricula, alunoAtivo " .
+        $sql    = "SELECT alunoId, alunoNome, alunoLoginMoodle, alunoEmail, alunoAno, n.escolaId, escolaNome, alunoMatricula, alunoAtivo " .
                   'FROM alunos n ' .
                   'LEFT JOIN escolas e ON e.escolaId = n.escolaId ' .
                   "WHERE usuarioId = '$usuario' " .

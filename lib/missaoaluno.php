@@ -13,16 +13,26 @@ class missaoaluno
     public $aluno;
     public $status;
 
-    public function SelecionarPorMissao($aluno, $missao)
+    public $missaoAno;
+    public $missaoSemestre;
+    public $missaoSequencia;
+    public $missaoObrigatoria;
+    public $missaoPai;
+
+    public $eixo;
+    public $eixoNome;
+
+    public function ListarPorJogador($aluno)
     {
         $matriz = array();
         
-        $sql    = 'SELECT jogadormissaoId, alunoId, jm.missaoId, m.missaoAno, m.missaoSemestre, m.missaoSequencia, m.missaoObrigatoria, m.missaoPai, ' .
-                  'jogadormissaoAprovado, jogadormissaoCumprida, jogadormissaoJogando, jogadormissaoLiberada ' .
-                  'FROM missaoaluno jm ' .
-                  'JOIN missoes m ON m.missaoId = jm.missaoId ' .
-                  "WHERE missaoId = '$missao' " .
-                  "AND alunoId = '$aluno'";
+        $sql    = 'SELECT missaoalunoId, ma.missaoId, alunoId, statusMissao, m.missaoAno, m.missaoSemestre, m.missaoSequencia, m.missaoObrigatoria, m.missaoPai, ' .
+                  'e.eixoId, e.eixoNome ' .
+                  'FROM missaoaluno ma ' .
+                  'JOIN missoes m ON m.missaoId = ma.missaoId ' .
+                  'JOIN missoeseixo me ON me.missaoId = m.missaoId ' . 
+                  'JOIN eixos e ON e.eixoId = me.eixoId ' .
+                  "WHERE alunoId = '$aluno'";
 
         $db     = new bancodados();
         $res    = $db->SelecionarAssociativa($sql);
@@ -31,22 +41,54 @@ class missaoaluno
         {
             if (count($res) > 0)
             {
-                $jm                         = $res[0];
+                foreach ($res as $jm)
+                {
+                    $obj                        = new missaoaluno();
 
-                $this->id                   = $jm[self::JOGADORMISSAO_ID];
-                $this->aluno                = $jm[self::ALUNO_ID];
-                $this->missao               = $jm[self::MISSAO_ID];
-                $this->missaoAno            = $jm[self::MISSAO_ANO];
-                $this->missaoSemestre       = $jm[self::MISSAO_SEMESTRE];
-                $this->missaoSequencia      = $jm[self::MISSAO_SEQUENCIA];
-                $this->missaoObrigatoria    = $jm[self::MISSAO_OBRIGATORIA];
-                $this->missaoPai            = $jm[self::MISSAO_PAI];
-                $this->aprovado             = $jm[self::JOGADORMISSAO_APROVADO];
-                $this->cumprida             = $jm[self::JOGADORMISSAO_CUMPRIDA];
-                $this->jogando              = $jm[self::JOGADORMISSAO_JOGANDO];
-                $this->liberada             = $jm[self::JOGADORMISSAO_LIBERADA];
+                    $obj->id                    = $jm['missaoalunoId'];
+                    $obj->aluno                 = $jm['alunoId'];
+                    $obj->missao                = $jm['missaoId'];
+                    $obj->missaoAno             = $jm['missaoAno'];
+                    $obj->missaoSemestre        = $jm['missaoSemestre'];
+                    $obj->missaoSequencia       = $jm['missaoSequencia'];
+                    $obj->missaoObrigatoria     = $jm['missaoObrigatoria'];
+                    $obj->missaoPai             = $jm['missaoPai'];
+
+                    $aprovado   = 0;
+                    $cumprida   = 0;
+                    $jogando    = 0;
+                    $liberada   = 0;
+
+                    switch ($jm['statusMissao'])
+                    {
+                        case 1:
+                            $liberada   = 1;
+                            break;
+                        case 2:
+                            $jogando    = 1;
+                            break;
+                        case 3:
+                            $cumprida   = 1;
+                            break;
+                        case 4:
+                            $aprovado   = 1;
+                            break;
+                    }
+
+                    $obj->aprovado              = $aprovado;
+                    $obj->cumprida              = $cumprida;
+                    $obj->jogando               = $jogando;
+                    $obj->liberada              = $liberada;
+
+                    $obj->eixo                  = $jm['eixoId'];
+                    $obj->eixoNome              = $jm['eixoNome'];
+
+                    array_push($matriz, $obj);
+                }
             }
         }
+
+        return $matriz;
     }
 
     public function Salvar()
