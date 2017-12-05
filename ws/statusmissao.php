@@ -9,11 +9,11 @@ $conf       = new lib\ws\jsgravacao();
 
 //GET apenas para testes
 
-//if (isset($_POST['token']))
-if (isset($_GET['token']))
+if (isset($_POST['token']))
+//if (isset($_GET['token']))
 {
-//    $token          = $_POST['token'];
-    $token          = $_GET['token'];
+    $token          = $_POST['token'];
+//    $token          = $_GET['token'];
 
     $auto           = new lib\autorizacao();
     $autoresp       = $auto->Validar(base64_decode($token));
@@ -37,11 +37,11 @@ else
     $token          = '';
 }
 
-//if (isset($_POST['missaoaluno']))
-if (isset($_GET['missaoaluno']))
+if (isset($_POST['missaoaluno']))
+//if (isset($_GET['missaoaluno']))
 {
-//    $missaoaluno         = $_POST['missaoaluno'];
-    $missaoaluno         = $_GET['missaoaluno'];
+    $missaoaluno         = $_POST['missaoaluno'];
+//    $missaoaluno         = $_GET['missaoaluno'];
 }
 else
 {
@@ -49,11 +49,11 @@ else
     $missaoaluno          = '';
 }
 
-//if (isset($_POST['aluno']))
-if (isset($_GET['aluno']))
+if (isset($_POST['aluno']))
+//if (isset($_GET['aluno']))
 {
-//    $aluno         = $_POST['aluno'];
-    $aluno         = $_GET['aluno'];
+    $aluno         = $_POST['aluno'];
+//    $aluno         = $_GET['aluno'];
 }
 else
 {
@@ -61,11 +61,11 @@ else
     $aluno          = '';
 }
 
-//if (isset($_POST['missao']))
-if (isset($_GET['missao']))
+if (isset($_POST['missao']))
+//if (isset($_GET['missao']))
 {
-//    $missao         = $_POST['missao'];
-    $missao         = $_GET['missao'];
+    $missao         = $_POST['missao'];
+//    $missao         = $_GET['missao'];
 }
 else
 {
@@ -73,11 +73,11 @@ else
     $missao          = '';
 }
 
-//if (isset($_POST['status']))
-if (isset($_GET['status']))
+if (isset($_POST['status']))
+//if (isset($_GET['status']))
 {
-//    $status         = $_POST['status'];
-    $status         = $_GET['status'];
+    $status         = $_POST['status'];
+//    $status         = $_GET['status'];
 }
 else
 {

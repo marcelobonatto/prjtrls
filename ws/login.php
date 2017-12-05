@@ -40,12 +40,15 @@ if (isset($_POST['chave']))
         case 3:
             $mensagens[]    = 'A chave não pertence a nenhuma plataforma esperada';
             break;
+        case 4:
+            $mensagens[]    = 'O sistema não localizou a chave';
+            break;
     }
 }
 else
 {
     $mensagens[]    = 'Chave não informada';
-    $desc          = '';
+    $desc           = '';
 }
 
 if (count($mensagens) == 0)
