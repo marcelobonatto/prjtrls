@@ -182,6 +182,7 @@ if (count($mensagens) == 0)
                     $login->mochila[$posmochila]->bonus         = $item->bonus;
                     $login->mochila[$posmochila]->nivel         = $item->nivel;
                     $login->mochila[$posmochila]->estausando    = $mochila->selecionado;
+                    $login->mochila[$posmochila]->imagem        = $item->imagem;
                 }
             }
 

@@ -14,6 +14,7 @@ class item
     const ITEM_BONUS		= 8;
     const ITEM_PRECONORMAL	= 9;
     const ITEM_ATIVO		= 10;
+    const ITEM_IMAGEM       = 11;
 
     public $id;
     public $nome;
@@ -26,12 +27,13 @@ class item
     public $bonus;
     public $preconormal;
     public $ativo;
+    public $imagem;
 
     public function ListarRegistros($pagina)
     {
         $matriz = array();
 
-        $sql    = 'SELECT itemId, itemNome, itemNivel, itemTipo, itemCor, i.eixoId, eixoNome, itemLimite, itemBonus, itemPrecoNormal, itemAtivo ' .
+        $sql    = 'SELECT itemId, itemNome, itemNivel, itemTipo, itemCor, i.eixoId, eixoNome, itemLimite, itemBonus, itemPrecoNormal, itemAtivo, itemImagem ' .
                   'FROM itens i ' .
                   'JOIN eixos e ON e.eixoId = i.eixoId ' .
                   "WHERE itemTipo = 'I' " .
@@ -58,6 +60,7 @@ class item
                     $obj->bonus                 = $item[self::ITEM_BONUS];
                     $obj->preconormal           = $item[self::ITEM_PRECONORMAL];
                     $obj->ativo                 = $item[self::ITEM_ATIVO];
+                    $obj->imagem                = $item[self::ITEM_IMAGEM];
 
                     array_push($matriz, $obj);
                 }
@@ -71,7 +74,7 @@ class item
     {
         $matriz = array();
 
-        $sql    = 'SELECT itemId, itemNome, itemNivel, itemTipo, itemCor, i.eixoId, eixoNome, itemLimite, itemBonus, itemPrecoNormal, itemAtivo ' .
+        $sql    = 'SELECT itemId, itemNome, itemNivel, itemTipo, itemCor, i.eixoId, eixoNome, itemLimite, itemBonus, itemPrecoNormal, itemAtivo, itemImagem ' .
                   'FROM itens i ' .
                   'LEFT JOIN eixos e ON e.eixoId = i.eixoId ' .
                   "WHERE itemAtivo = 1 " .
@@ -98,6 +101,7 @@ class item
                     $obj->bonus                 = $item[self::ITEM_BONUS];
                     $obj->preconormal           = $item[self::ITEM_PRECONORMAL];
                     $obj->ativo                 = $item[self::ITEM_ATIVO];
+                    $obj->imagem                = $item[self::ITEM_IMAGEM];
 
                     array_push($matriz, $obj);
                 }
@@ -109,7 +113,7 @@ class item
 
     public function Selecionar($id)
     {
-        $sql    = "SELECT itemId, itemNome, itemNivel, itemTipo, itemCor, i.eixoId, COALESCE(e.eixoNome, 'Todos') AS eixoNome, itemLimite, itemBonus, itemPrecoNormal, itemAtivo " .
+        $sql    = "SELECT itemId, itemNome, itemNivel, itemTipo, itemCor, i.eixoId, COALESCE(e.eixoNome, 'Todos') AS eixoNome, itemLimite, itemBonus, itemPrecoNormal, itemAtivo, itemImagem " .
                   'FROM itens i ' .
                   'LEFT JOIN eixos e ON e.eixoId = i.eixoId ' .
                   "WHERE itemId = '$id' " .
@@ -135,6 +139,7 @@ class item
                 $this->bonus                 = $item[self::ITEM_BONUS];
                 $this->preconormal           = $item[self::ITEM_PRECONORMAL];
                 $this->ativo                 = $item[self::ITEM_ATIVO];
+                $this->imagem                = $item[self::ITEM_IMAGEM];
             }
         }
     }

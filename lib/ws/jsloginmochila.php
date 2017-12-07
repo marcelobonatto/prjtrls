@@ -11,5 +11,6 @@ class jsloginmochila
     public $bonus;
     public $nivel;
     public $estausando;
+    public $imagem;
 }
 ?>
