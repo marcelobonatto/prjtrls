@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 07-Dez-2017 às 02:08
+-- Generation Time: 07-Dez-2017 às 22:06
 -- Versão do servidor: 5.7.19
 -- PHP Version: 7.0.23
 
@@ -77,10 +77,14 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('0acc7b6a-dade-11e7-b31a-74d4359f41f2', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-12-06 21:34:45', '::1'),
 ('0ef469a5-daf0-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 00:43:47', '::1'),
 ('166104f7-dade-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 21:35:05', '::1'),
+('1eeea762-db92-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:03:48', '::1'),
 ('210ce348-d3cb-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', ''),
 ('2481a6ae-d3cf-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('283ce4b8-d3cd-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('2fb68cb5-db97-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:40:04', '::1'),
 ('31a1d606-d3cf-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('3307fedc-db92-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:04:22', '::1'),
+('378ff483-db98-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:47:26', '::1'),
 ('38d54ccc-d3cb-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', ''),
 ('3e3f15ef-dae6-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 23:33:36', '::1'),
 ('4179b585-dae4-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 23:19:18', '::1'),
@@ -93,6 +97,8 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('5611e8e8-d3d7-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('58cf72e0-d3cc-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('5959478e-daf2-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 01:00:10', '::1'),
+('5a935c5e-db97-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:41:16', '::1'),
+('5be90a0d-db98-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:48:27', '::1'),
 ('5da66da4-dae4-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 23:20:05', '::1'),
 ('5f4bac5a-d62f-11e7-b52d-14b65896e7c5', '5f493d4e-d62f-11e7-b52d-14b65896e7c5', '0000-00-00 00:00:00', '::1'),
 ('602ad66e-d9f9-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-05 18:17:27', '::1'),
@@ -104,6 +110,7 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('75948c62-d3cc-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('76245c0c-d3d6-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('78d169e6-d3cb-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('7ca53f8a-db98-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:49:22', '::1'),
 ('7d84259e-daef-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 23:39:39', '::1'),
 ('81f5f022-d3d6-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('8553db66-d9f9-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-05 18:18:29', '::1'),
@@ -112,9 +119,12 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('8e5158c4-dade-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 21:38:26', '::1'),
 ('8fcf1265-da9a-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 14:35:18', '::1'),
 ('94a77790-d3d6-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('97390cc9-db91-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:00:00', '::1'),
 ('9b9ea726-d3cc-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('a43d7bea-d62f-11e7-b52d-14b65896e7c5', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '0000-00-00 00:00:00', '::1'),
+('a5048133-db98-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 20:50:46', '::1'),
 ('ae3a7efa-daef-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 23:41:01', '::1'),
+('b653062a-db97-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:43:49', '::1'),
 ('b71d2745-daf1-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 00:55:40', '::1'),
 ('b7d51c86-d62e-11e7-b52d-14b65896e7c5', 'b7caa51c-d62e-11e7-b52d-14b65896e7c5', '0000-00-00 00:00:00', '::1'),
 ('ba5cd12e-d3cc-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
@@ -126,12 +136,15 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('cc9fc350-d3d6-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('d1cff5c8-daf1-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 00:56:23', '::1'),
 ('d44a4102-d3d6-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('dd6f1036-db91-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:01:58', '::1'),
 ('de5901e0-daf2-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 01:03:53', '::1'),
 ('ec98dd96-daeb-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 00:14:15', '::1'),
 ('ecb3caab-dade-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 21:41:04', '::1'),
 ('f2adce31-dae2-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 23:09:58', '::1'),
 ('f2b1dd4e-d3cc-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-12-01 00:38:00', '::1'),
+('f509133b-db96-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:38:25', '::1'),
 ('f516e352-dae5-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 23:31:27', '::1'),
+('f58e25f8-db97-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:45:36', '::1'),
 ('fce47d5c-daf1-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 00:57:35', '::1');
 
 -- --------------------------------------------------------
@@ -6072,7 +6085,8 @@ CREATE TABLE IF NOT EXISTS `missoes` (
   `missaoSequencia` int(11) NOT NULL,
   `missaoObrigatoria` tinyint(4) NOT NULL,
   `missaoPai` varchar(36) DEFAULT NULL,
-  `missaoReferencia` int(11) GENERATED ALWAYS AS (((((`missaoAno` * 10000) + (`missaoSemestre` * 1000)) + (abs((1 - `missaoObrigatoria`)) * 100)) + `missaoSequencia`)) VIRTUAL,
+  `missaoPaiSequencia` int(11) NOT NULL DEFAULT '0',
+  `missaoReferencia` int(11) GENERATED ALWAYS AS ((((`missaoAno` * 100000) + (`missaoSemestre` * 10000)) + (case when (`missaoPaiSequencia` > 0) then ((`missaoPaiSequencia` * 100) + `missaoSequencia`) else (`missaoSequencia` * 100) end))) VIRTUAL,
   PRIMARY KEY (`missaoId`),
   KEY `fk_missoes_missoes1_idx` (`missaoPai`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -6081,15 +6095,15 @@ CREATE TABLE IF NOT EXISTS `missoes` (
 -- Extraindo dados da tabela `missoes`
 --
 
-INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescricao`, `missaoAtivo`, `missaoIdMoodle`, `missaoAno`, `missaoSemestre`, `missaoSequencia`, `missaoObrigatoria`, `missaoPai`) VALUES
-('90363083-dad1-11e7-8d5e-74d4359f41f2', 'Missão E114', 'Resistência iPhoniana', 'Analise a resistência de algum iPhone e descreva como ele poderia ser mais resistente, demonstrando isso com cálculos.', 1, '', 1, 1, 4, 1, NULL),
-('90386846-dad1-11e7-8d5e-74d4359f41f2', 'Missão E111', 'Superman Salva o Dia', 'No filme Superman, de 1978, o herói, vendo que não conseguiria parar um ataque nuclear que mataria Lois Lane, acelera em torno da Terra em sentido contrário para voltar alguns minutos no tempo. Calcule qual a velocidade e quantas voltas que ele deve dar para voltar 10 minutos. Demonstre os cálculos.', 1, '2', 1, 1, 1, 1, NULL),
-('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Missão N111', 'Missão Teste 1 (Negócios)', 'Nesta missão você terá que ler o que está no Moodle e fazer.', 1, '6cac44e4-5269-42ef-b169-13042e4b5869', 1, 1, 1, 1, NULL),
-('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Missão SE1', 'Side-quest Teste 1', 'Essa missão não é obrigatória, mas seria legal você fazer.', 1, '3e198323-6bb3-4f56-bed6-55dceb987a1f', 1, 1, 1, 0, '90363083-dad1-11e7-8d5e-74d4359f41f2'),
-('f81df8cd-dad1-11e7-8d5e-74d4359f41f2', 'Missão E115', 'Balísticas Poderosas', 'Visite uma fábrica de armas de destruição em massa e descreva o que puder sobre o desenvolvimento delas.', 1, '', 1, 1, 5, 1, NULL),
-('f81e0a09-dad1-11e7-8d5e-74d4359f41f2', 'Missão E116', 'Automóveis Melhores', 'Visite uma fábrica de automóveis, escolha um modelo e descreva, com cálculos, como ele poderia ser melhor sem que ele fique mais de 10% mais caro.', 1, '', 1, 1, 6, 1, NULL),
-('f81e0b8c-dad1-11e7-8d5e-74d4359f41f2', 'Missão E112', 'Aprendizes de Engenheiros em Ação', 'Analise vários objetos projetados por engenheiros (independente do que é o objeto) e descreva as possíveis técnicas utilizadas.', 1, '', 1, 1, 2, 1, NULL),
-('f81e0c55-dad1-11e7-8d5e-74d4359f41f2', 'Missão E113', 'Circuítos Lógicos', 'Desenhe um circuíto lógico simples com pelo menos 5 condições e descreva os possíveis resultados que ele pode ter.', 1, '', 1, 1, 3, 1, NULL);
+INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescricao`, `missaoAtivo`, `missaoIdMoodle`, `missaoAno`, `missaoSemestre`, `missaoSequencia`, `missaoObrigatoria`, `missaoPai`, `missaoPaiSequencia`) VALUES
+('90363083-dad1-11e7-8d5e-74d4359f41f2', 'Missão E114', 'Resistência iPhoniana', 'Analise a resistência de algum iPhone e descreva como ele poderia ser mais resistente, demonstrando isso com cálculos.', 1, '', 1, 1, 4, 1, NULL, 0),
+('90386846-dad1-11e7-8d5e-74d4359f41f2', 'Missão E111', 'Superman Salva o Dia', 'No filme Superman, de 1978, o herói, vendo que não conseguiria parar um ataque nuclear que mataria Lois Lane, acelera em torno da Terra em sentido contrário para voltar alguns minutos no tempo. Calcule qual a velocidade e quantas voltas que ele deve dar para voltar 10 minutos. Demonstre os cálculos.', 1, '2', 1, 1, 1, 1, NULL, 0),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Missão N111', 'Missão Teste 1 (Negócios)', 'Nesta missão você terá que ler o que está no Moodle e fazer.', 1, '6cac44e4-5269-42ef-b169-13042e4b5869', 1, 1, 1, 1, NULL, 0),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Missão SE1', 'Side-quest Teste 1', 'Essa missão não é obrigatória, mas seria legal você fazer.', 1, '3e198323-6bb3-4f56-bed6-55dceb987a1f', 1, 1, 1, 0, '90363083-dad1-11e7-8d5e-74d4359f41f2', 4),
+('f81df8cd-dad1-11e7-8d5e-74d4359f41f2', 'Missão E115', 'Balísticas Poderosas', 'Visite uma fábrica de armas de destruição em massa e descreva o que puder sobre o desenvolvimento delas.', 1, '', 1, 1, 5, 1, NULL, 0),
+('f81e0a09-dad1-11e7-8d5e-74d4359f41f2', 'Missão E116', 'Automóveis Melhores', 'Visite uma fábrica de automóveis, escolha um modelo e descreva, com cálculos, como ele poderia ser melhor sem que ele fique mais de 10% mais caro.', 1, '', 1, 1, 6, 1, NULL, 0),
+('f81e0b8c-dad1-11e7-8d5e-74d4359f41f2', 'Missão E112', 'Aprendizes de Engenheiros em Ação', 'Analise vários objetos projetados por engenheiros (independente do que é o objeto) e descreva as possíveis técnicas utilizadas.', 1, '', 1, 1, 2, 1, NULL, 0),
+('f81e0c55-dad1-11e7-8d5e-74d4359f41f2', 'Missão E113', 'Circuítos Lógicos', 'Desenhe um circuíto lógico simples com pelo menos 5 condições e descreva os possíveis resultados que ele pode ter.', 1, '', 1, 1, 3, 1, NULL, 0);
 
 -- --------------------------------------------------------
 
