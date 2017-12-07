@@ -12,6 +12,7 @@ class missaoaluno
     public $missao;
     public $aluno;
     public $status;
+    public $referencia;
 
     public $missaoAno;
     public $missaoSemestre;
@@ -27,7 +28,7 @@ class missaoaluno
         $matriz = array();
         
         $sql    = 'SELECT missaoalunoId, ma.missaoId, alunoId, statusMissao, m.missaoAno, m.missaoSemestre, m.missaoSequencia, m.missaoObrigatoria, m.missaoPai, ' .
-                  'e.eixoId, e.eixoNome ' .
+                  'e.eixoId, e.eixoNome, m.missaoReferencia ' .
                   'FROM missaoaluno ma ' .
                   'JOIN missoes m ON m.missaoId = ma.missaoId ' .
                   'JOIN missoeseixo me ON me.missaoId = m.missaoId ' . 
@@ -53,6 +54,7 @@ class missaoaluno
                     $obj->missaoSequencia       = $jm['missaoSequencia'];
                     $obj->missaoObrigatoria     = $jm['missaoObrigatoria'];
                     $obj->missaoPai             = $jm['missaoPai'];
+                    $obj->referencia            = $jm['missaoReferencia'];
 
                     $aprovado   = 0;
                     $cumprida   = 0;

@@ -13,5 +13,6 @@ class jsloginmissao
     public $cumprida;
     public $jogando;
     public $aprovada;
+    public $referencia;
 }
 ?>

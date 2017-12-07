@@ -27,6 +27,7 @@ class missao
     public $obrigatoria;
     public $pai;
     public $painome;
+    public $referencia;
     public $eixos = array();
     public $falasnpc = array();
 
@@ -35,12 +36,12 @@ class missao
         $matriz = array();
         
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
-                  'missaoSequencia, missaoObrigatoria, missaoPai ' .
+                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia ' .
                   'FROM missoes ' .
-                  'ORDER BY missaoAno, missaoSemestre, missaoSequencia';
+                  'ORDER BY missaoReferencia';
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
@@ -49,17 +50,18 @@ class missao
                 foreach ($res as $missao)
                 {
                     $obj                = new missao();
-                    $obj->id            = $missao[self::MISSAO_ID];
-                    $obj->nome          = $missao[self::MISSAO_NOME];
-                    $obj->titulo        = $missao[self::MISSAO_TITULO];
-                    $obj->descricao     = $missao[self::MISSAO_DESCRICAO];
-                    $obj->ativo         = $missao[self::MISSAO_ATIVO];
-                    $obj->idMoodle      = $missao[self::MISSAO_IDMOODLE];
-                    $obj->ano           = $missao[self::MISSAO_ANO];
-                    $obj->semestre      = $missao[self::MISSAO_SEMESTRE];
-                    $obj->sequencia     = $missao[self::MISSAO_SEQUENCIA];
-                    $obj->obrigatoria   = $missao[self::MISSAO_OBRIGATORIA];
-                    $obj->pai           = $missao[self::MISSAO_PAI];
+                    $obj->id            = $missao['missaoId'];
+                    $obj->nome          = $missao['missaoNome'];
+                    $obj->titulo        = $missao['missaoTitulo'];
+                    $obj->descricao     = $missao['missaoDescricao'];
+                    $obj->ativo         = $missao['missaoAtivo'];
+                    $obj->idMoodle      = $missao['missaoIdMoodle'];
+                    $obj->ano           = $missao['missaoAno'];
+                    $obj->semestre      = $missao['missaoSemestre'];
+                    $obj->sequencia     = $missao['missaoSequencia'];
+                    $obj->obrigatoria   = $missao['missaoObrigatoria'];
+                    $obj->pai           = $missao['missaoPai'];
+                    $obj->referencia    = $missao['missaoReferencia'];
 
                     array_push($matriz, $obj);
                 }
@@ -120,13 +122,13 @@ class missao
         $matriz = array();
         
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
-                  'missaoSequencia, missaoObrigatoria, missaoPai ' .
+                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia ' .
                   'FROM missoes ' .
                   'WHERE missaoAtivo = 1 ' .
-                  'ORDER BY missaoAno, missaoSemestre, missaoSequencia';
+                  'ORDER BY missaoReferencia';
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
@@ -135,17 +137,18 @@ class missao
                 foreach ($res as $missao)
                 {
                     $obj                = new missao();
-                    $obj->id            = $missao[self::MISSAO_ID];
-                    $obj->nome          = $missao[self::MISSAO_NOME];
-                    $obj->titulo        = $missao[self::MISSAO_TITULO];
-                    $obj->descricao     = $missao[self::MISSAO_DESCRICAO];
-                    $obj->ativo         = $missao[self::MISSAO_ATIVO];
-                    $obj->idMoodle      = $missao[self::MISSAO_IDMOODLE];
-                    $obj->ano           = $missao[self::MISSAO_ANO];
-                    $obj->semestre      = $missao[self::MISSAO_SEMESTRE];
-                    $obj->sequencia     = $missao[self::MISSAO_SEQUENCIA];
-                    $obj->obrigatoria   = $missao[self::MISSAO_OBRIGATORIA];
-                    $obj->pai           = $missao[self::MISSAO_PAI];
+                    $obj->id            = $missao['missaoId'];
+                    $obj->nome          = $missao['missaoNome'];
+                    $obj->titulo        = $missao['missaoTitulo'];
+                    $obj->descricao     = $missao['missaoDescricao'];
+                    $obj->ativo         = $missao['missaoAtivo'];
+                    $obj->idMoodle      = $missao['missaoIdMoodle'];
+                    $obj->ano           = $missao['missaoAno'];
+                    $obj->semestre      = $missao['missaoSemestre'];
+                    $obj->sequencia     = $missao['missaoSequencia'];
+                    $obj->obrigatoria   = $missao['missaoObrigatoria'];
+                    $obj->pai           = $missao['missaoPai'];
+                    $obj->referencia    = $missao['missaoReferencia'];
 
                     array_push($matriz, $obj);
                 }

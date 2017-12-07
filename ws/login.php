@@ -115,6 +115,7 @@ if (count($mensagens) == 0)
                 $login->missoes[$posmissao]->jogando        = $jm->jogando;
                 $login->missoes[$posmissao]->aprovada       = $jm->liberada;
                 $login->missoes[$posmissao]->eixo           = strtoupper($jm->eixoNome);
+                $login->missoes[$posmissao]->referencia     = $jm->referencia;
             }
 
             $quizobj            = new lib\quiz();

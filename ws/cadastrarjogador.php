@@ -7,8 +7,8 @@ $mensagens  = array();
 
 //GET apenas para testes
 
-//if (isset($_POST['chave']))
-if (isset($_GET['chave']))
+if (isset($_POST['chave']))
+//if (isset($_GET['chave']))
 {
 //    $chave          = $_POST['chave'];
     $chave          = $_GET['chave'];
@@ -35,8 +35,8 @@ else
     $chave          = '';
 }
 
-//if (isset($_POST['valor']))
-if (isset($_GET['valor']))
+if (isset($_POST['valor']))
+//if (isset($_GET['valor']))
 {
 //    $valor         = $_POST['valor'];
     $valor          = $_GET['valor'];
@@ -140,7 +140,11 @@ if (count($mensagens) == 0)
                 $misalu             = new lib\missaoaluno();
                 $misalu->missao     = $misitm->id;
                 $misalu->aluno      = $aluno->id;
-                $misalu->status     = 0;
+
+                if ($ano <= substr($misobj->referencia, 0, 1))
+                {
+                    $misalu->status     = 0;
+                }
 
                 if (!$misalu->Salvar())
                 {
