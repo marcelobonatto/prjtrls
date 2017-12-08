@@ -14,6 +14,7 @@ class dialogonpc
     public $missao;
     public $sequencia;
     public $npc;
+    public $chave;
     public $humor;
     public $texto;
 
@@ -21,13 +22,14 @@ class dialogonpc
     {
         $matriz = array();
 
-        $sql    = 'SELECT dialogoId, missaoId, dialogoSequencia, npcId, dialogoHumor, dialogoTexto ' .
-                  'FROM dialogosnpc ' .
+        $sql    = 'SELECT dialogoId, missaoId, dialogoSequencia, n.npcId, n.npcChave, dialogoHumor, dialogoTexto ' .
+                  'FROM dialogosnpc dn ' .
+                  'JOIN npc n ON n.npcId = dn.npcId ' .
                   "WHERE missaoId = '$missao' " .
                   'ORDER BY dialogoSequencia';
         
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
@@ -36,12 +38,13 @@ class dialogonpc
                 foreach ($res as $dialogo)
                 {
                     $obj                = new dialogonpc();
-                    $obj->id            = $dialogo[self::DIALOGO_ID];
-                    $obj->missao        = $dialogo[self::MISSAO_ID];
-                    $obj->sequencia     = $dialogo[self::DIALOGO_SEQUENCIA];
-                    $obj->npc           = $dialogo[self::NPC_ID];
-                    $obj->humor         = $dialogo[self::DIALOGO_HUMOR];
-                    $obj->texto         = $dialogo[self::DIALOGO_TEXTO];
+                    $obj->id            = $dialogo['dialogoId'];
+                    $obj->missao        = $dialogo['missaoId'];
+                    $obj->sequencia     = $dialogo['dialogoSequencia'];
+                    $obj->npc           = $dialogo['npcId'];
+                    $obj->chave         = $dialogo['npcChave'];
+                    $obj->humor         = $dialogo['dialogoHumor'];
+                    $obj->texto         = $dialogo['dialogoTexto'];
 
                     array_push($matriz, $obj);
                 }

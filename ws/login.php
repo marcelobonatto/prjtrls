@@ -2,7 +2,7 @@
 include_once('../autoload.php');
 
 date_default_timezone_set('America/Sao_Paulo');
-header('Content-Type: application/json');
+//header('Content-Type: application/json');
 
 $mensagens  = array();
 
@@ -70,6 +70,8 @@ if (count($mensagens) == 0)
             $aluobj             = new lib\aluno();
             $aluobj->SelecionarPorUsuario($usuobj->id);
 
+            $login->idaluno     = $aluobj->id;
+
             $jogobj             = new lib\jogador();
             $jogobj->Selecionar($aluobj->id);
 
@@ -113,7 +115,7 @@ if (count($mensagens) == 0)
                 $login->missoes[$posmissao]->liberada       = $jm->liberada;
                 $login->missoes[$posmissao]->cumprida       = $jm->cumprida;
                 $login->missoes[$posmissao]->jogando        = $jm->jogando;
-                $login->missoes[$posmissao]->aprovada       = $jm->liberada;
+                $login->missoes[$posmissao]->aprovada       = $jm->aprovada;
                 $login->missoes[$posmissao]->eixo           = strtoupper($jm->eixoNome);
                 $login->missoes[$posmissao]->referencia     = $jm->referencia;
             }

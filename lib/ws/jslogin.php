@@ -3,6 +3,7 @@ namespace lib\ws;
 
 class jslogin extends jsloginbase
 {
+    public $idaluno;
     public $nome;
     public $sexo;
     public $cabelo;

@@ -23,6 +23,11 @@ class missaoaluno
     public $eixo;
     public $eixoNome;
 
+    public $aprovada;
+    public $cumprida;
+    public $jogando;
+    public $liberada;
+
     public function ListarPorJogador($aluno)
     {
         $matriz = array();
@@ -33,7 +38,8 @@ class missaoaluno
                   'JOIN missoes m ON m.missaoId = ma.missaoId ' .
                   'JOIN missoeseixo me ON me.missaoId = m.missaoId ' . 
                   'JOIN eixos e ON e.eixoId = me.eixoId ' .
-                  "WHERE alunoId = '$aluno'";
+                  "WHERE alunoId = '$aluno' " .
+                  'ORDER BY m.missaoReferencia';
 
         $db     = new bancodados();
         $res    = $db->SelecionarAssociativa($sql);
@@ -61,7 +67,7 @@ class missaoaluno
                     $jogando    = 0;
                     $liberada   = 0;
 
-                    switch ($jm['statusMissao'])
+                    switch (intval($jm['statusMissao']))
                     {
                         case 1:
                             $liberada   = 1;
@@ -77,7 +83,7 @@ class missaoaluno
                             break;
                     }
 
-                    $obj->aprovado              = $aprovado;
+                    $obj->aprovada              = $aprovado;
                     $obj->cumprida              = $cumprida;
                     $obj->jogando               = $jogando;
                     $obj->liberada              = $liberada;
@@ -86,6 +92,97 @@ class missaoaluno
                     $obj->eixoNome              = $jm['eixoNome'];
 
                     array_push($matriz, $obj);
+                }
+            }
+        }
+
+        return $matriz;
+    }
+
+    public function Selecionar($aluno, $missao, $eixo)
+    {
+        $sql    = 'SELECT missaoalunoId, ma.missaoId, alunoId, statusMissao ' .
+                  'FROM missaoaluno ma ' .
+                  'JOIN missoeseixo me ON me.missaoId = ma.missaoId ' .
+                  "WHERE alunoId = '$aluno' " .
+                  "AND ma.missaoId = '$missao'";
+
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== FALSE)
+        {
+            $ma = $res[0];
+
+            $this->id                    = $ma['missaoalunoId'];
+            $this->aluno                 = $ma['alunoId'];
+            $this->missao                = $ma['missaoId'];
+            $this->status                = $ma['statusMissao'];
+        }
+    }
+
+    public function SelecionarProximo($aluno, $missao, $eixo)
+    {
+        $matriz = array();
+
+        $sql    = 'SELECT 1 AS idx, missaoalunoId, ma.missaoId, alunoId, statusMissao, m.missaoReferencia ' .
+                  'FROM missaoaluno ma ' .
+                  'JOIN missoeseixo me ON me.missaoId = ma.missaoId '.
+                  'JOIN missoes m ON m.missaoId = ma.missaoId ' .
+                  "WHERE alunoId = '$aluno' " .
+                  "AND me.eixoId = '$eixo' " .
+                  "AND missaoReferencia > (SELECT m2.missaoReferencia FROM missoes m2 WHERE m2.missaoId = '$missao') " .
+                  'UNION ' .
+                  'SELECT 0 AS idx, missaoalunoId, ma.missaoId, alunoId, statusMissao, missaoReferencia ' .
+                  'FROM missaoaluno ma ' .
+                  'JOIN missoes m ON m.missaoId = ma.missaoId ' .
+                  "WHERE alunoId = '$aluno' " .
+                  "AND ma.missaoId = '$missao' " .
+                  'ORDER BY 1, missaoReferencia';
+
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                $old    = substr($res[0]['missaoReferencia'], 0, 4);
+                $max    = $old;
+                $prim   = true;
+                $agora  = "";
+
+                foreach ($res as $jm)
+                {
+                    if (!$prim)
+                    {
+                        $agora  = substr($jm['missaoReferencia'], 0, 4);
+
+                        if ($agora == $old)
+                        {
+                            $max    = $agora + 1;
+                        }
+                        else if ($agora != $old && $agora > $max)
+                        {
+                            break;
+                        }    
+                    }
+                    else
+                    {
+                        $prim   = false;
+                    }
+
+                    if ($jm['idx'] > 0)
+                    {
+                        $obj            = new missaoaluno();
+
+                        $obj->id       = $jm['missaoalunoId'];
+                        $obj->aluno    = $jm['alunoId'];
+                        $obj->missao   = $jm['missaoId'];
+                        $obj->status   = $jm['statusMissao'];
+
+                        array_push($matriz, $obj);
+                    }
                 }
             }
         }

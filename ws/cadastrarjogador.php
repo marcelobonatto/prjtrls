@@ -141,9 +141,19 @@ if (count($mensagens) == 0)
                 $misalu->missao     = $misitm->id;
                 $misalu->aluno      = $aluno->id;
 
-                if ($ano <= substr($misobj->referencia, 0, 1))
+                $anostr = substr($misobj->referencia, 0, 1);
+                $seqstr = substr($misobj->referencia, 2, 2);
+
+                if ($ano <= $anostr)
                 {
-                    $misalu->status     = 0;
+                    if ($ano > $anostr || ($ano == $anostr && $seqstr == '01'))
+                    {
+                        $misalu->status     = 1;
+                    }
+                    else
+                    {
+                        $misalu->status     = 0;
+                    }
                 }
 
                 if (!$misalu->Salvar())

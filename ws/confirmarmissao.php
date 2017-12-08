@@ -9,11 +9,11 @@ $conf           = new lib\ws\jsgravacao();
 
 //GET apenas para testes
 
-//if (isset($_POST['token']))
-if (isset($_GET['token']))
+if (isset($_POST['token']))
+//if (isset($_GET['token']))
 {
-//    $token          = $_POST['token'];
-    $token          = $_GET['token'];
+    $token          = $_POST['token'];
+//    $token          = $_GET['token'];
 
     $auto           = new lib\autorizacao();
     $autoresp       = $auto->Validar(base64_decode($token));
@@ -37,16 +37,16 @@ else
     $token          = '';
 }
 
-//if (isset($_POST['valor']))
-if (isset($_GET['valor']))
+if (isset($_POST['valor']))
+//if (isset($_GET['valor']))
 {
-//    $valor         = $_POST['valor'];
-    $valor         = $_GET['valor'];
+    $valor         = $_POST['valor'];
+//    $valor         = $_GET['valor'];
     
     $b64            = base64_decode($valor);
     $json           = json_decode($b64);
 
-    $cjs            = array('sexo', 'cabelo', 'pele');
+    $cjs            = array('aluno', 'missao', 'eixo');
 
     if (json_last_error() == JSON_ERROR_NONE)
     {
@@ -79,30 +79,31 @@ else
 
 if (count($mensagens) == 0)
 {
-    $missao         = new lib\missao();
-    $missao->Selecionar($json->missao);
-    $missao->SelecionarMissaoAnterior($json->missao);
+    $eixoobj        = new lib\eixo();
+    $eixoobj-> SelecionarPorSigla($json->eixo);
 
-    if (!$missao->ativo)
+    $missaojog      = new lib\missaoaluno();
+    $missaojog->Selecionar($json->aluno, $json->missao, $eixoobj->id);
+
+    if ($missaojog->id != null)
     {
-        $mensagens[]    = 'A missão selecionada não é ativa';
+        $missaojog->status  = 2;
+        $missaojog->Salvar();
+
+        $conf->gravou       = true;
+
+        $proxobj    = new lib\missaoaluno();
+        $proxarr    = $proxobj->SelecionarProximo($json->aluno, $json->missao, $eixoobj->id);
+
+        foreach ($proxarr as $prox)
+        {
+            $prox->status  = 1;
+            $prox->Salvar();    
+        }
     }
     else
     {
-        $missaojog      = new lib\jogadormissao();
-        $missaojog->Selecionar($json->aluno, $json->missao);
-
-        if ($missaojog->id == null)
-        {
-            $this->aluno                = $json->aluno;
-            $this->missao               = $json->missao;
-            $this->aprovado             = 0;
-            $this->cumprida             = 0;
-            $this->jogando              = 0;
-            $this->liberada             = 1;
-            
-            //jogadormissaoId, alunoId, missaoId, jogadormissaoAprovado, jogadormissaoCumprida, jogadormissaoJogando, jogadormissaoLiberada
-        }
+        $mensagens[]        = "A missão do aluno informado não existe";
     }
 }
 
