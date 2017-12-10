@@ -37,11 +37,13 @@ alunoAtivo (ativo)
         var escola = $("#cmbEscola").find("option:selected").val();
         var matricula = $("#txtMatricula").val();
         var ativo = $("input[name='optAtivo']:checked").val();
+        var email = $("#txtEmail").val();
+        var ano = $("#txtAno").val();
 
         $.ajax({
             type: "POST",
             url: "exec/gravaraluno.php",
-            data: "id=" + id + "&nome=" + nome + "&loginMoodle=" + loginMoodle + "&escola=" + escola + "&matricula=" + matricula + "&ativo=" + ativo,
+            data: "id=" + id + "&nome=" + nome + "&loginMoodle=" + loginMoodle + "&escola=" + escola + "&matricula=" + matricula + "&ativo=" + ativo + "&email=" + email + "&ano=" + ano,
             success : function(text) {
                 var txtspl = text.split("|");
 

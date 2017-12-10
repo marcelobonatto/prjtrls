@@ -2,6 +2,14 @@
 require_once('../autoload.php');
 
 header('Content-type: text/html; charset=utf-8');
+/*
+$classe     = $_GET['classe'];
+
+$obj        = new $classe();
+$lista      = $obj->ListarRegistros($_GET['pagina']);
+$colunas    = json_decode($_GET['colunas']);
+$cadastro   = $_GET['cadastro'];
+*/
 
 $classe     = $_POST['classe'];
 

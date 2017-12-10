@@ -28,7 +28,7 @@ class aluno
     {
         $matriz = array();
         
-        $sql    = 'SELECT alunoId, alunoNome, alunoLoginMoodle, email, ano, n.escolaId, escolaNome, alunoMatricula, alunoAtivo ' .
+        $sql    = 'SELECT alunoId, alunoNome, alunoLoginMoodle, alunoEmail, alunoAno, n.escolaId, escolaNome, alunoMatricula, alunoAtivo ' .
                   'FROM alunos n ' .
                   'LEFT JOIN escolas e ON e.escolaId = n.escolaId ' .
                   'ORDER BY alunoNome';
@@ -65,7 +65,7 @@ class aluno
     {
         $matriz = array();
         
-        $sql    = 'SELECT alunoId, alunoNome, alunoLoginMoodle, email, ano, n.escolaId, escolaNome, NULL AS alunoMatricula, alunoAtivo ' .
+        $sql    = 'SELECT alunoId, alunoNome, alunoLoginMoodle, alunoEmail, alunoAno, n.escolaId, escolaNome, NULL AS alunoMatricula, alunoAtivo ' .
                   'FROM alunos n ' .
                   'LEFT JOIN escolas e ON e.escolaId = n.escolaId ' .
                   'ORDER BY alunoNome';
@@ -100,7 +100,7 @@ class aluno
 
     public function Selecionar($id)
     {
-        $sql    = "SELECT alunoId, alunoNome, alunoLoginMoodle, email, ano, n.escolaId, escolaNome, alunoMatricula, alunoAtivo " .
+        $sql    = "SELECT alunoId, alunoNome, alunoLoginMoodle, alunoEmail, alunoAno, n.escolaId, escolaNome, alunoMatricula, alunoAtivo " .
                   'FROM alunos n ' .
                   'LEFT JOIN escolas e ON e.escolaId = n.escolaId ' .
                   "WHERE alunoId = '$id' " .
@@ -191,7 +191,7 @@ class aluno
     public function Incluir($id, $escola)
     {
         $sql    = 'INSERT INTO alunos ' .
-                  '(alunoId, alunoNome, alunoLoginMoodle, email, ano, escolaId, alunoMatricula, alunoAtivo, usuarioId) ' . 
+                  '(alunoId, alunoNome, alunoLoginMoodle, alunoEmail, alunoAno, escolaId, alunoMatricula, alunoAtivo, usuarioId) ' . 
                   "VALUES ('$id', '$this->nome', '$this->loginMoodle', '$this->email', $this->ano, $escola, $this->matricula, $this->ativo, '$this->usuario')";
 
         $db         = new bancodados();
@@ -212,8 +212,8 @@ class aluno
         $sql    = 'UPDATE alunos ' .
                   "SET alunoNome = '$this->nome', " .
                   "alunoLoginMoodle = '$this->loginMoodle', " .
-                  "email = $this->$email, " .
-                  "ano = $this->ano, " .                  
+                  "alunoEmail = $this->$email, " .
+                  "alunoAno = $this->ano, " .                  
                   "escolaId = $escola, " .
                   "alunoMatricula = $this->matricula, " .
                   "alunoAtivo = $this->ativo " .

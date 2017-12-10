@@ -7,5 +7,5 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "aluno",  colj, "aluno", "#lista");
+    carregarTabela(1, "lib\\aluno",  colj, "aluno", "#lista");
 });

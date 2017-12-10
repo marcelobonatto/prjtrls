@@ -32,7 +32,7 @@ else
 {
     $id = $_GET['id'];
 
-    $pergunta  = new pergunta();
+    $pergunta  = new lib\pergunta();
     $pergunta->Selecionar($id);
     
     $txtid      = $id;
@@ -79,7 +79,7 @@ include('header.php');
                 
                 $opcoes = "<option value=\"*\"$seltxtef>Todos</option>";
 
-                $eixoobj  = new eixo();
+                $eixoobj  = new lib\eixo();
                 $eixos    = $eixoobj->ListarRegistros(1);
 
                 foreach ($eixos as $eixoitem)
@@ -95,7 +95,7 @@ include('header.php');
                         $seltxtef   = '';
                     }
 
-                    $opcoes .= "<option value=\"$eixoitem->id\"$seltxtef>$eixoitem->codigo</option>";
+                    $opcoes .= "<option value=\"$eixoitem->id\"$seltxtef>$eixoitem->nome</option>";
                 }
                 ?>
                 <select class="form-control col-sm-3" id="cmbEixo" name="cmbEixo">                    

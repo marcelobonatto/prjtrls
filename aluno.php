@@ -66,11 +66,11 @@ include('header.php');
             </div>
             <div class="form-group">
                 <label for="txtE-mail">E-mail:</label>
-                <input class="form-control" type="text" value="<?php echo($email); ?>" id="txtEmail" name="txtEmail" required />
+                <input class="form-control" type="email" value="<?php echo($email); ?>" id="txtEmail" name="txtEmail" required />
             </div>
             <div class="form-group">
                 <label for="txtId">Ano:</label>
-                <input class="form-control col-sm-4" type="text" value="<?php echo($ano); ?>" id="txtAno" name="txtAno" min="1" max="3" required />
+                <input class="form-control col-sm-4" type="number" value="<?php echo($ano); ?>" id="txtAno" name="txtAno" min="1" max="3" required />
             </div>             
             <div class="form-group">
                 <label for="txtEscola">Escola:</label>
@@ -89,7 +89,7 @@ include('header.php');
                 
                 $opcoes = "<option value=\"*\"$seltxtef>Todos</option>";
 
-                $escolaobj  = new escola();
+                $escolaobj  = new lib\escola();
                 $escolas    = $escolaobj->ListarRegistros(1);
 
                 foreach ($escolas as $escolaitem)

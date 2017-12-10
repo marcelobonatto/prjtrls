@@ -9,9 +9,7 @@ class npc
     const EIXO_ID       = 3;
     const EIXO_NOME     = 4;
     const EIXO_SIGLA    = 5;
-    const NPC_IMGNORMAL = 6;
-    const NPC_IMGICONE  = 7;
-    const NPC_ATIVO     = 8;
+    const NPC_ATIVO     = 6;
 
     public $id;
     public $nome;
@@ -19,15 +17,13 @@ class npc
     public $eixo;
     public $eixoNome;
     public $eixoSigla;
-    public $imagemNormal;
-    public $icone;
     public $ativo;
 
     public function ListarRegistros($pagina)
     {
         $matriz = array();
         
-        $sql    = 'SELECT npcId, npcNome, npcChave, n.eixoId, eixoNome, eixoSigla, npcImgNormal, npcImgIcone, npcAtivo ' .
+        $sql    = 'SELECT npcId, npcNome, npcChave, n.eixoId, eixoNome, eixoSigla, npcAtivo ' .
                   'FROM npc n ' .
                   'LEFT JOIN eixos e ON e.eixoId = n.eixoId ' .
                   'ORDER BY npcNome';
@@ -48,8 +44,6 @@ class npc
                     $obj->eixo          = $npc[self::EIXO_ID];
                     $obj->eixoNome      = $npc[self::EIXO_NOME];
                     $obj->eixoSigla     = $npc[self::EIXO_SIGLA];
-                    $obj->imagemNormal  = $npc[self::NPC_IMGNORMAL];
-                    $obj->icone         = $npc[self::NPC_IMGICONE];
                     $obj->ativo         = $npc[self::NPC_ATIVO];
 
                     array_push($matriz, $obj);
@@ -64,7 +58,7 @@ class npc
     {
         $matriz = array();
         
-        $sql    = 'SELECT npcId, npcNome, npcChave, n.eixoId, eixoNome, eixoSigla, NULL AS npcImgNormal, NULL AS npcImgIcone, npcAtivo ' .
+        $sql    = 'SELECT npcId, npcNome, npcChave, n.eixoId, eixoNome, eixoSigla, npcAtivo ' .
                   'FROM npc n ' .
                   'LEFT JOIN eixos e ON e.eixoId = n.eixoId ' .
                   'ORDER BY npcNome';
@@ -85,8 +79,6 @@ class npc
                     $obj->eixo          = $npc[self::EIXO_ID];
                     $obj->eixoNome      = $npc[self::EIXO_NOME];
                     $obj->eixoSigla     = $npc[self::EIXO_SIGLA];
-                    $obj->imagemNormal  = null;
-                    $obj->icone         = null;
                     $obj->ativo         = $npc[self::NPC_ATIVO];
 
                     array_push($matriz, $obj);
@@ -99,7 +91,7 @@ class npc
 
     public function Selecionar($id)
     {
-        $sql    = "SELECT npcId, npcNome, npcChave, n.eixoId, eixoNome, npcImgNormal, npcImgIcone, npcAtivo " .
+        $sql    = "SELECT npcId, npcNome, npcChave, n.eixoId, eixoNome, npcAtivo " .
                   'FROM npc n ' .
                   'LEFT JOIN eixos e ON e.eixoId = n.eixoId ' .
                   "WHERE npcId = '$id' " .
@@ -120,8 +112,6 @@ class npc
                 $this->eixo                  = $npc[self::EIXO_ID];
                 $this->eixoNome              = $npc[self::EIXO_NOME];
                 $this->eixoSigla             = $npc[self::EIXO_SIGLA];
-                $this->imagemNormal          = $npc[self::NPC_IMGNORMAL];
-                $this->icone                 = $npc[self::NPC_IMGICONE];
                 $this->ativo                 = $npc[self::NPC_ATIVO];
             }
         }
@@ -160,8 +150,8 @@ class npc
     public function Incluir($id, $eixo)
     {
         $sql    = 'INSERT INTO npc ' .
-                  '(npcId, npcNome, npcChave, eixoId, npcImgNormal, npcImgIcone, npcAtivo) ' . 
-                  "VALUES ('$id', '$this->nome', '$this->chave', $eixo, $this->imagemNormal, $this->icone, $this->ativo)";
+                  '(npcId, npcNome, npcChave, eixoId, npcAtivo) ' . 
+                  "VALUES ('$id', '$this->nome', '$this->chave', $eixo, $this->ativo)";
 
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);
@@ -182,8 +172,6 @@ class npc
                   "SET npcNome = '$this->nome', " .
                   "npcChave = '$this->chave', " .
                   "eixoId = $eixo, " .
-                  "npcImgNormal = $this->imagemNormal, " .
-                  "npcImgIcone = $this->icone, " .
                   "npcAtivo = $this->ativo " .
                   "WHERE npcId = '$id'";
 

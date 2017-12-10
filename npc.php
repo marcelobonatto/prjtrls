@@ -28,15 +28,13 @@ else
 {
     $id = $_GET['id'];
 
-    $npc  = new npc();
+    $npc  = new lib\npc();
     $npc->Selecionar($id);
     
     $txtid      = $id;
     $nome       = $npc->nome;
     $chave      = $npc->chave;
     $eixo       = $npc->eixo;
-    $imagemNormal  = $npc->imagemNormal;
-    $icone      = $npc->icone;
     $ativo      = $npc->ativo;
 }
 
@@ -77,7 +75,7 @@ include('header.php');
                 
                 $opcoes = "<option value=\"*\"$seltxtef>Todos</option>";
 
-                $eixoobj  = new eixo();
+                $eixoobj  = new lib\eixo();
                 $eixos    = $eixoobj->ListarRegistros(1);
 
                 foreach ($eixos as $eixoitem)
@@ -99,14 +97,6 @@ include('header.php');
                 <select class="form-control col-sm-3" id="cmbEixo" name="cmbEixo">                    
                     <?php echo($opcoes); ?>
                 </select>
-            </div>
-            <div class="form-group">
-                <label for="txtId">Imagem Normal:</label>
-                <input class="form-control col-sm-4" type="text" value="<?php echo($imagemNormal); ?>" id="txtImgNormal" name="txtImgNormal" readonly="readonly" />
-            </div>
-            <div class="form-group">
-                <label for="txtId">Icone:</label>
-                <input class="form-control col-sm-4" type="text" value="<?php echo($icone); ?>" id="txtIcone" name="txtIcone" readonly="readonly" />
             </div>
             <div class="form-group">
                 <label>Ativo:</label>

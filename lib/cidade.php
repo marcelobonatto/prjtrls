@@ -48,7 +48,7 @@ class cidade
         $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla ' .
                   'FROM cidades c ' .
                   "WHERE estadoSigla = '$estado' " .
-                  'AND EXISTS (SELECT NULL FROM escolas e WHERE e.cidadeCodigo = c.cidadeCodigo)' .
+                  'AND EXISTS (SELECT NULL FROM escolas e WHERE e.cidadeCodigo = c.cidadeCodigo) ' .
                   'ORDER BY cidadeNome';
 
         $db     = new bancodados();
