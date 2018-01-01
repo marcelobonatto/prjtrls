@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 08, 2017 at 03:09 PM
+-- Generation Time: Dec 18, 2017 at 02:51 PM
 -- Server version: 5.7.19
 -- PHP Version: 7.0.23
 
@@ -48,7 +48,9 @@ CREATE TABLE IF NOT EXISTS `alunos` (
 --
 
 INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodle`, `alunoEmail`, `alunoAno`, `alunoAtivo`, `escolaId`, `usuarioId`) VALUES
+('2aa0f5ed-dc45-11e7-ad01-1c39470d9087', 'Teste Aluno', 3213, 'testealuno', 'testealuno@qweqweeeeww.com', 2, 1, 'ba752e68-dc2c-11e7-ad01-1c39470d9087', ''),
 ('a436c700-d62f-11e7-b52d-14b65896e7c5', 'Aluno 4', 1951, 'aluno4', 'aluno4@emailjogo.com.br', 1, 1, 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'a4368150-d62f-11e7-b52d-14b65896e7c5'),
+('b8af22e1-dc2f-11e7-ad01-1c39470d9087', 'afadfa', 1210, 'afadsf', 'afafa@cajkkl.com', 1, 1, 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', ''),
 ('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Aluno 1', 2147483647, 'loginAl1', 'loginAl1@emailjogo.com.br', 1, 1, 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'e057a428-d311-11e7-b419-1a8f80d3a0ab'),
 ('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Aluno 2', 2147483647, 'loginAl2', 'loginAl2@emailjogo.com.br', 2, 1, 'ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'e057af2c-d311-11e7-b419-1a8f80d3a0ab'),
 ('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Aluno 3', 2147483647, 'loginAl3', 'loginAl3@emailjogo.com.br', 3, 1, 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'f77e1088-d311-11e7-b419-1a8f80d3a0ab');
@@ -75,6 +77,7 @@ CREATE TABLE IF NOT EXISTS `autorizacao` (
 INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '0000-00-00 00:00:00', '::1'),
 ('02742714-db9d-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 21:21:48', '::1'),
+('028f1bd5-dc4b-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 18:08:04', '::1'),
 ('0376a076-dbbe-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 00:17:59', '::1'),
 ('0acc7b6a-dade-11e7-b31a-74d4359f41f2', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-12-06 21:34:45', '::1'),
 ('0afed35b-dbc3-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 01:54:06', '::1'),
@@ -112,20 +115,24 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('42ad4f3f-dae1-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 21:57:47', '::1'),
 ('42b0a446-dba3-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 22:06:34', '::1'),
 ('46c64d03-dbab-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 23:03:57', '::1'),
+('479199fc-df56-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-12 15:04:49', '::1'),
 ('47ef414f-dbb6-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 23:22:39', '::1'),
 ('484c0204-da9a-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 14:29:26', '::1'),
 ('499b26e5-daf1-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 00:52:34', '::1'),
 ('49c44aab-dbaf-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 23:32:39', '::1'),
+('49f3e85a-dc57-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 18:33:47', '::1'),
 ('4a2e93ac-dba7-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 22:35:33', '::1'),
 ('4af9f865-dbaa-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 22:56:55', '::1'),
 ('4b0f3d3d-dae5-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 23:26:43', '::1'),
 ('4b564d57-da99-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 14:22:51', '::1'),
+('53824964-df58-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-12 14:18:31', '::1'),
 ('560f6c14-d3cb-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('5611e8e8-d3d7-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('577f2284-dbbb-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 23:58:52', '::1'),
 ('58cf72e0-d3cc-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('592025ea-dc29-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 13:05:08', '::1'),
 ('5959478e-daf2-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 01:00:10', '::1'),
+('59ec4b71-dc49-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 17:54:21', '::1'),
 ('5a42bdbe-dbb4-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 00:09:27', '::1'),
 ('5a935c5e-db97-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:41:16', '::1'),
 ('5be90a0d-db98-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:48:27', '::1'),
@@ -142,6 +149,8 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('66aef385-dae3-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 23:13:12', '::1'),
 ('69e6d4c8-dbbb-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 23:59:23', '::1'),
 ('6bee4924-d3cb-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('6d2ac054-dc57-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 19:40:10', '::1'),
+('6d3d50fc-df57-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-12 15:15:08', '::1'),
 ('6e59b6da-dba7-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 22:36:36', '::1'),
 ('749bbbb9-dae1-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 22:59:17', '::1'),
 ('75948c62-d3cc-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
@@ -161,13 +170,16 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('8e5158c4-dade-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 21:38:26', '::1'),
 ('8fcf1265-da9a-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 14:35:18', '::1'),
 ('912f6efc-dbcb-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 01:55:01', '::1'),
+('9238f897-dc4a-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 18:02:57', '::1'),
 ('937299e2-dc29-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 13:06:46', '::1'),
 ('94a77790-d3d6-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('964c370f-dc4b-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 17:10:01', '::1'),
 ('97390cc9-db91-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 19:00:00', '::1'),
 ('983eb6ff-dbbb-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 00:00:41', '::1'),
 ('9a3e84a4-dbc3-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 00:58:00', '::1'),
 ('9b06634d-dbc9-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 02:46:12', '::1'),
 ('9b9ea726-d3cc-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
+('a1b0fb2c-dc49-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 16:56:01', '::1'),
 ('a3018173-dbae-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 23:28:00', '::1'),
 ('a43d7bea-d62f-11e7-b52d-14b65896e7c5', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '0000-00-00 00:00:00', '::1'),
 ('a5048133-db98-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 20:50:46', '::1'),
@@ -189,9 +201,11 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('c3ac436c-dbcc-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 03:03:42', '::1'),
 ('c3d4db28-dadf-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 21:47:05', '::1'),
 ('c6c25c05-dbb4-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 00:12:06', '::1'),
+('ca518940-dc4a-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 17:04:19', '::1'),
 ('cbb95cc6-dae1-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 22:01:37', '::1'),
 ('cc9fc350-d3d6-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('cdf11819-dbc5-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 02:13:56', '::1'),
+('ce3b9415-df56-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-12 15:09:20', '::1'),
 ('d1cff5c8-daf1-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 00:56:23', '::1'),
 ('d44a4102-d3d6-11e7-b1df-52ae743bc83d', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '2017-11-27 13:23:05', '::1'),
 ('d964669a-dbae-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 23:29:31', '::1'),
@@ -202,6 +216,7 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('de8a6612-dbc2-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 01:52:58', '::1'),
 ('e811e249-dbaa-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 23:01:18', '::1'),
 ('ea026df1-dbb4-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 00:13:56', '::1'),
+('ec61c5e3-dc4a-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 17:05:16', '::1'),
 ('ec6e9774-dbbc-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 00:09:08', '::1'),
 ('ec98dd96-daeb-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 00:14:15', '::1'),
 ('ecb3caab-dade-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 21:41:04', '::1'),
@@ -5886,6 +5901,8 @@ CREATE TABLE IF NOT EXISTS `escolas` (
 --
 
 INSERT INTO `escolas` (`escolaId`, `escolaNome`, `escolaBairro`, `cidadeCodigo`, `estadoSigla`, `escolaAtivo`) VALUES
+('ba752e68-dc2c-11e7-ad01-1c39470d9087', 'Unidade 4', 'Boqueirão', '4106902', 'PR', 1),
+('bdbcd907-dc45-11e7-ad01-1c39470d9087', 'Unidade 5', 'Guabirotuba', '4106902', 'PR', 1),
 ('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 'Unidade 1', 'Xaxim', '4106902', 'PR', 1),
 ('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Unidade 2', 'Bigorrilho', '4106902', 'PR', 1),
 ('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Unidade 3', 'Santa Felicidade', '4106902', 'PR', 1);
@@ -5955,6 +5972,7 @@ CREATE TABLE IF NOT EXISTS `gruposusu` (
 --
 
 INSERT INTO `gruposusu` (`grupoId`, `grupoNome`, `grupoAtivo`) VALUES
+('b376f7b1-dc2b-11e7-ad01-1c39470d9087', 'Tutor', 1),
 ('cee72154-c345-11e7-9cd5-6bfdb48ca38b', 'Administradores', 1),
 ('cee73004-c345-11e7-9cd5-6bfdb48ca38b', 'Professores', 1);
 
@@ -5985,10 +6003,10 @@ CREATE TABLE IF NOT EXISTS `itens` (
 --
 
 INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `eixoId`, `itemLimite`, `itemBonus`, `itemPrecoNormal`, `itemAtivo`, `itemImagem`) VALUES
-('652a4a36-c0b7-11e7-9b90-00306776e789', 'Seringa Mentora', 0, 'I', NULL, 'e886580e-bb13-11e7-a2a8-00306776e789', -1, 10, 800, 1, 'seringa'),
+('652a4a36-c0b7-11e7-9b90-00306776e789', 'Seringa Mentora', 1, 'I', NULL, 'e886580e-bb13-11e7-a2a8-00306776e789', -1, 5, 700, 1, 'seringa'),
 ('652af4b1-c0b7-11e7-9b90-00306776e789', 'Roupa de Programador Preta', 1, 'R', 1, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 20, 1200, 1, 'roupa_prog'),
 ('8db9b73c-c0b7-11e7-9b90-00306776e789', 'Carteira Minúscula', 1, 'C', NULL, NULL, 200, 0, 200, 1, ''),
-('4b8c2a0a-cc89-11e7-b4bf-07433e6c64b2', 'Crocs Invisíveis', 2, 'R', NULL, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 20, 1600, 1, ''),
+('4b8c2a0a-cc89-11e7-b4bf-07433e6c64b2', 'Crocs Isolantes', 1, 'R', NULL, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 25, 1650, 1, ''),
 ('f5eaec44-cca6-11e7-b4bf-07433e6c64b2', 'Jaleco Power', 2, 'R', NULL, 'S', -1, 20, 1200, 1, 'roupa_lab'),
 ('f5eb0c06-cca6-11e7-b4bf-07433e6c64b2', 'Erlenmeyer', 2, 'I', NULL, 'S', -1, 20, 800, 1, ''),
 ('35a1dbfe-cca7-11e7-b4bf-07433e6c64b2', 'Jaleco Power', 2, 'R', NULL, 'S', -1, 20, 1200, 1, ''),
@@ -6133,13 +6151,13 @@ CREATE TABLE IF NOT EXISTS `missaoaluno` (
 --
 
 INSERT INTO `missaoaluno` (`missaoalunoId`, `missaoId`, `alunoId`, `statusMissao`) VALUES
-('8298ba81-dade-11e7-b31a-74d4359f41f2', '90363083-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 1),
+('8298ba81-dade-11e7-b31a-74d4359f41f2', '90363083-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 0),
 ('8298d748-dade-11e7-b31a-74d4359f41f2', 'f81df8cd-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 0),
 ('8298ea32-dade-11e7-b31a-74d4359f41f2', 'f81e0a09-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 0),
 ('9e852b99-dbc6-11e7-b31a-74d4359f41f2', 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 0),
 ('a43768fe-d62f-11e7-b52d-14b65896e7c5', '90386846-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 2),
-('a4382500-d62f-11e7-b52d-14b65896e7c5', 'f81e0b8c-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 2),
-('a43bbb7a-d62f-11e7-b52d-14b65896e7c5', 'f81e0c55-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 2);
+('a4382500-d62f-11e7-b52d-14b65896e7c5', 'f81e0b8c-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 0),
+('a43bbb7a-d62f-11e7-b52d-14b65896e7c5', 'f81e0c55-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 0);
 
 -- --------------------------------------------------------
 
@@ -6232,6 +6250,7 @@ CREATE TABLE IF NOT EXISTS `npc` (
 --
 
 INSERT INTO `npc` (`npcId`, `npcNome`, `npcChave`, `eixoId`, `npcAtivo`) VALUES
+('781a6a60-dc42-11e7-ad01-1c39470d9087', 'Novo Personagem', 'NP', 'e886580e-bb13-11e7-a2a8-00306776e789', 0),
 ('b773d236-bc08-11e7-a674-a83b2f399337', 'Alexandre Magno', 'ALEX_MAGNO', 'e8869db8-bb13-11e7-a2a8-00306776e789', 1),
 ('b77413a4-bc08-11e7-a674-a83b2f399337', 'Celina Silva', 'CELINA_SILVA', 'e8860b43-bb13-11e7-a2a8-00306776e789', 1),
 ('b7744586-bc08-11e7-a674-a83b2f399337', 'Diego Silvério', 'DIEGO_SILVERIO', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
@@ -6604,8 +6623,13 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`, `usuarioAtivo`) VALUES
+('3b1f2ccf-dc44-11e7-ad01-1c39470d9087', 'administrador2', '$2y$10$QhKvOUaWP42ignhcnqqTCuk.zSYzvwC7dyA0xd5NRYTocNqABANra', '', 0),
+('4e213e14-dc53-11e7-ad01-1c39470d9087', 'admin555', '$2y$10$4zXbK2FrFdfTpqZymZx0yOASu3ib4SWmjGBSnWmIH6FmEs4sZFu86', '', 1),
+('764bc18a-dc43-11e7-ad01-1c39470d9087', 'admin3', '$2y$10$pAD/0o0TxPG9miCsp4KnI.cSvrIPCxo0ac7DbC1eH2Jv9B/kGzOF2', '', 1),
 ('7c2813ae-d909-11e7-ad01-1c39470d9087', 'marcelo', '$2y$10$YNvJTshBsYA.FCmuhClJ4elWWD.zGduRJIcLl.vrDilALiq3rOrAS', '', 1),
+('810a9e5c-dc43-11e7-ad01-1c39470d9087', 'addd', '$2y$10$Rvp697PtJtv9h2veRTpyTeVY6Cn4z4HEkfVoUSMGLdmYoNYjF1Y3G', '', 0),
 ('a4368150-d62f-11e7-b52d-14b65896e7c5', 'aluno4', '$2y$10$t5aRxIxrog0RKV04zirCrucCCbJmlNBXpsNPjItmqpbeS4YcRT752', '', 1),
+('a5bfbe1d-dc2b-11e7-ad01-1c39470d9087', 'aluno127', '$2y$10$Oump.W.7T8FfZPGGjtzfceAB8OUUV7cd8pGVua9tKyS10zY85Ufdq', '', 0),
 ('e057a428-d311-11e7-b419-1a8f80d3a0ab', 'loginAl1', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1),
 ('e057af2c-d311-11e7-b419-1a8f80d3a0ab', 'loginAl2', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1),
 ('ea58f8e6-b84f-11e7-89f4-9ef90429c14d', 'administrador', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1),
