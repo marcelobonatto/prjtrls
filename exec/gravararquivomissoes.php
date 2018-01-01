@@ -25,9 +25,9 @@ if ($checados > 0)
 
     foreach ($checados as $indice => $checado)
     {
-        $missao                 = new missao();
+        $missao                 = new lib\missao();
         $missao->nome           = $nomes[$indice];
-        $missao->titulo         = $titulos[$indice];
+        $missao->titulo         = $titulos[$indice];        
         $missao->descricao      = $descricoes[$indice];
         $missao->ativo          = $ativos[$indice];
         $missao->idMoodle       = $idsmoodle[$indice];
@@ -35,7 +35,7 @@ if ($checados > 0)
         $missao->semestre       = $semestres[$indice];
         $missao->sequencia      = $sequencias[$indice];
         $missao->obrigatoria    = $obrigatorias[$indice];
-
+        
         if (strrpos($nomespai[$indice], '{aincluir}') !== FALSE)
         {
             $posidpai               = str_replace('{aincluir}', '', $nomespai[$indice]);
@@ -57,17 +57,17 @@ if ($checados > 0)
 
         for ($poseixo = 0; $poseixo < $conteixos; $poseixo++)
         {
-            $objeixo    = new eixo();
+            $objeixo    = new lib\eixo();
             $objeixo->SelecionarPorSigla($eixos[$indice][$poseixo]);
-
+            
             if ($objeixo->id != null)
             {
-                $missao->eixos[$poseixo]            = new missaoeixo();
+                $missao->eixos[$poseixo]            = new lib\missaoeixo();
                 $missao->eixos[$poseixo]->eixo      = $objeixo->id;
                 $missao->eixos[$poseixo]->pontos    = $eixospontos[$indice][$poseixo];
             }
         }
-
+        
         $resultado          = $missao->Salvar();
         $idsmissao[$indice] = $missao->id;
 

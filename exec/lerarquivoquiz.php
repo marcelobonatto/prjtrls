@@ -22,36 +22,19 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                         $perguntas[$pos]->enunciado     = $linha[$coluna];
                         break;
                     case 2:
-                        $perguntas[$pos]->ativo         = $linha[$coluna];
+                        $eixoobj                        = new lib\eixo();
+                        $eixoobj->SelecionarPorSigla($linha[$coluna]);
+                        $perguntas[$pos]->eixo          = $eixoobj->id;
                         break;
                     case 3:
-                        $perguntas[$pos]->certa         = new resposta();
-                        $perguntas[$pos]->certa->codigo = $linha[$coluna];
+                        $perguntas[$pos]->ativo         = $linha[$coluna];
                         break;
                     case 4:
-                        $perguntas[$pos]->certa->texto  = $linha[$coluna];
+                        $perguntas[$pos]->certa         = new lib\resposta();
+                        $perguntas[$pos]->certa->codigo = $linha[$coluna];
                         break;
                     case 5:
-                    case 8:
-                    case 11:
-                    case 14:
-                    case 17:
-                    case 20:
-                    case 23:
-                    case 26:
-                    case 29:
-                    case 32:
-                        if (strlen($linha[$coluna]) > 0)
-                        {
-                            $perguntas[$pos]->erradas[]                 = new lib\resposta();
-                            $posresp                                    = count($perguntas[$pos]->erradas) - 1;
-                            $perguntas[$pos]->erradas[$posresp]->codigo = $linha[$coluna];
-                        }
-                        else
-                        {
-                            $posresp    = -1;
-                        }
-
+                        $perguntas[$pos]->certa->texto  = $linha[$coluna];
                         break;
                     case 6:
                     case 9:
@@ -63,17 +46,15 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                     case 27:
                     case 30:
                     case 33:
-                        if ($posresp    > -1)
+                        if (strlen($linha[$coluna]) > 0)
                         {
-                            if (strlen($linha[$coluna]) > 0)
-                            {
-                                $perguntas[$pos]->erradas[$posresp]->texto  = $linha[$coluna];
-                            }
-                            else
-                            {
-                                array_pop($perguntas[$pos]->erradas);
-                                $posresp    = -1;
-                            }
+                            $perguntas[$pos]->erradas[]                 = new lib\resposta();
+                            $posresp                                    = count($perguntas[$pos]->erradas) - 1;
+                            $perguntas[$pos]->erradas[$posresp]->codigo = $linha[$coluna];
+                        }
+                        else
+                        {
+                            $posresp    = -1;
                         }
 
                         break;
@@ -91,6 +72,30 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                         {
                             if (strlen($linha[$coluna]) > 0)
                             {
+                                $perguntas[$pos]->erradas[$posresp]->texto  = $linha[$coluna];
+                            }
+                            else
+                            {
+                                array_pop($perguntas[$pos]->erradas);
+                                $posresp    = -1;
+                            }
+                        }
+
+                        break;
+                    case 8:
+                    case 11:
+                    case 14:
+                    case 17:
+                    case 20:
+                    case 23:
+                    case 26:
+                    case 29:
+                    case 32:
+                    case 35:
+                        if ($posresp    > -1)
+                        {
+                            if (strlen($linha[$coluna]) > 0)
+                            {
                                 $perguntas[$pos]->erradas[$posresp]->nivel  = $linha[$coluna];
                             }
                             else
@@ -101,7 +106,7 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                         }
 
                         break;
-                }
+                }                
             }
             else
             {

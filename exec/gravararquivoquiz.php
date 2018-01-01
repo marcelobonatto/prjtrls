@@ -20,12 +20,12 @@ if ($checados > 0)
 
     foreach ($checados as $indice => $checado)
     {
-        $pergunta                   = new pergunta();
+        $pergunta                   = new lib\pergunta();
         $pergunta->enunciado        = $enunciados[$indice];
         $pergunta->codigo           = $codigos[$indice];
         $pergunta->ativo            = $ativos[$indice];
         
-        $pergunta->certa            = new resposta();
+        $pergunta->certa            = new lib\resposta();
         $pergunta->certa->codigo    = $certacod[$indice];
         $pergunta->certa->texto     = $certatxt[$indice];
         $pergunta->certa->nivel     = 10;
@@ -35,12 +35,12 @@ if ($checados > 0)
 
         for ($poserr = 0; $poserr < $conterr; $poserr++)
         {
-            $pergunta->erradas[$poserr]         = new resposta();
+            $pergunta->erradas[$poserr]         = new lib\resposta();
             $pergunta->erradas[$poserr]->codigo = $erradacod[$indice][$poserr];
             $pergunta->erradas[$poserr]->texto  = $erradatxt[$indice][$poserr];
             $pergunta->erradas[$poserr]->nivel  = $erradaniv[$indice][$poserr];
         }
-
+        
         $resultado  = $pergunta->Salvar();
 
         $resjson    .= "$virg{ \"codigo\": \"$pergunta->codigo\", " .

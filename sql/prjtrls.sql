@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Dec 18, 2017 at 02:51 PM
+-- Generation Time: Jan 01, 2018 at 11:29 PM
 -- Server version: 5.7.19
 -- PHP Version: 7.0.23
 
@@ -76,6 +76,7 @@ CREATE TABLE IF NOT EXISTS `autorizacao` (
 
 INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('', 'e057a428-d311-11e7-b419-1a8f80d3a0ab', '0000-00-00 00:00:00', '::1'),
+('00c23e9d-e406-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-18 13:11:28', '::1'),
 ('02742714-db9d-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 21:21:48', '::1'),
 ('028f1bd5-dc4b-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 18:08:04', '::1'),
 ('0376a076-dbbe-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 00:17:59', '::1'),
@@ -200,6 +201,7 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('c373b076-daf0-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 00:48:49', '::1'),
 ('c3ac436c-dbcc-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 03:03:42', '::1'),
 ('c3d4db28-dadf-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 21:47:05', '::1'),
+('c446d067-e406-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-18 13:16:56', '::1'),
 ('c6c25c05-dbb4-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 00:12:06', '::1'),
 ('ca518940-dc4a-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 17:04:19', '::1'),
 ('cbb95cc6-dae1-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-06 22:01:37', '::1'),
@@ -214,6 +216,7 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 ('dde1f0cf-dbca-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 02:50:05', '::1'),
 ('de5901e0-daf2-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 01:03:53', '::1'),
 ('de8a6612-dbc2-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 01:52:58', '::1'),
+('e31b8813-e406-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-18 14:18:19', '::1'),
 ('e811e249-dbaa-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-07 23:01:18', '::1'),
 ('ea026df1-dbb4-11e7-b31a-74d4359f41f2', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 00:13:56', '::1'),
 ('ec61c5e3-dc4a-11e7-ad01-1c39470d9087', 'a4368150-d62f-11e7-b52d-14b65896e7c5', '2017-12-08 17:05:16', '::1'),
@@ -6156,7 +6159,7 @@ INSERT INTO `missaoaluno` (`missaoalunoId`, `missaoId`, `alunoId`, `statusMissao
 ('8298ea32-dade-11e7-b31a-74d4359f41f2', 'f81e0a09-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 0),
 ('9e852b99-dbc6-11e7-b31a-74d4359f41f2', 'ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 0),
 ('a43768fe-d62f-11e7-b52d-14b65896e7c5', '90386846-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 2),
-('a4382500-d62f-11e7-b52d-14b65896e7c5', 'f81e0b8c-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 0),
+('a4382500-d62f-11e7-b52d-14b65896e7c5', 'f81e0b8c-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 2),
 ('a43bbb7a-d62f-11e7-b52d-14b65896e7c5', 'f81e0c55-dad1-11e7-8d5e-74d4359f41f2', 'a436c700-d62f-11e7-b52d-14b65896e7c5', 0);
 
 -- --------------------------------------------------------
@@ -6172,7 +6175,7 @@ CREATE TABLE IF NOT EXISTS `missoes` (
   `missaoTitulo` varchar(200) NOT NULL,
   `missaoDescricao` varchar(8000) NOT NULL,
   `missaoAtivo` tinyint(4) NOT NULL DEFAULT '0',
-  `missaoIdMoodle` varchar(100) NOT NULL,
+  `missaoIdMoodle` varchar(100) DEFAULT NULL,
   `missaoAno` int(11) NOT NULL,
   `missaoSemestre` int(11) NOT NULL,
   `missaoSequencia` int(11) NOT NULL,
