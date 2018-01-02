@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 01, 2018 at 11:29 PM
+-- Generation Time: Jan 02, 2018 at 12:52 AM
 -- Server version: 5.7.19
 -- PHP Version: 7.0.23
 
@@ -5997,7 +5997,7 @@ CREATE TABLE IF NOT EXISTS `itens` (
   `itemBonus` int(11) NOT NULL,
   `itemPrecoNormal` int(11) NOT NULL,
   `itemAtivo` tinyint(1) NOT NULL,
-  `itemImagem` varchar(1000) NOT NULL,
+  `itemImagem` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`itemId`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -6014,7 +6014,8 @@ INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `
 ('f5eb0c06-cca6-11e7-b4bf-07433e6c64b2', 'Erlenmeyer', 2, 'I', NULL, 'S', -1, 20, 800, 1, ''),
 ('35a1dbfe-cca7-11e7-b4bf-07433e6c64b2', 'Jaleco Power', 2, 'R', NULL, 'S', -1, 20, 1200, 1, ''),
 ('35a235cc-cca7-11e7-b4bf-07433e6c64b2', 'Erlenmeyer', 2, 'I', NULL, 'S', -1, 20, 800, 1, ''),
-('35a252e6-cca7-11e7-b4bf-07433e6c64b2', 'Carteira Média', 2, 'C', NULL, NULL, 2000, 0, 800, 1, '');
+('35a252e6-cca7-11e7-b4bf-07433e6c64b2', 'Carteira Média', 2, 'C', NULL, NULL, 2000, 0, 800, 1, ''),
+('6905a57a-ef57-11e7-ad01-1c39470d9087', 'Boné da Inteligência', 4, 'I', NULL, NULL, -1, 40, 2500, 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -6351,7 +6352,8 @@ INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCod
 ('b4c04ba6-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 21 existem nela?', 'DF00021', 1, 1),
 ('b4c17922-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 22 existem nela?', 'DF00022', 1, 1),
 ('b4c3ec20-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 23 existem nela?', 'DF00023', 1, 1),
-('b4c66a7c-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 24 existem nela?', 'DF00024', 1, 1);
+('b4c66a7c-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 24 existem nela?', 'DF00024', 1, 1),
+('688be65d-ef55-11e7-ad01-1c39470d9087', 'Considere uma nuvem: quantos litros de pergunta 25 existem nela? ', 'DF00025', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -6490,6 +6492,10 @@ CREATE TABLE IF NOT EXISTS `respostasdf` (
 --
 
 INSERT INTO `respostasdf` (`respostadfId`, `perguntadfId`, `respostadfCodigo`, `respostadfTexto`, `respostadfNivel`) VALUES
+('688e8f5f-ef55-11e7-ad01-1c39470d9087', '688be65d-ef55-11e7-ad01-1c39470d9087', 'DF00025R01', 'Esta é a resposta cerrrrrta', 10),
+('689a4e2f-ef55-11e7-ad01-1c39470d9087', '688be65d-ef55-11e7-ad01-1c39470d9087', 'DF0025R01', 'É, essa não é uma resposta correta', 1),
+('68ac9cac-ef55-11e7-ad01-1c39470d9087', '688be65d-ef55-11e7-ad01-1c39470d9087', 'DF0025R02', 'Está quase correta, mas não é essa', 9),
+('68ca0a4c-ef55-11e7-ad01-1c39470d9087', '688be65d-ef55-11e7-ad01-1c39470d9087', 'DF0025R03', 'Bem que eu queria que esta fosse uma resposta totalmente correta', 5),
 ('cd8a70a0-d30c-11e7-b419-1a8f80d3a0ab', '8d13182c-d309-11e7-b419-1a8f80d3a0ab', 'DF00003R01', 'É, essa é a resposta 01', 10),
 ('cd931552-d30c-11e7-b419-1a8f80d3a0ab', '8d13182c-d309-11e7-b419-1a8f80d3a0ab', 'DF00003R03', 'É, essa é a resposta 03', 8),
 ('cd936af2-d30c-11e7-b419-1a8f80d3a0ab', 'b4a14fe4-d309-11e7-b419-1a8f80d3a0ab', 'DF00004R02', 'É, essa é a resposta 02', 10),

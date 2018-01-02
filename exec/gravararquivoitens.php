@@ -19,7 +19,7 @@ if ($checados > 0)
 
     foreach ($checados as $indice => $checado)
     {
-        $itens                  = new item();
+        $itens                  = new lib\item();
         $itens->nome            = $nomes[$indice];
         $itens->nivel           = $niveis[$indice];
         $itens->tipo            = $tipos[$indice];
