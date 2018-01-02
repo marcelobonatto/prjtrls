@@ -28,7 +28,7 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                         $perguntas[$pos]->ativo         = $linha[$coluna];
                         break;
                     case 4:
-                        $perguntas[$pos]->certa         = new respostadf();
+                        $perguntas[$pos]->certa         = new lib\respostadf();
                         $perguntas[$pos]->certa->codigo = $linha[$coluna];
                         break;
                     case 5:

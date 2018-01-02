@@ -21,13 +21,13 @@ if ($checados > 0)
 
     foreach ($checados as $indice => $checado)
     {
-        $pergunta                   = new perguntadf();
+        $pergunta                   = new lib\perguntadf();
         $pergunta->enunciado        = $enunciados[$indice];
         $pergunta->codigo           = $codigos[$indice];
         $pergunta->dificuldade      = $niveis[$indice];
         $pergunta->ativo            = $ativos[$indice];
         
-        $pergunta->certa            = new respostadf();
+        $pergunta->certa            = new lib\respostadf();
         $pergunta->certa->codigo    = $certacod[$indice];
         $pergunta->certa->texto     = $certatxt[$indice];
         $pergunta->certa->nivel     = 10;
@@ -37,7 +37,7 @@ if ($checados > 0)
 
         for ($poserr = 0; $poserr < $conterr; $poserr++)
         {
-            $pergunta->erradas[$poserr]         = new respostadf();
+            $pergunta->erradas[$poserr]         = new lib\respostadf();
             $pergunta->erradas[$poserr]->codigo = $erradacod[$indice][$poserr];
             $pergunta->erradas[$poserr]->texto  = $erradatxt[$indice][$poserr];
             $pergunta->erradas[$poserr]->nivel  = $erradaniv[$indice][$poserr];
