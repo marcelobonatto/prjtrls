@@ -196,7 +196,7 @@ class aluno
 
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);
-
+        
         if ($this->id != null)
         {
             return true;

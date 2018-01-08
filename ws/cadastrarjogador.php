@@ -10,8 +10,8 @@ $mensagens  = array();
 if (isset($_POST['chave']))
 //if (isset($_GET['chave']))
 {
-//    $chave          = $_POST['chave'];
-    $chave          = $_GET['chave'];
+    $chave          = $_POST['chave'];
+//    $chave          = $_GET['chave'];
 
     $chobj          = new lib\chave();
     $chobj->descompactar($chave);
@@ -38,8 +38,8 @@ else
 if (isset($_POST['valor']))
 //if (isset($_GET['valor']))
 {
-//    $valor         = $_POST['valor'];
-    $valor          = $_GET['valor'];
+    $valor         = $_POST['valor'];
+//    $valor          = $_GET['valor'];
 
     $b64            = base64_decode($valor);
     $json           = json_decode($b64);
