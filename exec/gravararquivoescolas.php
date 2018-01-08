@@ -17,7 +17,7 @@ if ($checados > 0)
 
     foreach ($checados as $indice => $checado)
     {
-        $escola                 = new escola();
+        $escola                 = new lib\escola();
         $escola->nome           = $nomes[$indice];
         $escola->bairro         = $bairros[$indice];
         $escola->cidade         = $cidades[$indice];
