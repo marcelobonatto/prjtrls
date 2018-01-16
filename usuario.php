@@ -14,12 +14,16 @@ else
 
 if ($getid == 'novo')
 {
-    $id = 'novo';
+    $id         = 'novo';
 
     $txtid      = '';
-    $nome       = '';
-    $senha       = '';
-    $ativo      = 1;
+    $nomeusu    = '';
+    $senhausu   = '';
+    $ativousu   = 1;
+    $email      = '';
+
+    $aparecer   = 'd-none';
+    $aparecer2  = 'd-none';
 }
 else
 {
@@ -29,15 +33,19 @@ else
     $usuario->Selecionar($id);
     
     $txtid      = $id;
-    $nome       = $usuario->nome;
-    $senha      = '';
-    $ativo      = $usuario->ativo;
+    $nomeusu    = $usuario->nome;
+    $senhausu   = '';
+    $ativousu   = $usuario->ativo;
+    $email      = $usuario->email;
+
+    $aparecer   = 'd-block';
+    $aparecer2  = '';
 }
 
 include('header.php');
 ?>
     <div class="conteudo">
-        <h1>Cadastro de Usuario - <?php echo(($id != 'novo' ? $nome : 'Novo Cadastro')); ?></h1>
+        <h1>Cadastro de Usuario - <?php echo(($id != 'novo' ? $nomeusu : 'Novo Cadastro')); ?></h1>
         <br />
         <div id="mensagem" class="alert alert-danger d-none" role="alert">
         </div>
@@ -48,17 +56,26 @@ include('header.php');
             </div>
             <div class="form-group">
                 <label for="txtNome">Nome:</label>
-                <input class="form-control" type="text" value="<?php echo($nome); ?>" id="txtNome" name="txtNome" required />
+                <input class="form-control" type="text" value="<?php echo($nomeusu); ?>" id="txtNome" name="txtShrek" required autocomplete="off" />
             </div>
             <div class="form-group">
-                <label for="txtSenha">Senha:</label>
-                <input class="form-control" type="password" value="" id="txtSenha" name="txtSenha" required />
+                <label for="txtEmail">E-mail:</label>
+                <input class="form-control" type="email" value="<?php echo($email); ?>" id="txtEmail" name="txtEmail" required autocomplete="off" />
             </div>
+            <br class="<?php echo($aparecer2); ?>" />
+            <button class="btn btn-info <?php echo($aparecer); ?>">
+                Criar senha
+            </button>
+            <br class="<?php echo($aparecer2); ?>" />
+            <button id="enviarEmail" type="button" class="btn btn-info <?php echo($aparecer); ?>">
+                Enviar e-mail para troca de senha
+            </button>
+            <br class="<?php echo($aparecer2); ?>" />
             <div class="form-group">
                 <label>Ativo:</label>
                 <br />
                 <?php 
-                if ($ativo == 1)
+                if ($ativousu == 1)
                 {
                     $ativo1 = ' active';
                     $check1 = ' checked';

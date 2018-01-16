@@ -63,4 +63,8 @@ $(document).ready(function() {
     $("#cmdVoltar").click(function() {
         location.href = "usuarios.php";
     });
+
+    $("#enviarEmail").click(function() {
+
+    });
 });

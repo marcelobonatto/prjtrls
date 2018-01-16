@@ -13,18 +13,19 @@ class usuario
     public $nome;
     public $senha;
     public $sal;
+    public $email;
     public $ativo;
 
     public function VerificarConexao($usuario, $senha)
     {
         $ok     = false;
 
-        $sql    = 'SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioAtivo ' .
+        $sql    = 'SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioEmail, usuarioAtivo ' .
                   'FROM usuarios ' .
                   "WHERE usuarioNome = '$usuario'";
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
@@ -34,11 +35,12 @@ class usuario
                 {
                     $usuario        = $res[0];
 
-                    $this->id       = $usuario[self::USUARIO_ID];
-                    $this->nome     = $usuario[self::USUARIO_NOME];
-                    $this->senha    = $usuario[self::USUARIO_SENHA];
-                    $this->sal      = $usuario[self::USUARIO_SAL];
-                    $this->ativo    = $usuario[self::USUARIO_ATIVO];
+                    $this->id       = $usuario['usuarioId'];
+                    $this->nome     = $usuario['usuarioNome'];
+                    $this->senha    = $usuario['usuarioSenha'];
+                    $this->sal      = $usuario['usuarioSal'];
+                    $this->email    = $usuario['usuarioEmail'];
+                    $this->ativo    = $usuario['usuarioAtivo'];
 
                     $ok             = true;
                 }
@@ -52,12 +54,12 @@ class usuario
     {
         $matriz = array();
 
-        $sql    = 'SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioAtivo ' .
+        $sql    = 'SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioEmail, usuarioAtivo ' .
                   'FROM usuarios ' .
                   'ORDER BY usuarioNome';
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
@@ -65,12 +67,13 @@ class usuario
             {
                 foreach ($res as $usuario)
                 {
-                    $obj        = new usuario();
-                    $obj->id    = $usuario[self::USUARIO_ID];
-                    $obj->nome  = $usuario[self::USUARIO_NOME];
-                    $obj->senha = $usuario[self::USUARIO_SENHA];
-                    $obj->sal   = $usuario[self::USUARIO_SAL];
-                    $obj->ativo = $usuario[self::USUARIO_ATIVO];
+                    $obj           = new usuario();
+                    $obj->id       = $usuario['usuarioId'];
+                    $obj->nome     = $usuario['usuarioNome'];
+                    $obj->senha    = $usuario['usuarioSenha'];
+                    $obj->sal      = $usuario['usuarioSal'];
+                    $obj->email    = $usuario['usuarioEmail'];
+                    $obj->ativo    = $usuario['usuarioAtivo'];
 
                     array_push($matriz, $obj);
                 }
@@ -86,13 +89,13 @@ class usuario
 
     public function Selecionar($id)
     {
-        $sql    = "SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioAtivo " .
+        $sql    = "SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioEmail, usuarioAtivo " .
                 'FROM usuarios ' .
                 "WHERE usuarioId = '$id' " .
                 'ORDER BY usuarioNome';
                 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== false)
         {
@@ -100,24 +103,25 @@ class usuario
             {
                 $usuario   = $res[0];
 
-                $this->id                = $usuario[self::USUARIO_ID];
-                $this->nome              = $usuario[self::USUARIO_NOME];
-                $this->senha             = $usuario[self::USUARIO_SENHA];
-                $this->sal               = $usuario[self::USUARIO_SAL];
-                $this->ativo             = $usuario[self::USUARIO_ATIVO];
+                $this->id       = $usuario['usuarioId'];
+                $this->nome     = $usuario['usuarioNome'];
+                $this->senha    = $usuario['usuarioSenha'];
+                $this->sal      = $usuario['usuarioSal'];
+                $this->email    = $usuario['usuarioEmail'];
+                $this->ativo    = $usuario['usuarioAtivo'];
             }
         }
     }
 
     public function SelecionarPorNomeUsuario($nome)
     {
-        $sql    = "SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioAtivo " .
+        $sql    = "SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioEmail, usuarioAtivo " .
                   'FROM usuarios ' .
                   "WHERE usuarioNome = '$nome' " .
                   'ORDER BY usuarioNome';
                 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== false)
         {
@@ -125,11 +129,12 @@ class usuario
             {
                 $usuario   = $res[0];
 
-                $this->id                = $usuario[self::USUARIO_ID];
-                $this->nome              = $usuario[self::USUARIO_NOME];
-                $this->senha             = $usuario[self::USUARIO_SENHA];
-                $this->sal               = $usuario[self::USUARIO_SAL];
-                $this->ativo             = $usuario[self::USUARIO_ATIVO];
+                $this->id       = $usuario['usuarioId'];
+                $this->nome     = $usuario['usuarioNome'];
+                $this->senha    = $usuario['usuarioSenha'];
+                $this->sal      = $usuario['usuarioSal'];
+                $this->email    = $usuario['usuarioEmail'];
+                $this->ativo    = $usuario['usuarioAtivo'];
             }
         }
     }
@@ -160,8 +165,8 @@ class usuario
     public function Incluir($id, $senha)
     {
         $sql    = 'INSERT INTO usuarios ' .
-                  '(usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioAtivo) ' . 
-                  "VALUES ('$id', '$this->nome', '$senha', '', $this->ativo)";
+                  '(usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioEmail, usuarioAtivo) ' . 
+                  "VALUES ('$id', '$this->nome', '$senha', '', '$this->email', $this->ativo)";
 
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);
@@ -181,6 +186,7 @@ class usuario
         $sql    = 'UPDATE usuarios ' .
                   "SET usuarioNome = '$this->nome', " .
                   "usuarioSenha = '$senha', " .
+                  "usuarioEmail = '$this->email', " .
                   "usuarioAtivo = $this->ativo " .
                   "WHERE usuarioId = '$id'";
 
@@ -193,8 +199,8 @@ class usuario
     public function Excluir()
     {
         $sql    = 'UPDATE usuarios ' .
-                "SET usuarioAtivo = 0 " .
-                "WHERE usuarioId = '$this->id'";
+                  "SET usuarioAtivo = 0 " .
+                  "WHERE usuarioId = '$this->id'";
 
         $db         = new bancodados();
         $db->Executar($sql);
