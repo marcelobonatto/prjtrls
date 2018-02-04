@@ -24,13 +24,13 @@ $(document).ready(function() {
         // Initiate Variables With Form Content
         var id = $("#txtId").val();
         var nome = $("#txtNome").val();
-        var senha = $("#txtSenha").val();
+        var email = $("#txtEmail").val();
         var ativo = $("input[name='optAtivo']:checked").val();
 
         $.ajax({
             type: "POST",
             url: "exec/gravarusuario.php",
-            data: "id=" + id + "&nome=" + nome + "&senha=" + senha + "&ativo=" + ativo,
+            data: "id=" + id + "&nome=" + nome + "&email=" + email + "&ativo=" + ativo,
             success : function(text) {
                 var txtspl = text.split("|");
 
@@ -62,5 +62,9 @@ $(document).ready(function() {
 
     $("#cmdVoltar").click(function() {
         location.href = "usuarios.php";
+    });
+
+    $("#enviarEmail").click(function() {
+
     });
 });

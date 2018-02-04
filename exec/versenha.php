@@ -15,8 +15,9 @@ else if (!isset($_POST['senha']))
 else
 {
     $usuario = new usuario();
-    
-    if ($usuario->VerificarConexao($_POST['usuario'], $_POST['senha']))
+    $ok = $usuario->VerificarConexao($_POST['usuario'], $_POST['senha']);
+
+    if ($ok === TRUE)
     {
         $encrip                 = new encriptacao();
 

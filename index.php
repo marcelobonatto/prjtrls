@@ -23,11 +23,11 @@
                         </div>
                         <div class="form-group">
                             <label for="usuario" class="lblinicial">Usuário</label>
-                            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Informe o nome do seu usuário" required />
+                            <input type="text" class="form-control" id="usuario" name="usuario" placeholder="Informe o nome do seu usuário" required autocomplete="off" />
                         </div>
                         <div class="form-group">
                             <label for="senha" class="lblinicial">Senha</label>
-                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Informe a sua senha" required />
+                            <input type="password" class="form-control" id="senha" name="senha" placeholder="Informe a sua senha" required autocomplete="off" />
                         </div>
                         <button id="entrar" type="submit" class="btn btn-primary btninicial">Entrar</button>
                         <br />
