@@ -15,6 +15,8 @@ class usuario
     public $sal;
     public $email;
     public $ativo;
+    public $codmod;
+    public $datamod;
 
     public function VerificarConexao($usuario, $senha)
     {
@@ -29,9 +31,11 @@ class usuario
 
         if ($res !== FALSE)
         {
+            $ok = count($res);
+
             if (count($res) > 0)
             {
-                if (password_verify($senha, $res[0][self::USUARIO_SENHA]))
+                if (password_verify($senha, $res[0]['usuarioSenha']))
                 {
                     $usuario        = $res[0];
 
@@ -154,6 +158,9 @@ class usuario
 
         if ($id == '{ID}')
         {
+            $this->datamod  = date('Y-m-d H:i:s');
+            $this->codmod   = base64_encode(str_replace('-', '', str_replace(':', '', str_replace(' ', '', $this->datamod))) . $this->email);
+
             return $this->Incluir($id, $senha);
         }
         else
@@ -165,8 +172,8 @@ class usuario
     public function Incluir($id, $senha)
     {
         $sql    = 'INSERT INTO usuarios ' .
-                  '(usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioEmail, usuarioAtivo) ' . 
-                  "VALUES ('$id', '$this->nome', '$senha', '', '$this->email', $this->ativo)";
+                  '(usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioEmail, usuarioAtivo, usuarioCodMod, usuarioDataMod) ' . 
+                  "VALUES ('$id', '$this->nome', '$senha', '', '$this->email', $this->ativo, '$this->codmod', '$this->datamod')";
 
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);
