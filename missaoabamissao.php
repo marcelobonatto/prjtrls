@@ -15,7 +15,7 @@
                     <textarea class="form-control" id="txtDescricao" name="txtDescricao" rows="5" required><?php echo($descricao); ?></textarea>
                 </div>
                 <div class="form-group">
-                    <label for="txtAno">Ano:</label>
+                    <label for="txtAno">Série:</label>
                     <input class="form-control col-sm-2" type="number" value="<?php echo($ano); ?>" id="txtAno" name="txtAno" min="1" max="3" required />
                 </div>
                 <div class="form-group">

@@ -69,7 +69,7 @@ include('header.php');
                 <input class="form-control" type="email" value="<?php echo($email); ?>" id="txtEmail" name="txtEmail" required />
             </div>
             <div class="form-group">
-                <label for="txtId">Ano:</label>
+                <label for="txtId">Série:</label>
                 <input class="form-control col-sm-4" type="number" value="<?php echo($ano); ?>" id="txtAno" name="txtAno" min="1" max="3" required />
             </div>             
             <div class="form-group">
