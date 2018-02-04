@@ -31,8 +31,6 @@ class usuario
 
         if ($res !== FALSE)
         {
-            $ok = count($res);
-
             if (count($res) > 0)
             {
                 if (password_verify($senha, $res[0]['usuarioSenha']))
