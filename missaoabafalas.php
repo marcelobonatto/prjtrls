@@ -53,13 +53,9 @@
                             echo("\t<td>\n");
                             echo("\t\t<select id=\"cmbHumor$indice\">\n");
                             echo("\t\t\t<option value=\"NO\"" . ($dialogo->humor == "NO" ? ' selected="selected"' : '') . ">Normal</option>\n");
-                            echo("\t\t\t<option value=\"AL\"" . ($dialogo->humor == "AL" ? ' selected="selected"' : '') . ">Alegre</option>\n");
-                            echo("\t\t\t<option value=\"EU\"" . ($dialogo->humor == "EU" ? ' selected="selected"' : '') . ">Eufórico</option>\n");
+                            echo("\t\t\t<option value=\"AL\"" . ($dialogo->humor == "RI" ? ' selected="selected"' : '') . ">Rindo</option>\n");
                             echo("\t\t\t<option value=\"TR\"" . ($dialogo->humor == "TR" ? ' selected="selected"' : '') . ">Triste</option>\n");
-                            echo("\t\t\t<option value=\"CH\"" . ($dialogo->humor == "CH" ? ' selected="selected"' : '') . ">Chorando</option>\n");
-                            echo("\t\t\t<option value=\"IR\"" . ($dialogo->humor == "IR" ? ' selected="selected"' : '') . ">Irritado</option>\n");
                             echo("\t\t\t<option value=\"ZA\"" . ($dialogo->humor == "ZA" ? ' selected="selected"' : '') . ">Zangado</option>\n");
-                            echo("\t\t\t<option value=\"TQ\"" . ($dialogo->humor == "TQ" ? ' selected="selected"' : '') . ">Tranquilo</option>\n");
                             echo("\t\t</select>\n");
                             echo("\t</td>\n");
                             echo("\t<td>\n");

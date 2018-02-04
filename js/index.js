@@ -30,8 +30,6 @@ $(document).ready(function() {
             url: "exec/versenha.php",
             data: "usuario=" + usuario + "&senha=" + senha,
             success : function(text) {
-                
-
                 if (text == "OK") {
                     formSuccess();
                 }
