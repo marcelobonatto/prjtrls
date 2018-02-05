@@ -27,6 +27,14 @@
                     <input class="form-control col-sm-2" type="number" value="<?php echo($sequencia); ?>" id="txtSequencia" name="txtSequencia" min="1" max="99" required />
                 </div>
                 <div class="form-group">
+                    <label for="txtDataDe">Disponível a partir de:</label>
+                    <input class="form-control col-sm-4" type="date" value="<?php echo($datade); ?>" id="txtDateDe" name="txtDataDe" />
+                </div>
+                <div class="form-group">
+                    <label for="txtDataAte">Disponível até:</label>
+                    <input class="form-control col-sm-4" type="date" value="<?php echo($dataate); ?>" id="txtDateAte" name="txtDataAte" />
+                </div>
+                <div class="form-group">
                     <label>Curso no Moodle:</label>
                     <select class="form-control col-sm-3" id="cmbMoodle" name="cmbMoodle" required>
                         <option></option>
