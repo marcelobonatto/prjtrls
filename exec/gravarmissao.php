@@ -33,6 +33,28 @@ else
 
 if (!isset($_POST['ativo']))        $mensagem[] = 'Indicador de ativo n&atilde;o informado';                else $ativo         = $_POST['ativo'];
 
+$dataagora = DateTime::createFromFormat('!d/m/Y', "now");
+$datade = (!isset($_POST['datade']) ? '' : DateTime::createFromFormat('!d/m/Y', $_POST['datade']));
+$dataate = (!isset($_POST['dataate']) ? '' : DateTime::createFromFormat('!d/m/Y', $_POST['dataate']));
+
+if ($id == null)
+{
+    if ($datade < $dataagora)
+    {
+        $mensagem[] = 'A data inicial do per&iacute;odo deve ser igual ou maior que hoje';
+    }
+
+    if ($dataate < $dataagora)
+    {
+        $mensagem[] = 'A data final do per&iacute;odo deve ser igual ou maior que hoje';
+    }
+}
+
+if ($datade != null && $dataate != null && $datade > $dataate)
+{
+    $mensagem[] = 'A data inicial n&atilde;o pode ser menor que a data final do per&iacute;odo';
+}
+
 if (isset($_POST['eixos']))
 {
     if (count($_POST['eixos']) > 0)
@@ -66,6 +88,8 @@ if (count($mensagem) == 0)
     $missao->sequencia      = $sequencia;
     $missao->idMoodle       = $moodle;
     $missao->obrigatoria    = $obrigatorio;
+    $missao->datade         = $datade;
+    $missao->dataate        = $dataate;
 
     if ($obrigatorio == 1 || $pai == '')
     {

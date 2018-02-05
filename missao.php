@@ -26,6 +26,8 @@ if ($getid == 'novo')
     $sequencia      = 1;
     $obrigatoria    = true;
     $pai            = '';
+    $datade         = '';
+    $dataate        = '';
 }
 else
 {
@@ -45,6 +47,8 @@ else
     $sequencia      = $missao->sequencia;
     $obrigatoria    = $missao->obrigatoria;
     $pai            = $missao->pai;
+    $datade         = $missao->datade;
+    $dataate        = $missao->dataate;
 }
 
 $outrasobj      = new lib\missao();

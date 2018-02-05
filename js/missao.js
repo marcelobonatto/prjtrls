@@ -54,13 +54,9 @@ $(document).ready(function() {
                    "\t<td>\n" + 
                    "\t\t<select id=\"cmbHumor" + total + "\">\n" + 
                    "\t\t\t<option value=\"NO\">Normal</option>\n" + 
-                   "\t\t\t<option value=\"AL\">Alegre</option>\n" + 
-                   "\t\t\t<option value=\"EU\">Eufórico</option>\n" + 
+                   "\t\t\t<option value=\"RI\">Rindo</option>\n" +  
                    "\t\t\t<option value=\"TR\">Triste</option>\n" + 
-                   "\t\t\t<option value=\"CH\">Chorando</option>\n" + 
-                   "\t\t\t<option value=\"IR\">Irritado</option>\n" + 
                    "\t\t\t<option value=\"ZA\">Zangado</option>\n" + 
-                   "\t\t\t<option value=\"TQ\">Tranquilo</option>\n" + 
                    "\t\t</select>\n" + 
                    "\t</td>\n" + 
                    "\t<td>\n" + 
@@ -209,6 +205,8 @@ $(document).ready(function() {
         var obrigatorio = $("input[name='optObrigatoria']:checked").val();
         var pai = $("#cmbMissoes").find("option:selected").val();
         var ativo = $("input[name='optAtivo']:checked").val();
+        var datade = $("#txtDataDe").val();
+        var dataate = $("#txtDataAte").val();
 
         var eixos = definirEixos();
         var falas = definirFalas();
@@ -218,7 +216,7 @@ $(document).ready(function() {
             url: "exec/gravarmissao.php",
             data: { id: id, nome: nome, titulo: titulo, descricao: descricao, ano: ano,
                     semestre: semestre, sequencia: sequencia, moodle: moodle, obrigatorio: obrigatorio,
-                    pai: pai, ativo: ativo, eixos: eixos, falas: falas },
+                    pai: pai, ativo: ativo, datade: datade, dataate: dataate, eixos: eixos, falas: falas },
             success : function(text) {
                 var txtspl = text.split("|");
 
