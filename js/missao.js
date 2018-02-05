@@ -205,8 +205,10 @@ $(document).ready(function() {
         var obrigatorio = $("input[name='optObrigatoria']:checked").val();
         var pai = $("#cmbMissoes").find("option:selected").val();
         var ativo = $("input[name='optAtivo']:checked").val();
-        var datade = $("#txtDataDe").val();
-        var dataate = $("#txtDataAte").val();
+        var datade = $("#txtDateDe").val();
+        var olddatade = $("#hidDataDe").val();
+        var dataate = $("#txtDateAte").val();
+        var olddataate = $("#hidDateAte").val();
 
         var eixos = definirEixos();
         var falas = definirFalas();
@@ -216,7 +218,8 @@ $(document).ready(function() {
             url: "exec/gravarmissao.php",
             data: { id: id, nome: nome, titulo: titulo, descricao: descricao, ano: ano,
                     semestre: semestre, sequencia: sequencia, moodle: moodle, obrigatorio: obrigatorio,
-                    pai: pai, ativo: ativo, datade: datade, dataate: dataate, eixos: eixos, falas: falas },
+                    pai: pai, ativo: ativo, datade: datade, dataate: dataate, olddatade: olddatade, 
+                    olddataate: olddataate, eixos: eixos, falas: falas },
             success : function(text) {
                 var txtspl = text.split("|");
 

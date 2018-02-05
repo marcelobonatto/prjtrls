@@ -145,27 +145,39 @@ class missao
                 foreach ($res as $missao)
                 {
                     $obj                = new missao();
-                    $obj->id            = $missao['missaoId'];
-                    $obj->nome          = $missao['missaoNome'];
-                    $obj->titulo        = $missao['missaoTitulo'];
-                    $obj->descricao     = $missao['missaoDescricao'];
-                    $obj->ativo         = $missao['missaoAtivo'];
-                    $obj->idMoodle      = $missao['missaoIdMoodle'];
-                    $obj->ano           = $missao['missaoAno'];
-                    $obj->semestre      = $missao['missaoSemestre'];
-                    $obj->sequencia     = $missao['missaoSequencia'];
-                    $obj->obrigatoria   = $missao['missaoObrigatoria'];
-                    $obj->pai           = $missao['missaoPai'];
-                    $obj->referencia    = $missao['missaoReferencia'];
-                    $obj->datade        = $missao['missaoDataIni'];
-                    $obj->dataate       = $missao['missaoDataFim'];
-
+                    $this->atribuirValores($obj, $res);
                     array_push($matriz, $obj);
                 }
             }
         }
 
         return $matriz;
+    }
+
+    function atribuirValores($obj, $missao)
+    {
+        $obj->id            = $missao['missaoId'];
+        $obj->nome          = $missao['missaoNome'];
+        $obj->titulo        = $missao['missaoTitulo'];
+        $obj->descricao     = $missao['missaoDescricao'];
+        $obj->ativo         = $missao['missaoAtivo'];
+        $obj->idMoodle      = $missao['missaoIdMoodle'];
+        $obj->ano           = $missao['missaoAno'];
+        $obj->semestre      = $missao['missaoSemestre'];
+        $obj->sequencia     = $missao['missaoSequencia'];
+        $obj->obrigatoria   = $missao['missaoObrigatoria'];
+        $obj->pai           = $missao['missaoPai'];
+        $obj->referencia    = $missao['missaoReferencia'];
+
+        if ($missao['missaoDataIni'] != null)
+        {
+            $obj->datade        = \DateTime::createFromFormat('!Y-m-d', $missao['missaoDataIni']);
+        }
+
+        if ($missao['missaoDataFim'] != null)
+        {
+            $obj->dataate       = \DateTime::createFromFormat('!Y-m-d', $missao['missaoDataFim']);
+        }
     }
 
     public function Selecionar($id)
@@ -176,27 +188,13 @@ class missao
                   "WHERE missaoId = '$id'";
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
             if (count($res) > 0)
             {
-                $missao              = $res[0];
-
-                $this->id            = $missao[self::MISSAO_ID];
-                $this->nome          = $missao[self::MISSAO_NOME];
-                $this->titulo        = $missao[self::MISSAO_TITULO];
-                $this->descricao     = $missao[self::MISSAO_DESCRICAO];
-                $this->ativo         = $missao[self::MISSAO_ATIVO];
-                $this->idMoodle      = $missao[self::MISSAO_IDMOODLE];
-                $this->ano           = $missao[self::MISSAO_ANO];
-                $this->semestre      = $missao[self::MISSAO_SEMESTRE];
-                $this->sequencia     = $missao[self::MISSAO_SEQUENCIA];
-                $this->obrigatoria   = $missao[self::MISSAO_OBRIGATORIA];
-                $this->pai           = $missao[self::MISSAO_PAI];
-                $this->datade        = $missao[self::MISSAO_DATADE];
-                $this->dataate       = $missao[self::MISSAO_DATAATE];
+                $this->atribuirValores($this, $res[0]);
             }
         }
     }
@@ -225,27 +223,13 @@ class missao
                   "WHERE missaoNome = '$nome'";
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
             if (count($res) > 0)
             {
-                $missao             = $res[0];
-
-                $this->id            = $missao[self::MISSAO_ID];
-                $this->nome          = $missao[self::MISSAO_NOME];
-                $this->titulo        = $missao[self::MISSAO_TITULO];
-                $this->descricao     = $missao[self::MISSAO_DESCRICAO];
-                $this->ativo         = $missao[self::MISSAO_ATIVO];
-                $this->idMoodle      = $missao[self::MISSAO_IDMOODLE];
-                $this->ano           = $missao[self::MISSAO_ANO];
-                $this->semestre      = $missao[self::MISSAO_SEMESTRE];
-                $this->sequencia     = $missao[self::MISSAO_SEQUENCIA];
-                $this->obrigatoria   = $missao[self::MISSAO_OBRIGATORIA];
-                $this->pai           = $missao[self::MISSAO_PAI];
-                $this->datade        = $missao[self::MISSAO_DATADE];
-                $this->dataate       = $missao[self::MISSAO_DATAATE];
+                $this->atribuirValores($this, $res[0]);
             }
         }
     }
@@ -270,21 +254,7 @@ class missao
         {
             if (count($res) > 0)
             {
-                $missao             = $res[0];
-
-                $this->id            = $missao[self::MISSAO_ID];
-                $this->nome          = $missao[self::MISSAO_NOME];
-                $this->titulo        = $missao[self::MISSAO_TITULO];
-                $this->descricao     = $missao[self::MISSAO_DESCRICAO];
-                $this->ativo         = $missao[self::MISSAO_ATIVO];
-                $this->idMoodle      = $missao[self::MISSAO_IDMOODLE];
-                $this->ano           = $missao[self::MISSAO_ANO];
-                $this->semestre      = $missao[self::MISSAO_SEMESTRE];
-                $this->sequencia     = $missao[self::MISSAO_SEQUENCIA];
-                $this->obrigatoria   = $missao[self::MISSAO_OBRIGATORIA];
-                $this->pai           = $missao[self::MISSAO_PAI];
-                $this->datade        = $missao[self::MISSAO_DATADE];
-                $this->dataate       = $missao[self::MISSAO_DATAATE];
+                $this->atribuirValores($this, $res[0]);
             }
         }
     }
@@ -324,7 +294,7 @@ class missao
         }
         else
         {
-            $datade = "'" . $this->datade->format('Y-M-d') . "'";
+            $datade = "'" . $this->datade->format('Y-m-d') . "'";
         }
 
         if ($this->dataate == null)
@@ -333,16 +303,16 @@ class missao
         }
         else
         {
-            $dataate = "'" . $this->dataate->format('Y-M-d') . "'";
+            $dataate = "'" . $this->dataate->format('Y-m-d') . "'";
         }
 
         if ($id == '{ID}')
         {
-            return $this->Incluir($id, $idmoodle, $pai);
+            return $this->Incluir($id, $idmoodle, $pai, $datade, $dataate);
         }
         else
         {
-            return $this->Atualizar($id, $idmoodle, $pai);
+            return $this->Atualizar($id, $idmoodle, $pai, $datade, $dataate);
         }
     }
 

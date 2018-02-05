@@ -47,8 +47,18 @@ else
     $sequencia      = $missao->sequencia;
     $obrigatoria    = $missao->obrigatoria;
     $pai            = $missao->pai;
-    $datade         = $missao->datade;
-    $dataate        = $missao->dataate;
+    $datade         = '';
+    $dataate        = '';
+
+    if ($missao->datade != null)
+    {
+        $datade     = $missao->datade->format('d/m/Y');
+    }
+
+    if ($missao->dataate != null)
+    {
+        $dataate    = $missao->dataate->format('d/m/Y');
+    }
 }
 
 $outrasobj      = new lib\missao();

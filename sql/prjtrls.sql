@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 02, 2018 at 12:52 AM
--- Server version: 5.7.19
--- PHP Version: 7.0.23
+-- Generation Time: 05-Fev-2018 às 13:35
+-- Versão do servidor: 5.7.19
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `alunos`
+-- Estrutura da tabela `alunos`
 --
 
 DROP TABLE IF EXISTS `alunos`;
@@ -44,7 +44,7 @@ CREATE TABLE IF NOT EXISTS `alunos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `alunos`
+-- Extraindo dados da tabela `alunos`
 --
 
 INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodle`, `alunoEmail`, `alunoAno`, `alunoAtivo`, `escolaId`, `usuarioId`) VALUES
@@ -58,7 +58,7 @@ INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodl
 -- --------------------------------------------------------
 
 --
--- Table structure for table `autorizacao`
+-- Estrutura da tabela `autorizacao`
 --
 
 DROP TABLE IF EXISTS `autorizacao`;
@@ -71,7 +71,7 @@ CREATE TABLE IF NOT EXISTS `autorizacao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `autorizacao`
+-- Extraindo dados da tabela `autorizacao`
 --
 
 INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
@@ -237,7 +237,7 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cidades`
+-- Estrutura da tabela `cidades`
 --
 
 DROP TABLE IF EXISTS `cidades`;
@@ -249,7 +249,7 @@ CREATE TABLE IF NOT EXISTS `cidades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `cidades`
+-- Extraindo dados da tabela `cidades`
 --
 
 INSERT INTO `cidades` (`cidadeCodigo`, `cidadeNome`, `estadoSigla`) VALUES
@@ -5830,7 +5830,7 @@ INSERT INTO `cidades` (`cidadeCodigo`, `cidadeNome`, `estadoSigla`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `dialogosnpc`
+-- Estrutura da tabela `dialogosnpc`
 --
 
 DROP TABLE IF EXISTS `dialogosnpc`;
@@ -5845,21 +5845,16 @@ CREATE TABLE IF NOT EXISTS `dialogosnpc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `dialogosnpc`
+-- Extraindo dados da tabela `dialogosnpc`
 --
 
 INSERT INTO `dialogosnpc` (`dialogoId`, `missaoId`, `dialogoSequencia`, `npcId`, `dialogoHumor`, `dialogoTexto`) VALUES
-('27578a3b-dba4-11e7-b31a-74d4359f41f2', '90386846-dad1-11e7-8d5e-74d4359f41f2', 1, 'b774ad6e-bc08-11e7-a674-a83b2f399337', 'NO', 'Caraca, hoje vamos ter uma missão sobre Superman!!!'),
-('27579ef7-dba4-11e7-b31a-74d4359f41f2', '90386846-dad1-11e7-8d5e-74d4359f41f2', 2, 'b7744586-bc08-11e7-a674-a83b2f399337', 'NO', 'Calma, calma, que o negócio não é tão simples assim. Lembra das aulas de física?'),
-('2757b2f2-dba4-11e7-b31a-74d4359f41f2', '90386846-dad1-11e7-8d5e-74d4359f41f2', 3, 'b774ad6e-bc08-11e7-a674-a83b2f399337', 'NO', 'Sim, e para mim é muuuuuuito fácil.'),
-('2757c26a-dba4-11e7-b31a-74d4359f41f2', '90386846-dad1-11e7-8d5e-74d4359f41f2', 4, 'b7744586-bc08-11e7-a674-a83b2f399337', 'NO', 'Ah, então é fácil, né? Já que é fácil, então responda essa missão.'),
-('2757d28a-dba4-11e7-b31a-74d4359f41f2', '90386846-dad1-11e7-8d5e-74d4359f41f2', 5, 'b774ad6e-bc08-11e7-a674-a83b2f399337', 'NO', 'Éééééé... veja bem... vamos deixar isso pro nosso aventureiro, não é?'),
 ('e5e923b4-cd79-11e7-91b8-00051b7601a3', 'ef88bb50-cd6a-11e7-91b8-00051b7601a3', 1, 'b774ad6e-bc08-11e7-a674-a83b2f399337', 'NO', 'E aí, cara, beleza?');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `eixos`
+-- Estrutura da tabela `eixos`
 --
 
 DROP TABLE IF EXISTS `eixos`;
@@ -5873,7 +5868,7 @@ CREATE TABLE IF NOT EXISTS `eixos` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `eixos`
+-- Extraindo dados da tabela `eixos`
 --
 
 INSERT INTO `eixos` (`eixoId`, `eixoNome`, `eixoSequencia`, `eixoSigla`, `eixoAtivo`) VALUES
@@ -5885,7 +5880,7 @@ INSERT INTO `eixos` (`eixoId`, `eixoNome`, `eixoSequencia`, `eixoSigla`, `eixoAt
 -- --------------------------------------------------------
 
 --
--- Table structure for table `escolas`
+-- Estrutura da tabela `escolas`
 --
 
 DROP TABLE IF EXISTS `escolas`;
@@ -5900,7 +5895,7 @@ CREATE TABLE IF NOT EXISTS `escolas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `escolas`
+-- Extraindo dados da tabela `escolas`
 --
 
 INSERT INTO `escolas` (`escolaId`, `escolaNome`, `escolaBairro`, `cidadeCodigo`, `estadoSigla`, `escolaAtivo`) VALUES
@@ -5913,7 +5908,7 @@ INSERT INTO `escolas` (`escolaId`, `escolaNome`, `escolaBairro`, `cidadeCodigo`,
 -- --------------------------------------------------------
 
 --
--- Table structure for table `estados`
+-- Estrutura da tabela `estados`
 --
 
 DROP TABLE IF EXISTS `estados`;
@@ -5924,7 +5919,7 @@ CREATE TABLE IF NOT EXISTS `estados` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `estados`
+-- Extraindo dados da tabela `estados`
 --
 
 INSERT INTO `estados` (`estadoSigla`, `estadoNome`) VALUES
@@ -5959,7 +5954,7 @@ INSERT INTO `estados` (`estadoSigla`, `estadoNome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `gruposusu`
+-- Estrutura da tabela `gruposusu`
 --
 
 DROP TABLE IF EXISTS `gruposusu`;
@@ -5971,7 +5966,7 @@ CREATE TABLE IF NOT EXISTS `gruposusu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `gruposusu`
+-- Extraindo dados da tabela `gruposusu`
 --
 
 INSERT INTO `gruposusu` (`grupoId`, `grupoNome`, `grupoAtivo`) VALUES
@@ -5982,7 +5977,7 @@ INSERT INTO `gruposusu` (`grupoId`, `grupoNome`, `grupoAtivo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `itens`
+-- Estrutura da tabela `itens`
 --
 
 DROP TABLE IF EXISTS `itens`;
@@ -6002,7 +5997,7 @@ CREATE TABLE IF NOT EXISTS `itens` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `itens`
+-- Extraindo dados da tabela `itens`
 --
 
 INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `eixoId`, `itemLimite`, `itemBonus`, `itemPrecoNormal`, `itemAtivo`, `itemImagem`) VALUES
@@ -6020,7 +6015,7 @@ INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `itensmochila`
+-- Estrutura da tabela `itensmochila`
 --
 
 DROP TABLE IF EXISTS `itensmochila`;
@@ -6033,7 +6028,7 @@ CREATE TABLE IF NOT EXISTS `itensmochila` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `itensmochila`
+-- Extraindo dados da tabela `itensmochila`
 --
 
 INSERT INTO `itensmochila` (`itemmochilaId`, `alunoId`, `itemId`, `itemmochilaSelecionado`) VALUES
@@ -6046,7 +6041,7 @@ INSERT INTO `itensmochila` (`itemmochilaId`, `alunoId`, `itemId`, `itemmochilaSe
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jogadores`
+-- Estrutura da tabela `jogadores`
 --
 
 DROP TABLE IF EXISTS `jogadores`;
@@ -6062,7 +6057,7 @@ CREATE TABLE IF NOT EXISTS `jogadores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `jogadores`
+-- Extraindo dados da tabela `jogadores`
 --
 
 INSERT INTO `jogadores` (`alunoId`, `jogadorDinheiro`, `jogadorPontuacao`, `jogadorCabelo`, `jogadorPele`, `jogadorSexo`, `jogadorAno`) VALUES
@@ -6074,7 +6069,7 @@ INSERT INTO `jogadores` (`alunoId`, `jogadorDinheiro`, `jogadorPontuacao`, `joga
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jogadoreseixo`
+-- Estrutura da tabela `jogadoreseixo`
 --
 
 DROP TABLE IF EXISTS `jogadoreseixo`;
@@ -6087,7 +6082,7 @@ CREATE TABLE IF NOT EXISTS `jogadoreseixo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `jogadoreseixo`
+-- Extraindo dados da tabela `jogadoreseixo`
 --
 
 INSERT INTO `jogadoreseixo` (`jogadoreixoId`, `alunoId`, `eixoId`, `jogadoreixoPontos`) VALUES
@@ -6111,7 +6106,7 @@ INSERT INTO `jogadoreseixo` (`jogadoreixoId`, `alunoId`, `eixoId`, `jogadoreixoP
 -- --------------------------------------------------------
 
 --
--- Table structure for table `jogadoresmissao`
+-- Estrutura da tabela `jogadoresmissao`
 --
 
 DROP TABLE IF EXISTS `jogadoresmissao`;
@@ -6127,7 +6122,7 @@ CREATE TABLE IF NOT EXISTS `jogadoresmissao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `jogadoresmissao`
+-- Extraindo dados da tabela `jogadoresmissao`
 --
 
 INSERT INTO `jogadoresmissao` (`jogadormissaoId`, `alunoId`, `missaoId`, `jogadormissaoAprovado`, `jogadormissaoCumprida`, `jogadormissaoJogando`, `jogadormissaoLiberada`) VALUES
@@ -6138,7 +6133,7 @@ INSERT INTO `jogadoresmissao` (`jogadormissaoId`, `alunoId`, `missaoId`, `jogado
 -- --------------------------------------------------------
 
 --
--- Table structure for table `missaoaluno`
+-- Estrutura da tabela `missaoaluno`
 --
 
 DROP TABLE IF EXISTS `missaoaluno`;
@@ -6151,7 +6146,7 @@ CREATE TABLE IF NOT EXISTS `missaoaluno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `missaoaluno`
+-- Extraindo dados da tabela `missaoaluno`
 --
 
 INSERT INTO `missaoaluno` (`missaoalunoId`, `missaoId`, `alunoId`, `statusMissao`) VALUES
@@ -6166,7 +6161,7 @@ INSERT INTO `missaoaluno` (`missaoalunoId`, `missaoId`, `alunoId`, `statusMissao
 -- --------------------------------------------------------
 
 --
--- Table structure for table `missoes`
+-- Estrutura da tabela `missoes`
 --
 
 DROP TABLE IF EXISTS `missoes`;
@@ -6184,28 +6179,30 @@ CREATE TABLE IF NOT EXISTS `missoes` (
   `missaoPai` varchar(36) DEFAULT NULL,
   `missaoPaiSequencia` int(11) NOT NULL DEFAULT '0',
   `missaoReferencia` int(11) GENERATED ALWAYS AS ((((`missaoAno` * 100000) + (`missaoSemestre` * 10000)) + (case when (`missaoPaiSequencia` > 0) then ((`missaoPaiSequencia` * 100) + `missaoSequencia`) else (`missaoSequencia` * 100) end))) VIRTUAL,
+  `missaoDataIni` date DEFAULT NULL,
+  `missaoDataFim` date DEFAULT NULL,
   PRIMARY KEY (`missaoId`),
   KEY `fk_missoes_missoes1_idx` (`missaoPai`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `missoes`
+-- Extraindo dados da tabela `missoes`
 --
 
-INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescricao`, `missaoAtivo`, `missaoIdMoodle`, `missaoAno`, `missaoSemestre`, `missaoSequencia`, `missaoObrigatoria`, `missaoPai`, `missaoPaiSequencia`) VALUES
-('90363083-dad1-11e7-8d5e-74d4359f41f2', 'Missão E114', 'Resistência iPhoniana', 'Analise a resistência de algum iPhone e descreva como ele poderia ser mais resistente, demonstrando isso com cálculos.', 1, '', 1, 1, 4, 1, NULL, 0),
-('90386846-dad1-11e7-8d5e-74d4359f41f2', 'Missão E111', 'Superman Salva o Dia', 'No filme Superman, de 1978, o herói, vendo que não conseguiria parar um ataque nuclear que mataria Lois Lane, acelera em torno da Terra em sentido contrário para voltar alguns minutos no tempo. Calcule qual a velocidade e quantas voltas que ele deve dar para voltar 10 minutos. Demonstre os cálculos.', 1, '2', 1, 1, 1, 1, NULL, 0),
-('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Missão N111', 'Missão Teste 1 (Negócios)', 'Nesta missão você terá que ler o que está no Moodle e fazer.', 1, '6cac44e4-5269-42ef-b169-13042e4b5869', 1, 1, 1, 1, NULL, 0),
-('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Missão SE1', 'Side-quest Teste 1', 'Essa missão não é obrigatória, mas seria legal você fazer.', 1, '3e198323-6bb3-4f56-bed6-55dceb987a1f', 1, 1, 1, 0, '90363083-dad1-11e7-8d5e-74d4359f41f2', 4),
-('f81df8cd-dad1-11e7-8d5e-74d4359f41f2', 'Missão E115', 'Balísticas Poderosas', 'Visite uma fábrica de armas de destruição em massa e descreva o que puder sobre o desenvolvimento delas.', 1, '', 1, 1, 5, 1, NULL, 0),
-('f81e0a09-dad1-11e7-8d5e-74d4359f41f2', 'Missão E116', 'Automóveis Melhores', 'Visite uma fábrica de automóveis, escolha um modelo e descreva, com cálculos, como ele poderia ser melhor sem que ele fique mais de 10% mais caro.', 1, '', 1, 1, 6, 1, NULL, 0),
-('f81e0b8c-dad1-11e7-8d5e-74d4359f41f2', 'Missão E112', 'Aprendizes de Engenheiros em Ação', 'Analise vários objetos projetados por engenheiros (independente do que é o objeto) e descreva as possíveis técnicas utilizadas.', 1, '', 1, 1, 2, 1, NULL, 0),
-('f81e0c55-dad1-11e7-8d5e-74d4359f41f2', 'Missão E113', 'Circuítos Lógicos', 'Desenhe um circuíto lógico simples com pelo menos 5 condições e descreva os possíveis resultados que ele pode ter.', 1, '', 1, 1, 3, 1, NULL, 0);
+INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescricao`, `missaoAtivo`, `missaoIdMoodle`, `missaoAno`, `missaoSemestre`, `missaoSequencia`, `missaoObrigatoria`, `missaoPai`, `missaoPaiSequencia`, `missaoDataIni`, `missaoDataFim`) VALUES
+('90363083-dad1-11e7-8d5e-74d4359f41f2', 'Missão E114', 'Resistência iPhoniana', 'Analise a resistência de algum iPhone e descreva como ele poderia ser mais resistente, demonstrando isso com cálculos.', 1, '', 1, 1, 4, 1, NULL, 0, NULL, NULL),
+('90386846-dad1-11e7-8d5e-74d4359f41f2', 'Missão E111', 'Superman Salva o Dia', 'No filme Superman, de 1978, o herói, vendo que não conseguiria parar um ataque nuclear que mataria Lois Lane, acelera em torno da Terra em sentido contrário para voltar alguns minutos no tempo. Calcule qual a velocidade e quantas voltas que ele deve dar para voltar 10 minutos. Demonstre os cálculos.', 1, NULL, 1, 1, 1, 1, NULL, 0, '2018-08-15', NULL),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Missão N111', 'Missão Teste 1 (Negócios)', 'Nesta missão você terá que ler o que está no Moodle e fazer.', 1, '6cac44e4-5269-42ef-b169-13042e4b5869', 1, 1, 1, 1, NULL, 0, NULL, NULL),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Missão SE1', 'Side-quest Teste 1', 'Essa missão não é obrigatória, mas seria legal você fazer.', 1, '3e198323-6bb3-4f56-bed6-55dceb987a1f', 1, 1, 1, 0, '90363083-dad1-11e7-8d5e-74d4359f41f2', 4, NULL, NULL),
+('f81df8cd-dad1-11e7-8d5e-74d4359f41f2', 'Missão E115', 'Balísticas Poderosas', 'Visite uma fábrica de armas de destruição em massa e descreva o que puder sobre o desenvolvimento delas.', 1, '', 1, 1, 5, 1, NULL, 0, NULL, NULL),
+('f81e0a09-dad1-11e7-8d5e-74d4359f41f2', 'Missão E116', 'Automóveis Melhores', 'Visite uma fábrica de automóveis, escolha um modelo e descreva, com cálculos, como ele poderia ser melhor sem que ele fique mais de 10% mais caro.', 1, '', 1, 1, 6, 1, NULL, 0, NULL, NULL),
+('f81e0b8c-dad1-11e7-8d5e-74d4359f41f2', 'Missão E112', 'Aprendizes de Engenheiros em Ação', 'Analise vários objetos projetados por engenheiros (independente do que é o objeto) e descreva as possíveis técnicas utilizadas.', 1, '', 1, 1, 2, 1, NULL, 0, NULL, NULL),
+('f81e0c55-dad1-11e7-8d5e-74d4359f41f2', 'Missão E113', 'Circuítos Lógicos', 'Desenhe um circuíto lógico simples com pelo menos 5 condições e descreva os possíveis resultados que ele pode ter.', 1, '', 1, 1, 3, 1, NULL, 0, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `missoeseixo`
+-- Estrutura da tabela `missoeseixo`
 --
 
 DROP TABLE IF EXISTS `missoeseixo`;
@@ -6220,7 +6217,7 @@ CREATE TABLE IF NOT EXISTS `missoeseixo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `missoeseixo`
+-- Extraindo dados da tabela `missoeseixo`
 --
 
 INSERT INTO `missoeseixo` (`missaoeixoId`, `missaoId`, `eixoId`, `missaoeixoPontos`) VALUES
@@ -6228,14 +6225,13 @@ INSERT INTO `missoeseixo` (`missaoeixoId`, `missaoId`, `eixoId`, `missaoeixoPont
 ('e5018e23-dade-11e7-b31a-74d4359f41f2', '90363083-dad1-11e7-8d5e-74d4359f41f2', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
 ('e501a20e-dade-11e7-b31a-74d4359f41f2', 'f81df8cd-dad1-11e7-8d5e-74d4359f41f2', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
 ('e501adfb-dade-11e7-b31a-74d4359f41f2', 'f81e0a09-dad1-11e7-8d5e-74d4359f41f2', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
-('ef8bb332-cd6a-11e7-91b8-00051b7601a3', '90386846-dad1-11e7-8d5e-74d4359f41f2', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
 ('ef8c77f4-cd6a-11e7-91b8-00051b7601a3', 'f81e0b8c-dad1-11e7-8d5e-74d4359f41f2', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100),
 ('ef8cde9c-cd6a-11e7-91b8-00051b7601a3', 'f81e0c55-dad1-11e7-8d5e-74d4359f41f2', 'e885bc95-bb13-11e7-a2a8-00306776e789', 100);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `npc`
+-- Estrutura da tabela `npc`
 --
 
 DROP TABLE IF EXISTS `npc`;
@@ -6250,7 +6246,7 @@ CREATE TABLE IF NOT EXISTS `npc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `npc`
+-- Extraindo dados da tabela `npc`
 --
 
 INSERT INTO `npc` (`npcId`, `npcNome`, `npcChave`, `eixoId`, `npcAtivo`) VALUES
@@ -6264,7 +6260,7 @@ INSERT INTO `npc` (`npcId`, `npcNome`, `npcChave`, `eixoId`, `npcAtivo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `perguntas`
+-- Estrutura da tabela `perguntas`
 --
 
 DROP TABLE IF EXISTS `perguntas`;
@@ -6278,7 +6274,7 @@ CREATE TABLE IF NOT EXISTS `perguntas` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `perguntas`
+-- Extraindo dados da tabela `perguntas`
 --
 
 INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `eixoId`, `perguntaAtivo`) VALUES
@@ -6311,7 +6307,7 @@ INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `e
 -- --------------------------------------------------------
 
 --
--- Table structure for table `perguntasdf`
+-- Estrutura da tabela `perguntasdf`
 --
 
 DROP TABLE IF EXISTS `perguntasdf`;
@@ -6325,7 +6321,7 @@ CREATE TABLE IF NOT EXISTS `perguntasdf` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `perguntasdf`
+-- Extraindo dados da tabela `perguntasdf`
 --
 
 INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCodigo`, `perguntadfDificuldade`, `perguntadfAtivo`) VALUES
@@ -6358,7 +6354,7 @@ INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCod
 -- --------------------------------------------------------
 
 --
--- Table structure for table `respostas`
+-- Estrutura da tabela `respostas`
 --
 
 DROP TABLE IF EXISTS `respostas`;
@@ -6373,7 +6369,7 @@ CREATE TABLE IF NOT EXISTS `respostas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `respostas`
+-- Extraindo dados da tabela `respostas`
 --
 
 INSERT INTO `respostas` (`respostaId`, `perguntaId`, `respostaCodigo`, `respostaTexto`, `respostaNivel`) VALUES
@@ -6473,7 +6469,7 @@ INSERT INTO `respostas` (`respostaId`, `perguntaId`, `respostaCodigo`, `resposta
 -- --------------------------------------------------------
 
 --
--- Table structure for table `respostasdf`
+-- Estrutura da tabela `respostasdf`
 --
 
 DROP TABLE IF EXISTS `respostasdf`;
@@ -6488,7 +6484,7 @@ CREATE TABLE IF NOT EXISTS `respostasdf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `respostasdf`
+-- Extraindo dados da tabela `respostasdf`
 --
 
 INSERT INTO `respostasdf` (`respostadfId`, `perguntadfId`, `respostadfCodigo`, `respostadfTexto`, `respostadfNivel`) VALUES
@@ -6614,7 +6610,7 @@ INSERT INTO `respostasdf` (`respostadfId`, `perguntadfId`, `respostadfCodigo`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `usuarios`
+-- Estrutura da tabela `usuarios`
 --
 
 DROP TABLE IF EXISTS `usuarios`;
@@ -6623,33 +6619,36 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `usuarioNome` varchar(255) NOT NULL,
   `usuarioSenha` varchar(8000) NOT NULL,
   `usuarioSal` varchar(8000) NOT NULL,
+  `usuarioEmail` varchar(1000) NOT NULL,
   `usuarioAtivo` tinyint(1) NOT NULL,
+  `usuarioCodMod` varchar(500) DEFAULT NULL,
+  `usuarioDataMod` datetime DEFAULT NULL,
   PRIMARY KEY (`usuarioId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Dumping data for table `usuarios`
+-- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`, `usuarioAtivo`) VALUES
-('3b1f2ccf-dc44-11e7-ad01-1c39470d9087', 'administrador2', '$2y$10$QhKvOUaWP42ignhcnqqTCuk.zSYzvwC7dyA0xd5NRYTocNqABANra', '', 0),
-('4e213e14-dc53-11e7-ad01-1c39470d9087', 'admin555', '$2y$10$4zXbK2FrFdfTpqZymZx0yOASu3ib4SWmjGBSnWmIH6FmEs4sZFu86', '', 1),
-('764bc18a-dc43-11e7-ad01-1c39470d9087', 'admin3', '$2y$10$pAD/0o0TxPG9miCsp4KnI.cSvrIPCxo0ac7DbC1eH2Jv9B/kGzOF2', '', 1),
-('7c2813ae-d909-11e7-ad01-1c39470d9087', 'marcelo', '$2y$10$YNvJTshBsYA.FCmuhClJ4elWWD.zGduRJIcLl.vrDilALiq3rOrAS', '', 1),
-('810a9e5c-dc43-11e7-ad01-1c39470d9087', 'addd', '$2y$10$Rvp697PtJtv9h2veRTpyTeVY6Cn4z4HEkfVoUSMGLdmYoNYjF1Y3G', '', 0),
-('a4368150-d62f-11e7-b52d-14b65896e7c5', 'aluno4', '$2y$10$t5aRxIxrog0RKV04zirCrucCCbJmlNBXpsNPjItmqpbeS4YcRT752', '', 1),
-('a5bfbe1d-dc2b-11e7-ad01-1c39470d9087', 'aluno127', '$2y$10$Oump.W.7T8FfZPGGjtzfceAB8OUUV7cd8pGVua9tKyS10zY85Ufdq', '', 0),
-('e057a428-d311-11e7-b419-1a8f80d3a0ab', 'loginAl1', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1),
-('e057af2c-d311-11e7-b419-1a8f80d3a0ab', 'loginAl2', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1),
-('ea58f8e6-b84f-11e7-89f4-9ef90429c14d', 'administrador', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1),
-('f77e1088-d311-11e7-b419-1a8f80d3a0ab', 'loginAl3', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', 1);
+INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`, `usuarioEmail`, `usuarioAtivo`, `usuarioCodMod`, `usuarioDataMod`) VALUES
+('3b1f2ccf-dc44-11e7-ad01-1c39470d9087', 'administrador2', '$2y$10$QhKvOUaWP42ignhcnqqTCuk.zSYzvwC7dyA0xd5NRYTocNqABANra', '', '', 0, NULL, NULL),
+('4e213e14-dc53-11e7-ad01-1c39470d9087', 'admin555', '$2y$10$4zXbK2FrFdfTpqZymZx0yOASu3ib4SWmjGBSnWmIH6FmEs4sZFu86', '', '', 1, NULL, NULL),
+('764bc18a-dc43-11e7-ad01-1c39470d9087', 'admin3', '$2y$10$pAD/0o0TxPG9miCsp4KnI.cSvrIPCxo0ac7DbC1eH2Jv9B/kGzOF2', '', '', 1, NULL, NULL),
+('7c2813ae-d909-11e7-ad01-1c39470d9087', 'marcelo', '$2y$10$YNvJTshBsYA.FCmuhClJ4elWWD.zGduRJIcLl.vrDilALiq3rOrAS', '', '', 1, NULL, NULL),
+('810a9e5c-dc43-11e7-ad01-1c39470d9087', 'addd', '$2y$10$Rvp697PtJtv9h2veRTpyTeVY6Cn4z4HEkfVoUSMGLdmYoNYjF1Y3G', '', '', 0, NULL, NULL),
+('a4368150-d62f-11e7-b52d-14b65896e7c5', 'aluno4', '$2y$10$t5aRxIxrog0RKV04zirCrucCCbJmlNBXpsNPjItmqpbeS4YcRT752', '', '', 1, NULL, NULL),
+('a5bfbe1d-dc2b-11e7-ad01-1c39470d9087', 'aluno127', '$2y$10$Oump.W.7T8FfZPGGjtzfceAB8OUUV7cd8pGVua9tKyS10zY85Ufdq', '', '', 0, NULL, NULL),
+('e057a428-d311-11e7-b419-1a8f80d3a0ab', 'loginAl1', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', '', 1, NULL, NULL),
+('e057af2c-d311-11e7-b419-1a8f80d3a0ab', 'loginAl2', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', '', 1, NULL, NULL),
+('ea58f8e6-b84f-11e7-89f4-9ef90429c14d', 'administrador', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', '', 1, NULL, NULL),
+('f77e1088-d311-11e7-b419-1a8f80d3a0ab', 'loginAl3', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', '', 1, NULL, NULL);
 
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `missoes`
+-- Limitadores para a tabela `missoes`
 --
 ALTER TABLE `missoes`
   ADD CONSTRAINT `fk_missoes_missoes1` FOREIGN KEY (`missaoPai`) REFERENCES `missoes` (`missaoId`) ON DELETE NO ACTION ON UPDATE NO ACTION;

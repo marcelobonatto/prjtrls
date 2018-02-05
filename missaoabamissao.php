@@ -29,14 +29,16 @@
                 <div class="form-group">
                     <label for="txtDataDe">Disponível a partir de:</label>
                     <input class="form-control col-sm-4" type="date" value="<?php echo($datade); ?>" id="txtDateDe" name="txtDataDe" />
+                    <input type="hidden" value="<?php echo($datade); ?>" id="hidDateDe" name="hidDataDe" />
                 </div>
                 <div class="form-group">
                     <label for="txtDataAte">Disponível até:</label>
                     <input class="form-control col-sm-4" type="date" value="<?php echo($dataate); ?>" id="txtDateAte" name="txtDataAte" />
+                    <input type="hidden" value="<?php echo($dataate); ?>" id="hidDateAte" name="hidDataAte" />
                 </div>
                 <div class="form-group">
                     <label>Curso no Moodle:</label>
-                    <select class="form-control col-sm-3" id="cmbMoodle" name="cmbMoodle" required>
+                    <select class="form-control col-sm-3" id="cmbMoodle" name="cmbMoodle">
                         <option></option>
                         <?php
                         foreach ($moodlearr as $moodle)

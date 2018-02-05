@@ -33,9 +33,12 @@ else
 
 if (!isset($_POST['ativo']))        $mensagem[] = 'Indicador de ativo n&atilde;o informado';                else $ativo         = $_POST['ativo'];
 
-$dataagora = DateTime::createFromFormat('!d/m/Y', "now");
+$agora = new DateTime();
+$dataagora = DateTime::createFromFormat('!Y-m-d', $agora->format('Y-m-d'));
 $datade = (!isset($_POST['datade']) ? '' : DateTime::createFromFormat('!d/m/Y', $_POST['datade']));
+$olddatade = (!isset($_POST['olddatade']) ? '' : DateTime::createFromFormat('!d/m/Y', $_POST['olddatade']));
 $dataate = (!isset($_POST['dataate']) ? '' : DateTime::createFromFormat('!d/m/Y', $_POST['dataate']));
+$olddataate = (!isset($_POST['olddataate']) ? '' : DateTime::createFromFormat('!d/m/Y', $_POST['olddataate']));
 
 if ($id == null)
 {
@@ -49,11 +52,25 @@ if ($id == null)
         $mensagem[] = 'A data final do per&iacute;odo deve ser igual ou maior que hoje';
     }
 }
+else
+{
+    if ($datade < $dataagora && $datade != $olddatade)
+    {
+        $mensagem[] = 'A data inicial do per&iacute;odo deve ser igual ou maior que hoje';
+    }
+
+    if ($dataate < $dataagora && $dataate != $olddataate)
+    {
+        $mensagem[] = 'A data final do per&iacute;odo deve ser igual ou maior que hoje';
+    }
+}
 
 if ($datade != null && $dataate != null && $datade > $dataate)
 {
     $mensagem[] = 'A data inicial n&atilde;o pode ser menor que a data final do per&iacute;odo';
 }
+
+$eixossel = array();
 
 if (isset($_POST['eixos']))
 {
@@ -66,6 +83,8 @@ if (isset($_POST['eixos']))
         $mensagem[] = '&Eacute; necess&aacute;rio informar a pontua&ccedil;&atilde;o de pelo menos um eixo';
     }
 }
+
+$falassel = array();
 
 if (isset($_POST['falas']))
 {
@@ -107,20 +126,23 @@ if (count($mensagem) == 0)
     
     $eixos  = array();
 
-    foreach ($eixossel as $eixo)
+    if (count($eixossel) > 0)
     {
-        $eixos[]                = new lib\missaoeixo();
-        $poseixo                = count($eixos) - 1;
-
-        $spleixo                = explode('|', $eixo);
-
-        if (strlen($eixo[0]) > 0)
+        foreach ($eixossel as $eixo)
         {
-            $eixos[$poseixo]->id    = $spleixo[0];
-        }
+            $eixos[]                = new lib\missaoeixo();
+            $poseixo                = count($eixos) - 1;
 
-        $eixos[$poseixo]->eixo      = $spleixo[1];
-        $eixos[$poseixo]->pontos    = $spleixo[2];
+            $spleixo                = explode('|', $eixo);
+
+            if (strlen($eixo[0]) > 0)
+            {
+                $eixos[$poseixo]->id    = $spleixo[0];
+            }
+
+            $eixos[$poseixo]->eixo      = $spleixo[1];
+            $eixos[$poseixo]->pontos    = $spleixo[2];
+        }
     }
 
     foreach ($eixosarr as $eixoitm)
@@ -129,7 +151,7 @@ if (count($mensagem) == 0)
 
         if ($posdel === FALSE)
         {
-            $eixos[]                = new missaoeixo();
+            $eixos[]                = new lib\missaoeixo();
             $poseixo                = count($eixos) - 1;
 
             $eixos[$poseixo]->id        = $eixoitm->id;
@@ -145,22 +167,25 @@ if (count($mensagem) == 0)
 
     $falas  = array();
     
-    foreach ($falassel as $fala)
+    if (count($falassel) > 0)
     {
-        $falas[]                = new lib\dialogonpc();
-        $posfala                = count($falas) - 1;
-
-        $splfala                = explode('|', $fala);
-
-        if (strlen($eixo[0]) > 0)
+        foreach ($falassel as $fala)
         {
-            $falas[$posfala]->id    = $splfala[0];
-        }
+            $falas[]                = new lib\dialogonpc();
+            $posfala                = count($falas) - 1;
 
-        $falas[$posfala]->sequencia = $splfala[1];
-        $falas[$posfala]->npc       = $splfala[2];
-        $falas[$posfala]->humor     = $splfala[3];
-        $falas[$posfala]->texto     = $splfala[4];
+            $splfala                = explode('|', $fala);
+
+            if (strlen($eixo[0]) > 0)
+            {
+                $falas[$posfala]->id    = $splfala[0];
+            }
+
+            $falas[$posfala]->sequencia = $splfala[1];
+            $falas[$posfala]->npc       = $splfala[2];
+            $falas[$posfala]->humor     = $splfala[3];
+            $falas[$posfala]->texto     = $splfala[4];
+        }
     }
 
     foreach ($falasarr as $falaitm)
@@ -169,7 +194,7 @@ if (count($mensagem) == 0)
 
         if ($posdel === FALSE)
         {
-            $falas[]                = new dialogonpc();
+            $falas[]                = new lib\dialogonpc();
             $posfala                = count($falas) - 1;
 
             $falas[$posfala]->id        = $falaitm->id;
