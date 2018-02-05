@@ -14,6 +14,7 @@ if (!isset($_POST['semestre']))     $mensagem[] = 'Semestre n&atilde;o informado
 if (!isset($_POST['sequencia']))    $mensagem[] = 'Sequencia n&atilde;o informada';                         else $sequencia     = $_POST['sequencia'];
 if (!isset($_POST['moodle']))       $mensagem[] = 'Id do Moodle n&atilde;o informado';                      else $moodle        = $_POST['moodle'];
 if (!isset($_POST['obrigatorio']))  $mensagem[] = 'Indicador de missão obrigatória n&atilde;o informado';   else $obrigatorio   = $_POST['obrigatorio'];
+if (!isset($_POST['urlredir']))     $urlredir   = null;                                                     else $urlredir      = $_POST['urlredir'];
 
 if (!isset($_POST['pai']))
 {
@@ -109,6 +110,7 @@ if (count($mensagem) == 0)
     $missao->obrigatoria    = $obrigatorio;
     $missao->datade         = $datade;
     $missao->dataate        = $dataate;
+    $missao->urlredir       = $urlredir;
 
     if ($obrigatorio == 1 || $pai == '')
     {

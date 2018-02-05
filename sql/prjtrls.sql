@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 05-Fev-2018 às 13:35
+-- Generation Time: 05-Fev-2018 às 23:19
 -- Versão do servidor: 5.7.19
--- PHP Version: 5.6.31
+-- PHP Version: 7.0.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -6181,6 +6181,7 @@ CREATE TABLE IF NOT EXISTS `missoes` (
   `missaoReferencia` int(11) GENERATED ALWAYS AS ((((`missaoAno` * 100000) + (`missaoSemestre` * 10000)) + (case when (`missaoPaiSequencia` > 0) then ((`missaoPaiSequencia` * 100) + `missaoSequencia`) else (`missaoSequencia` * 100) end))) VIRTUAL,
   `missaoDataIni` date DEFAULT NULL,
   `missaoDataFim` date DEFAULT NULL,
+  `missaoUrlRedir` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`missaoId`),
   KEY `fk_missoes_missoes1_idx` (`missaoPai`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -6189,15 +6190,15 @@ CREATE TABLE IF NOT EXISTS `missoes` (
 -- Extraindo dados da tabela `missoes`
 --
 
-INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescricao`, `missaoAtivo`, `missaoIdMoodle`, `missaoAno`, `missaoSemestre`, `missaoSequencia`, `missaoObrigatoria`, `missaoPai`, `missaoPaiSequencia`, `missaoDataIni`, `missaoDataFim`) VALUES
-('90363083-dad1-11e7-8d5e-74d4359f41f2', 'Missão E114', 'Resistência iPhoniana', 'Analise a resistência de algum iPhone e descreva como ele poderia ser mais resistente, demonstrando isso com cálculos.', 1, '', 1, 1, 4, 1, NULL, 0, NULL, NULL),
-('90386846-dad1-11e7-8d5e-74d4359f41f2', 'Missão E111', 'Superman Salva o Dia', 'No filme Superman, de 1978, o herói, vendo que não conseguiria parar um ataque nuclear que mataria Lois Lane, acelera em torno da Terra em sentido contrário para voltar alguns minutos no tempo. Calcule qual a velocidade e quantas voltas que ele deve dar para voltar 10 minutos. Demonstre os cálculos.', 1, NULL, 1, 1, 1, 1, NULL, 0, '2018-08-15', NULL),
-('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Missão N111', 'Missão Teste 1 (Negócios)', 'Nesta missão você terá que ler o que está no Moodle e fazer.', 1, '6cac44e4-5269-42ef-b169-13042e4b5869', 1, 1, 1, 1, NULL, 0, NULL, NULL),
-('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Missão SE1', 'Side-quest Teste 1', 'Essa missão não é obrigatória, mas seria legal você fazer.', 1, '3e198323-6bb3-4f56-bed6-55dceb987a1f', 1, 1, 1, 0, '90363083-dad1-11e7-8d5e-74d4359f41f2', 4, NULL, NULL),
-('f81df8cd-dad1-11e7-8d5e-74d4359f41f2', 'Missão E115', 'Balísticas Poderosas', 'Visite uma fábrica de armas de destruição em massa e descreva o que puder sobre o desenvolvimento delas.', 1, '', 1, 1, 5, 1, NULL, 0, NULL, NULL),
-('f81e0a09-dad1-11e7-8d5e-74d4359f41f2', 'Missão E116', 'Automóveis Melhores', 'Visite uma fábrica de automóveis, escolha um modelo e descreva, com cálculos, como ele poderia ser melhor sem que ele fique mais de 10% mais caro.', 1, '', 1, 1, 6, 1, NULL, 0, NULL, NULL),
-('f81e0b8c-dad1-11e7-8d5e-74d4359f41f2', 'Missão E112', 'Aprendizes de Engenheiros em Ação', 'Analise vários objetos projetados por engenheiros (independente do que é o objeto) e descreva as possíveis técnicas utilizadas.', 1, '', 1, 1, 2, 1, NULL, 0, NULL, NULL),
-('f81e0c55-dad1-11e7-8d5e-74d4359f41f2', 'Missão E113', 'Circuítos Lógicos', 'Desenhe um circuíto lógico simples com pelo menos 5 condições e descreva os possíveis resultados que ele pode ter.', 1, '', 1, 1, 3, 1, NULL, 0, NULL, NULL);
+INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescricao`, `missaoAtivo`, `missaoIdMoodle`, `missaoAno`, `missaoSemestre`, `missaoSequencia`, `missaoObrigatoria`, `missaoPai`, `missaoPaiSequencia`, `missaoDataIni`, `missaoDataFim`, `missaoUrlRedir`) VALUES
+('90363083-dad1-11e7-8d5e-74d4359f41f2', 'Missão E114', 'Resistência iPhoniana', 'Analise a resistência de algum iPhone e descreva como ele poderia ser mais resistente, demonstrando isso com cálculos.', 1, '', 1, 1, 4, 1, NULL, 0, NULL, NULL, NULL),
+('90386846-dad1-11e7-8d5e-74d4359f41f2', 'Missão E111', 'Superman Salva o Dia', 'No filme Superman, de 1978, o herói, vendo que não conseguiria parar um ataque nuclear que mataria Lois Lane, acelera em torno da Terra em sentido contrário para voltar alguns minutos no tempo. Calcule qual a velocidade e quantas voltas que ele deve dar para voltar 10 minutos. Demonstre os cálculos.', 1, NULL, 1, 1, 1, 1, NULL, 0, NULL, NULL, 'http://www.google.com.br'),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 'Missão N111', 'Missão Teste 1 (Negócios)', 'Nesta missão você terá que ler o que está no Moodle e fazer.', 1, '6cac44e4-5269-42ef-b169-13042e4b5869', 1, 1, 1, 1, NULL, 0, NULL, NULL, NULL),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 'Missão SE1', 'Side-quest Teste 1', 'Essa missão não é obrigatória, mas seria legal você fazer.', 1, '3e198323-6bb3-4f56-bed6-55dceb987a1f', 1, 1, 1, 0, '90363083-dad1-11e7-8d5e-74d4359f41f2', 4, NULL, NULL, NULL),
+('f81df8cd-dad1-11e7-8d5e-74d4359f41f2', 'Missão E115', 'Balísticas Poderosas', 'Visite uma fábrica de armas de destruição em massa e descreva o que puder sobre o desenvolvimento delas.', 1, '', 1, 1, 5, 1, NULL, 0, NULL, NULL, NULL),
+('f81e0a09-dad1-11e7-8d5e-74d4359f41f2', 'Missão E116', 'Automóveis Melhores', 'Visite uma fábrica de automóveis, escolha um modelo e descreva, com cálculos, como ele poderia ser melhor sem que ele fique mais de 10% mais caro.', 1, '', 1, 1, 6, 1, NULL, 0, NULL, NULL, NULL),
+('f81e0b8c-dad1-11e7-8d5e-74d4359f41f2', 'Missão E112', 'Aprendizes de Engenheiros em Ação', 'Analise vários objetos projetados por engenheiros (independente do que é o objeto) e descreva as possíveis técnicas utilizadas.', 1, '', 1, 1, 2, 1, NULL, 0, NULL, NULL, NULL),
+('f81e0c55-dad1-11e7-8d5e-74d4359f41f2', 'Missão E113', 'Circuítos Lógicos', 'Desenhe um circuíto lógico simples com pelo menos 5 condições e descreva os possíveis resultados que ele pode ter.', 1, '', 1, 1, 3, 1, NULL, 0, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

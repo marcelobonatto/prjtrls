@@ -28,6 +28,7 @@ if ($getid == 'novo')
     $pai            = '';
     $datade         = '';
     $dataate        = '';
+    $urlredir       = '';
 }
 else
 {
@@ -59,6 +60,8 @@ else
     {
         $dataate    = $missao->dataate->format('d/m/Y');
     }
+
+    $urlredir       = $missao->urlredir;
 }
 
 $outrasobj      = new lib\missao();

@@ -209,6 +209,7 @@ $(document).ready(function() {
         var olddatade = $("#hidDataDe").val();
         var dataate = $("#txtDateAte").val();
         var olddataate = $("#hidDateAte").val();
+        var urlredir = $("#txtEndereco").val();
 
         var eixos = definirEixos();
         var falas = definirFalas();
@@ -219,7 +220,7 @@ $(document).ready(function() {
             data: { id: id, nome: nome, titulo: titulo, descricao: descricao, ano: ano,
                     semestre: semestre, sequencia: sequencia, moodle: moodle, obrigatorio: obrigatorio,
                     pai: pai, ativo: ativo, datade: datade, dataate: dataate, olddatade: olddatade, 
-                    olddataate: olddataate, eixos: eixos, falas: falas },
+                    olddataate: olddataate, urlredir: urlredir, eixos: eixos, falas: falas },
             success : function(text) {
                 var txtspl = text.split("|");
 
