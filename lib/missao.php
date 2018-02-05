@@ -34,13 +34,14 @@ class missao
     public $falasnpc = array();
     public $datade;
     public $dataate;
+    public $urlredir;
 
     public function ListarRegistros($pagina)
     {
         $matriz = array();
         
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
-                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim ' .
+                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim, missaoUrlRedir ' .
                   'FROM missoes ' .
                   'ORDER BY missaoReferencia';
 
@@ -54,21 +55,7 @@ class missao
                 foreach ($res as $missao)
                 {
                     $obj                = new missao();
-                    $obj->id            = $missao['missaoId'];
-                    $obj->nome          = $missao['missaoNome'];
-                    $obj->titulo        = $missao['missaoTitulo'];
-                    $obj->descricao     = $missao['missaoDescricao'];
-                    $obj->ativo         = $missao['missaoAtivo'];
-                    $obj->idMoodle      = $missao['missaoIdMoodle'];
-                    $obj->ano           = $missao['missaoAno'];
-                    $obj->semestre      = $missao['missaoSemestre'];
-                    $obj->sequencia     = $missao['missaoSequencia'];
-                    $obj->obrigatoria   = $missao['missaoObrigatoria'];
-                    $obj->pai           = $missao['missaoPai'];
-                    $obj->referencia    = $missao['missaoReferencia'];
-                    $obj->datade        = $missao['missaoDataIni'];
-                    $obj->dataate       = $missao['missaoDataFim'];
-
+                    $this->atribuirValores($obj, $missao);
                     array_push($matriz, $obj);
                 }
             }
@@ -82,7 +69,7 @@ class missao
         $matriz = array();
         
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
-                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoDataIni, missaoDataFim ' .
+                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim, missaoUrlRedir ' .
                   'FROM missoes ' .
                   "WHERE missaoId <> '$id' ";
 
@@ -94,7 +81,7 @@ class missao
         $sql    .= 'ORDER BY missaoAno, missaoSemestre, missaoSequencia';
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
@@ -103,20 +90,7 @@ class missao
                 foreach ($res as $missao)
                 {
                     $obj                = new missao();
-                    $obj->id            = $missao[self::MISSAO_ID];
-                    $obj->nome          = $missao[self::MISSAO_NOME];
-                    $obj->titulo        = $missao[self::MISSAO_TITULO];
-                    $obj->descricao     = $missao[self::MISSAO_DESCRICAO];
-                    $obj->ativo         = $missao[self::MISSAO_ATIVO];
-                    $obj->idMoodle      = $missao[self::MISSAO_IDMOODLE];
-                    $obj->ano           = $missao[self::MISSAO_ANO];
-                    $obj->semestre      = $missao[self::MISSAO_SEMESTRE];
-                    $obj->sequencia     = $missao[self::MISSAO_SEQUENCIA];
-                    $obj->obrigatoria   = $missao[self::MISSAO_OBRIGATORIA];
-                    $obj->pai           = $missao[self::MISSAO_PAI];
-                    $obj->datade        = $missao[self::MISSAO_DATADE];
-                    $obj->dataate       = $missao[self::MISSAO_DATAATE];
-
+                    $this->atribuirValores($obj, $missao);
                     array_push($matriz, $obj);
                 }
             }
@@ -130,7 +104,7 @@ class missao
         $matriz = array();
         
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
-                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim ' .
+                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim, missaoUrlRedir ' .
                   'FROM missoes ' .
                   'WHERE missaoAtivo = 1 ' .
                   'ORDER BY missaoReferencia';
@@ -145,7 +119,7 @@ class missao
                 foreach ($res as $missao)
                 {
                     $obj                = new missao();
-                    $this->atribuirValores($obj, $res);
+                    $this->atribuirValores($obj, $missao);
                     array_push($matriz, $obj);
                 }
             }
@@ -168,6 +142,7 @@ class missao
         $obj->obrigatoria   = $missao['missaoObrigatoria'];
         $obj->pai           = $missao['missaoPai'];
         $obj->referencia    = $missao['missaoReferencia'];
+        $obj->urlredir      = $missao['missaoUrlRedir'];
 
         if ($missao['missaoDataIni'] != null)
         {
@@ -183,7 +158,7 @@ class missao
     public function Selecionar($id)
     {
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
-                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim ' .
+                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim, missaoUrlRedir ' .
                   'FROM missoes ' .
                   "WHERE missaoId = '$id'";
 
@@ -218,7 +193,7 @@ class missao
     public function SelecionarPorNome($nome)
     {
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
-                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim ' .
+                  'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim, missaoUrlRedir ' .
                   'FROM missoes ' .
                   "WHERE missaoNome = '$nome'";
 
@@ -237,7 +212,7 @@ class missao
     public function SelecionarMissaoAnterior($eixo, $referencia)
     {
         $sql    = 'SELECT m.missaoId, m.missaoNome, m.missaoTitulo, m.missaoDescricao, m.missaoAtivo, m.missaoIdMoodle, m.missaoAno, m.missaoSemestre, ' .
-		          'm.missaoObrigatoria, m.missaoPai, m.missaoReferencia, m.missaoDataIni, m.missaoDataFim ' . 
+		          'm.missaoObrigatoria, m.missaoPai, m.missaoReferencia, m.missaoDataIni, m.missaoDataFim, m.missaoUrlRedir ' . 
                   'FROM missoes m ' .
                   'JOIN missoeseixo me ON me.missaoId = m.missaoId ' .
                   'JOIN (SELECT MAX(m.missaoReferencia) AS referencia, me.eixoId ' .
@@ -306,25 +281,34 @@ class missao
             $dataate = "'" . $this->dataate->format('Y-m-d') . "'";
         }
 
-        if ($id == '{ID}')
+        if ($this->urlredir == null)
         {
-            return $this->Incluir($id, $idmoodle, $pai, $datade, $dataate);
+            $urlredir   = 'NULL';
         }
         else
         {
-            return $this->Atualizar($id, $idmoodle, $pai, $datade, $dataate);
+            $urlredir   = "'$this->urlredir'";
+        }
+
+        if ($id == '{ID}')
+        {
+            return $this->Incluir($id, $idmoodle, $pai, $datade, $dataate, $urlredir);
+        }
+        else
+        {
+            return $this->Atualizar($id, $idmoodle, $pai, $datade, $dataate, $urlredir);
         }
     }
 
-    public function Incluir($id, $idmoodle, $pai, $datade, $dataate)
+    public function Incluir($id, $idmoodle, $pai, $datade, $dataate, $urlredir)
     {
         $erro   = -1;
 
         $sql    = 'INSERT INTO missoes ' .
                   '(missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, missaoSequencia, ' .
-                  'missaoObrigatoria, missaoPai, missaoDataIni, missaoDataFim) ' .
+                  'missaoObrigatoria, missaoPai, missaoDataIni, missaoDataFim, missaoUrlRedir) ' .
                   "VALUES ('$id', '$this->nome', '$this->titulo', '$this->descricao', $this->ativo, $idmoodle, $this->ano, $this->semestre, $this->sequencia, " .
-                  "$this->obrigatoria, $pai, $datade, $dataate)";
+                  "$this->obrigatoria, $pai, $datade, $dataate, $urlredir)";
 
         $db         = new bancodados();
         $this->id   = $db->ExecutarRetornaId($sql);
@@ -367,7 +351,7 @@ class missao
         return $erro;
     }
 
-    public function Atualizar($id, $idmoodle, $pai, $datade, $dataate)
+    public function Atualizar($id, $idmoodle, $pai, $datade, $dataate, $urlredir)
     {
         $sql    = 'UPDATE missoes ' .
                   "SET missaoNome = '$this->nome', " .
@@ -381,7 +365,8 @@ class missao
                   "missaoObrigatoria = $this->obrigatoria, " .
                   "missaoPai = $pai, " .
                   "missaoDataIni = $datade, " .
-                  "missaoDataFim = $dataate " .
+                  "missaoDataFim = $dataate, " .
+                  "missaoUrlRedir = $urlredir " .
                   "WHERE missaoId = '$id'";
 
         $db         = new bancodados();

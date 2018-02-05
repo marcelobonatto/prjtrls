@@ -58,6 +58,10 @@
                     </select>
                 </div>
                 <div class="form-group">
+                    <label for="txtEndereco">Ao aceitar a missão, o aluno será redirecionado para:</label>
+                    <input class="form-control" type="url" value="<?php echo($urlredir) ?>" id="txtEndereco" name="txtEndereco" />
+                </div>
+                <div class="form-group">
                     <label>Missão é Obrigatória?</label>
                     <br />
                     <?php 
