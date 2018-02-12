@@ -71,7 +71,7 @@ $(document).ready(function() {
         $.getJSON("exec/lercidades.php", { estado: estado })
             .done(function(data) {
                 $.each(data, function(index, item) {
-                    $("#cmbCidade").append(new Option(item.nome, item.codigo));
+                    $("#cmbCidade").append(new Option(item.nome, item.id));
                 });
             });
     });

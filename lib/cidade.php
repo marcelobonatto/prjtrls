@@ -7,7 +7,7 @@ class cidade
     const CIDADE_NOME       = 1;
     const ESTADO_SIGLA      = 2;
 
-    public $codigo;
+    public $id;
     public $nome;
     public $estado;
 
@@ -29,7 +29,7 @@ class cidade
                 foreach ($res as $cidade)
                 {
                     $obj            = new cidade();
-                    $obj->codigo    = $cidade[self::CIDADE_CODIGO];
+                    $obj->id        = $cidade[self::CIDADE_CODIGO];
                     $obj->nome      = $cidade[self::CIDADE_NOME];
                     $obj->estado    = $cidade[self::ESTADO_SIGLA];
 
@@ -61,7 +61,7 @@ class cidade
                 foreach ($res as $cidade)
                 {
                     $obj            = new cidade();
-                    $obj->codigo    = $cidade[self::CIDADE_CODIGO];
+                    $obj->id        = $cidade[self::CIDADE_CODIGO];
                     $obj->nome      = $cidade[self::CIDADE_NOME];
                     $obj->estado    = $cidade[self::ESTADO_SIGLA];
 
@@ -90,7 +90,7 @@ class cidade
             {
                 $cidade = $res[0];
 
-                $this->codigo    = $cidade[self::CIDADE_CODIGO];
+                $this->id        = $cidade[self::CIDADE_CODIGO];
                 $this->nome      = $cidade[self::CIDADE_NOME];
                 $this->estado    = $cidade[self::ESTADO_SIGLA];
             }
@@ -116,7 +116,7 @@ class cidade
                 foreach ($res as $cidade)
                 {
                     $obj            = new cidade();
-                    $obj->codigo    = $cidade[self::CIDADE_CODIGO];
+                    $obj->id        = $cidade[self::CIDADE_CODIGO];
                     $obj->nome      = $cidade[self::CIDADE_NOME];
                     $obj->estado    = $cidade[self::ESTADO_SIGLA];
 

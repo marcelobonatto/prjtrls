@@ -184,16 +184,28 @@ class eixo
         return true;
     }
 
-    public function Excluir()
+    public static function Excluir($id)
     {
         $sql    = 'UPDATE eixos ' .
                   "SET eixoAtivo = 0 " .
-                  "WHERE eixoId = '$this->id'";
+                  "WHERE eixoId = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);
 
         return true;
-    }    
+    }
+
+    public static function Reativar($id)
+    {
+        $sql    = 'UPDATE eixos ' .
+                  "SET eixoAtivo = 1 " .
+                  "WHERE eixoId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
 }
 ?>

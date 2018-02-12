@@ -56,7 +56,7 @@ if (count($mensagens) == 0)
         {
             $cidade->cidades[]                  = new lib\ws\jscidade();
             $poscid                             = count($cidade->cidades) - 1;
-            $cidade->cidades[$poscid]->codigo   = $cid->codigo;
+            $cidade->cidades[$poscid]->id       = $cid->id;
             $cidade->cidades[$poscid]->nome     = $cid->nome;
         }
     }

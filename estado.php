@@ -28,7 +28,7 @@ else
     $estado  = new estado();
     $estado->Selecionar($id);
     
-    $sigla      = $estado->sigla;
+    $sigla      = $estado->id;
     $nome       = $estado->nome;
 }
 

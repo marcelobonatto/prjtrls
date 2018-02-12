@@ -6,7 +6,7 @@ class estado
     const ESTADO_SIGLA  = 0;
     const ESTADO_NOME   = 1;
 
-    public $sigla;
+    public $id;
     public $nome;
 
     public function ListarRegistros($pagina)
@@ -27,7 +27,7 @@ class estado
                 foreach ($res as $estado)
                 {
                     $obj        = new estado();
-                    $obj->sigla = $estado[self::ESTADO_SIGLA];
+                    $obj->id    = $estado[self::ESTADO_SIGLA];
                     $obj->nome  = $estado[self::ESTADO_NOME];
 
                     array_push($matriz, $obj);
@@ -55,8 +55,8 @@ class estado
             {
                 $estado = $res[0];
                 
-                $this->sigla = $estado[self::ESTADO_SIGLA];
-                $this->nome  = $estado[self::ESTADO_NOME];
+                $this->id   = $estado[self::ESTADO_SIGLA];
+                $this->nome = $estado[self::ESTADO_NOME];
             }
         }
     }
@@ -79,8 +79,8 @@ class estado
             {
                 $estado   = $res[0];
 
-                $this->sigla             = $estado[self::ESTADO_SIGLA];
-                $this->nome              = $estado[self::ESTADO_NOME];
+                $this->id   = $estado[self::ESTADO_SIGLA];
+                $this->nome = $estado[self::ESTADO_NOME];
             }
         }
     }
@@ -101,7 +101,7 @@ class estado
     {
         $sql    = 'INSERT INTO estados ' .
                 '(estadoSigla, estadoNome) ' . 
-                "VALUES ('$this->sigla', '$this->nome')";
+                "VALUES ('$this->id', '$this->nome')";
 
         $db         = new bancodados();
         $db->Executar($sql);
@@ -121,7 +121,7 @@ class estado
         $sql    = 'UPDATE estados ' .
                 "SET estadoNome = '$this->nome', " .
                 "estadoSigla = '$this->sigla', " .
-                "WHERE estadoSigla = '$this->sigla'";
+                "WHERE estadoSigla = '$this->id'";
 
         $db         = new bancodados();
         $db->Executar($sql);

@@ -118,7 +118,7 @@ include('header.php');
 
                 foreach ($cidades as $cidadeitem)
                 {
-                    $selecionado    = ($cidade == $cidadeitem->codigo);
+                    $selecionado    = ($cidade == $cidadeitem->id);
                     
                     if ($selecionado)
                     {
@@ -129,7 +129,7 @@ include('header.php');
                         $seltxtef   = '';
                     }
 
-                    $opcoes .= "<option value=\"$cidadeitem->codigo\"$seltxtef>$cidadeitem->nome</option>";
+                    $opcoes .= "<option value=\"$cidadeitem->id\"$seltxtef>$cidadeitem->nome</option>";
                 }
                 ?>
                 <select class="form-control col-sm-3" id="cmbCidade" name="cmbCidade" required>                    

@@ -11,12 +11,12 @@ $colunas    = json_decode($_GET['colunas']);
 $cadastro   = $_GET['cadastro'];
 */
 
-$classe     = $_POST['classe'];
+$classe         = $_POST['classe'];
 
-$obj        = new $classe();
-$lista      = $obj->ListarRegistros($_POST['pagina']);
-$colunas    = json_decode($_POST['colunas']);
-$cadastro   = $_POST['cadastro'];
+$obj            = new $classe();
+$lista          = $obj->ListarRegistros($_POST['pagina']);
+$colunas        = json_decode($_POST['colunas']);
+$cadastro       = $_POST['cadastro'];
 ?>
 <table class="table table-striped">
     <thead class="thead-dark">
@@ -56,7 +56,9 @@ $cadastro   = $_POST['cadastro'];
                 echo($colvltxt);
             }
 
-            echo("<td style=\"text-align: center\"><a href=\"$cadastro.php?id=$obj->id\"><i class=\"material-icons\">&#xE254;</i></td></tr>");
+            echo("<td style=\"text-align: center\"><a href=\"$cadastro.php?id=$obj->id\"><i class=\"material-icons\">&#xE254;</i>");
+            echo("<a href=\"javascript:prepararExclusao('$obj->id', " . ($obj->ativo ? 0 : 1) . ")\">");
+            echo("<i class=\"material-icons\">" . ($obj->ativo ? '&#xE872;' : '&#xE15A;') . "</i></td></tr>\n");
         }
         ?>
     </tbody>
