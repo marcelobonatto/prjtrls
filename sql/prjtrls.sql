@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 05-Fev-2018 às 23:19
+-- Generation Time: 13-Fev-2018 às 19:58
 -- Versão do servidor: 5.7.19
 -- PHP Version: 7.0.23
 
@@ -6178,7 +6178,6 @@ CREATE TABLE IF NOT EXISTS `missoes` (
   `missaoObrigatoria` tinyint(4) NOT NULL,
   `missaoPai` varchar(36) DEFAULT NULL,
   `missaoPaiSequencia` int(11) NOT NULL DEFAULT '0',
-  `missaoReferencia` int(11) GENERATED ALWAYS AS ((((`missaoAno` * 100000) + (`missaoSemestre` * 10000)) + (case when (`missaoPaiSequencia` > 0) then ((`missaoPaiSequencia` * 100) + `missaoSequencia`) else (`missaoSequencia` * 100) end))) VIRTUAL,
   `missaoDataIni` date DEFAULT NULL,
   `missaoDataFim` date DEFAULT NULL,
   `missaoUrlRedir` varchar(1000) DEFAULT NULL,
@@ -6632,7 +6631,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`, `usuarioEmail`, `usuarioAtivo`, `usuarioCodMod`, `usuarioDataMod`) VALUES
-('3b1f2ccf-dc44-11e7-ad01-1c39470d9087', 'administrador2', '$2y$10$QhKvOUaWP42ignhcnqqTCuk.zSYzvwC7dyA0xd5NRYTocNqABANra', '', '', 0, NULL, NULL),
+('3b1f2ccf-dc44-11e7-ad01-1c39470d9087', 'administrador2', '$2y$10$QhKvOUaWP42ignhcnqqTCuk.zSYzvwC7dyA0xd5NRYTocNqABANra', '', '', 1, NULL, NULL),
 ('4e213e14-dc53-11e7-ad01-1c39470d9087', 'admin555', '$2y$10$4zXbK2FrFdfTpqZymZx0yOASu3ib4SWmjGBSnWmIH6FmEs4sZFu86', '', '', 1, NULL, NULL),
 ('764bc18a-dc43-11e7-ad01-1c39470d9087', 'admin3', '$2y$10$pAD/0o0TxPG9miCsp4KnI.cSvrIPCxo0ac7DbC1eH2Jv9B/kGzOF2', '', '', 1, NULL, NULL),
 ('7c2813ae-d909-11e7-ad01-1c39470d9087', 'marcelo', '$2y$10$YNvJTshBsYA.FCmuhClJ4elWWD.zGduRJIcLl.vrDilALiq3rOrAS', '', '', 1, NULL, NULL),
@@ -6644,12 +6643,40 @@ INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`
 ('ea58f8e6-b84f-11e7-89f4-9ef90429c14d', 'administrador', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', '', 1, NULL, NULL),
 ('f77e1088-d311-11e7-b419-1a8f80d3a0ab', 'loginAl3', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', '', 1, NULL, NULL);
 
-CREATE OR REPLACE VIEW vw_missoes AS
-	SELECT	missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, missaoSequencia,
-          missaoObrigatoria, missaoPai, missaoPaiSequencia, 
-          ((((missaoAno * 100000) + (missaoSemestre * 10000)) + (case when (missaoPaiSequencia > 0) then ((missaoPaiSequencia * 100) + missaoSequencia) else (missaoSequencia * 100) end))) AS missaoReferencia,
-			    missaoDataIni, missaoDataFim, missaoUrlRedir
-	FROM 	  missoes;
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `vw_missoes`
+-- (See below for the actual view)
+--
+DROP VIEW IF EXISTS `vw_missoes`;
+CREATE TABLE IF NOT EXISTS `vw_missoes` (
+`missaoId` varchar(36)
+,`missaoNome` varchar(100)
+,`missaoTitulo` varchar(200)
+,`missaoDescricao` varchar(8000)
+,`missaoAtivo` tinyint(4)
+,`missaoIdMoodle` varchar(100)
+,`missaoAno` int(11)
+,`missaoSemestre` int(11)
+,`missaoSequencia` int(11)
+,`missaoObrigatoria` tinyint(4)
+,`missaoPai` varchar(36)
+,`missaoPaiSequencia` int(11)
+,`missaoReferencia` bigint(19)
+,`missaoDataIni` date
+,`missaoDataFim` date
+,`missaoUrlRedir` varchar(1000)
+);
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `vw_missoes`
+--
+DROP TABLE IF EXISTS `vw_missoes`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_missoes`  AS  select `missoes`.`missaoId` AS `missaoId`,`missoes`.`missaoNome` AS `missaoNome`,`missoes`.`missaoTitulo` AS `missaoTitulo`,`missoes`.`missaoDescricao` AS `missaoDescricao`,`missoes`.`missaoAtivo` AS `missaoAtivo`,`missoes`.`missaoIdMoodle` AS `missaoIdMoodle`,`missoes`.`missaoAno` AS `missaoAno`,`missoes`.`missaoSemestre` AS `missaoSemestre`,`missoes`.`missaoSequencia` AS `missaoSequencia`,`missoes`.`missaoObrigatoria` AS `missaoObrigatoria`,`missoes`.`missaoPai` AS `missaoPai`,`missoes`.`missaoPaiSequencia` AS `missaoPaiSequencia`,(((`missoes`.`missaoAno` * 100000) + (`missoes`.`missaoSemestre` * 10000)) + (case when (`missoes`.`missaoPaiSequencia` > 0) then ((`missoes`.`missaoPaiSequencia` * 100) + `missoes`.`missaoSequencia`) else (`missoes`.`missaoSequencia` * 100) end)) AS `missaoReferencia`,`missoes`.`missaoDataIni` AS `missaoDataIni`,`missoes`.`missaoDataFim` AS `missaoDataFim`,`missoes`.`missaoUrlRedir` AS `missaoUrlRedir` from `missoes` ;
 
 --
 -- Constraints for dumped tables

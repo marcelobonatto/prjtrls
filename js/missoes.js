@@ -1,4 +1,17 @@
 $(document).ready(function() {
+    classe          = "lib\\missao";
+    metodoExcluir   = "Excluir";
+    paginaCadastro  = "missao";
+
+    carregarTabela(1);
+
+    $("#cmdImportar").on("click", function() {
+        location.href = "missoesimp.php";
+    });
+});
+
+function configurarTabela()
+{
     var colunas     = new Array(5);
     colunas[0]      = criarObjetoColuna("Ano", "ano", "texto", "left");
     colunas[1]      = criarObjetoColuna("Semestre", "semestre", "texto", "left");
@@ -8,9 +21,5 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "lib\\missao",  colj, "missao", "#lista");
-
-    $("#cmdImportar").on("click", function() {
-        location.href = "missoesimp.php";
-    });
-});
+    return colj;
+}
