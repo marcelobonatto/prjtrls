@@ -42,7 +42,7 @@ class missao
         
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
                   'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim, missaoUrlRedir ' .
-                  'FROM missoes ' .
+                  'FROM vw_missoes ' .
                   'ORDER BY missaoReferencia';
 
         $db     = new bancodados();
@@ -70,7 +70,7 @@ class missao
         
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
                   'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim, missaoUrlRedir ' .
-                  'FROM missoes ' .
+                  'FROM vw_missoes ' .
                   "WHERE missaoId <> '$id' ";
 
         if ($apenasObrigatorias)
@@ -105,7 +105,7 @@ class missao
         
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
                   'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim, missaoUrlRedir ' .
-                  'FROM missoes ' .
+                  'FROM vw_missoes ' .
                   'WHERE missaoAtivo = 1 ' .
                   'ORDER BY missaoReferencia';
 
@@ -159,7 +159,7 @@ class missao
     {
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
                   'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim, missaoUrlRedir ' .
-                  'FROM missoes ' .
+                  'FROM vw_missoes ' .
                   "WHERE missaoId = '$id'";
 
         $db     = new bancodados();
@@ -194,7 +194,7 @@ class missao
     {
         $sql    = 'SELECT missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, ' . 
                   'missaoSequencia, missaoObrigatoria, missaoPai, missaoReferencia, missaoDataIni, missaoDataFim, missaoUrlRedir ' .
-                  'FROM missoes ' .
+                  'FROM vw_missoes ' .
                   "WHERE missaoNome = '$nome'";
 
         $db     = new bancodados();
@@ -213,7 +213,7 @@ class missao
     {
         $sql    = 'SELECT m.missaoId, m.missaoNome, m.missaoTitulo, m.missaoDescricao, m.missaoAtivo, m.missaoIdMoodle, m.missaoAno, m.missaoSemestre, ' .
 		          'm.missaoObrigatoria, m.missaoPai, m.missaoReferencia, m.missaoDataIni, m.missaoDataFim, m.missaoUrlRedir ' . 
-                  'FROM missoes m ' .
+                  'FROM vw_missoes m ' .
                   'JOIN missoeseixo me ON me.missaoId = m.missaoId ' .
                   'JOIN (SELECT MAX(m.missaoReferencia) AS referencia, me.eixoId ' .
 			      'FROM missoes m JOIN missoeseixo me ON me.missaoId = m.missaoId ' .
@@ -393,11 +393,11 @@ class missao
         return true;
     }
 
-    public function Excluir()
+    public static function Excluir($id, $modo)
     {
-        $sql    = 'UPDATE itens ' .
-                  "SET itemAtivo = 0 " .
-                  "WHERE itemId = '$this->id'";
+        $sql    = 'UPDATE missoes ' .
+                  "SET missaoAtivo = $modo " .
+                  "WHERE missaoId = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);
