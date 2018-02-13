@@ -143,20 +143,20 @@ class grupo
                 "SET grupoNome = '$this->nome', " .
                 "grupoAtivo = $this->ativo " .
                 "WHERE grupoId = '$id'";
-//echo "inserir: ".$sql;
+
         $db         = new bancodados();
         $db->Executar($sql);
 
         return true;
     }
 
-    public function Excluir()
+    public static function Excluir($id, $modo)
     {
         $sql    = 'UPDATE gruposusu ' .
-                "SET grupoAtivo = 0 " .
-                "WHERE grupoId = '$this->id'";
+                  "SET grupoAtivo = $modo " .
+                  "WHERE grupoId = '$id'";
 
-        $db         = new bancodados();
+        $db     = new bancodados();
         $db->Executar($sql);
 
         return true;
