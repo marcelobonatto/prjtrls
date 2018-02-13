@@ -185,11 +185,23 @@ class escola
         return true;
     }
 
-    public function Excluir()
+    public static function Excluir($id)
     {
         $sql    = 'UPDATE escolas ' .
                   "SET escolaAtivo = 0 " .
-                  "WHERE escolaId = '$this->id'";
+                  "WHERE escolaId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public static function Reativar($id)
+    {
+        $sql    = 'UPDATE escolas ' .
+                  "SET escolaAtivo = 1 " .
+                  "WHERE escolaId = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);
