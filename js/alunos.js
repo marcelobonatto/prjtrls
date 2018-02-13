@@ -1,4 +1,13 @@
 $(document).ready(function() {
+    classe          = "lib\\aluno";
+    metodoExcluir   = "Excluir";
+    paginaCadastro  = "aluno";
+
+    carregarTabela(1);
+});
+
+function configurarTabela()
+{
     var colunas     = new Array(4);
     colunas[0]      = criarObjetoColuna("Aluno", "nome", "texto", "left");
     colunas[1]      = criarObjetoColuna("Matricula", "matricula", "texto", "left");
@@ -7,5 +16,5 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "lib\\aluno",  colj, "aluno", "#lista");
-});
+    return colj;
+}

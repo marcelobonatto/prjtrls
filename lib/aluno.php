@@ -225,11 +225,11 @@ class aluno
         return true;
     }
 
-    public function Excluir()
+    public static function Excluir($id, $modo)
     {
         $sql    = 'UPDATE alunos ' .
-                  "SET alunoAtivo = 0 " .
-                  "WHERE alunoId = '$this->id'";
+                  "SET alunoAtivo = $modo " .
+                  "WHERE alunoId = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);

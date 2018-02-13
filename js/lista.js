@@ -1,3 +1,17 @@
+var classe          = "";
+var metodoExcluir   = "";
+var paginaCadastro  = "";
+
+$(document).ready(function() {
+    $("#cmdExcluir").click(function() {
+        prepararVariasExclusoes(0);
+    });
+
+    $("#cmdReativar").click(function() {
+        prepararVariasExclusoes(1);
+    });
+});
+
 function criarObjetoColuna(titulo, valor, tipo, alinhamento)
 {
     var objeto          = new Object();
@@ -9,9 +23,13 @@ function criarObjetoColuna(titulo, valor, tipo, alinhamento)
     return objeto;
 }
 
-function carregarTabela(pagina, classe, colunas, cadastro, div)
+function carregarTabela(pagina)
 {
+    var div = "#lista";
+
     $(div).html("Carregando...");
+
+    var colunas = configurarTabela();
 
     $.ajaxSetup({
         scriptCharset: "utf-8",
@@ -21,7 +39,7 @@ function carregarTabela(pagina, classe, colunas, cadastro, div)
     $.ajax({
         type: "POST",
         url: "exec/listarregistros.php",
-        data: "pagina=" + pagina + "&classe=" + classe + "&colunas=" + colunas + "&cadastro=" + cadastro })
+        data: "pagina=" + pagina + "&classe=" + classe + "&colunas=" + colunas + "&cadastro=" + paginaCadastro })
         .done(function(tabela) {
             $(div).html(tabela);
         })
@@ -31,22 +49,40 @@ function carregarTabela(pagina, classe, colunas, cadastro, div)
         });
 }
 
-function excluir(classe, metodo, ids, pagina, colunas, cadastro, div)
+function prepararExclusao(id, modo)
 {
-    executarModos("excluirregistros", "desativados", classe, metodo, ids, pagina, colunas, cadastro, div);
+    var ids = new Array(1);
+    ids[0]  = configurarIds(id);
+
+    executarModos(modo, JSON.stringify(ids), 1);
 }
 
-function reativar(classe, metodo, ids, pagina, colunas, cadastro, div)
+function prepararVariasExclusoes(modo)
 {
-    executarModos("reativarregistros", "reativados", classe, metodo, ids, pagina, colunas, cadastro, div);
+    var ids = [];
+    
+    $("input[name='chkX[]']:checked").each(function () {
+        ids.push(configurarIds(this.value));
+    });
+
+    executarModos(modo, JSON.stringify(ids), 1);
 }
 
-function executarModos(execpagina, partemensagem, classe, metodo, ids, pagina, colunas, cadastro, div)
+function configurarIds(id)
 {
+    var obj = new Object();
+    obj.id  = id;
+    return obj;
+}
+
+function executarModos(modo, ids, pagina)
+{
+    var parteMensagem = (modo == 0 ? "desativados" : "reativados");
+
     $.ajax({
         type: "POST",
-        url: "exec/" + execpagina + ".php",
-        data: "classe=" + classe + "&metodo=" + metodo + "&ids=" + ids })
+        url: "exec/excluirregistros.php",
+        data: "classe=" + classe + "&metodo=" + metodoExcluir + "&modo=" + modo + "&ids=" + ids })
         .done(function(text) {
             if (text == "OK")
             {
@@ -56,7 +92,7 @@ function executarModos(execpagina, partemensagem, classe, metodo, ids, pagina, c
                 if (!mensagem.hasClass("alert-success")) mensagem.addClass("alert-success");
                 mensagem.removeClass("d-none");
                 
-                mensagem.html("<i class=\"material-icons\">&#xE002;</i> Os registros foram " + partemensagem + "!" +
+                mensagem.html("<i class=\"material-icons\">&#xE002;</i> Os registros foram " + parteMensagem + "!" +
                                 "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
             }
             else {
@@ -70,6 +106,6 @@ function executarModos(execpagina, partemensagem, classe, metodo, ids, pagina, c
                                 "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
             }
 
-            carregarTabela(pagina, classe, colunas, cadastro, div);
+            carregarTabela(pagina);
         });
 }
