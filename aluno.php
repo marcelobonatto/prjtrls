@@ -27,7 +27,7 @@ else
 {
     $id = $_GET['id'];
 
-    $aluno  = new aluno();
+    $aluno  = new lib\aluno();
     $aluno->Selecionar($id);
     
     $txtid      = $id;
