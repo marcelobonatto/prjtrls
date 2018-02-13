@@ -1,6 +1,14 @@
 $(document).ready(function() {
     var colj = configurarTabela();
     carregarTabela(1, "lib\\eixo",  colj, "eixo", "#lista");
+
+    $("#cmdExcluir").click(function() {
+        prepararVariasExclusoes(0);
+    });
+
+    $("#cmdReativar").click(function() {
+        prepararVariasExclusoes(1);
+    });
 });
 
 function configurarTabela()
@@ -21,6 +29,28 @@ function prepararExclusao(id, modo)
     var obj = new Object();
     obj.id  = id;
     ids[0]  = obj;
+
+    var colj = configurarTabela();
+
+    if (modo == 0)
+    {
+        excluir("lib\\eixo", "Excluir", JSON.stringify(ids), 1, colj, "eixo", "#lista");
+    }
+    else
+    {
+        reativar("lib\\eixo", "Reativar", JSON.stringify(ids), 1, colj, "eixo", "#lista");
+    }
+}
+
+function prepararVariasExclusoes(modo)
+{
+    var ids = [];
+
+    $("input[name='chkX[]']:checked").each(function () {
+        var obj = new Object();
+        obj.id = this.value;
+        ids.push(obj);
+    });
 
     var colj = configurarTabela();
 

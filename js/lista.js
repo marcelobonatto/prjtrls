@@ -11,8 +11,6 @@ function criarObjetoColuna(titulo, valor, tipo, alinhamento)
 
 function carregarTabela(pagina, classe, colunas, cadastro, div)
 {
-alert("Carregado!!!");
-
     $(div).html("Carregando...");
 
     $.ajaxSetup({
