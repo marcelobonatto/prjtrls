@@ -25,9 +25,9 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                         $cidade                     = new lib\cidade();
                         $cidade->SelecionarPorNome($linha[$coluna]);
 
-                        if ($cidade->codigo != null)
+                        if ($cidade->id != null)
                         {
-                            $escolas[$pos]->cidade      = $cidade->codigo;
+                            $escolas[$pos]->cidade      = $cidade->id;
                             $escolas[$pos]->cidadenome  = $cidade->nome;
                         }
                         else
@@ -41,9 +41,9 @@ if (($objarq = fopen($arquivocompl, 'r')) !== FALSE)
                         $estado                     = new lib\estado();
                         $estado->SelecionarPorSigla($linha[$coluna]);
 
-                        if ($estado->sigla != null)
+                        if ($estado->id != null)
                         {
-                            $escolas[$pos]->estado      = $estado->sigla;
+                            $escolas[$pos]->estado      = $estado->id;
                         }
                         else
                         {

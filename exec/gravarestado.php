@@ -12,12 +12,12 @@ if (count($mensagem) == 0)
 {
     $estado = new lib\estado();
 
-    $estado->sigla       = $sigla;
-    $estado->nome        = $nome;
+    $estado->id         = $sigla;
+    $estado->nome       = $nome;
 
     if ($estado->Salvar($_POST['id']))
     {
-        echo("OK|$estado->sigla");
+        echo("OK|$estado->id");
     }
     else
     {

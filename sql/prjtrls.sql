@@ -6644,6 +6644,13 @@ INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`
 ('ea58f8e6-b84f-11e7-89f4-9ef90429c14d', 'administrador', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', '', 1, NULL, NULL),
 ('f77e1088-d311-11e7-b419-1a8f80d3a0ab', 'loginAl3', '$2y$10$zo2LrzcZKl0GRUr2uCB6eu2vJDYrFQ7ZISNMRk1Rlgq8SJpfENTmC', '', '', 1, NULL, NULL);
 
+CREATE OR REPLACE VIEW vw_missoes AS
+	SELECT	missaoId, missaoNome, missaoTitulo, missaoDescricao, missaoAtivo, missaoIdMoodle, missaoAno, missaoSemestre, missaoSequencia,
+          missaoObrigatoria, missaoPai, missaoPaiSequencia, 
+          ((((missaoAno * 100000) + (missaoSemestre * 10000)) + (case when (missaoPaiSequencia > 0) then ((missaoPaiSequencia * 100) + missaoSequencia) else (missaoSequencia * 100) end))) AS missaoReferencia,
+			    missaoDataIni, missaoDataFim, missaoUrlRedir
+	FROM 	  missoes;
+
 --
 -- Constraints for dumped tables
 --
