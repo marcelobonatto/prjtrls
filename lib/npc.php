@@ -181,11 +181,11 @@ class npc
         return true;
     }
 
-    public function Excluir()
+    public static function Excluir($id, $modo)
     {
         $sql    = 'UPDATE npc ' .
-                  "SET npcAtivo = 0 " .
-                  "WHERE npcId = '$this->id'";
+                  "SET npcAtivo = $modo " .
+                  "WHERE npcId = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);
