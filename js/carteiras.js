@@ -1,4 +1,17 @@
 $(document).ready(function() {
+    classe          = "lib\\carteira";
+    metodoExcluir   = "Excluir";
+    paginaCadastro  = "carteira";
+
+    carregarTabela(1);
+
+    $("#cmdImportar").on("click", function() {
+        location.href = "itensimp.php";
+    });
+});
+
+function configurarTabela()
+{
     var colunas     = new Array(5);
     colunas[0]      = criarObjetoColuna("Nome", "nome", "texto", "left");
     colunas[1]      = criarObjetoColuna("Nível", "nivel", "texto", "center");
@@ -8,9 +21,5 @@ $(document).ready(function() {
 
     var colj        = JSON.stringify(colunas);
 
-    carregarTabela(1, "lib\\carteira",  colj, "carteira", "#lista");
-
-    $("#cmdImportar").on("click", function() {
-        location.href = "itensimp.php";
-    });
-});
+    return colj;
+}

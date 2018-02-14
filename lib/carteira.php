@@ -146,11 +146,11 @@ class carteira
         return true;
     }
 
-    public function Excluir()
+    public static function Excluir($id, $modo)
     {
         $sql    = 'UPDATE itens ' .
-                  "SET itemAtivo = 0 " .
-                  "WHERE itemId = '$this->id'";
+                  "SET itemAtivo = $modo " .
+                  "WHERE itemId = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);
