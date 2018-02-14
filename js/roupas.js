@@ -1,4 +1,17 @@
 $(document).ready(function() {
+    classe          = "lib\\roupa";
+    metodoExcluir   = "Excluir";
+    paginaCadastro  = "roupa";
+
+    carregarTabela(1);
+
+    $("#cmdImportar").on("click", function() {
+        location.href = "itensimp.php";
+    });
+});
+
+function configurarTabela()
+{
     var colunas     = new Array(6);
     colunas[0]      = criarObjetoColuna("Nome", "nome", "texto", "left");
     colunas[1]      = criarObjetoColuna("Nível", "nivel", "texto", "center");
@@ -8,10 +21,6 @@ $(document).ready(function() {
     colunas[5]      = criarObjetoColuna("Ativo", "ativo", "check", "center");
 
     var colj        = JSON.stringify(colunas);
-
-    carregarTabela(1, "lib\\roupa",  colj, "roupa", "#lista");
-
-    $("#cmdImportar").on("click", function() {
-        location.href = "itensimp.php";
-    });
-});
+    
+    return colj;
+}
