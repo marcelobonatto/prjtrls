@@ -176,5 +176,17 @@ class pergunta
 
         return true;
     }
+    
+    public static function Excluir($id, $modo)
+    {
+        $sql    = 'UPDATE perguntas ' .
+                  "SET perguntaAtivo = $modo " .
+                  "WHERE perguntaId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
 }
 ?>

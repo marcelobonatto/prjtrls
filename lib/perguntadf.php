@@ -132,5 +132,17 @@ class perguntadf
 
         return $erro;
     }
+
+    public static function Excluir($id, $modo)
+    {
+        $sql    = 'UPDATE perguntasdf ' .
+                  "SET perguntadfAtivo = $modo " .
+                  "WHERE perguntadfId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
 }
 ?>
