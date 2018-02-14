@@ -235,6 +235,6 @@ class aluno
         $db->Executar($sql);
 
         return true;
-    }    
+    }
 }
 ?>
