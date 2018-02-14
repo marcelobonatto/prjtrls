@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 13-Fev-2018 às 19:58
+-- Generation Time: 14-Fev-2018 às 18:13
 -- Versão do servidor: 5.7.19
 -- PHP Version: 7.0.23
 
@@ -5826,6 +5826,54 @@ INSERT INTO `cidades` (`cidadeCodigo`, `cidadeNome`, `estadoSigla`) VALUES
 ('5222203', 'Vila Boa', 'GO'),
 ('5222302', 'Vila Propício', 'GO'),
 ('5300108', 'Brasília', 'DF');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `corescabelo`
+--
+
+DROP TABLE IF EXISTS `corescabelo`;
+CREATE TABLE IF NOT EXISTS `corescabelo` (
+  `corcabeloId` varchar(36) NOT NULL,
+  `corcabeloNome` varchar(50) NOT NULL,
+  `corcabeloCor` varchar(7) NOT NULL,
+  `corcabeloAtivo` tinyint(1) NOT NULL,
+  PRIMARY KEY (`corcabeloId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `corescabelo`
+--
+
+INSERT INTO `corescabelo` (`corcabeloId`, `corcabeloNome`, `corcabeloCor`, `corcabeloAtivo`) VALUES
+('fdebf0fa-119e-11e8-89d2-74d4359f41f2', 'Verde', '#30664C', 1),
+('fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'Roxo', '#8000ff', 1),
+('27a95637-11aa-11e8-89d2-74d4359f41f2', 'Laranja', '#ff8000', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `corespele`
+--
+
+DROP TABLE IF EXISTS `corespele`;
+CREATE TABLE IF NOT EXISTS `corespele` (
+  `corpeleId` varchar(36) NOT NULL,
+  `corpeleNome` varchar(50) NOT NULL,
+  `corpeleCor` varchar(7) NOT NULL,
+  `corpeleAtivo` tinyint(1) NOT NULL,
+  PRIMARY KEY (`corpeleId`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `corespele`
+--
+
+INSERT INTO `corespele` (`corpeleId`, `corpeleNome`, `corpeleCor`, `corpeleAtivo`) VALUES
+('bc29a14e-11a2-11e8-89d2-74d4359f41f2', 'Albina', '#ffffff', 1),
+('bc29b571-11a2-11e8-89d2-74d4359f41f2', 'Negro', '#382D31', 1),
+('74f0a924-11aa-11e8-89d2-74d4359f41f2', 'Amarelo', '#ffcfb9', 1);
 
 -- --------------------------------------------------------
 
