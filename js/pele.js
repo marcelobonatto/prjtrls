@@ -1,25 +1,65 @@
 $(document).ready(function() {
-    classe          = "lib\\missao";
-    metodoExcluir   = "Excluir";
-    paginaCadastro  = "missao";
+    var form = $("#frmPele");
 
-    carregarTabela(1);
+    form.submit(function(event) {
+        var ehValido = form[0].checkValidity();
 
-    $("#cmdImportar").on("click", function() {
-        location.href = "missoesimp.php";
+        // cancels the form submission
+        event.preventDefault();
+
+        if (ehValido)
+        {
+            var mensagem = $("#mensagem");
+
+            if (!mensagem.hasClass("d-none"))
+            {
+                mensagem.addClass("d-none");
+            }
+
+            submitForm();
+        }
+    });
+
+    function submitForm() {
+        var id = $("#txtId").val();
+        var nome = $("#txtNome").val();
+        var cor = $("#txtCor").val();
+        var ativo = $("input[name='optAtivo']:checked").val();
+
+        $.ajax({
+            type: "POST",
+            url: "exec/gravarpele.php",
+            data: "id=" + id + "&nome=" + nome + "&cor=" + cor + "&ativo=" + ativo,
+            success : function(text) {
+                var txtspl = text.split("|");
+
+                if (txtspl[0] == "OK") {
+                    var mensagem = $("#mensagem");
+                    
+                    if (mensagem.hasClass("alert-danger")) mensagem.removeClass("alert-danger");
+                    if (!mensagem.hasClass("alert-success")) mensagem.addClass("alert-success");
+                    mensagem.removeClass("d-none");
+                    
+                    mensagem.html("<i class=\"material-icons\">&#xE002;</i> O registro foi salvo!" +
+                                  "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
+
+                    $("#txtId").val(txtspl[1]);
+                }
+                else {
+                    var mensagem = $("#mensagem");
+
+                    if (mensagem.hasClass("alert-success")) mensagem.removeClass("alert-success");
+                    if (!mensagem.hasClass("alert-danger")) mensagem.addClass("alert-danger");
+                    mensagem.removeClass("d-none");
+
+                    mensagem.html("<i class=\"material-icons\">&#xE002;</i> " + text +
+                                  "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
+                }
+            }
+        });
+    }
+
+    $("#cmdVoltar").click(function() {
+        location.href = "peles.php";
     });
 });
-
-function configurarTabela()
-{
-    var colunas     = new Array(5);
-    colunas[0]      = criarObjetoColuna("Ano", "ano", "texto", "left");
-    colunas[1]      = criarObjetoColuna("Semestre", "semestre", "texto", "left");
-    colunas[2]      = criarObjetoColuna("Sequência", "sequencia", "texto", "left");
-    colunas[3]      = criarObjetoColuna("Nome", "nome", "texto", "left");
-    colunas[4]      = criarObjetoColuna("Ativo", "ativo", "check", "center");
-
-    var colj        = JSON.stringify(colunas);
-
-    return colj;
-}
