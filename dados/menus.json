@@ -75,6 +75,18 @@
             {
                 "nome": "Itens",
                 "url": "itens"
+            },
+            {
+                "nome": "---",
+                "url": ""
+            },
+            {
+                "nome": "Cores de Cabelo",
+                "url": "cabelos"
+            },
+            {
+                "nome": "Cores de Pele",
+                "url": "peles"
             }
         ]
     },

@@ -51,6 +51,9 @@ $cadastro       = $_POST['cadastro'];
                         $checado    = ($obj->$valor ? "checked=\"checked\" " : "");
                         $colvltxt   = str_replace('*campo*', "<input type=\"checkbox\" value=\"\" disabled=\"disabled\" $checado />", $colvltxt);
                         break;
+                    case "cor":
+                        $colvltxt   = str_replace('*campo*', "<div style=\"display: inline-block; background-color: " . $obj->$valor . "; border: solid 1px #000000; width: 32px; height: 32px\">&nbsp;</div>", $colvltxt);
+                        break;
                 }
 
                 echo($colvltxt);
