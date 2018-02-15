@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 14-Fev-2018 às 18:13
+-- Generation Time: 15-Fev-2018 às 21:13
 -- Versão do servidor: 5.7.19
--- PHP Version: 7.0.23
+-- PHP Version: 5.6.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -5840,16 +5840,16 @@ CREATE TABLE IF NOT EXISTS `corescabelo` (
   `corcabeloCor` varchar(7) NOT NULL,
   `corcabeloAtivo` tinyint(1) NOT NULL,
   PRIMARY KEY (`corcabeloId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `corescabelo`
 --
 
 INSERT INTO `corescabelo` (`corcabeloId`, `corcabeloNome`, `corcabeloCor`, `corcabeloAtivo`) VALUES
+('27a95637-11aa-11e8-89d2-74d4359f41f2', 'Laranja', '#ff8000', 1),
 ('fdebf0fa-119e-11e8-89d2-74d4359f41f2', 'Verde', '#30664C', 1),
-('fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'Roxo', '#8000ff', 1),
-('27a95637-11aa-11e8-89d2-74d4359f41f2', 'Laranja', '#ff8000', 1);
+('fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'Roxo', '#8000ff', 1);
 
 -- --------------------------------------------------------
 
@@ -5864,16 +5864,16 @@ CREATE TABLE IF NOT EXISTS `corespele` (
   `corpeleCor` varchar(7) NOT NULL,
   `corpeleAtivo` tinyint(1) NOT NULL,
   PRIMARY KEY (`corpeleId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `corespele`
 --
 
 INSERT INTO `corespele` (`corpeleId`, `corpeleNome`, `corpeleCor`, `corpeleAtivo`) VALUES
+('74f0a924-11aa-11e8-89d2-74d4359f41f2', 'Amarelo', '#ffcfb9', 1),
 ('bc29a14e-11a2-11e8-89d2-74d4359f41f2', 'Albina', '#ffffff', 1),
-('bc29b571-11a2-11e8-89d2-74d4359f41f2', 'Negro', '#382D31', 1),
-('74f0a924-11aa-11e8-89d2-74d4359f41f2', 'Amarelo', '#ffcfb9', 1);
+('bc29b571-11a2-11e8-89d2-74d4359f41f2', 'Negro', '#382D31', 1);
 
 -- --------------------------------------------------------
 
@@ -5913,7 +5913,7 @@ CREATE TABLE IF NOT EXISTS `eixos` (
   `eixoSigla` varchar(3) NOT NULL,
   `eixoAtivo` tinyint(1) NOT NULL,
   PRIMARY KEY (`eixoId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `eixos`
@@ -6042,23 +6042,23 @@ CREATE TABLE IF NOT EXISTS `itens` (
   `itemAtivo` tinyint(1) NOT NULL,
   `itemImagem` varchar(1000) DEFAULT NULL,
   PRIMARY KEY (`itemId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `itens`
 --
 
 INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `eixoId`, `itemLimite`, `itemBonus`, `itemPrecoNormal`, `itemAtivo`, `itemImagem`) VALUES
-('652a4a36-c0b7-11e7-9b90-00306776e789', 'Seringa Mentora', 1, 'I', NULL, 'e886580e-bb13-11e7-a2a8-00306776e789', -1, 5, 700, 1, 'seringa'),
-('652af4b1-c0b7-11e7-9b90-00306776e789', 'Roupa de Programador Preta', 1, 'R', 1, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 20, 1200, 1, 'roupa_prog'),
-('8db9b73c-c0b7-11e7-9b90-00306776e789', 'Carteira Minúscula', 1, 'C', NULL, NULL, 200, 0, 200, 1, ''),
-('4b8c2a0a-cc89-11e7-b4bf-07433e6c64b2', 'Crocs Isolantes', 1, 'R', NULL, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 25, 1650, 1, ''),
-('f5eaec44-cca6-11e7-b4bf-07433e6c64b2', 'Jaleco Power', 2, 'R', NULL, 'S', -1, 20, 1200, 1, 'roupa_lab'),
-('f5eb0c06-cca6-11e7-b4bf-07433e6c64b2', 'Erlenmeyer', 2, 'I', NULL, 'S', -1, 20, 800, 1, ''),
 ('35a1dbfe-cca7-11e7-b4bf-07433e6c64b2', 'Jaleco Power', 2, 'R', NULL, 'S', -1, 20, 1200, 1, ''),
 ('35a235cc-cca7-11e7-b4bf-07433e6c64b2', 'Erlenmeyer', 2, 'I', NULL, 'S', -1, 20, 800, 1, ''),
 ('35a252e6-cca7-11e7-b4bf-07433e6c64b2', 'Carteira Média', 2, 'C', NULL, NULL, 2000, 0, 800, 1, ''),
-('6905a57a-ef57-11e7-ad01-1c39470d9087', 'Boné da Inteligência', 4, 'I', NULL, NULL, -1, 40, 2500, 1, NULL);
+('4b8c2a0a-cc89-11e7-b4bf-07433e6c64b2', 'Crocs Isolantes', 1, 'R', NULL, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 25, 1650, 1, ''),
+('652a4a36-c0b7-11e7-9b90-00306776e789', 'Seringa Mentora', 1, 'I', NULL, 'e886580e-bb13-11e7-a2a8-00306776e789', -1, 5, 700, 1, 'seringa'),
+('652af4b1-c0b7-11e7-9b90-00306776e789', 'Roupa de Programador Preta', 1, 'R', 1, 'e885bc95-bb13-11e7-a2a8-00306776e789', -1, 20, 1200, 1, 'roupa_prog'),
+('6905a57a-ef57-11e7-ad01-1c39470d9087', 'Boné da Inteligência', 4, 'I', NULL, NULL, -1, 40, 2500, 1, NULL),
+('8db9b73c-c0b7-11e7-9b90-00306776e789', 'Carteira Minúscula', 1, 'C', NULL, NULL, 200, 0, 200, 1, ''),
+('f5eaec44-cca6-11e7-b4bf-07433e6c64b2', 'Jaleco Power', 2, 'R', NULL, 'S', -1, 20, 1200, 1, 'roupa_lab'),
+('f5eb0c06-cca6-11e7-b4bf-07433e6c64b2', 'Erlenmeyer', 2, 'I', NULL, 'S', -1, 20, 800, 1, '');
 
 -- --------------------------------------------------------
 
@@ -6073,7 +6073,7 @@ CREATE TABLE IF NOT EXISTS `itensmochila` (
   `itemId` varchar(36) NOT NULL,
   `itemmochilaSelecionado` tinyint(1) NOT NULL,
   PRIMARY KEY (`itemmochilaId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `itensmochila`
@@ -6097,22 +6097,24 @@ CREATE TABLE IF NOT EXISTS `jogadores` (
   `alunoId` varchar(36) NOT NULL,
   `jogadorDinheiro` decimal(10,2) NOT NULL,
   `jogadorPontuacao` int(11) NOT NULL,
-  `jogadorCabelo` int(11) NOT NULL COMMENT 'Cores que estão no Unity',
-  `jogadorPele` int(11) NOT NULL COMMENT 'Cores que estão no Unity',
+  `corcabeloId` varchar(36) DEFAULT NULL,
+  `corpeleId` varchar(36) DEFAULT NULL,
   `jogadorSexo` int(11) NOT NULL COMMENT '0 = Masculino; 1 = Feminino',
   `jogadorAno` int(11) NOT NULL,
-  PRIMARY KEY (`alunoId`)
+  PRIMARY KEY (`alunoId`),
+  KEY `FK_corcabelo` (`corcabeloId`),
+  KEY `FK_corpele` (`corpeleId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `jogadores`
 --
 
-INSERT INTO `jogadores` (`alunoId`, `jogadorDinheiro`, `jogadorPontuacao`, `jogadorCabelo`, `jogadorPele`, `jogadorSexo`, `jogadorAno`) VALUES
-('a436c700-d62f-11e7-b52d-14b65896e7c5', '0.00', 0, 0, 0, 0, 1),
-('ef88bb50-cd6a-11e7-91b8-00051b7601a3', '200.00', 0, 2, 3, 1, 1),
-('ef8c126e-cd6a-11e7-91b8-00051b7601a3', '200.00', 1000, 2, 2, 1, 2),
-('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', '2000.00', 2500, 3, 3, 0, 1);
+INSERT INTO `jogadores` (`alunoId`, `jogadorDinheiro`, `jogadorPontuacao`, `corcabeloId`, `corpeleId`, `jogadorSexo`, `jogadorAno`) VALUES
+('a436c700-d62f-11e7-b52d-14b65896e7c5', '0.00', 0, 'fdebf0fa-119e-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 0, 1),
+('ef88bb50-cd6a-11e7-91b8-00051b7601a3', '200.00', 0, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29b571-11a2-11e8-89d2-74d4359f41f', 1, 1),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', '200.00', 1000, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29b571-11a2-11e8-89d2-74d4359f41f', 1, 2),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', '2000.00', 2500, '27a95637-11aa-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -6319,16 +6321,13 @@ CREATE TABLE IF NOT EXISTS `perguntas` (
   `eixoId` varchar(36) NOT NULL,
   `perguntaAtivo` tinyint(1) NOT NULL,
   PRIMARY KEY (`perguntaId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `perguntas`
 --
 
 INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `eixoId`, `perguntaAtivo`) VALUES
-('457cfdb0-bd80-11e7-ab1c-00306776e789', 'Enunciado da pergunta 1', 'P001', 'e8860b43-bb13-11e7-a2a8-00306776e789', 1),
-('457d4115-bd80-11e7-ab1c-00306776e789', 'Enunciado da pergunta 2', 'P002', 'e8860b43-bb13-11e7-a2a8-00306776e789', 1),
-('54c1cf86-cb25-11e7-af74-35b8fabdc297', 'Com quantas perguntas 3 se faz uma canoa?', 'P003', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
 ('2aac5dee-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 4 se faz uma canoa?', 'P004', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
 ('2ac51e56-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 5 se faz uma canoa?', 'P005', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
 ('2ac684b2-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 6 se faz uma canoa?', 'P006', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
@@ -6350,7 +6349,10 @@ INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `e
 ('2ad96fbe-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 22 se faz uma canoa?', 'P022', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
 ('2ada875a-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 23 se faz uma canoa?', 'P023', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
 ('2adbfd9c-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 24 se faz uma canoa?', 'P024', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
-('2add697a-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 25 se faz uma canoa?', 'P025', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1);
+('2add697a-d2cb-11e7-b419-1a8f80d3a0ab', 'Com quantas perguntas 25 se faz uma canoa?', 'P025', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1),
+('457cfdb0-bd80-11e7-ab1c-00306776e789', 'Enunciado da pergunta 1', 'P001', 'e8860b43-bb13-11e7-a2a8-00306776e789', 1),
+('457d4115-bd80-11e7-ab1c-00306776e789', 'Enunciado da pergunta 2', 'P002', 'e8860b43-bb13-11e7-a2a8-00306776e789', 1),
+('54c1cf86-cb25-11e7-af74-35b8fabdc297', 'Com quantas perguntas 3 se faz uma canoa?', 'P003', 'e885bc95-bb13-11e7-a2a8-00306776e789', 1);
 
 -- --------------------------------------------------------
 
@@ -6366,7 +6368,7 @@ CREATE TABLE IF NOT EXISTS `perguntasdf` (
   `perguntadfDificuldade` int(11) NOT NULL,
   `perguntadfAtivo` tinyint(1) NOT NULL,
   PRIMARY KEY (`perguntadfId`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `perguntasdf`
@@ -6375,6 +6377,7 @@ CREATE TABLE IF NOT EXISTS `perguntasdf` (
 INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCodigo`, `perguntadfDificuldade`, `perguntadfAtivo`) VALUES
 ('49a32090-bef8-11e7-a867-00306776e789', 'Voc', 'DF00001', 4, 1),
 ('49a37b33-bef8-11e7-a867-00306776e789', 'Considere uma nuvem: quantos litros de pergunta 2 existem nela?', 'DF00002', 1, 1),
+('688be65d-ef55-11e7-ad01-1c39470d9087', 'Considere uma nuvem: quantos litros de pergunta 25 existem nela? ', 'DF00025', 2, 1),
 ('8d13182c-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 3 existem nela?', 'DF00003', 1, 1),
 ('b4a14fe4-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 4 existem nela?', 'DF00004', 1, 1),
 ('b4a8ed08-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 5 existem nela?', 'DF00005', 1, 1),
@@ -6396,8 +6399,7 @@ INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCod
 ('b4c04ba6-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 21 existem nela?', 'DF00021', 1, 1),
 ('b4c17922-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 22 existem nela?', 'DF00022', 1, 1),
 ('b4c3ec20-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 23 existem nela?', 'DF00023', 1, 1),
-('b4c66a7c-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 24 existem nela?', 'DF00024', 1, 1),
-('688be65d-ef55-11e7-ad01-1c39470d9087', 'Considere uma nuvem: quantos litros de pergunta 25 existem nela? ', 'DF00025', 2, 1);
+('b4c66a7c-d309-11e7-b419-1a8f80d3a0ab', 'Considere uma nuvem: quantos litros de pergunta 24 existem nela?', 'DF00024', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -6729,6 +6731,12 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Limitadores para a tabela `jogadores`
+--
+ALTER TABLE `jogadores`
+  ADD CONSTRAINT `FK_corcabelo_jogador` FOREIGN KEY (`corcabeloId`) REFERENCES `corescabelo` (`corcabeloId`);
 
 --
 -- Limitadores para a tabela `missoes`
