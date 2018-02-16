@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 15-Fev-2018 às 21:13
+-- Generation Time: 16-Fev-2018 às 00:23
 -- Versão do servidor: 5.7.19
--- PHP Version: 5.6.31
+-- PHP Version: 7.0.23
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -6111,9 +6111,9 @@ CREATE TABLE IF NOT EXISTS `jogadores` (
 --
 
 INSERT INTO `jogadores` (`alunoId`, `jogadorDinheiro`, `jogadorPontuacao`, `corcabeloId`, `corpeleId`, `jogadorSexo`, `jogadorAno`) VALUES
-('a436c700-d62f-11e7-b52d-14b65896e7c5', '0.00', 0, 'fdebf0fa-119e-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 0, 1),
-('ef88bb50-cd6a-11e7-91b8-00051b7601a3', '200.00', 0, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29b571-11a2-11e8-89d2-74d4359f41f', 1, 1),
-('ef8c126e-cd6a-11e7-91b8-00051b7601a3', '200.00', 1000, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29b571-11a2-11e8-89d2-74d4359f41f', 1, 2),
+('a436c700-d62f-11e7-b52d-14b65896e7c5', '0.00', 0, 'fdebf0fa-119e-11e8-89d2-74d4359f41f2', '74f0a924-11aa-11e8-89d2-74d4359f41f2', 0, 1),
+('ef88bb50-cd6a-11e7-91b8-00051b7601a3', '200.00', 0, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 1, 1),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', '200.00', 1000, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 1, 2),
 ('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', '2000.00', 2500, '27a95637-11aa-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 0, 1);
 
 -- --------------------------------------------------------
@@ -6736,7 +6736,8 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- Limitadores para a tabela `jogadores`
 --
 ALTER TABLE `jogadores`
-  ADD CONSTRAINT `FK_corcabelo_jogador` FOREIGN KEY (`corcabeloId`) REFERENCES `corescabelo` (`corcabeloId`);
+  ADD CONSTRAINT `FK_corcabelo_jogador` FOREIGN KEY (`corcabeloId`) REFERENCES `corescabelo` (`corcabeloId`),
+  ADD CONSTRAINT `FK_corpele_jogador` FOREIGN KEY (`corpeleId`) REFERENCES `corespele` (`corpeleId`);
 
 --
 -- Limitadores para a tabela `missoes`
