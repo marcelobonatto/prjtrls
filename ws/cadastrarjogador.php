@@ -119,8 +119,8 @@ if (count($mensagens) == 0)
             $jogobj->id         = $aluno->id;
             $jogobj->dinheiro   = 0;
             $jogobj->pontos     = 0;
-            $jogobj->cabelo     = 0;
-            $jogobj->pele       = 0;
+            $jogobj->cabelo     = null;
+            $jogobj->pele       = null;
             $jogobj->sexo       = 0;
             $jogobj->ano        = $json->ano;
 

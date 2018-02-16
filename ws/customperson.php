@@ -89,17 +89,41 @@ if (count($mensagens) == 0)
 
         if ($jogobj->id != null)
         {
-            $jogobj->cabelo = $json->cabelo;
-            $jogobj->pele   = $json->pele;
-            $jogobj->sexo   = $json->sexo;
-
-            if (!$jogobj->Salvar(false))
+            if ($json->sexo != 0 && $json->sexo != 1)
             {
-                $mensagens[]    = 'Não foi possível alterar os dados do jogador';
+                $mensagens[]    = 'Valor da chave sexo é inválida (deve ser 0 ou 1)';
             }
-            else
+
+            $corcabelo = new lib\cabelo();
+            $corcabelo->Selecionar($json->cabelo);
+
+            if ($corcabelo->nome == null)
             {
-                $custom->gravou = true;
+                $mensagens[]    = 'Cor de cabelo não cadastrada';
+            }
+
+            $corpele = new lib\pele();
+            $corpele->Selecionar($json->pele);
+
+            if ($corpele->nome == null)
+            {
+                $mensagens[]    = 'Cor de pele não cadastrada';
+            }
+
+            if (count($mensagens) == 0)
+            {
+                $jogobj->cabelo = $json->cabelo;
+                $jogobj->pele   = $json->pele;
+                $jogobj->sexo   = $json->sexo;
+
+                if (!$jogobj->Salvar(false))
+                {
+                    $mensagens[]    = 'Não foi possível alterar os dados do jogador';
+                }
+                else
+                {
+                    $custom->gravou = true;
+                }
             }
         }
         else
