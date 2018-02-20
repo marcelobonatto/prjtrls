@@ -40,3 +40,15 @@ az webapp create --resource-group myResourceGroup --plan myAppServicePlan --name
 
 Criar App Settings de banco de dados:
 az webapp config appsettings set --name prjtrilhas --resource-group projetoTrilhas --settings DB_HOST="dbprjtrls.database.windows.net" DB_DATABASE="prjtrls" DB_USERNAME="phpappuser@dbprjtrls" DB_PASSWORD="pascalmontesquier" MYSQL_SSL="true"
+
+-------------------------------------------------
+
+Usuários Banco de dados
+
+Administrador
+Usuario: adminuser
+Senha: 5t0rmTr00p3r
+
+Usuário PHP
+Usuário: phpappuser
+Senha: tril3g4lproj
