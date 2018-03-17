@@ -12,10 +12,14 @@ class jogador
     public $ano;
     public $eixos;
     public $missoes;
+    public $diabonus;
+    public $databonus;
+    public $tickets;
 
     public function Selecionar($id)
     {
-        $sql    = 'SELECT alunoId, jogadorDinheiro, jogadorPontuacao, corcabeloId, corpeleId, jogadorSexo, jogadorAno ' .
+        $sql    = 'SELECT alunoId, jogadorDinheiro, jogadorPontuacao, corcabeloId, corpeleId, jogadorSexo, jogadorAno, jogadorDiaBonus, ' .
+                  'jogadorDataBonus, jogadorTicketQuiz ' .
                   'FROM jogadores ' .
                   "WHERE alunoId = '$id'";
 
@@ -35,6 +39,9 @@ class jogador
                 $this->pele             = $jogador["corpeleId"];
                 $this->sexo             = $jogador["jogadorSexo"];
                 $this->ano              = $jogador["jogadorAno"];
+                $this->diabonus         = $jogador["jogadorDiaBonus"];
+                $this->databonus        = $jogador["jogadorDataBonus"];
+                $this->tickets          = $jogador["jogadorTicketQuiz"];
             }
         }
     }
@@ -72,8 +79,10 @@ class jogador
     public function Incluir($cabelo, $pele)
     {
         $sql    = 'INSERT INTO jogadores ' .
-                  '(alunoId, jogadorDinheiro, jogadorPontuacao, corcabeloId, corpeleId, jogadorSexo, jogadorAno) ' . 
-                  "VALUES ('$this->id', $this->dinheiro, $this->pontos, $cabelo, $pele, $this->sexo, $this->ano)";
+                  '(alunoId, jogadorDinheiro, jogadorPontuacao, corcabeloId, corpeleId, jogadorSexo, jogadorAno, jogadorDiaBonus, ' .
+                  'jogadorDataBonus, jogadorTicketQuiz) ' . 
+                  "VALUES ('$this->id', $this->dinheiro, $this->pontos, $cabelo, $pele, $this->sexo, $this->ano, $this->diabonus, " .
+                  "NOW(), $this->tickets)";
 
         $db         = new bancodados();
         $db->Executar($sql);
@@ -89,7 +98,10 @@ class jogador
                   "corcabeloId = $cabelo, " .
                   "corpeleId = $pele, " .
                   "jogadorSexo = $this->sexo, " .
-                  "jogadorAno = $this->ano " .
+                  "jogadorAno = $this->ano, " .
+                  "jogadorDiaBonus = $this->diabonus, " .
+                  "jogadorDataBonus = '$this->databonus', " .
+                  "jogadorTicketQuiz = $this->tickets " .
                   "WHERE alunoId = '$this->id'";
 
         $db         = new bancodados();
