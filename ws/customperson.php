@@ -71,11 +71,11 @@ else
 }
 
 //Exemplo JSON
-//{ "sexo": 1, "cabelo": 2, "pele": 3 }
-//eyAic2V4byI6IDEsICJjYWJlbG8iOiAyLCAicGVsZSI6IDMgfQ%3D%3D
+//{ "sexo": 1, "cabelo": "fdebf0fa-119e-11e8-89d2-74d4359f41f2", "pele": "74f0a924-11aa-11e8-89d2-74d4359f41f2" }
+//eyAic2V4byI6IDEsICJjYWJlbG8iOiAiZmRlYmYwZmEtMTE5ZS0xMWU4LTg5ZDItNzRkNDM1OWY0MWYyIiwgInBlbGUiOiAiNzRmMGE5MjQtMTFhYS0xMWU4LTg5ZDItNzRkNDM1OWY0MWYyIiB9
 
 //url exemplo:
-//http://localhost/prjtrlsadm/ws/customperson.php?token=ZjJiMWRkNGUtZDNjYy0xMWU3LWIxZGYtNTJhZTc0M2JjODNk&valor=eyAic2V4byI6IDEsICJjYWJlbG8iOiAyLCAicGVsZSI6IDMgfQ%3D%3D
+//http://localhost/prjtrlsadm/ws/customperson.php?token=eyAic2V4byI6IDEsICJjYWJlbG8iOiAiZmRlYmYwZmEtMTE5ZS0xMWU4LTg5ZDItNzRkNDM1OWY0MWYyIiwgInBlbGUiOiAiNzRmMGE5MjQtMTFhYS0xMWU4LTg5ZDItNzRkNDM1OWY0MWYyIiB9
 
 if (count($mensagens) == 0)
 {
