@@ -1,22 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3306
--- Generation Time: 16-Fev-2018 às 00:23
--- Versão do servidor: 5.7.19
--- PHP Version: 7.0.23
+-- Host: localhost
+-- Generation Time: 17-Mar-2018 às 15:29
+-- Versão do servidor: 5.6.38
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
 SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `prjtrls`
@@ -28,8 +20,7 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `alunos`
 --
 
-DROP TABLE IF EXISTS `alunos`;
-CREATE TABLE IF NOT EXISTS `alunos` (
+CREATE TABLE `alunos` (
   `alunoId` varchar(36) NOT NULL,
   `alunoNome` varchar(100) NOT NULL,
   `alunoMatricula` int(11) NOT NULL,
@@ -38,9 +29,7 @@ CREATE TABLE IF NOT EXISTS `alunos` (
   `alunoAno` tinyint(1) NOT NULL,
   `alunoAtivo` tinyint(4) NOT NULL DEFAULT '0',
   `escolaId` varchar(36) NOT NULL,
-  `usuarioId` varchar(36) NOT NULL,
-  PRIMARY KEY (`alunoId`),
-  KEY `fk_escolas_idx` (`escolaId`)
+  `usuarioId` varchar(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -61,13 +50,11 @@ INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodl
 -- Estrutura da tabela `autorizacao`
 --
 
-DROP TABLE IF EXISTS `autorizacao`;
-CREATE TABLE IF NOT EXISTS `autorizacao` (
+CREATE TABLE `autorizacao` (
   `autoId` varchar(36) NOT NULL,
   `usuarioId` varchar(36) NOT NULL,
   `autoData` datetime NOT NULL,
-  `autoIP` varchar(50) NOT NULL,
-  PRIMARY KEY (`autoId`)
+  `autoIP` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -237,15 +224,24 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Estrutura da tabela `bonusdiario`
+--
+
+CREATE TABLE `bonusdiario` (
+  `bonusDia` int(11) NOT NULL,
+  `bonusQuantidade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Estrutura da tabela `cidades`
 --
 
-DROP TABLE IF EXISTS `cidades`;
-CREATE TABLE IF NOT EXISTS `cidades` (
+CREATE TABLE `cidades` (
   `cidadeCodigo` varchar(7) NOT NULL,
   `cidadeNome` varchar(100) NOT NULL,
-  `estadoSigla` varchar(2) NOT NULL,
-  PRIMARY KEY (`cidadeCodigo`)
+  `estadoSigla` varchar(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5833,13 +5829,11 @@ INSERT INTO `cidades` (`cidadeCodigo`, `cidadeNome`, `estadoSigla`) VALUES
 -- Estrutura da tabela `corescabelo`
 --
 
-DROP TABLE IF EXISTS `corescabelo`;
-CREATE TABLE IF NOT EXISTS `corescabelo` (
+CREATE TABLE `corescabelo` (
   `corcabeloId` varchar(36) NOT NULL,
   `corcabeloNome` varchar(50) NOT NULL,
   `corcabeloCor` varchar(7) NOT NULL,
-  `corcabeloAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`corcabeloId`)
+  `corcabeloAtivo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5857,13 +5851,11 @@ INSERT INTO `corescabelo` (`corcabeloId`, `corcabeloNome`, `corcabeloCor`, `corc
 -- Estrutura da tabela `corespele`
 --
 
-DROP TABLE IF EXISTS `corespele`;
-CREATE TABLE IF NOT EXISTS `corespele` (
+CREATE TABLE `corespele` (
   `corpeleId` varchar(36) NOT NULL,
   `corpeleNome` varchar(50) NOT NULL,
   `corpeleCor` varchar(7) NOT NULL,
-  `corpeleAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`corpeleId`)
+  `corpeleAtivo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5881,15 +5873,13 @@ INSERT INTO `corespele` (`corpeleId`, `corpeleNome`, `corpeleCor`, `corpeleAtivo
 -- Estrutura da tabela `dialogosnpc`
 --
 
-DROP TABLE IF EXISTS `dialogosnpc`;
-CREATE TABLE IF NOT EXISTS `dialogosnpc` (
+CREATE TABLE `dialogosnpc` (
   `dialogoId` varchar(36) NOT NULL,
   `missaoId` varchar(36) NOT NULL,
   `dialogoSequencia` int(11) NOT NULL,
   `npcId` varchar(36) NOT NULL,
   `dialogoHumor` varchar(2) NOT NULL,
-  `dialogoTexto` varchar(8000) NOT NULL,
-  PRIMARY KEY (`dialogoId`)
+  `dialogoTexto` varchar(8000) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5905,14 +5895,12 @@ INSERT INTO `dialogosnpc` (`dialogoId`, `missaoId`, `dialogoSequencia`, `npcId`,
 -- Estrutura da tabela `eixos`
 --
 
-DROP TABLE IF EXISTS `eixos`;
-CREATE TABLE IF NOT EXISTS `eixos` (
+CREATE TABLE `eixos` (
   `eixoId` varchar(36) NOT NULL,
   `eixoNome` varchar(100) NOT NULL,
   `eixoSequencia` int(11) NOT NULL,
   `eixoSigla` varchar(3) NOT NULL,
-  `eixoAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`eixoId`)
+  `eixoAtivo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5931,15 +5919,13 @@ INSERT INTO `eixos` (`eixoId`, `eixoNome`, `eixoSequencia`, `eixoSigla`, `eixoAt
 -- Estrutura da tabela `escolas`
 --
 
-DROP TABLE IF EXISTS `escolas`;
-CREATE TABLE IF NOT EXISTS `escolas` (
+CREATE TABLE `escolas` (
   `escolaId` varchar(36) NOT NULL,
   `escolaNome` varchar(100) NOT NULL,
   `escolaBairro` varchar(36) NOT NULL,
   `cidadeCodigo` varchar(7) NOT NULL,
   `estadoSigla` varchar(2) NOT NULL,
-  `escolaAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`escolaId`)
+  `escolaAtivo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -5959,11 +5945,9 @@ INSERT INTO `escolas` (`escolaId`, `escolaNome`, `escolaBairro`, `cidadeCodigo`,
 -- Estrutura da tabela `estados`
 --
 
-DROP TABLE IF EXISTS `estados`;
-CREATE TABLE IF NOT EXISTS `estados` (
+CREATE TABLE `estados` (
   `estadoSigla` varchar(2) NOT NULL,
-  `estadoNome` varchar(50) NOT NULL,
-  PRIMARY KEY (`estadoSigla`)
+  `estadoNome` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6005,12 +5989,10 @@ INSERT INTO `estados` (`estadoSigla`, `estadoNome`) VALUES
 -- Estrutura da tabela `gruposusu`
 --
 
-DROP TABLE IF EXISTS `gruposusu`;
-CREATE TABLE IF NOT EXISTS `gruposusu` (
+CREATE TABLE `gruposusu` (
   `grupoId` varchar(36) NOT NULL,
   `grupoNome` varchar(100) NOT NULL,
-  `grupoAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`grupoId`)
+  `grupoAtivo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6028,8 +6010,7 @@ INSERT INTO `gruposusu` (`grupoId`, `grupoNome`, `grupoAtivo`) VALUES
 -- Estrutura da tabela `itens`
 --
 
-DROP TABLE IF EXISTS `itens`;
-CREATE TABLE IF NOT EXISTS `itens` (
+CREATE TABLE `itens` (
   `itemId` varchar(36) NOT NULL,
   `itemNome` varchar(100) NOT NULL,
   `itemNivel` int(11) NOT NULL,
@@ -6040,8 +6021,7 @@ CREATE TABLE IF NOT EXISTS `itens` (
   `itemBonus` int(11) NOT NULL,
   `itemPrecoNormal` int(11) NOT NULL,
   `itemAtivo` tinyint(1) NOT NULL,
-  `itemImagem` varchar(1000) DEFAULT NULL,
-  PRIMARY KEY (`itemId`)
+  `itemImagem` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6066,13 +6046,11 @@ INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `
 -- Estrutura da tabela `itensmochila`
 --
 
-DROP TABLE IF EXISTS `itensmochila`;
-CREATE TABLE IF NOT EXISTS `itensmochila` (
+CREATE TABLE `itensmochila` (
   `itemmochilaId` varchar(36) NOT NULL,
   `alunoId` varchar(36) NOT NULL,
   `itemId` varchar(36) NOT NULL,
-  `itemmochilaSelecionado` tinyint(1) NOT NULL,
-  PRIMARY KEY (`itemmochilaId`)
+  `itemmochilaSelecionado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6092,8 +6070,7 @@ INSERT INTO `itensmochila` (`itemmochilaId`, `alunoId`, `itemId`, `itemmochilaSe
 -- Estrutura da tabela `jogadores`
 --
 
-DROP TABLE IF EXISTS `jogadores`;
-CREATE TABLE IF NOT EXISTS `jogadores` (
+CREATE TABLE `jogadores` (
   `alunoId` varchar(36) NOT NULL,
   `jogadorDinheiro` decimal(10,2) NOT NULL,
   `jogadorPontuacao` int(11) NOT NULL,
@@ -6101,20 +6078,20 @@ CREATE TABLE IF NOT EXISTS `jogadores` (
   `corpeleId` varchar(36) DEFAULT NULL,
   `jogadorSexo` int(11) NOT NULL COMMENT '0 = Masculino; 1 = Feminino',
   `jogadorAno` int(11) NOT NULL,
-  PRIMARY KEY (`alunoId`),
-  KEY `FK_corcabelo` (`corcabeloId`),
-  KEY `FK_corpele` (`corpeleId`)
+  `jogadorDiaBonus` int(11) NOT NULL,
+  `jogadorDataBonus` datetime NOT NULL,
+  `jogadorTicketsQuiz` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `jogadores`
 --
 
-INSERT INTO `jogadores` (`alunoId`, `jogadorDinheiro`, `jogadorPontuacao`, `corcabeloId`, `corpeleId`, `jogadorSexo`, `jogadorAno`) VALUES
-('a436c700-d62f-11e7-b52d-14b65896e7c5', '0.00', 0, 'fdebf0fa-119e-11e8-89d2-74d4359f41f2', '74f0a924-11aa-11e8-89d2-74d4359f41f2', 0, 1),
-('ef88bb50-cd6a-11e7-91b8-00051b7601a3', '200.00', 0, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 1, 1),
-('ef8c126e-cd6a-11e7-91b8-00051b7601a3', '200.00', 1000, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 1, 2),
-('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', '2000.00', 2500, '27a95637-11aa-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 0, 1);
+INSERT INTO `jogadores` (`alunoId`, `jogadorDinheiro`, `jogadorPontuacao`, `corcabeloId`, `corpeleId`, `jogadorSexo`, `jogadorAno`, `jogadorDiaBonus`, `jogadorDataBonus`, `jogadorTicketsQuiz`) VALUES
+('a436c700-d62f-11e7-b52d-14b65896e7c5', '0.00', 0, 'fdebf0fa-119e-11e8-89d2-74d4359f41f2', '74f0a924-11aa-11e8-89d2-74d4359f41f2', 0, 1, 0, '0000-00-00 00:00:00', 20),
+('ef88bb50-cd6a-11e7-91b8-00051b7601a3', '200.00', 0, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 1, 1, 1, '2018-03-14 14:21:41', 15),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', '200.00', 1000, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 1, 2, 3, '2018-03-17 09:38:00', 19),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', '2000.00', 2500, '27a95637-11aa-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 0, 1, 5, '2018-03-16 12:41:16', 5);
 
 -- --------------------------------------------------------
 
@@ -6122,13 +6099,11 @@ INSERT INTO `jogadores` (`alunoId`, `jogadorDinheiro`, `jogadorPontuacao`, `corc
 -- Estrutura da tabela `jogadoreseixo`
 --
 
-DROP TABLE IF EXISTS `jogadoreseixo`;
-CREATE TABLE IF NOT EXISTS `jogadoreseixo` (
+CREATE TABLE `jogadoreseixo` (
   `jogadoreixoId` varchar(36) NOT NULL,
   `alunoId` varchar(36) NOT NULL,
   `eixoId` varchar(36) NOT NULL,
-  `jogadoreixoPontos` int(11) NOT NULL,
-  PRIMARY KEY (`jogadoreixoId`)
+  `jogadoreixoPontos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6159,16 +6134,14 @@ INSERT INTO `jogadoreseixo` (`jogadoreixoId`, `alunoId`, `eixoId`, `jogadoreixoP
 -- Estrutura da tabela `jogadoresmissao`
 --
 
-DROP TABLE IF EXISTS `jogadoresmissao`;
-CREATE TABLE IF NOT EXISTS `jogadoresmissao` (
+CREATE TABLE `jogadoresmissao` (
   `jogadormissaoId` varchar(36) NOT NULL,
   `alunoId` varchar(36) NOT NULL,
   `missaoId` varchar(36) NOT NULL,
   `jogadormissaoAprovado` tinyint(1) NOT NULL,
   `jogadormissaoCumprida` tinyint(1) NOT NULL,
   `jogadormissaoJogando` tinyint(1) NOT NULL,
-  `jogadormissaoLiberada` tinyint(1) NOT NULL,
-  PRIMARY KEY (`jogadormissaoId`)
+  `jogadormissaoLiberada` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6186,13 +6159,11 @@ INSERT INTO `jogadoresmissao` (`jogadormissaoId`, `alunoId`, `missaoId`, `jogado
 -- Estrutura da tabela `missaoaluno`
 --
 
-DROP TABLE IF EXISTS `missaoaluno`;
-CREATE TABLE IF NOT EXISTS `missaoaluno` (
+CREATE TABLE `missaoaluno` (
   `missaoalunoId` varchar(36) NOT NULL,
   `missaoId` varchar(36) NOT NULL,
   `alunoId` varchar(255) NOT NULL,
-  `statusMissao` tinyint(1) NOT NULL,
-  PRIMARY KEY (`missaoalunoId`)
+  `statusMissao` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6214,8 +6185,7 @@ INSERT INTO `missaoaluno` (`missaoalunoId`, `missaoId`, `alunoId`, `statusMissao
 -- Estrutura da tabela `missoes`
 --
 
-DROP TABLE IF EXISTS `missoes`;
-CREATE TABLE IF NOT EXISTS `missoes` (
+CREATE TABLE `missoes` (
   `missaoId` varchar(36) NOT NULL,
   `missaoNome` varchar(100) NOT NULL,
   `missaoTitulo` varchar(200) NOT NULL,
@@ -6230,9 +6200,7 @@ CREATE TABLE IF NOT EXISTS `missoes` (
   `missaoPaiSequencia` int(11) NOT NULL DEFAULT '0',
   `missaoDataIni` date DEFAULT NULL,
   `missaoDataFim` date DEFAULT NULL,
-  `missaoUrlRedir` varchar(1000) DEFAULT NULL,
-  PRIMARY KEY (`missaoId`),
-  KEY `fk_missoes_missoes1_idx` (`missaoPai`)
+  `missaoUrlRedir` varchar(1000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6255,15 +6223,11 @@ INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescrica
 -- Estrutura da tabela `missoeseixo`
 --
 
-DROP TABLE IF EXISTS `missoeseixo`;
-CREATE TABLE IF NOT EXISTS `missoeseixo` (
+CREATE TABLE `missoeseixo` (
   `missaoeixoId` varchar(36) NOT NULL,
   `missaoId` varchar(36) NOT NULL,
   `eixoId` varchar(36) NOT NULL,
-  `missaoeixoPontos` int(11) NOT NULL,
-  PRIMARY KEY (`missaoeixoId`),
-  KEY `missaoId` (`missaoId`),
-  KEY `eixoId` (`eixoId`)
+  `missaoeixoPontos` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6284,15 +6248,12 @@ INSERT INTO `missoeseixo` (`missaoeixoId`, `missaoId`, `eixoId`, `missaoeixoPont
 -- Estrutura da tabela `npc`
 --
 
-DROP TABLE IF EXISTS `npc`;
-CREATE TABLE IF NOT EXISTS `npc` (
+CREATE TABLE `npc` (
   `npcId` varchar(36) NOT NULL,
   `npcNome` varchar(100) NOT NULL,
   `npcChave` varchar(30) NOT NULL,
   `eixoId` varchar(36) DEFAULT NULL,
-  `npcAtivo` tinyint(1) NOT NULL DEFAULT '0',
-  PRIMARY KEY (`npcId`),
-  KEY `eixoId` (`eixoId`)
+  `npcAtivo` tinyint(1) NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6313,14 +6274,12 @@ INSERT INTO `npc` (`npcId`, `npcNome`, `npcChave`, `eixoId`, `npcAtivo`) VALUES
 -- Estrutura da tabela `perguntas`
 --
 
-DROP TABLE IF EXISTS `perguntas`;
-CREATE TABLE IF NOT EXISTS `perguntas` (
+CREATE TABLE `perguntas` (
   `perguntaId` varchar(36) NOT NULL,
   `perguntaEnunciado` varchar(1000) NOT NULL,
   `perguntaCodigo` varchar(20) NOT NULL,
   `eixoId` varchar(36) NOT NULL,
-  `perguntaAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`perguntaId`)
+  `perguntaAtivo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6360,14 +6319,12 @@ INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `e
 -- Estrutura da tabela `perguntasdf`
 --
 
-DROP TABLE IF EXISTS `perguntasdf`;
-CREATE TABLE IF NOT EXISTS `perguntasdf` (
+CREATE TABLE `perguntasdf` (
   `perguntadfId` varchar(36) NOT NULL,
   `perguntadfEnunciado` varchar(1000) NOT NULL,
   `perguntadfCodigo` varchar(20) NOT NULL,
   `perguntadfDificuldade` int(11) NOT NULL,
-  `perguntadfAtivo` tinyint(1) NOT NULL,
-  PRIMARY KEY (`perguntadfId`)
+  `perguntadfAtivo` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6407,15 +6364,12 @@ INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCod
 -- Estrutura da tabela `respostas`
 --
 
-DROP TABLE IF EXISTS `respostas`;
-CREATE TABLE IF NOT EXISTS `respostas` (
+CREATE TABLE `respostas` (
   `respostaId` varchar(36) NOT NULL,
   `perguntaId` varchar(36) NOT NULL,
   `respostaCodigo` varchar(20) NOT NULL,
   `respostaTexto` varchar(1000) NOT NULL,
-  `respostaNivel` int(11) NOT NULL COMMENT '0 = improvável; 9 = provável; 10 = correta',
-  PRIMARY KEY (`respostaId`),
-  KEY `FK_perguntas` (`perguntaId`)
+  `respostaNivel` int(11) NOT NULL COMMENT '0 = improvável; 9 = provável; 10 = correta'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6522,15 +6476,12 @@ INSERT INTO `respostas` (`respostaId`, `perguntaId`, `respostaCodigo`, `resposta
 -- Estrutura da tabela `respostasdf`
 --
 
-DROP TABLE IF EXISTS `respostasdf`;
-CREATE TABLE IF NOT EXISTS `respostasdf` (
+CREATE TABLE `respostasdf` (
   `respostadfId` varchar(36) NOT NULL,
   `perguntadfId` varchar(36) NOT NULL,
   `respostadfCodigo` varchar(20) NOT NULL,
   `respostadfTexto` varchar(1000) NOT NULL,
-  `respostadfNivel` int(11) NOT NULL COMMENT '0 = improvável; 9 = provável; 10 = correta',
-  PRIMARY KEY (`respostadfId`),
-  KEY `FK_perguntasdf` (`perguntadfId`)
+  `respostadfNivel` int(11) NOT NULL COMMENT '0 = improvável; 9 = provável; 10 = correta'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6663,8 +6614,7 @@ INSERT INTO `respostasdf` (`respostadfId`, `perguntadfId`, `respostadfCodigo`, `
 -- Estrutura da tabela `usuarios`
 --
 
-DROP TABLE IF EXISTS `usuarios`;
-CREATE TABLE IF NOT EXISTS `usuarios` (
+CREATE TABLE `usuarios` (
   `usuarioId` varchar(36) NOT NULL,
   `usuarioNome` varchar(255) NOT NULL,
   `usuarioSenha` varchar(8000) NOT NULL,
@@ -6672,8 +6622,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `usuarioEmail` varchar(1000) NOT NULL,
   `usuarioAtivo` tinyint(1) NOT NULL,
   `usuarioCodMod` varchar(500) DEFAULT NULL,
-  `usuarioDataMod` datetime DEFAULT NULL,
-  PRIMARY KEY (`usuarioId`)
+  `usuarioDataMod` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
@@ -6699,8 +6648,7 @@ INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`
 -- Stand-in structure for view `vw_missoes`
 -- (See below for the actual view)
 --
-DROP VIEW IF EXISTS `vw_missoes`;
-CREATE TABLE IF NOT EXISTS `vw_missoes` (
+CREATE TABLE `vw_missoes` (
 `missaoId` varchar(36)
 ,`missaoNome` varchar(100)
 ,`missaoTitulo` varchar(200)
@@ -6729,6 +6677,169 @@ DROP TABLE IF EXISTS `vw_missoes`;
 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_missoes`  AS  select `missoes`.`missaoId` AS `missaoId`,`missoes`.`missaoNome` AS `missaoNome`,`missoes`.`missaoTitulo` AS `missaoTitulo`,`missoes`.`missaoDescricao` AS `missaoDescricao`,`missoes`.`missaoAtivo` AS `missaoAtivo`,`missoes`.`missaoIdMoodle` AS `missaoIdMoodle`,`missoes`.`missaoAno` AS `missaoAno`,`missoes`.`missaoSemestre` AS `missaoSemestre`,`missoes`.`missaoSequencia` AS `missaoSequencia`,`missoes`.`missaoObrigatoria` AS `missaoObrigatoria`,`missoes`.`missaoPai` AS `missaoPai`,`missoes`.`missaoPaiSequencia` AS `missaoPaiSequencia`,(((`missoes`.`missaoAno` * 100000) + (`missoes`.`missaoSemestre` * 10000)) + (case when (`missoes`.`missaoPaiSequencia` > 0) then ((`missoes`.`missaoPaiSequencia` * 100) + `missoes`.`missaoSequencia`) else (`missoes`.`missaoSequencia` * 100) end)) AS `missaoReferencia`,`missoes`.`missaoDataIni` AS `missaoDataIni`,`missoes`.`missaoDataFim` AS `missaoDataFim`,`missoes`.`missaoUrlRedir` AS `missaoUrlRedir` from `missoes` ;
 
 --
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `alunos`
+--
+ALTER TABLE `alunos`
+  ADD PRIMARY KEY (`alunoId`),
+  ADD KEY `fk_escolas_idx` (`escolaId`);
+
+--
+-- Indexes for table `autorizacao`
+--
+ALTER TABLE `autorizacao`
+  ADD PRIMARY KEY (`autoId`);
+
+--
+-- Indexes for table `bonusdiario`
+--
+ALTER TABLE `bonusdiario`
+  ADD PRIMARY KEY (`bonusDia`);
+
+--
+-- Indexes for table `cidades`
+--
+ALTER TABLE `cidades`
+  ADD PRIMARY KEY (`cidadeCodigo`);
+
+--
+-- Indexes for table `corescabelo`
+--
+ALTER TABLE `corescabelo`
+  ADD PRIMARY KEY (`corcabeloId`);
+
+--
+-- Indexes for table `corespele`
+--
+ALTER TABLE `corespele`
+  ADD PRIMARY KEY (`corpeleId`);
+
+--
+-- Indexes for table `dialogosnpc`
+--
+ALTER TABLE `dialogosnpc`
+  ADD PRIMARY KEY (`dialogoId`);
+
+--
+-- Indexes for table `eixos`
+--
+ALTER TABLE `eixos`
+  ADD PRIMARY KEY (`eixoId`);
+
+--
+-- Indexes for table `escolas`
+--
+ALTER TABLE `escolas`
+  ADD PRIMARY KEY (`escolaId`);
+
+--
+-- Indexes for table `estados`
+--
+ALTER TABLE `estados`
+  ADD PRIMARY KEY (`estadoSigla`);
+
+--
+-- Indexes for table `gruposusu`
+--
+ALTER TABLE `gruposusu`
+  ADD PRIMARY KEY (`grupoId`);
+
+--
+-- Indexes for table `itens`
+--
+ALTER TABLE `itens`
+  ADD PRIMARY KEY (`itemId`);
+
+--
+-- Indexes for table `itensmochila`
+--
+ALTER TABLE `itensmochila`
+  ADD PRIMARY KEY (`itemmochilaId`);
+
+--
+-- Indexes for table `jogadores`
+--
+ALTER TABLE `jogadores`
+  ADD PRIMARY KEY (`alunoId`),
+  ADD KEY `FK_corcabelo` (`corcabeloId`),
+  ADD KEY `FK_corpele` (`corpeleId`);
+
+--
+-- Indexes for table `jogadoreseixo`
+--
+ALTER TABLE `jogadoreseixo`
+  ADD PRIMARY KEY (`jogadoreixoId`);
+
+--
+-- Indexes for table `jogadoresmissao`
+--
+ALTER TABLE `jogadoresmissao`
+  ADD PRIMARY KEY (`jogadormissaoId`);
+
+--
+-- Indexes for table `missaoaluno`
+--
+ALTER TABLE `missaoaluno`
+  ADD PRIMARY KEY (`missaoalunoId`);
+
+--
+-- Indexes for table `missoes`
+--
+ALTER TABLE `missoes`
+  ADD PRIMARY KEY (`missaoId`),
+  ADD KEY `fk_missoes_missoes1_idx` (`missaoPai`);
+
+--
+-- Indexes for table `missoeseixo`
+--
+ALTER TABLE `missoeseixo`
+  ADD PRIMARY KEY (`missaoeixoId`),
+  ADD KEY `missaoId` (`missaoId`),
+  ADD KEY `eixoId` (`eixoId`);
+
+--
+-- Indexes for table `npc`
+--
+ALTER TABLE `npc`
+  ADD PRIMARY KEY (`npcId`),
+  ADD KEY `eixoId` (`eixoId`);
+
+--
+-- Indexes for table `perguntas`
+--
+ALTER TABLE `perguntas`
+  ADD PRIMARY KEY (`perguntaId`);
+
+--
+-- Indexes for table `perguntasdf`
+--
+ALTER TABLE `perguntasdf`
+  ADD PRIMARY KEY (`perguntadfId`);
+
+--
+-- Indexes for table `respostas`
+--
+ALTER TABLE `respostas`
+  ADD PRIMARY KEY (`respostaId`),
+  ADD KEY `FK_perguntas` (`perguntaId`);
+
+--
+-- Indexes for table `respostasdf`
+--
+ALTER TABLE `respostasdf`
+  ADD PRIMARY KEY (`respostadfId`),
+  ADD KEY `FK_perguntasdf` (`perguntadfId`);
+
+--
+-- Indexes for table `usuarios`
+--
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`usuarioId`);
+
+--
 -- Constraints for dumped tables
 --
 
@@ -6744,8 +6855,3 @@ ALTER TABLE `jogadores`
 --
 ALTER TABLE `missoes`
   ADD CONSTRAINT `fk_missoes_missoes1` FOREIGN KEY (`missaoPai`) REFERENCES `missoes` (`missaoId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
