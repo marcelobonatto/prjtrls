@@ -1,3 +1,8 @@
+CREATE DATABASE `prjtrls`;
+
+CREATE USER 'phpappuser' IDENTIFIED BY 'tril3g4lproj'; 
+GRANT ALL PRIVILEGES ON prjtrls.* TO 'phpappuser';
+
 -- phpMyAdmin SQL Dump
 -- version 4.7.4
 -- https://www.phpmyadmin.net/
@@ -6726,7 +6731,7 @@ CREATE TABLE IF NOT EXISTS `vw_missoes` (
 --
 DROP TABLE IF EXISTS `vw_missoes`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `vw_missoes`  AS  select `missoes`.`missaoId` AS `missaoId`,`missoes`.`missaoNome` AS `missaoNome`,`missoes`.`missaoTitulo` AS `missaoTitulo`,`missoes`.`missaoDescricao` AS `missaoDescricao`,`missoes`.`missaoAtivo` AS `missaoAtivo`,`missoes`.`missaoIdMoodle` AS `missaoIdMoodle`,`missoes`.`missaoAno` AS `missaoAno`,`missoes`.`missaoSemestre` AS `missaoSemestre`,`missoes`.`missaoSequencia` AS `missaoSequencia`,`missoes`.`missaoObrigatoria` AS `missaoObrigatoria`,`missoes`.`missaoPai` AS `missaoPai`,`missoes`.`missaoPaiSequencia` AS `missaoPaiSequencia`,(((`missoes`.`missaoAno` * 100000) + (`missoes`.`missaoSemestre` * 10000)) + (case when (`missoes`.`missaoPaiSequencia` > 0) then ((`missoes`.`missaoPaiSequencia` * 100) + `missoes`.`missaoSequencia`) else (`missoes`.`missaoSequencia` * 100) end)) AS `missaoReferencia`,`missoes`.`missaoDataIni` AS `missaoDataIni`,`missoes`.`missaoDataFim` AS `missaoDataFim`,`missoes`.`missaoUrlRedir` AS `missaoUrlRedir` from `missoes` ;
+CREATE VIEW `vw_missoes`  AS  select `missoes`.`missaoId` AS `missaoId`,`missoes`.`missaoNome` AS `missaoNome`,`missoes`.`missaoTitulo` AS `missaoTitulo`,`missoes`.`missaoDescricao` AS `missaoDescricao`,`missoes`.`missaoAtivo` AS `missaoAtivo`,`missoes`.`missaoIdMoodle` AS `missaoIdMoodle`,`missoes`.`missaoAno` AS `missaoAno`,`missoes`.`missaoSemestre` AS `missaoSemestre`,`missoes`.`missaoSequencia` AS `missaoSequencia`,`missoes`.`missaoObrigatoria` AS `missaoObrigatoria`,`missoes`.`missaoPai` AS `missaoPai`,`missoes`.`missaoPaiSequencia` AS `missaoPaiSequencia`,(((`missoes`.`missaoAno` * 100000) + (`missoes`.`missaoSemestre` * 10000)) + (case when (`missoes`.`missaoPaiSequencia` > 0) then ((`missoes`.`missaoPaiSequencia` * 100) + `missoes`.`missaoSequencia`) else (`missoes`.`missaoSequencia` * 100) end)) AS `missaoReferencia`,`missoes`.`missaoDataIni` AS `missaoDataIni`,`missoes`.`missaoDataFim` AS `missaoDataFim`,`missoes`.`missaoUrlRedir` AS `missaoUrlRedir` from `missoes` ;
 
 --
 -- Constraints for dumped tables

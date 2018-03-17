@@ -71,11 +71,11 @@ else
 }
 
 //Exemplo JSON
-//{ "sexo": 1, "cabelo": 2, "pele": 3 }
-//eyAic2V4byI6IDEsICJjYWJlbG8iOiAyLCAicGVsZSI6IDMgfQ%3D%3D
+//{ "sexo": 1, "cabelo": "fdebf0fa-119e-11e8-89d2-74d4359f41f2", "pele": "74f0a924-11aa-11e8-89d2-74d4359f41f2" }
+//eyAic2V4byI6IDEsICJjYWJlbG8iOiAiZmRlYmYwZmEtMTE5ZS0xMWU4LTg5ZDItNzRkNDM1OWY0MWYyIiwgInBlbGUiOiAiNzRmMGE5MjQtMTFhYS0xMWU4LTg5ZDItNzRkNDM1OWY0MWYyIiB9
 
 //url exemplo:
-//http://localhost/prjtrlsadm/ws/customperson.php?token=ZjJiMWRkNGUtZDNjYy0xMWU3LWIxZGYtNTJhZTc0M2JjODNk&valor=eyAic2V4byI6IDEsICJjYWJlbG8iOiAyLCAicGVsZSI6IDMgfQ%3D%3D
+//http://localhost/prjtrlsadm/ws/customperson.php?token=eyAic2V4byI6IDEsICJjYWJlbG8iOiAiZmRlYmYwZmEtMTE5ZS0xMWU4LTg5ZDItNzRkNDM1OWY0MWYyIiwgInBlbGUiOiAiNzRmMGE5MjQtMTFhYS0xMWU4LTg5ZDItNzRkNDM1OWY0MWYyIiB9
 
 if (count($mensagens) == 0)
 {
@@ -89,17 +89,41 @@ if (count($mensagens) == 0)
 
         if ($jogobj->id != null)
         {
-            $jogobj->cabelo = $json->cabelo;
-            $jogobj->pele   = $json->pele;
-            $jogobj->sexo   = $json->sexo;
-
-            if (!$jogobj->Salvar(false))
+            if ($json->sexo != 0 && $json->sexo != 1)
             {
-                $mensagens[]    = 'Não foi possível alterar os dados do jogador';
+                $mensagens[]    = 'Valor da chave sexo é inválida (deve ser 0 ou 1)';
             }
-            else
+
+            $corcabelo = new lib\cabelo();
+            $corcabelo->Selecionar($json->cabelo);
+
+            if ($corcabelo->nome == null)
             {
-                $custom->gravou = true;
+                $mensagens[]    = 'Cor de cabelo não cadastrada';
+            }
+
+            $corpele = new lib\pele();
+            $corpele->Selecionar($json->pele);
+
+            if ($corpele->nome == null)
+            {
+                $mensagens[]    = 'Cor de pele não cadastrada';
+            }
+
+            if (count($mensagens) == 0)
+            {
+                $jogobj->cabelo = $json->cabelo;
+                $jogobj->pele   = $json->pele;
+                $jogobj->sexo   = $json->sexo;
+
+                if (!$jogobj->Salvar(false))
+                {
+                    $mensagens[]    = 'Não foi possível alterar os dados do jogador';
+                }
+                else
+                {
+                    $custom->gravou = true;
+                }
             }
         }
         else

@@ -1,0 +1,54 @@
+Instruções:
+https://docs.microsoft.com/pt-br/azure/app-service/app-service-web-tutorial-php-mysql
+
+Criar grupo de recurso:
+az group create --name projetoTrilhas --location "Brazil South"
+
+Criar banco de dados:
+az mysql server create --name dbprjtrls --resource-group projetoTrilhas --location "Brazil South" --admin-user adminuser --admin-password 5t0rmTr00p3r
+
+{
+  "administratorLogin": "adminuser",
+  "fullyQualifiedDomainName": "dbprjtrls.mysql.database.azure.com",
+  "id": "/subscriptions/a4ea47d4-be7b-45d1-a801-7539275446b0/resourceGroups/projetoTrilhas/providers/Microsoft.DBforMySQL/servers/dbprjtrls",
+  "location": "brazilsouth",
+  "name": "dbprjtrls",
+  "resourceGroup": "projetoTrilhas",
+  "sku": {
+    "capacity": 100,
+    "family": null,
+    "name": "MYSQLB100",
+    "size": null,
+    "tier": "Basic"
+  },
+  "sslEnforcement": "Enabled",
+  "storageMb": 51200,
+  "tags": null,
+  "type": "Microsoft.DBforMySQL/servers",
+  "userVisibleState": "Ready",
+  "version": "5.6"
+}
+
+Criar regra de proxy no Azure:
+az mysql server firewall-rule create --name allIPs --server dbprjtrls --resource-group projetoTrilhas --start-ip-address 0.0.0.0 --end-ip-address 255.255.255.255
+
+Criar usuário para deploy:
+az webapp deployment user set --user-name marcelobonatto --password N4mc094l494
+
+Criar Web App de PHP:
+az webapp create --resource-group myResourceGroup --plan myAppServicePlan --name <app_name> --runtime "PHP|7.0" --deployment-local-git
+
+Criar App Settings de banco de dados:
+az webapp config appsettings set --name prjtrilhas --resource-group projetoTrilhas --settings DB_HOST="dbprjtrls.database.windows.net" DB_DATABASE="prjtrls" DB_USERNAME="phpappuser@dbprjtrls" DB_PASSWORD="pascalmontesquier" MYSQL_SSL="true"
+
+-------------------------------------------------
+
+Usuários Banco de dados
+
+Administrador
+Usuario: adminuser
+Senha: 5t0rmTr00p3r
+
+Usuário PHP
+Usuário: phpappuser
+Senha: tril3g4lproj
