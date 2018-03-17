@@ -123,6 +123,9 @@ if (count($mensagens) == 0)
             $jogobj->pele       = null;
             $jogobj->sexo       = 0;
             $jogobj->ano        = $json->ano;
+            $jogobj->diabonus   = 0;
+            $jogobj->databonus  = date('Y-m-d H:i:s');
+            $jogobj->tickets    = 20;
 
             if (!$jogobj->Salvar(true))
             {
