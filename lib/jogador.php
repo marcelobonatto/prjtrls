@@ -14,12 +14,13 @@ class jogador
     public $missoes;
     public $diabonus;
     public $databonus;
+    public $dataagora;
     public $tickets;
 
     public function Selecionar($id)
     {
         $sql    = 'SELECT alunoId, jogadorDinheiro, jogadorPontuacao, corcabeloId, corpeleId, jogadorSexo, jogadorAno, jogadorDiaBonus, ' .
-                  'jogadorDataBonus, jogadorTicketQuiz ' .
+                  'jogadorDataBonus, jogadorTicketQuiz, NOW() AS horaAgora ' .
                   'FROM jogadores ' .
                   "WHERE alunoId = '$id'";
 
@@ -40,8 +41,9 @@ class jogador
                 $this->sexo             = $jogador["jogadorSexo"];
                 $this->ano              = $jogador["jogadorAno"];
                 $this->diabonus         = $jogador["jogadorDiaBonus"];
-                $this->databonus        = $jogador["jogadorDataBonus"];
+                $this->databonus        = strtotime($jogador["jogadorDataBonus"]);
                 $this->tickets          = $jogador["jogadorTicketQuiz"];
+                $this->dataagora        = strtotime($jogador["horaAgora"]);
             }
         }
     }
@@ -100,7 +102,7 @@ class jogador
                   "jogadorSexo = $this->sexo, " .
                   "jogadorAno = $this->ano, " .
                   "jogadorDiaBonus = $this->diabonus, " .
-                  "jogadorDataBonus = '$this->databonus', " .
+                  "jogadorDataBonus = '" . date('Y-m-d H:i:s', $this->databonus) . "', " .
                   "jogadorTicketQuiz = $this->tickets " .
                   "WHERE alunoId = '$this->id'";
 

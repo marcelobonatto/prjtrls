@@ -83,6 +83,28 @@ if (count($mensagens) == 0)
             $login->dinheiro    = $jogobj->dinheiro;
             $login->pontos      = $jogobj->pontos;
 
+            $bonus              = new DateTime($jogobj->databonus);
+            $agora              = new DateTime($jogobj->dataagora);
+            $intervalo          = $bonus->diff($agora);
+            $intervint          = (float)$intervalo->format('%a');
+
+            if ($intervint >= 1 && $intervint < 2)
+            {
+                $jogobj->diabonus++;
+
+/* verificar a maior quantidade de bônus */
+
+                //if ($jogobj->diabonus > )
+
+                //$jogobj->databonus
+            }
+
+            
+
+            $login->tickets     = $jobobj->tickets;
+            $login->ganharbonus = 0;
+            $login->bonusdiario = 0;
+
             $jeobj              = new lib\jogadoreixo();
             $jearr              = $jeobj->ListarPorAluno($aluobj->id);
 
