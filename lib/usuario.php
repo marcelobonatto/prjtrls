@@ -28,7 +28,7 @@ class usuario
 
         $db     = new bancodados();
         $res    = $db->SelecionarAssociativa($sql);
-
+        
         if ($res !== FALSE)
         {
             if (count($res) > 0)

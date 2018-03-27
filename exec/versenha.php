@@ -15,6 +15,7 @@ else if (!isset($_POST['senha']))
 else
 {
     $usuario = new usuario();
+
     $ok = $usuario->VerificarConexao($_POST['usuario'], $_POST['senha']);
 
     if ($ok === TRUE)

@@ -88,18 +88,29 @@ if (count($mensagens) == 0)
             $intervalo          = $bonus->diff($agora);
             $intervint          = (float)$intervalo->format('%a');
 
+            $atualbonus         = false;
+
             if ($intervint >= 1 && $intervint < 2)
             {
                 $jogobj->diabonus++;
 
-/* verificar a maior quantidade de bônus */
+                if ($jogobj->diabonus > bonusdiario::ObterDiaMaximo())
+                {
+                    $jogobj->diabonus  = 1;
+                }
 
-                //if ($jogobj->diabonus > )
-
-                //$jogobj->databonus
+                $atualbonus = true;
+            }
+            else if ($intervint >= 2)
+            {
+                $jogobj->diabonus   = 1;
+                $atualbonus         = true;
             }
 
-            
+            if ($atualbonus)
+            {
+                $jogobj->databonus  = date('Y-m-d H:i:s');
+            }
 
             $login->tickets     = $jobobj->tickets;
             $login->ganharbonus = 0;
