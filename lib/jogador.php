@@ -25,7 +25,7 @@ class jogador
                   "WHERE alunoId = '$id'";
 
         $db     = new bancodados();
-        $res    = $db->SelecaoAssociativa($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== false)
         {
