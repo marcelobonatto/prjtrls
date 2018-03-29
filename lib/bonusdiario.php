@@ -20,5 +20,25 @@ class bonusdiario
 
         return $max;
     }
+
+    public static function ObterValorDia($dia)
+    {
+        $bonus  = 0;
+
+        $sql    = "SELECT bonusQuantidade FROM bonusdiario WHERE bonusDia = $dia";
+
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                $bonus    = $res[0]['bonusQuantidade'];
+            }
+        }
+
+        return $bonus;
+    }
 }
 ?>

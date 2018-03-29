@@ -111,5 +111,19 @@ class jogador
 
         return true;
     }
+
+    public function AtualizarBonus()
+    {
+        $sql    = 'UPDATE jogadores ' .
+                  "SET jogadorDinheiro = $this->dinheiro, " .
+                  "jogadorDiaBonus = $this->diabonus, " .
+                  "jogadorDataBonus = '" . date('Y-m-d H:i:s', $this->databonus) . "' " .
+                  "WHERE alunoId = '$this->id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
 }
 ?>

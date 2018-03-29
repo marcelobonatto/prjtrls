@@ -34,7 +34,7 @@ else
     <body class="h-100">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fundo">
             <a class="navbar-brand" href="#">
-                <img src="img/logo.png" height="50" alt="Projeto Trilhas" />
+                <img src="img/logo.png" height="100" alt="Projeto Trilhas" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menus" aria-controls="menus" aria-expanded="false" aria-label="Navegação Alternada">
                 <span class="navbar-toggler-icon"></span>

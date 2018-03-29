@@ -109,7 +109,11 @@ if (count($mensagens) == 0)
 
             if ($atualbonus)
             {
-                $jogobj->databonus  = date('Y-m-d H:i:s');
+                $valor = bonusdiario::ObterValorDia($jogobj->diabonus);
+
+                $jogobj->databonus  =   $agora;
+                $jogobj->dinheiro   +=  $valor;
+                $jogobj->AtualizarBonus();
             }
 
             $login->tickets     = $jobobj->tickets;
