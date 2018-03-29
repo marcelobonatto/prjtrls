@@ -83,6 +83,43 @@ if (count($mensagens) == 0)
             $login->dinheiro    = $jogobj->dinheiro;
             $login->pontos      = $jogobj->pontos;
 
+            $bonus              = new DateTime($jogobj->databonus);
+            $agora              = new DateTime($jogobj->dataagora);
+            $intervalo          = $bonus->diff($agora);
+            $intervint          = (float)$intervalo->format('%a');
+
+            $atualbonus         = false;
+
+            if ($intervint >= 1 && $intervint < 2)
+            {
+                $jogobj->diabonus++;
+
+                if ($jogobj->diabonus > bonusdiario::ObterDiaMaximo())
+                {
+                    $jogobj->diabonus  = 1;
+                }
+
+                $atualbonus = true;
+            }
+            else if ($intervint >= 2)
+            {
+                $jogobj->diabonus   = 1;
+                $atualbonus         = true;
+            }
+
+            if ($atualbonus)
+            {
+                $valor = bonusdiario::ObterValorDia($jogobj->diabonus);
+
+                $jogobj->databonus  =   $agora;
+                $jogobj->dinheiro   +=  $valor;
+                $jogobj->AtualizarBonus();
+            }
+
+            $login->tickets     = $jobobj->tickets;
+            $login->ganharbonus = 0;
+            $login->bonusdiario = 0;
+
             $jeobj              = new lib\jogadoreixo();
             $jearr              = $jeobj->ListarPorAluno($aluobj->id);
 

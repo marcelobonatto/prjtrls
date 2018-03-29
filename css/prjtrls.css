@@ -1,38 +1,45 @@
 .fundointeiro
 {
-    background: url("../img/fundo.png");
+    background: url("../img/fundo.png") no-repeat center center fixed;
 }
+
 
 .fundo
 {
-    background: #005a9f; /* For browsers that do not support gradients */
-    background: -webkit-linear-gradient(left, #005a9f, #000000); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, #005a9f, #000000); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, #005a9f, #000000); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, #005a9f, #000000); /* Standard syntax */
+    background: #a5642d; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, #a5642d, #a5642d); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, #a5642d, #a5642d); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, #a5642d, #a5642d); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, #a5642d, #a5642d); /* Standard syntax */
 }
 
-label.lblinicial, .lnkinicial
+label.lblinicial, .lnkinicial, .navbar-dark .navbar-text a
 {
     font-weight: bold;
-    color: #cddc29;
+/*    color: #cddc29; */
+    color: #C2924F;
 }
 
-.lnkinicial
+.lnkinicial, .navbar-dark .navbar-text a
 {
     text-decoration: none;
 }
 
-.lnkinicial:hover
+.lnkinicial:hover, .navbar-dark .navbar-text a:focus, .navbar-dark .navbar-text a:hover
 {
-    color: #a4b020;
+    /* color: #a4b020; */
+    color: #C2924F;
     text-decoration: underline;
 }
 
 .btninicial
 {
-    background-color: #cddc29;
-    color: #335aa9;
+    border: solid 1px #c5987d;
+    /* background-color: #cddc29; */
+    background-color: #f0e0be;
+    /* color: #335aa9; */
+    color: #958b7d;
+    font-weight: bold;
 }
 
 .conteudo

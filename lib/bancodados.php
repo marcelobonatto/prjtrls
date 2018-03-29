@@ -7,7 +7,7 @@ class bancodados
     {
         $mysqli = null;
 
-/*        if (PHP_OS == 'WINNT')
+        if (PHP_OS == 'WINNT')
         {
             //No Windows
             $mysqli = new \mysqli("localhost", "root", "", "prjtrls");
@@ -16,9 +16,9 @@ class bancodados
         {
             //No Mac
             $mysqli = new \mysqli("localhost", "root", "root", "prjtrls", 8889);
-        }*/
+        }
 
-        $mysqli = new \mysqli(getenv("DB_HOST"), getenv("DB_USERNAME"), trim(getenv("DB_PASSWORD")), getenv("DB_DATABASE"));
+        //$mysqli = new \mysqli(getenv("DB_HOST"), getenv("DB_USERNAME"), trim(getenv("DB_PASSWORD")), getenv("DB_DATABASE"));
 
         $mysqli->set_charset("utf8");
 

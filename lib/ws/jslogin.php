@@ -17,5 +17,8 @@ class jslogin extends jsloginbase
     public $quiz;
     public $mochila;
     public $loja;
+    public $tickets;
+    public $ganharbonus;
+    public $bonusdiario;
 }
 ?>

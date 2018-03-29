@@ -15,7 +15,7 @@
         <div class="container h-100">
             <div class="row h-100 justify-content-center align-items-center">
                 <div class="col-md-6">
-                    <img src="img/logobranco.png" alt="Projeto Trilhas" class="img-fluid" />
+                    <img src="img/logo.png" alt="Projeto Trilhas" class="img-fluid" />
                 </div>
                 <div class="col-md-6">
                     <form id="needs_validation" class="container">

@@ -1,14 +1,22 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Generation Time: 17-Mar-2018 às 15:29
--- Versão do servidor: 5.6.38
--- PHP Version: 7.2.1
+-- Host: localhost:3306
+-- Generation Time: Mar 27, 2018 at 02:08 AM
+-- Server version: 5.6.34-log
+-- PHP Version: 7.1.7
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `prjtrls`
@@ -17,7 +25,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `alunos`
+-- Table structure for table `alunos`
 --
 
 CREATE TABLE `alunos` (
@@ -33,7 +41,7 @@ CREATE TABLE `alunos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `alunos`
+-- Dumping data for table `alunos`
 --
 
 INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodle`, `alunoEmail`, `alunoAno`, `alunoAtivo`, `escolaId`, `usuarioId`) VALUES
@@ -47,7 +55,7 @@ INSERT INTO `alunos` (`alunoId`, `alunoNome`, `alunoMatricula`, `alunoLoginMoodl
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `autorizacao`
+-- Table structure for table `autorizacao`
 --
 
 CREATE TABLE `autorizacao` (
@@ -58,7 +66,7 @@ CREATE TABLE `autorizacao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `autorizacao`
+-- Dumping data for table `autorizacao`
 --
 
 INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
@@ -224,7 +232,7 @@ INSERT INTO `autorizacao` (`autoId`, `usuarioId`, `autoData`, `autoIP`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `bonusdiario`
+-- Table structure for table `bonusdiario`
 --
 
 CREATE TABLE `bonusdiario` (
@@ -232,10 +240,23 @@ CREATE TABLE `bonusdiario` (
   `bonusQuantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Dumping data for table `bonusdiario`
+--
+
+INSERT INTO `bonusdiario` (`bonusDia`, `bonusQuantidade`) VALUES
+(1, 10),
+(2, 20),
+(3, 40),
+(4, 80),
+(5, 120),
+(6, 180),
+(7, 300);
+
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `cidades`
+-- Table structure for table `cidades`
 --
 
 CREATE TABLE `cidades` (
@@ -245,7 +266,7 @@ CREATE TABLE `cidades` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `cidades`
+-- Dumping data for table `cidades`
 --
 
 INSERT INTO `cidades` (`cidadeCodigo`, `cidadeNome`, `estadoSigla`) VALUES
@@ -5826,7 +5847,7 @@ INSERT INTO `cidades` (`cidadeCodigo`, `cidadeNome`, `estadoSigla`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `corescabelo`
+-- Table structure for table `corescabelo`
 --
 
 CREATE TABLE `corescabelo` (
@@ -5837,7 +5858,7 @@ CREATE TABLE `corescabelo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `corescabelo`
+-- Dumping data for table `corescabelo`
 --
 
 INSERT INTO `corescabelo` (`corcabeloId`, `corcabeloNome`, `corcabeloCor`, `corcabeloAtivo`) VALUES
@@ -5848,7 +5869,7 @@ INSERT INTO `corescabelo` (`corcabeloId`, `corcabeloNome`, `corcabeloCor`, `corc
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `corespele`
+-- Table structure for table `corespele`
 --
 
 CREATE TABLE `corespele` (
@@ -5859,7 +5880,7 @@ CREATE TABLE `corespele` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `corespele`
+-- Dumping data for table `corespele`
 --
 
 INSERT INTO `corespele` (`corpeleId`, `corpeleNome`, `corpeleCor`, `corpeleAtivo`) VALUES
@@ -5870,7 +5891,7 @@ INSERT INTO `corespele` (`corpeleId`, `corpeleNome`, `corpeleCor`, `corpeleAtivo
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `dialogosnpc`
+-- Table structure for table `dialogosnpc`
 --
 
 CREATE TABLE `dialogosnpc` (
@@ -5883,7 +5904,7 @@ CREATE TABLE `dialogosnpc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `dialogosnpc`
+-- Dumping data for table `dialogosnpc`
 --
 
 INSERT INTO `dialogosnpc` (`dialogoId`, `missaoId`, `dialogoSequencia`, `npcId`, `dialogoHumor`, `dialogoTexto`) VALUES
@@ -5892,7 +5913,7 @@ INSERT INTO `dialogosnpc` (`dialogoId`, `missaoId`, `dialogoSequencia`, `npcId`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `eixos`
+-- Table structure for table `eixos`
 --
 
 CREATE TABLE `eixos` (
@@ -5904,7 +5925,7 @@ CREATE TABLE `eixos` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `eixos`
+-- Dumping data for table `eixos`
 --
 
 INSERT INTO `eixos` (`eixoId`, `eixoNome`, `eixoSequencia`, `eixoSigla`, `eixoAtivo`) VALUES
@@ -5916,7 +5937,7 @@ INSERT INTO `eixos` (`eixoId`, `eixoNome`, `eixoSequencia`, `eixoSigla`, `eixoAt
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `escolas`
+-- Table structure for table `escolas`
 --
 
 CREATE TABLE `escolas` (
@@ -5929,7 +5950,7 @@ CREATE TABLE `escolas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `escolas`
+-- Dumping data for table `escolas`
 --
 
 INSERT INTO `escolas` (`escolaId`, `escolaNome`, `escolaBairro`, `cidadeCodigo`, `estadoSigla`, `escolaAtivo`) VALUES
@@ -5942,7 +5963,7 @@ INSERT INTO `escolas` (`escolaId`, `escolaNome`, `escolaBairro`, `cidadeCodigo`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `estados`
+-- Table structure for table `estados`
 --
 
 CREATE TABLE `estados` (
@@ -5951,7 +5972,7 @@ CREATE TABLE `estados` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `estados`
+-- Dumping data for table `estados`
 --
 
 INSERT INTO `estados` (`estadoSigla`, `estadoNome`) VALUES
@@ -5986,7 +6007,7 @@ INSERT INTO `estados` (`estadoSigla`, `estadoNome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `gruposusu`
+-- Table structure for table `gruposusu`
 --
 
 CREATE TABLE `gruposusu` (
@@ -5996,7 +6017,7 @@ CREATE TABLE `gruposusu` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `gruposusu`
+-- Dumping data for table `gruposusu`
 --
 
 INSERT INTO `gruposusu` (`grupoId`, `grupoNome`, `grupoAtivo`) VALUES
@@ -6007,7 +6028,7 @@ INSERT INTO `gruposusu` (`grupoId`, `grupoNome`, `grupoAtivo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `itens`
+-- Table structure for table `itens`
 --
 
 CREATE TABLE `itens` (
@@ -6025,7 +6046,7 @@ CREATE TABLE `itens` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `itens`
+-- Dumping data for table `itens`
 --
 
 INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `eixoId`, `itemLimite`, `itemBonus`, `itemPrecoNormal`, `itemAtivo`, `itemImagem`) VALUES
@@ -6043,7 +6064,7 @@ INSERT INTO `itens` (`itemId`, `itemNome`, `itemNivel`, `itemTipo`, `itemCor`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `itensmochila`
+-- Table structure for table `itensmochila`
 --
 
 CREATE TABLE `itensmochila` (
@@ -6054,7 +6075,7 @@ CREATE TABLE `itensmochila` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `itensmochila`
+-- Dumping data for table `itensmochila`
 --
 
 INSERT INTO `itensmochila` (`itemmochilaId`, `alunoId`, `itemId`, `itemmochilaSelecionado`) VALUES
@@ -6067,7 +6088,7 @@ INSERT INTO `itensmochila` (`itemmochilaId`, `alunoId`, `itemId`, `itemmochilaSe
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `jogadores`
+-- Table structure for table `jogadores`
 --
 
 CREATE TABLE `jogadores` (
@@ -6084,19 +6105,19 @@ CREATE TABLE `jogadores` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `jogadores`
+-- Dumping data for table `jogadores`
 --
 
 INSERT INTO `jogadores` (`alunoId`, `jogadorDinheiro`, `jogadorPontuacao`, `corcabeloId`, `corpeleId`, `jogadorSexo`, `jogadorAno`, `jogadorDiaBonus`, `jogadorDataBonus`, `jogadorTicketsQuiz`) VALUES
-('a436c700-d62f-11e7-b52d-14b65896e7c5', '0.00', 0, 'fdebf0fa-119e-11e8-89d2-74d4359f41f2', '74f0a924-11aa-11e8-89d2-74d4359f41f2', 0, 1, 0, '0000-00-00 00:00:00', 20),
-('ef88bb50-cd6a-11e7-91b8-00051b7601a3', '200.00', 0, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 1, 1, 1, '2018-03-14 14:21:41', 15),
-('ef8c126e-cd6a-11e7-91b8-00051b7601a3', '200.00', 1000, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 1, 2, 3, '2018-03-17 09:38:00', 19),
-('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', '2000.00', 2500, '27a95637-11aa-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 0, 1, 5, '2018-03-16 12:41:16', 5);
+('a436c700-d62f-11e7-b52d-14b65896e7c5', 0.00, 0, 'fdebf0fa-119e-11e8-89d2-74d4359f41f2', '74f0a924-11aa-11e8-89d2-74d4359f41f2', 0, 1, 0, '0000-00-00 00:00:00', 20),
+('ef88bb50-cd6a-11e7-91b8-00051b7601a3', 200.00, 0, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 1, 1, 1, '2018-03-14 14:21:41', 15),
+('ef8c126e-cd6a-11e7-91b8-00051b7601a3', 200.00, 1000, 'fdec0ad4-119e-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 1, 2, 3, '2018-03-17 09:38:00', 19),
+('ef8cbab6-cd6a-11e7-91b8-00051b7601a3', 2000.00, 2500, '27a95637-11aa-11e8-89d2-74d4359f41f2', 'bc29a14e-11a2-11e8-89d2-74d4359f41f2', 0, 1, 5, '2018-03-16 12:41:16', 5);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `jogadoreseixo`
+-- Table structure for table `jogadoreseixo`
 --
 
 CREATE TABLE `jogadoreseixo` (
@@ -6107,7 +6128,7 @@ CREATE TABLE `jogadoreseixo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `jogadoreseixo`
+-- Dumping data for table `jogadoreseixo`
 --
 
 INSERT INTO `jogadoreseixo` (`jogadoreixoId`, `alunoId`, `eixoId`, `jogadoreixoPontos`) VALUES
@@ -6131,7 +6152,7 @@ INSERT INTO `jogadoreseixo` (`jogadoreixoId`, `alunoId`, `eixoId`, `jogadoreixoP
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `jogadoresmissao`
+-- Table structure for table `jogadoresmissao`
 --
 
 CREATE TABLE `jogadoresmissao` (
@@ -6145,7 +6166,7 @@ CREATE TABLE `jogadoresmissao` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `jogadoresmissao`
+-- Dumping data for table `jogadoresmissao`
 --
 
 INSERT INTO `jogadoresmissao` (`jogadormissaoId`, `alunoId`, `missaoId`, `jogadormissaoAprovado`, `jogadormissaoCumprida`, `jogadormissaoJogando`, `jogadormissaoLiberada`) VALUES
@@ -6156,7 +6177,7 @@ INSERT INTO `jogadoresmissao` (`jogadormissaoId`, `alunoId`, `missaoId`, `jogado
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `missaoaluno`
+-- Table structure for table `missaoaluno`
 --
 
 CREATE TABLE `missaoaluno` (
@@ -6167,7 +6188,7 @@ CREATE TABLE `missaoaluno` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `missaoaluno`
+-- Dumping data for table `missaoaluno`
 --
 
 INSERT INTO `missaoaluno` (`missaoalunoId`, `missaoId`, `alunoId`, `statusMissao`) VALUES
@@ -6182,7 +6203,7 @@ INSERT INTO `missaoaluno` (`missaoalunoId`, `missaoId`, `alunoId`, `statusMissao
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `missoes`
+-- Table structure for table `missoes`
 --
 
 CREATE TABLE `missoes` (
@@ -6204,7 +6225,7 @@ CREATE TABLE `missoes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `missoes`
+-- Dumping data for table `missoes`
 --
 
 INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescricao`, `missaoAtivo`, `missaoIdMoodle`, `missaoAno`, `missaoSemestre`, `missaoSequencia`, `missaoObrigatoria`, `missaoPai`, `missaoPaiSequencia`, `missaoDataIni`, `missaoDataFim`, `missaoUrlRedir`) VALUES
@@ -6220,7 +6241,7 @@ INSERT INTO `missoes` (`missaoId`, `missaoNome`, `missaoTitulo`, `missaoDescrica
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `missoeseixo`
+-- Table structure for table `missoeseixo`
 --
 
 CREATE TABLE `missoeseixo` (
@@ -6231,7 +6252,7 @@ CREATE TABLE `missoeseixo` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `missoeseixo`
+-- Dumping data for table `missoeseixo`
 --
 
 INSERT INTO `missoeseixo` (`missaoeixoId`, `missaoId`, `eixoId`, `missaoeixoPontos`) VALUES
@@ -6245,7 +6266,7 @@ INSERT INTO `missoeseixo` (`missaoeixoId`, `missaoId`, `eixoId`, `missaoeixoPont
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `npc`
+-- Table structure for table `npc`
 --
 
 CREATE TABLE `npc` (
@@ -6257,7 +6278,7 @@ CREATE TABLE `npc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `npc`
+-- Dumping data for table `npc`
 --
 
 INSERT INTO `npc` (`npcId`, `npcNome`, `npcChave`, `eixoId`, `npcAtivo`) VALUES
@@ -6271,7 +6292,7 @@ INSERT INTO `npc` (`npcId`, `npcNome`, `npcChave`, `eixoId`, `npcAtivo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `perguntas`
+-- Table structure for table `perguntas`
 --
 
 CREATE TABLE `perguntas` (
@@ -6283,7 +6304,7 @@ CREATE TABLE `perguntas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `perguntas`
+-- Dumping data for table `perguntas`
 --
 
 INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `eixoId`, `perguntaAtivo`) VALUES
@@ -6316,7 +6337,7 @@ INSERT INTO `perguntas` (`perguntaId`, `perguntaEnunciado`, `perguntaCodigo`, `e
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `perguntasdf`
+-- Table structure for table `perguntasdf`
 --
 
 CREATE TABLE `perguntasdf` (
@@ -6328,7 +6349,7 @@ CREATE TABLE `perguntasdf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `perguntasdf`
+-- Dumping data for table `perguntasdf`
 --
 
 INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCodigo`, `perguntadfDificuldade`, `perguntadfAtivo`) VALUES
@@ -6361,7 +6382,7 @@ INSERT INTO `perguntasdf` (`perguntadfId`, `perguntadfEnunciado`, `perguntadfCod
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `respostas`
+-- Table structure for table `respostas`
 --
 
 CREATE TABLE `respostas` (
@@ -6373,7 +6394,7 @@ CREATE TABLE `respostas` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `respostas`
+-- Dumping data for table `respostas`
 --
 
 INSERT INTO `respostas` (`respostaId`, `perguntaId`, `respostaCodigo`, `respostaTexto`, `respostaNivel`) VALUES
@@ -6473,7 +6494,7 @@ INSERT INTO `respostas` (`respostaId`, `perguntaId`, `respostaCodigo`, `resposta
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `respostasdf`
+-- Table structure for table `respostasdf`
 --
 
 CREATE TABLE `respostasdf` (
@@ -6485,7 +6506,7 @@ CREATE TABLE `respostasdf` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `respostasdf`
+-- Dumping data for table `respostasdf`
 --
 
 INSERT INTO `respostasdf` (`respostadfId`, `perguntadfId`, `respostadfCodigo`, `respostadfTexto`, `respostadfNivel`) VALUES
@@ -6611,7 +6632,7 @@ INSERT INTO `respostasdf` (`respostadfId`, `perguntadfId`, `respostadfCodigo`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Table structure for table `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -6626,7 +6647,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Dumping data for table `usuarios`
 --
 
 INSERT INTO `usuarios` (`usuarioId`, `usuarioNome`, `usuarioSenha`, `usuarioSal`, `usuarioEmail`, `usuarioAtivo`, `usuarioCodMod`, `usuarioDataMod`) VALUES
@@ -6844,14 +6865,19 @@ ALTER TABLE `usuarios`
 --
 
 --
--- Limitadores para a tabela `jogadores`
+-- Constraints for table `jogadores`
 --
 ALTER TABLE `jogadores`
   ADD CONSTRAINT `FK_corcabelo_jogador` FOREIGN KEY (`corcabeloId`) REFERENCES `corescabelo` (`corcabeloId`),
   ADD CONSTRAINT `FK_corpele_jogador` FOREIGN KEY (`corpeleId`) REFERENCES `corespele` (`corpeleId`);
 
 --
--- Limitadores para a tabela `missoes`
+-- Constraints for table `missoes`
 --
 ALTER TABLE `missoes`
   ADD CONSTRAINT `fk_missoes_missoes1` FOREIGN KEY (`missaoPai`) REFERENCES `missoes` (`missaoId`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -23,7 +23,7 @@ else
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <title>Projeto Trilhas</title>
+        <title>Saga das Profissões</title>
         
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="css/ext/bootstrap.min.css" />
@@ -34,7 +34,7 @@ else
     <body class="h-100">
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark fundo">
             <a class="navbar-brand" href="#">
-                <img src="img/logobranco.png" height="50" alt="Projeto Trilhas" />
+                <img src="img/logo.png" height="100" alt="Projeto Trilhas" />
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menus" aria-controls="menus" aria-expanded="false" aria-label="Navegação Alternada">
                 <span class="navbar-toggler-icon"></span>
@@ -79,7 +79,7 @@ else
                     }
                     ?>
                 </ul>
-                <div class="navbar-text text-right" style="color: #cddc29">
+                <div class="navbar-text text-right" style="color: #f0e0be">
                     Conectado como <strong><?php echo($usudesc->nome); ?></strong>
                     <br />
                     <a href="sair.php" class="lnkinicial">Sair</a>
