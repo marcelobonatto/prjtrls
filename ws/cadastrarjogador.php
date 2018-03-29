@@ -147,9 +147,9 @@ if (count($mensagens) == 0)
                 $anostr = substr($misobj->referencia, 0, 1);
                 $seqstr = substr($misobj->referencia, 2, 2);
 
-                if ($ano <= $anostr)
+                if ($json->ano <= $anostr)
                 {
-                    if ($ano > $anostr || ($ano == $anostr && $seqstr == '01'))
+                    if ($json->ano > $anostr || ($json->ano == $anostr && $seqstr == '01'))
                     {
                         $misalu->status     = 1;
                     }
