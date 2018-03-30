@@ -88,7 +88,6 @@ class usuario
 //Usar quando for fazer a gravação de usuários
 //echo password_hash($_POST['senha'], PASSWORD_DEFAULT);
 
-
     public function Selecionar($id)
     {
         $sql    = "SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioEmail, usuarioAtivo " .
@@ -120,6 +119,32 @@ class usuario
         $sql    = "SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioEmail, usuarioAtivo " .
                   'FROM usuarios ' .
                   "WHERE usuarioNome = '$nome' " .
+                  'ORDER BY usuarioNome';
+                
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== false)
+        {
+            if (count($res) > 0)
+            {
+                $usuario   = $res[0];
+
+                $this->id       = $usuario['usuarioId'];
+                $this->nome     = $usuario['usuarioNome'];
+                $this->senha    = $usuario['usuarioSenha'];
+                $this->sal      = $usuario['usuarioSal'];
+                $this->email    = $usuario['usuarioEmail'];
+                $this->ativo    = $usuario['usuarioAtivo'];
+            }
+        }
+    }
+
+    public function SelecionarPorEmail($email)
+    {
+        $sql    = "SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioEmail, usuarioAtivo " .
+                  'FROM usuarios ' .
+                  "WHERE usuarioEmail = '$email' " .
                   'ORDER BY usuarioNome';
                 
         $db     = new bancodados();
@@ -194,6 +219,18 @@ class usuario
                   "usuarioEmail = '$this->email', " .
                   "usuarioAtivo = $this->ativo " .
                   "WHERE usuarioId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public function AtualizarChaveNovaSenha($chave)
+    {
+        $sql    = 'UPDATE usuarios ' .
+                  "SET usuarioCodMod = '$chave' " .
+                  "WHERE usuarioId = '$this->id'";
 
         $db         = new bancodados();
         $db->Executar($sql);
