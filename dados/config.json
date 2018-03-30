@@ -1,7 +1,7 @@
 {
     "moodle" : {
-        "endereco": "http://localhost/moodle/",
-        "token": "99b5a72a789063381ad45e4ca7e7c93b",
+        "endereco": "http://www.eadsesipr.org.br/ead/",
+        "token": "ba489802513fef20f03b052ba2476d3e",
         "missoes": {
             "funcao": "core_course_get_courses_by_field",
             "categoria": 2
@@ -58,5 +58,13 @@
             }
         ],
     "endereco": "http://localhost:81/prjtrlsadm",
-    "email_usu": "marcelobonatto@gmail.com"
+    "email": {
+        "host": "mail.nossoricodinheirinho.com.br",
+        "usuario": "testes@nossoricodinheirinho.com.br",
+        "nome": "Teste SESI",
+        "senha": "wd6Wn01~",
+        "autenticacao": true,
+        "porta": 587,
+        "usassl": false
+    }
 }
