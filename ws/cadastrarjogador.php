@@ -82,7 +82,7 @@ if (count($mensagens) == 0)
 
     if ($usuario->id == null)
     {
-        $jogador            = new lib\ws\jscadastrar();      
+        $jogador            = new lib\ws\jscadastrar();
 
         $usuario->nome      = $json->usuario;
         $usuario->senha     = $chobj->texto;

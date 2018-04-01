@@ -17,12 +17,13 @@ if (count($mensagem) == 0)
         $json               = json_decode($contarq);
 
         $chave              = date('YmdHis') . $usuario->email;
-        $chaved             = urlencode(base64_encode($chave));
+        $chave              = base64_encode($chave);
+        $chaved             = urlencode($chave);
 
         $html               = file_get_contents(realpath('../html/mudarsenha.html'));
         $htmls              = str_replace('{chave}', $chaved, str_replace('{url}', $json->endereco, $html));
 
-        $usuario->AtualizarChaveNovaSenha($chaved);
+        $usuario->AtualizarChaveNovaSenha($chave);
 
         $erro               = lib\email::Enviar($usuario->email, '', true, 
                                                 '[Saga das Profiss&otilde;es] Voc&ecirc; pediu para reiniciar a senha?', 
@@ -51,5 +52,5 @@ if (count($mensagem) > 0)
     }
 
     echo($html);
-}                    
+}
 ?>
