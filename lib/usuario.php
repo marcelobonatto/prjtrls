@@ -85,9 +85,6 @@ class usuario
         return $matriz;
     }
 
-//Usar quando for fazer a gravação de usuários
-//echo password_hash($_POST['senha'], PASSWORD_DEFAULT);
-
     public function Selecionar($id)
     {
         $sql    = "SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioEmail, usuarioAtivo " .
@@ -138,6 +135,35 @@ class usuario
                 $this->ativo    = $usuario['usuarioAtivo'];
             }
         }
+    }
+
+    public function VerificarChaveReset($chave)
+    {
+        $sql    = "SELECT usuarioId, usuarioNome, usuarioSenha, usuarioSal, usuarioEmail, usuarioAtivo " .
+                  'FROM usuarios ' .
+                  "WHERE usuarioCodMod = '$chave'";
+
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== false)
+        {
+            if (count($res) > 0)
+            {
+                $usuario   = $res[0];
+
+                $this->id       = $usuario['usuarioId'];
+                $this->nome     = $usuario['usuarioNome'];
+                $this->senha    = $usuario['usuarioSenha'];
+                $this->sal      = $usuario['usuarioSal'];
+                $this->email    = $usuario['usuarioEmail'];
+                $this->ativo    = $usuario['usuarioAtivo'];
+
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public function SelecionarPorEmail($email)
@@ -248,6 +274,21 @@ class usuario
         $db->Executar($sql);
 
         return true;
-    }    
+    }
+
+    public function GravarSenha($senha)
+    {
+        $senhac = password_hash($senha, PASSWORD_DEFAULT);
+
+        $sql    = 'UPDATE usuarios ' .
+                  "SET usuarioSenha = '$senhac', " .
+                  "usuarioCodMod = '' " .
+                  "WHERE usuarioId = '$this->id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
 }
 ?>

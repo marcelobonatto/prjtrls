@@ -25,6 +25,9 @@ $(document).ready(function() {
         var usuario = $("#usuario").val();
         var senha = $("#senha").val();
     
+        $("#entrar").prop("disabled", true);
+        $("#entrar").text("Entrando...");
+
         $.ajax({
             type: "POST",
             url: "exec/versenha.php",
@@ -40,6 +43,10 @@ $(document).ready(function() {
                     mensagem.html("<i class=\"material-icons\">&#xE002;</i> O usuário ou a senha que você digitou estão errados." +
                                   "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
                 }
+            },
+            complete: function() {
+                $("#entrar").prop("disabled", false);
+                $("#entrar").text("Entrar");
             }
         });
     }
