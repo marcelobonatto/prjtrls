@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR" class="h-100">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <title>[Saga das Profiss&otilde;es] Mudar Senha</title>
+        <style>
+            *, ::after, ::before
+            {
+                box-sizing: border-box;
+            }
+
+            body
+            {
+                font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+                text-align: center;
+            }
+
+            .fundointeiro
+            {
+                background: url("{url}/img/fundo.png") no-repeat center center fixed;
+            }
+
+            .btn
+            {
+                display: inline-block;
+                font-weight: 400;
+                text-align: center;
+                white-space: nowrap;
+                vertical-align: middle;
+                -webkit-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                user-select: none;
+                border: 1px solid transparent;
+                padding: .375rem .75rem;
+                font-size: 1rem;
+                line-height: 1.5;
+                border-radius: .25rem;
+                transition: background-color .15s ease-in-out, border-color .15s ease-in-out,   box-shadow .15s ease-in-out;
+                text-decoration: none;
+                -webkit-appearance: button;
+            }
+
+            .btn, .btn:focus, .btn:hover
+            {
+                text-decoration: none;
+                -webkit-appearance: button;
+            }
+
+            .btninicial
+            {
+                border: solid 1px #c5987d;
+                background-color: #f0e0be;
+                color: #958b7d;
+                font-weight: bold;
+            }
+
+            .btninicial:focus, .btninicial:hover
+            {
+                background-color: #958b7d;
+                color: #f0e0be;
+            }
+        </style>
+    </head>
+    <body>
+        <img src="{url}/img/logo.png" alt="Saga das Profiss&otilde;es" style="width: 7%" />
+        <br />
+        <h1>O administrador cadastrou voc&ecirc; no sistema</h1>
+        <p>
+            Antes de voc&ecirc; entrar no sistema, precisar&aacute; criar uma senha.
+            Clique no bot&atilde;o abaixo. Voc&ecirc; ser&aacute; redirecionado para o nosso site
+            para informar uma nova senha.
+        </p>
+        <br />
+        <a href="{url}/mudarsenha.php?c={chave}" class="btn btninicial">
+            MUDAR MINHA SENHA
+        </a>
+        <br />
+        <br />
+        <p>
+            Este link &eacute; v&aacute;lido por 24 horas.
+        </p>
+    </body>
+</html>

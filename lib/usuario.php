@@ -192,6 +192,26 @@ class usuario
         }
     }
 
+    public static function ExisteEmail($email)
+    {
+        $sql    = "SELECT usuarioId " .
+                  'FROM usuarios ' .
+                  "WHERE usuarioEmail = '$email'";
+
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== false)
+        {
+            if (count($res) > 0)
+            {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+
     public function Salvar()
     {
         if ($this->id == null)
