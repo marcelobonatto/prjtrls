@@ -27,9 +27,9 @@ if ($getid == 'novo')
 }
 else
 {
-    $id = $_GET['id'];
+    $id         = $_GET['id'];
 
-    $usuario  = new usuario();
+    $usuario    = new usuario();
     $usuario->Selecionar($id);
     
     $txtid      = $id;
@@ -62,10 +62,6 @@ include('header.php');
                 <label for="txtEmail">E-mail:</label>
                 <input class="form-control" type="email" value="<?php echo($email); ?>" id="txtEmail" name="txtEmail" required autocomplete="off" />
             </div>
-            <br class="<?php echo($aparecer2); ?>" />
-            <button class="btn btn-info <?php echo($aparecer); ?>">
-                Criar senha
-            </button>
             <br class="<?php echo($aparecer2); ?>" />
             <button id="enviarEmail" type="button" class="btn btn-info <?php echo($aparecer); ?>">
                 Enviar e-mail para troca de senha

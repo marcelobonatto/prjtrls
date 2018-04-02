@@ -21,7 +21,6 @@ $(document).ready(function() {
     });
 
     function submitForm() {
-        // Initiate Variables With Form Content
         var id = $("#txtId").val();
         var nome = $("#txtNome").val();
         var email = $("#txtEmail").val();
@@ -65,6 +64,43 @@ $(document).ready(function() {
     });
 
     $("#enviarEmail").click(function() {
+        var email = $("#txtEmail").val();
 
+        $("#enviarEmail").prop("disabled", true);
+        $("#enviarEmail").text("Enviando...");
+
+        $.ajax({
+            type: "POST",
+            url: "exec/enviarnovasenha.php",
+            data: "email=" + email,
+            success : function(text) {
+                var txtspl = text.split("|");
+
+                if (txtspl[0] == "OK") {
+                    var mensagem = $("#mensagem");
+                    
+                    if (mensagem.hasClass("alert-danger")) mensagem.removeClass("alert-danger");
+                    if (!mensagem.hasClass("alert-success")) mensagem.addClass("alert-success");
+                    mensagem.removeClass("d-none");
+                    
+                    mensagem.html("<i class=\"material-icons\">&#xE002;</i> Um e-mail foi enviado para o usu&aacute;rio!" +
+                                    "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
+                }
+                else {
+                    var mensagem = $("#mensagem");
+
+                    if (mensagem.hasClass("alert-success")) mensagem.removeClass("alert-success");
+                    if (!mensagem.hasClass("alert-danger")) mensagem.addClass("alert-danger");
+                    mensagem.removeClass("d-none");
+
+                    mensagem.html("<i class=\"material-icons\">&#xE002;</i> Não foi possível enviar o e-mail para o usu&aacute;rio." + 
+                                    "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
+                }
+            },
+            complete: function() {
+                $("#enviarEmail").prop("disabled", false);
+                $("#enviarEmail").text("Enviar e-mail para troca de senha");
+            }
+        });
     });
 });
