@@ -96,7 +96,7 @@ include('header.php');
                 </div>
             </div>
             <hr />
-            <button class="btn btn-info">
+            <button id="cmdGravar" class="btn btn-info">
                 Gravar
             </button>
             <button id="cmdVoltar" type="button" class="btn btn-danger">

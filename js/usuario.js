@@ -26,6 +26,9 @@ $(document).ready(function() {
         var email = $("#txtEmail").val();
         var ativo = $("input[name='optAtivo']:checked").val();
 
+        $("#cmdGravar").prop("disabled", true);
+        $("#cmdGravar").text("Gravando...");
+
         $.ajax({
             type: "POST",
             url: "exec/gravarusuario.php",
@@ -40,8 +43,19 @@ $(document).ready(function() {
                     if (!mensagem.hasClass("alert-success")) mensagem.addClass("alert-success");
                     mensagem.removeClass("d-none");
                     
-                    mensagem.html("<i class=\"material-icons\">&#xE002;</i> O registro foi salvo!" +
-                                  "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
+                    var textomsg = "O registro foi salvo";
+
+                    if (txtspl[2] != "")
+                    {
+                        textomsg += ", mas teve um problema: " + textspl[2];
+                    }
+                    else
+                    {
+                        textomsg += "!";
+                    }
+
+                    mensagem.html("<i class=\"material-icons\">&#xE002;</i> " + textomsg +
+                                    "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
 
                     $("#txtId").val(txtspl[1]);
                 }
@@ -55,6 +69,10 @@ $(document).ready(function() {
                     mensagem.html("<i class=\"material-icons\">&#xE002;</i> " + text +
                                   "<button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Fechar\"><span aria-hidden=\"true\">&times;</span></button>");
                 }
+            },
+            complete: function() {
+                $("#cmdGravar").prop("disabled", false);
+                $("#cmdGravar").text("Gravar");
             }
         });
     }
@@ -74,9 +92,7 @@ $(document).ready(function() {
             url: "exec/enviarnovasenha.php",
             data: "email=" + email,
             success : function(text) {
-                var txtspl = text.split("|");
-
-                if (txtspl[0] == "OK") {
+                if (text == "OK") {
                     var mensagem = $("#mensagem");
                     
                     if (mensagem.hasClass("alert-danger")) mensagem.removeClass("alert-danger");
