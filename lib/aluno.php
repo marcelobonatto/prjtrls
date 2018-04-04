@@ -212,7 +212,7 @@ class aluno
         $sql    = 'UPDATE alunos ' .
                   "SET alunoNome = '$this->nome', " .
                   "alunoLoginMoodle = '$this->loginMoodle', " .
-                  "alunoEmail = $this->$email, " .
+                  "alunoEmail = $this->email, " .
                   "alunoAno = $this->ano, " .                  
                   "escolaId = $escola, " .
                   "alunoMatricula = $this->matricula, " .
