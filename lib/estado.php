@@ -8,17 +8,18 @@ class estado
 
     public $id;
     public $nome;
+    public $ativo;
 
     public function ListarRegistros($pagina)
     {
         $matriz = array();
 
-        $sql    = 'SELECT estadoSigla, estadoNome ' .
+        $sql    = 'SELECT estadoSigla, estadoNome, estadoAtivo ' .
                   'FROM estados ' .
                   'ORDER BY estadoSigla';
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
@@ -27,8 +28,9 @@ class estado
                 foreach ($res as $estado)
                 {
                     $obj        = new estado();
-                    $obj->id    = $estado[self::ESTADO_SIGLA];
-                    $obj->nome  = $estado[self::ESTADO_NOME];
+                    $obj->id    = $estado['estadoSigla'];
+                    $obj->nome  = $estado['estadoNome'];
+                    $obj->ativo = $estado['estadoAtivo'];
 
                     array_push($matriz, $obj);
                 }
@@ -42,7 +44,7 @@ class estado
     {
         $matriz = array();
 
-        $sql    = 'SELECT estadoSigla, estadoNome ' .
+        $sql    = 'SELECT estadoSigla, estadoNome, estadoAtivo ' .
                   'FROM estados ' .
                   "WHERE UPPER(estadoSigla) = UPPER('$sigla')";
 
@@ -63,7 +65,7 @@ class estado
 
     public function Selecionar($sigla)
     {
-        $sql    = "SELECT estadoSigla, estadoNome " .
+        $sql    = "SELECT estadoSigla, estadoNome, estadoAtivo " .
                 'FROM estados ' .
                 "WHERE estadoSigla = '$sigla' " .
                 'ORDER BY estadoNome';
@@ -100,8 +102,8 @@ class estado
     public function Incluir()
     {
         $sql    = 'INSERT INTO estados ' .
-                '(estadoSigla, estadoNome) ' . 
-                "VALUES ('$this->id', '$this->nome')";
+                  '(estadoSigla, estadoNome, estadoAtivo) ' . 
+                  "VALUES ('$this->id', '$this->nome', $this->ativo)";
 
         $db         = new bancodados();
         $db->Executar($sql);
@@ -118,10 +120,22 @@ class estado
 
     public function Atualizar()
     {
+        $sql    =   'UPDATE estados ' .
+                    "SET estadoNome = '$this->nome', " .
+                    "estadoAtivo = $this->ativo " .
+                    "WHERE estadoSigla = '$this->id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public static function Excluir($id, $modo)
+    {
         $sql    = 'UPDATE estados ' .
-                "SET estadoNome = '$this->nome', " .
-                "estadoSigla = '$this->sigla', " .
-                "WHERE estadoSigla = '$this->id'";
+                  "SET estadoAtivo = $modo " .
+                  "WHERE estadoSigla = '$id'";
 
         $db         = new bancodados();
         $db->Executar($sql);

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: 02-Abr-2018 às 02:26
+-- Generation Time: 04-Abr-2018 às 02:10
 -- Versão do servidor: 5.7.19
 -- PHP Version: 7.0.23
 
@@ -5994,6 +5994,7 @@ DROP TABLE IF EXISTS `estados`;
 CREATE TABLE IF NOT EXISTS `estados` (
   `estadoSigla` varchar(2) NOT NULL,
   `estadoNome` varchar(50) NOT NULL,
+  `estadoAtivo` tinyint(1) NOT NULL,
   PRIMARY KEY (`estadoSigla`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -6001,34 +6002,34 @@ CREATE TABLE IF NOT EXISTS `estados` (
 -- Extraindo dados da tabela `estados`
 --
 
-INSERT INTO `estados` (`estadoSigla`, `estadoNome`) VALUES
-('AC', 'Acre'),
-('AL', 'Alagoas'),
-('AM', 'Amazonas'),
-('AP', 'Amapá'),
-('BA', 'Bahia'),
-('CE', 'Ceará'),
-('DF', 'Distrito Federal'),
-('ES', 'Espírito Santo'),
-('GO', 'Goiás'),
-('MA', 'Maranhão'),
-('MG', 'Minas Gerais'),
-('MS', 'Mato Grosso do Sul'),
-('MT', 'Mato Grosso'),
-('PA', 'Pará'),
-('PB', 'Paraíba'),
-('PE', 'Pernambuco'),
-('PI', 'Piauí'),
-('PR', 'Paraná'),
-('RJ', 'Rio de Janeiro'),
-('RN', 'Rio Grande do Norte'),
-('RO', 'Rondônia'),
-('RR', 'Roraima'),
-('RS', 'Rio Grande do Sul'),
-('SC', 'Santa Catarina'),
-('SE', 'Sergipe'),
-('SP', 'São Paulo'),
-('TO', 'Tocantins');
+INSERT INTO `estados` (`estadoSigla`, `estadoNome`, `estadoAtivo`) VALUES
+('AC', 'Acre', 1),
+('AL', 'Alagoas', 1),
+('AM', 'Amazonas', 1),
+('AP', 'Amapá', 1),
+('BA', 'Bahia', 1),
+('CE', 'Ceará', 1),
+('DF', 'Distrito Federal', 1),
+('ES', 'Espírito Santo', 1),
+('GO', 'Goiás', 1),
+('MA', 'Maranhão', 1),
+('MG', 'Minas Gerais', 1),
+('MS', 'Mato Grosso do Sul', 1),
+('MT', 'Mato Grosso', 1),
+('PA', 'Pará', 1),
+('PB', 'Paraíba', 1),
+('PE', 'Pernambuco', 1),
+('PI', 'Piauí', 1),
+('PR', 'Paraná', 1),
+('RJ', 'Rio de Janeiro', 1),
+('RN', 'Rio Grande do Norte', 1),
+('RO', 'Rondônia', 1),
+('RR', 'Roraima', 1),
+('RS', 'Rio Grande do Sul', 1),
+('SC', 'Santa Catarina', 1),
+('SE', 'Sergipe', 1),
+('SP', 'São Paulo', 1),
+('TO', 'Tocantins', 1);
 
 -- --------------------------------------------------------
 
@@ -6459,6 +6460,16 @@ CREATE TABLE IF NOT EXISTS `permissoes` (
   KEY `telaId` (`telaId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Extraindo dados da tabela `permissoes`
+--
+
+INSERT INTO `permissoes` (`permissaoId`, `permissaoNome`, `telaId`, `permissaoIncluir`, `permissaoAlterar`, `permissaoExcluir`, `permissaoAcessar`, `permissaoAtivo`) VALUES
+('05e7ebc2-37af-11e8-9dec-74d4359f41f2', 'Cadastro de Usuário - Apenas visualizar', '12905937-3795-11e8-9dec-74d4359f41f2', 0, 0, 0, 1, 1),
+('845c4fb2-3798-11e8-9dec-74d4359f41f2', 'Lista de Usuários - Todas as alterações', '12904436-3795-11e8-9dec-74d4359f41f2', 1, 1, 1, 1, 1),
+('845c69ad-3798-11e8-9dec-74d4359f41f2', 'Lista de Usuários - Apenas listar', '12904436-3795-11e8-9dec-74d4359f41f2', 0, 0, 0, 1, 1),
+('f024d01a-37ae-11e8-9dec-74d4359f41f2', 'Cadastro de Usuário - Todas as permissões', '12905937-3795-11e8-9dec-74d4359f41f2', 1, 1, 1, 1, 1);
+
 -- --------------------------------------------------------
 
 --
@@ -6729,6 +6740,14 @@ CREATE TABLE IF NOT EXISTS `telas` (
   `telaAtivo` tinyint(1) NOT NULL,
   PRIMARY KEY (`telaId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `telas`
+--
+
+INSERT INTO `telas` (`telaId`, `telaNome`, `telaCaminho`, `telaAtivo`) VALUES
+('12904436-3795-11e8-9dec-74d4359f41f2', 'Lista de Usuários', 'usuarios.php', 1),
+('12905937-3795-11e8-9dec-74d4359f41f2', 'Cadastro de Usuários', 'usuario.php', 1);
 
 -- --------------------------------------------------------
 
