@@ -79,6 +79,64 @@ class permissao
         }
     }
 
+    public function Salvar()
+    {
+        if ($this->id == null)
+        {
+            $id = '{ID}';
+        }
+        else
+        {
+            $id = $this->id;
+        }
+
+        if ($id == '{ID}')
+        {
+            return $this->Incluir($id);
+        }
+        else
+        {
+            return $this->Atualizar($id);
+        }
+    }
+    
+    public function Incluir($id)
+    {
+        $erro   = -1;
+
+        $sql    = 'INSERT INTO permissoes ' .
+                  '(permissaoId, permissaoNome, telaId, permissaoIncluir, permissaoAlterar, permissaoExcluir, permissaoAcessar, permissaoAtivo) ' .
+                  "VALUES ('$id', '$this->nome', '$this->tela', $this->incluir, $this->alterar, $this->excluir, $this->acessar, $this->ativo)";
+
+        $db         = new bancodados();
+        $this->id   = $db->ExecutarRetornaId($sql);
+
+        if ($this->id == null)
+        {
+            $erro   = 1;
+        }
+
+        return $erro;
+    }
+
+    public function Atualizar($id)
+    {
+        $sql    = 'UPDATE permissoes ' .
+                  "SET permissaoNome = '$this->nome', " .
+                  "telaId = '$this->tela', " .
+                  "permissaoIncluir = $this->incluir, " .
+                  "permissaoAlterar = $this->alterar, " .
+                  "permissaoExcluir = $this->excluir, " .
+                  "permissaoAcessar = $this->acessar, " .
+                  "permissaoAtivo = $this->ativo " .
+                  "WHERE permissaoId = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
     public static function Excluir($id, $modo)
     {
         $sql    = 'UPDATE permissoes ' .
