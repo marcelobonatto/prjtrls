@@ -10,17 +10,18 @@ class cidade
     public $id;
     public $nome;
     public $estado;
+    public $ativo;
 
     public function ListarRegistros($pagina)
     {
         $matriz = array();
 
-        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla ' .
+        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo ' .
                   'FROM cidades ' .
                   'ORDER BY estadoSigla, cidadeNome';
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
@@ -29,9 +30,10 @@ class cidade
                 foreach ($res as $cidade)
                 {
                     $obj            = new cidade();
-                    $obj->id        = $cidade[self::CIDADE_CODIGO];
-                    $obj->nome      = $cidade[self::CIDADE_NOME];
-                    $obj->estado    = $cidade[self::ESTADO_SIGLA];
+                    $obj->id        = $cidade['cidadeCodigo'];
+                    $obj->nome      = $cidade['cidadeNome'];
+                    $obj->estado    = $cidade['estadoSigla'];
+                    $obj->ativo     = $cidade['cidadeAtivo'];
 
                     array_push($matriz, $obj);
                 }
@@ -45,14 +47,14 @@ class cidade
     {
         $matriz = array();
 
-        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla ' .
+        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo ' .
                   'FROM cidades c ' .
                   "WHERE estadoSigla = '$estado' " .
                   'AND EXISTS (SELECT NULL FROM escolas e WHERE e.cidadeCodigo = c.cidadeCodigo) ' .
                   'ORDER BY cidadeNome';
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
@@ -61,9 +63,10 @@ class cidade
                 foreach ($res as $cidade)
                 {
                     $obj            = new cidade();
-                    $obj->id        = $cidade[self::CIDADE_CODIGO];
-                    $obj->nome      = $cidade[self::CIDADE_NOME];
-                    $obj->estado    = $cidade[self::ESTADO_SIGLA];
+                    $obj->id        = $cidade['cidadeCodigo'];
+                    $obj->nome      = $cidade['cidadeNome'];
+                    $obj->estado    = $cidade['estadoSigla'];
+                    $obj->ativo     = $cidade['cidadeAtivo'];
 
                     array_push($matriz, $obj);
                 }
@@ -77,12 +80,12 @@ class cidade
     {
         $matriz = array();
 
-        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla ' .
+        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo ' .
                   'FROM cidades ' .
                   "WHERE UPPER(cidadeNome) = UPPER('$nome')";
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
@@ -90,9 +93,10 @@ class cidade
             {
                 $cidade = $res[0];
 
-                $this->id        = $cidade[self::CIDADE_CODIGO];
-                $this->nome      = $cidade[self::CIDADE_NOME];
-                $this->estado    = $cidade[self::ESTADO_SIGLA];
+                $this->id        = $cidade['cidadeCodigo'];
+                $this->nome      = $cidade['cidadeNome'];
+                $this->estado    = $cidade['estadoSigla'];
+                $this->ativo     = $cidade['cidadeAtivo'];
             }
         }
     }
@@ -101,13 +105,13 @@ class cidade
     {
         $matriz = array();
 
-        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla ' .
+        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo ' .
                   'FROM cidades ' .
                   'ORDER BY estadoSigla, cidadeNome '.
                   "WHERE UPPER(estadoSigla) = UPPER('$estado')";
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
@@ -116,9 +120,10 @@ class cidade
                 foreach ($res as $cidade)
                 {
                     $obj            = new cidade();
-                    $obj->id        = $cidade[self::CIDADE_CODIGO];
-                    $obj->nome      = $cidade[self::CIDADE_NOME];
-                    $obj->estado    = $cidade[self::ESTADO_SIGLA];
+                    $obj->id        = $cidade['cidadeCodigo'];
+                    $obj->nome      = $cidade['cidadeNome'];
+                    $obj->estado    = $cidade['estadoSigla'];
+                    $obj->ativo     = $cidade['cidadeAtivo'];
 
                     array_push($matriz, $obj);
                 }
