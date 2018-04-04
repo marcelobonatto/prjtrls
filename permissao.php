@@ -61,7 +61,7 @@ include('header.php');
             </div>
             <div class="form-group">
                 <label>Tela:</label>
-                <select class="form-control col-sm-3" id="cmbTela" name="cmbTela">
+                <select class="form-control col-sm-3" id="cmbTela" name="cmbTela" required>
                     <option></option>
                     <?php
                     foreach ($telas as $telaitm)
