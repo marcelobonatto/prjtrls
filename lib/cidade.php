@@ -3,22 +3,38 @@ namespace lib;
 
 class cidade
 {
-    const CIDADE_CODIGO     = 0;
-    const CIDADE_NOME       = 1;
-    const ESTADO_SIGLA      = 2;
-
     public $id;
     public $nome;
     public $estado;
     public $ativo;
 
+    public function Contar()
+    {
+        $qtde   = 0;
+
+        $sql    = 'SELECT COUNT(*) AS qtde ' .
+                  'FROM cidades';
+
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== FALSE)
+        {
+            $qtde   = $res[0]['qtde'];
+        }
+
+        return $qtde;
+    }
+
     public function ListarRegistros($pagina)
     {
         $matriz = array();
+        $ini    = ($pagina - 1) * 50;
 
         $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo ' .
                   'FROM cidades ' .
-                  'ORDER BY estadoSigla, cidadeNome';
+                  'ORDER BY estadoSigla, cidadeNome ' .
+                  "LIMIT $ini, 50";
 
         $db     = new bancodados();
         $res    = $db->SelecionarAssociativa($sql);

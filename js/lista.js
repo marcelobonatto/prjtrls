@@ -1,6 +1,7 @@
 var classe          = "";
 var metodoExcluir   = "";
 var paginaCadastro  = "";
+var paginacao       = false;
 
 $(document).ready(function() {
     $("#cmdExcluir").click(function() {
@@ -39,7 +40,7 @@ function carregarTabela(pagina)
     $.ajax({
         type: "POST",
         url: "exec/listarregistros.php",
-        data: "pagina=" + pagina + "&classe=" + classe + "&colunas=" + colunas + "&cadastro=" + paginaCadastro })
+        data: "pagina=" + pagina + "&classe=" + classe + "&colunas=" + colunas + "&cadastro=" + paginaCadastro + "&paginacao=" + paginacao })
         .done(function(tabela) {
             $(div).html(tabela);
         })

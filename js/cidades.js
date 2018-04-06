@@ -1,9 +1,12 @@
+var numpagina   = 0;
+
 $(document).ready(function() {
     classe          = "lib\\cidade";
     metodoExcluir   = "Excluir";
     paginaCadastro  = "cidade";
-
-    carregarTabela(1);
+    paginacao       = true;
+    
+    carregarTabela(numpagina);
 });
 
 function configurarTabela()
