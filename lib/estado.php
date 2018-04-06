@@ -49,7 +49,7 @@ class estado
                   "WHERE UPPER(estadoSigla) = UPPER('$sigla')";
 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== FALSE)
         {
@@ -57,32 +57,34 @@ class estado
             {
                 $estado = $res[0];
                 
-                $this->id   = $estado[self::ESTADO_SIGLA];
-                $this->nome = $estado[self::ESTADO_NOME];
+                $this->id   = $estado['estadoSigla'];
+                $this->nome = $estado['estadoNome'];
+                $this->ativo = $estado['estadoAtivo'];
             }
         }
     }
 
     public function Selecionar($sigla)
     {
-        $sql    = "SELECT estadoSigla, estadoNome, estadoAtivo " .
-                'FROM estados ' .
-                "WHERE estadoSigla = '$sigla' " .
-                'ORDER BY estadoNome';
+        $sql    =   "SELECT estadoSigla, estadoNome, estadoAtivo " .
+                    'FROM estados ' .
+                    "WHERE estadoSigla = '$sigla' " .
+                    'ORDER BY estadoNome';
 
                 echo "SQL: ".$sql;                
                 
         $db     = new bancodados();
-        $res    = $db->SelecaoSimples($sql);
+        $res    = $db->SelecionarAssociativa($sql);
 
         if ($res !== false)
         {
             if (count($res) > 0)
             {
-                $estado   = $res[0];
+                $estado     = $res[0];
 
-                $this->id   = $estado[self::ESTADO_SIGLA];
-                $this->nome = $estado[self::ESTADO_NOME];
+                $this->id   = $estado['estadoSigla'];
+                $this->nome = $estado['estadoNome'];
+                $this->ativo = $estado['estadoAtivo'];
             }
         }
     }

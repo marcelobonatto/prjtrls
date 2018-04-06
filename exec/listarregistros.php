@@ -1,6 +1,8 @@
 <?php
 require_once('../autoload.php');
 
+session_start();
+
 header('Content-type: text/html; charset=utf-8');
 /*
 $classe     = $_GET['classe'];
@@ -14,9 +16,34 @@ $cadastro   = $_GET['cadastro'];
 $classe         = $_POST['classe'];
 
 $obj            = new $classe();
-$lista          = $obj->ListarRegistros($_POST['pagina']);
+
+$numpag         = intval($_POST['pagina']);
+$paginacao      = $_POST['paginacao'] == 'true';
+
+if ($paginacao)
+{
+    $sessao         = 'qtde' . str_replace('lib\\', '', $classe);
+
+    if ($numpag == 0)
+    {
+        $numpag             = 1;
+        $total              = $obj->Contar();
+        $_SESSION[$sessao]  = $total;
+    }
+    else
+    {
+        $total              = $_SESSION[$sessao];
+    }
+}
+
+$lista          = $obj->ListarRegistros($numpag);
 $colunas        = json_decode($_POST['colunas']);
 $cadastro       = $_POST['cadastro'];
+
+if ($paginacao)
+{
+    controles\paginacao::Gerar($numpag, $total);
+}
 ?>
 <table class="table table-striped">
     <thead class="thead-dark">
@@ -66,16 +93,9 @@ $cadastro       = $_POST['cadastro'];
         ?>
     </tbody>
 </table>
-<!-- <nav>
-    <ul class="pagination justify-content-end">
-        <li class="page-item disabled">
-            <a class="page-link" href="#" tabindex="-1">Previous</a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#">Next</a>
-        </li>
-    </ul>
-</nav> -->
+<?php
+if ($paginacao)
+{
+    controles\paginacao::Gerar($numpag, $total);
+}
+?>
