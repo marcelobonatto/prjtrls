@@ -92,10 +92,31 @@ class cidade
         return $matriz;
     }
 
+    public function Selecionar($id)
+    {
+        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo ' .
+                  'FROM cidades ' .
+                  "WHERE cidadeCodigo = $id";
+
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                $cidade = $res[0];
+
+                $this->id        = $cidade['cidadeCodigo'];
+                $this->nome      = $cidade['cidadeNome'];
+                $this->estado    = $cidade['estadoSigla'];
+                $this->ativo     = $cidade['cidadeAtivo'];
+            }
+        }
+    }
+
     public function SelecionarPorNome($nome)
     {
-        $matriz = array();
-
         $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo ' .
                   'FROM cidades ' .
                   "WHERE UPPER(cidadeNome) = UPPER('$nome')";
