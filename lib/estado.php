@@ -40,6 +40,36 @@ class estado
         return $matriz;
     }
 
+    public function ListarCombo()
+    {
+        $matriz = array();
+
+        $sql    = 'SELECT estadoSigla, estadoNome, estadoAtivo ' .
+                  'FROM estados ' .
+                  'ORDER BY estadoSigla';
+
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                foreach ($res as $estado)
+                {
+                    $obj        = new estado();
+                    $obj->id    = $estado['estadoSigla'];
+                    $obj->nome  = $estado['estadoNome'];
+                    $obj->ativo = $estado['estadoAtivo'];
+
+                    array_push($matriz, $obj);
+                }
+            }
+        }
+
+        return $matriz;
+    }
+
     public function SelecionarPorSigla($sigla)
     {
         $matriz = array();

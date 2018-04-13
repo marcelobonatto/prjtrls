@@ -138,6 +138,25 @@ class cidade
         }
     }
 
+    public static function Existe($id)
+    {
+        $existe = false;
+
+        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo ' .
+                  'FROM cidades ' .
+                  "WHERE cidadeCodigo = '$id'";
+
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== FALSE)
+        {
+            $existe = (count($res) > 0);
+        }
+
+        return $existe;
+    }
+
     public function ListarRegistrosPorEstados($estado)
     {
         $matriz = array();
@@ -168,6 +187,11 @@ class cidade
         }
 
         return $matriz;
+    }
+
+    public function Salvar($editar)
+    {
+
     }
 }
 ?>
