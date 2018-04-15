@@ -3,13 +3,19 @@ require_once('../autoload.php');
 
 $mensagem   = array();
 
+if (!isset($_POST['novo'])) $mensagem[] = 'Indicador de status n&atilde;o informado';   else $novo  = $_POST['novo'];
+
 if (!isset($_POST['id']))
 {
     $mensagem[] = 'C&oacute;digo IBGE n&atilde;o informado';
 }
 else
 {
-    if (lib\cidade::Existe($_POST['id']))
+    if (strlen($_POST['id']) > 7)
+    {
+        $mensagem[] = 'C&oacute;digo IBGE informado n&atilde;o pode ser maior que 7 caracteres';
+    }
+    else if (lib\cidade::Existe($_POST['id']))
     {
         $mensagem[] = 'C&oacute;digo IBGE informado j&aacute; existe';
     }
@@ -32,13 +38,24 @@ if (count($mensagem) == 0)
     $cidade->estado     = $estado;
     $cidade->ativo      = $ativo;
 
-    if ($cidade->Salvar($_POST['id']))
+    if ($cidade->Salvar($novo))
     {
-        echo("OK|$cidade->id");
+        echo("OK|$id");
     }
     else
     {
         echo('Ocorreu um erro na hora de gravar');
     }
+}
+else
+{
+    $html = '';
+
+    foreach ($mensagem as $linha)
+    {
+        $html   .= "- $linha<br />"; 
+    }
+
+    echo($html);
 }
 ?>

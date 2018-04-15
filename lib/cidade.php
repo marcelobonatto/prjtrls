@@ -189,9 +189,54 @@ class cidade
         return $matriz;
     }
 
-    public function Salvar($editar)
+    public function Salvar($novo)
     {
+        if ($novo)
+        {
+            return $this->Incluir();
+        }
+        else
+        {
+            return $this->Atualizar();
+        }
+    }
 
+    public function Incluir()
+    {
+        $sql    = 'INSERT INTO cidades ' .
+                  '(cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo) ' . 
+                  "VALUES ('$this->id', '$this->nome', '$this->estado', $this->ativo)";
+
+        $db         = new bancodados();
+        $this->id   = $db->Executar($sql);
+
+        return true;
+    }
+
+    public function Atualizar()
+    {
+        $sql    = 'UPDATE cidades ' .
+                  "SET cidadeNome = '$this->nome', " .
+                  "estadoSigla = '$this->estado', " .
+                  "cidadeAtivo = $this->ativo " .
+                  "WHERE cidadeCodigo = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public static function Excluir($id, $modo)
+    {
+        $sql    = 'UPDATE cidades ' .
+                  "SET cidadeAtivo = $modo " .
+                  "WHERE cidadeCodigo = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
     }
 }
 ?>
