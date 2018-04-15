@@ -92,10 +92,31 @@ class cidade
         return $matriz;
     }
 
+    public function Selecionar($id)
+    {
+        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo ' .
+                  'FROM cidades ' .
+                  "WHERE cidadeCodigo = $id";
+
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                $cidade = $res[0];
+
+                $this->id        = $cidade['cidadeCodigo'];
+                $this->nome      = $cidade['cidadeNome'];
+                $this->estado    = $cidade['estadoSigla'];
+                $this->ativo     = $cidade['cidadeAtivo'];
+            }
+        }
+    }
+
     public function SelecionarPorNome($nome)
     {
-        $matriz = array();
-
         $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo ' .
                   'FROM cidades ' .
                   "WHERE UPPER(cidadeNome) = UPPER('$nome')";
@@ -115,6 +136,25 @@ class cidade
                 $this->ativo     = $cidade['cidadeAtivo'];
             }
         }
+    }
+
+    public static function Existe($id)
+    {
+        $existe = false;
+
+        $sql    = 'SELECT cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo ' .
+                  'FROM cidades ' .
+                  "WHERE cidadeCodigo = '$id'";
+
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== FALSE)
+        {
+            $existe = (count($res) > 0);
+        }
+
+        return $existe;
     }
 
     public function ListarRegistrosPorEstados($estado)
@@ -147,6 +187,56 @@ class cidade
         }
 
         return $matriz;
+    }
+
+    public function Salvar($novo)
+    {
+        if ($novo)
+        {
+            return $this->Incluir();
+        }
+        else
+        {
+            return $this->Atualizar();
+        }
+    }
+
+    public function Incluir()
+    {
+        $sql    = 'INSERT INTO cidades ' .
+                  '(cidadeCodigo, cidadeNome, estadoSigla, cidadeAtivo) ' . 
+                  "VALUES ('$this->id', '$this->nome', '$this->estado', $this->ativo)";
+
+        $db         = new bancodados();
+        $this->id   = $db->Executar($sql);
+
+        return true;
+    }
+
+    public function Atualizar()
+    {
+        $sql    = 'UPDATE cidades ' .
+                  "SET cidadeNome = '$this->nome', " .
+                  "estadoSigla = '$this->estado', " .
+                  "cidadeAtivo = $this->ativo " .
+                  "WHERE cidadeCodigo = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
+    }
+
+    public static function Excluir($id, $modo)
+    {
+        $sql    = 'UPDATE cidades ' .
+                  "SET cidadeAtivo = $modo " .
+                  "WHERE cidadeCodigo = '$id'";
+
+        $db         = new bancodados();
+        $db->Executar($sql);
+
+        return true;
     }
 }
 ?>
