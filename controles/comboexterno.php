@@ -3,8 +3,14 @@ namespace controles;
 
 class comboexterno
 {
-    public static function Gerar($rotulo, $campo, $valor, $classe, $campotexto, $campovalor)
+    public static function Gerar($rotulo, $campo, $valor, $classe, $campotexto, $campovalor, $requerido)
     {
+        comboexterno::GerarMaisDescritivo($rotulo, $campo, $valor, $classe, array($campotexto), $campovalor, $requerido);
+    }
+
+    public static function GerarMaisDescritivo($rotulo, $campo, $valor, $classe, $campostexto, $campovalor, $requerido)
+    {
+        $txtreq         = '';
         $nomecontrole   = "cmb$campo";
 
         echo("<div class=\"form-group\">\n");
@@ -20,6 +26,11 @@ class comboexterno
         else
         {
             $seltxtef   = '';
+        }
+        
+        if ($requerido)
+        {
+            $txtreq     = " required";
         }
         
         $opcoes     = "<option value=\"*\"$seltxtef>[ Selecione ]</option>";
@@ -41,12 +52,17 @@ class comboexterno
             }
 
             $cmpvlr = $item->$campovalor;
-            $cmptxt = $item->$campotexto;
+            $cmptxt = '';
+
+            foreach ($campostexto as $campotexto)
+            {
+                $cmptxt .= ($cmptxt != '' ? ' - ' : '') . $item->$campotexto;
+            }
 
             $opcoes .= "<option value=\"$cmpvlr\"$seltxtef>$cmptxt</option>";
         }
 
-        echo("\t<select class=\"form-control col-sm-3\" id=\"$nomecontrole\" name=\"$nomecontrole\" required>\n");
+        echo("\t<select class=\"form-control col-sm-3\" id=\"$nomecontrole\" name=\"$nomecontrole\"$txtreq>\n");
         echo("\t\t$opcoes\n"); 
         echo("\t</select>\n");
         echo("</div>\n");

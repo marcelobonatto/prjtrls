@@ -11,7 +11,7 @@ class moodle_cursos
     public $categoryname;
     public $sortorder;
 
-    public function Obter()
+    public function ListarCombo()
     {
         $contarq        = file_get_contents(realpath('dados/config.json'));
         $json           = json_decode($contarq);

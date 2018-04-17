@@ -44,9 +44,9 @@ include('header.php');
         <form id="frmCidade" method="post" action="cidade.php">
             <input type="hidden" id="novo" value="<?php echo($id); ?>" />
             <?php
-            controles\campotexto::Gerar('C&oacute;digo IBGE', 'id', $txtid, 2, ($txtid !== ''));
-            controles\campotexto::Gerar('Nome', 'nome', $nome, 6, false);
-            controles\comboexterno::Gerar('Estado', 'estado', $estado, 'lib\\estado', 'nome', 'id');
+            controles\campotexto::Gerar('C&oacute;digo IBGE', 'id', $txtid, 2, ($txtid !== ''), true);
+            controles\campotexto::Gerar('Nome', 'nome', $nome, 6, false, true);
+            controles\comboexterno::Gerar('Estado', 'estado', $estado, 'lib\\estado', 'nome', 'id', true);
             controles\botaoativo::Gerar('Ativo', $ativo, 'Ativo', 'Sim', 'Sim', 'Nao', 'Não');
             controles\botoescadastro::Gerar();
             ?>

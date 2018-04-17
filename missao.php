@@ -67,9 +67,6 @@ else
 $outrasobj      = new lib\missao();
 $outrasmss      = $outrasobj->ListarRegistrosExceto($getid, true);
 
-$moodleobj      = new lib\moodle\moodle_cursos();
-$moodlearr      = $moodleobj->Obter();
-
 $emeobj         = new lib\eixomissaoeixo();
 $emearr         = $emeobj->ListarRegistros($getid);
 ?>
