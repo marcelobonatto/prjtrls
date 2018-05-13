@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="pt-BR" class="h-100">
     <head>
         <meta charset="utf-8" />
@@ -25,7 +25,7 @@
             </tr>
             <tr>
                 <td>01</td>
-                <td><a href="">cadastrarjogador</a></td>
+                <td><a href="frmcadastrarjogador.php">cadastrarjogador</a></td>
                 <td>Permite o cadastramento do jogador no sistema</td>
                 <td>POST</td>
                 <td>
@@ -45,10 +45,10 @@
                             <strong>valor</strong> string base 64 contendo um JSON com os valores:
                             <ul>
                                 <li>
-                                    <strong>cpf</strong> número do CPF
+                                    <strong>nome</strong> nome do usu&aacute;rio no Moodle
                                 </li>
                                 <li>
-                                    <strong>senha</strong> número do CPF
+                                    <strong>senha</strong> senha do usu&aacute;rio
                                 </li>
                             </ul>
                         </li>
