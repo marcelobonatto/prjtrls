@@ -54,6 +54,41 @@ class escola
         return $matriz;
     }
 
+    public function ListarCombo()
+    {
+        $matriz = array();
+
+        $sql    = 'SELECT escolaId, escolaNome, escolaBairro, e.cidadeCodigo, c.cidadeNome, e.estadoSigla, escolaAtivo ' .
+                  'FROM escolas e ' .
+                  'JOIN cidades c ON c.cidadeCodigo = e.cidadeCodigo ' .
+                  'ORDER BY escolaNome';
+
+        $db     = new bancodados();
+        $res    = $db->SelecionarAssociativa($sql);
+
+        if ($res !== FALSE)
+        {
+            if (count($res) > 0)
+            {
+                foreach ($res as $escola)
+                {
+                    $obj                = new escola();
+                    $obj->id            = $escola['escolaId'];
+                    $obj->nome          = $escola['escolaNome'];
+                    $obj->bairro        = $escola['escolaBairro'];
+                    $obj->cidade        = $escola['cidadeCodigo'];
+                    $obj->cidadenome    = $escola['cidadeNome'];
+                    $obj->estado        = $escola['estadoSigla'];
+                    $obj->ativo         = $escola['escolaAtivo'];
+
+                    array_push($matriz, $obj);
+                }
+            }
+        }
+
+        return $matriz;
+    }
+
     public function ListarPorCidade($cidade)
     {
         $matriz = array();

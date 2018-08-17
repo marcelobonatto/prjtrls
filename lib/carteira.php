@@ -92,22 +92,22 @@ class carteira
             $id     = $this->id;
         }
 
-        if ($this->bonus == null)
+        if ($this->limite == null)
         {
-            $bonus   = -1;
+            $limite   = -1;
         }
         else
         {
-            $bonus   = $this->bonus;
+            $limite   = $this->limite;
         }
 
         if ($id == '{ID}')
         {
-            return $this->Incluir($id, $bonus);
+            return $this->Incluir($id, $limite);
         }
         else
         {
-            return $this->Atualizar($id, $bonus);
+            return $this->Atualizar($id, $limite);
         }
     }
 

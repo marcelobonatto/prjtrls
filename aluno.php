@@ -48,105 +48,17 @@ include('header.php');
         <div id="mensagem" class="alert alert-danger d-none" role="alert">
         </div>
         <form id="frmAluno" method="post" action="aluno.php">
-            <div class="form-group">
-                <label for="txtId">Código Interno:</label>
-                <input class="form-control col-sm-4" type="text" value="<?php echo($txtid); ?>" id="txtId" name="txtId" readonly="readonly" />
-            </div>
-            <div class="form-group">
-                <label for="txtNome">Nome:</label>
-                <input class="form-control" type="text" value="<?php echo($nome); ?>" id="txtNome" name="txtNome" required />
-            </div>
-            <div class="form-group">
-                <label for="txtId">Matrícula:</label>
-                <input class="form-control col-sm-4" type="text" value="<?php echo($matricula); ?>" id="txtMatricula" name="txtMatricula" required />
-            </div>            
-            <div class="form-group">
-                <label for="txtLoginMoodle">LoginMoodle:</label>
-                <input class="form-control" type="text" value="<?php echo($loginMoodle); ?>" id="txtLoginMoodle" name="txtLoginMoodle" required />
-            </div>
-            <div class="form-group">
-                <label for="txtE-mail">E-mail:</label>
-                <input class="form-control" type="email" value="<?php echo($email); ?>" id="txtEmail" name="txtEmail" required />
-            </div>
-            <div class="form-group">
-                <label for="txtId">Série:</label>
-                <input class="form-control col-sm-4" type="number" value="<?php echo($ano); ?>" id="txtAno" name="txtAno" min="1" max="3" required />
-            </div>             
-            <div class="form-group">
-                <label for="txtEscola">Escola:</label>
-                <?php
-                $seltxt         = ' selected="selected"';
-                $selecionado    = ($escola == "*");
-
-                if ($selecionado)
-                {
-                    $seltxtef   = $seltxt;
-                }
-                else
-                {
-                    $seltxtef   = '';
-                }
-                
-                $opcoes = "<option value=\"*\"$seltxtef>Todos</option>";
-
-                $escolaobj  = new lib\escola();
-                $escolas    = $escolaobj->ListarRegistros(1);
-
-                foreach ($escolas as $escolaitem)
-                {
-                    $selecionado    = ($escola == $escolaitem->id);
-                    
-                    if ($selecionado)
-                    {
-                        $seltxtef   = $seltxt;
-                    }
-                    else
-                    {
-                        $seltxtef   = '';
-                    }
-
-                    $opcoes .= "<option value=\"$escolaitem->id\"$seltxtef>$escolaitem->nome</option>";
-                }
-                ?>
-                <select class="form-control col-sm-3" id="cmbEscola" name="cmbEscola">                    
-                    <?php echo($opcoes); ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Ativo:</label>
-                <br />
-                <?php 
-                if ($ativo == 1)
-                {
-                    $ativo1 = ' active';
-                    $check1 = ' checked';
-                    $ativo0 = '';
-                    $check0 = '';
-                }
-                else
-                {
-                    $ativo1 = '';
-                    $check1 = '';
-                    $ativo0 = ' active';
-                    $check0 = ' checked';
-                }
-                ?>
-                <div class="btn-group" data-toggle="buttons">
-                    <label class="btn btn-success<?php echo($ativo1); ?>">
-                        <input type="radio" name="optAtivo" id="optSim" autocomplete="off" value="1"<?php echo($check1); ?>> Sim
-                    </label>
-                    <label class="btn btn-secondary<?php echo($ativo0); ?>">
-                        <input type="radio" name="optAtivo" id="optNao" autocomplete="off" value="0"<?php echo($check0); ?>> Não
-                    </label>
-                </div>
-            </div>
-            <hr />
-            <button class="btn btn-info">
-                Gravar
-            </button>
-            <button id="cmdVoltar" type="button" class="btn btn-danger">
-                Voltar
-            </button>
+            <?php
+            controles\campotexto::Gerar('C&oacute;digo Interno', 'Id', $txtid, 4, true);
+            controles\campotexto::GerarRequerido('Nome', 'Nome', $nome, 12, false);
+            controles\campotexto::GerarRequerido('Matrícula', 'Matricula', $matricula, 2, false);
+            controles\campotexto::GerarRequerido('Login Moodle', 'LoginMoodle', $loginMoodle, 12, false);
+            controles\campoemail::GerarRequerido('E-mail', 'Email', $email, 12, false);
+            controles\camponumero::GerarRequerido('S&eacute;rie', 'Ano', $ano, 1, false, 1, 3);
+            controles\comboexterno::Gerar('Escola', 'Escola', $escola, 'lib\\escola', 'nome', 'id');
+            controles\botaoativo::Gerar('Ativo', $ativo, 'Ativo', 'Sim', 'Sim', 'Nao', 'Não');
+            controles\botoescadastro::Gerar();
+            ?>
         </form>
     </div>
 <?php
